@@ -1,0 +1,21 @@
+﻿using ShopECommerce.Data.Abstract;
+using ShopECommerce.Data.Context;
+using ShopECommerce.Data.Repositories;
+using ShopECommerce.Entities.Concrete;
+
+namespace ShopECommerce.Data.Concrete
+{
+    public class EfMenuTableDal : GenericRepository<MenuTable>, IMenuTableDal
+    {
+        private readonly ShopECommerceContext _context;
+        public EfMenuTableDal(ShopECommerceContext context) : base(context)
+        {
+            _context = context;
+        }
+
+        public int MenuTableCount()
+        {
+            return _context.MenuTables.Count();
+        }
+    }
+}

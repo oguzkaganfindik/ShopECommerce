@@ -25,7 +25,7 @@ namespace ShopECommerce.Data.Context
             modelBuilder.Entity<Category>().HasData(new Category
             {
                 Id = 1,
-                Name = "Meyve",
+                CategoryName = "Meyve",
                 Description = "Meyveler",
                 CreatedDate = DateTime.Now,
             });
@@ -33,7 +33,7 @@ namespace ShopECommerce.Data.Context
             modelBuilder.Entity<Category>().HasData(new Category
             {
                 Id = 2,
-                Name = "Sebze",
+                CategoryName = "Sebze",
                 Description = "Sebzeler",
                 CreatedDate = DateTime.Now,
             });

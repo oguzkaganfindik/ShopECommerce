@@ -8,10 +8,12 @@ namespace ShopECommerce.Data.Context
     public class ShopECommerceContext : DbContext
     {
         private readonly IDataProtector _dataProtector;
+
         public ShopECommerceContext(DbContextOptions<ShopECommerceContext> options, IDataProtectionProvider dataProtectionProvider) : base(options)
         {
             _dataProtector = dataProtectionProvider.CreateProtector("security");
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
