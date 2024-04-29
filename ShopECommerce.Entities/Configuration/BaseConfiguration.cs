@@ -4,10 +4,10 @@ using ShopECommerce.Entities.Abstract;
 
 namespace ShopECommerce.Entities.Configuration
 {
-    public abstract class BaseConfiguration<TEntity> : IEntityTypeConfiguration<TEntity>
-        where TEntity : BaseEntity
+    public abstract class BaseConfiguration<T> : IEntityTypeConfiguration<T>
+        where T : BaseEntity
     {
-        public virtual void Configure(EntityTypeBuilder<TEntity> builder)
+        public virtual void Configure(EntityTypeBuilder<T> builder)
         {
             builder.HasQueryFilter(x => x.IsDeleted == false);
 

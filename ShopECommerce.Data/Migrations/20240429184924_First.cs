@@ -60,7 +60,7 @@ namespace ShopECommerce.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    CategoryName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -279,9 +279,9 @@ namespace ShopECommerce.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductStatus = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
@@ -424,11 +424,11 @@ namespace ShopECommerce.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "Id", "CreatedDate", "DeletedDate", "Description", "IsDeleted", "ModifiedDate", "Name", "Status" },
+                columns: new[] { "Id", "CategoryName", "CreatedDate", "DeletedDate", "Description", "IsDeleted", "ModifiedDate", "Status" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 4, 29, 17, 1, 38, 34, DateTimeKind.Local).AddTicks(4115), null, "Meyveler", false, null, "Meyve", false },
-                    { 2, new DateTime(2024, 4, 29, 17, 1, 38, 34, DateTimeKind.Local).AddTicks(4131), null, "Sebzeler", false, null, "Sebze", false }
+                    { 1, "Meyve", new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3764), null, "Meyveler", false, null, false },
+                    { 2, "Sebze", new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3778), null, "Sebzeler", false, null, false }
                 });
 
             migrationBuilder.InsertData(
@@ -436,8 +436,8 @@ namespace ShopECommerce.Data.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "IsDeleted", "ModifiedDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 4, 29, 17, 1, 38, 34, DateTimeKind.Local).AddTicks(4058), null, false, null, "Admin" },
-                    { 2, new DateTime(2024, 4, 29, 17, 1, 38, 34, DateTimeKind.Local).AddTicks(4097), null, false, null, "User" }
+                    { 1, new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3713), null, false, null, "Admin" },
+                    { 2, new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3748), null, false, null, "User" }
                 });
 
             migrationBuilder.InsertData(
@@ -445,16 +445,16 @@ namespace ShopECommerce.Data.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "DeletedDate", "IsDeleted", "ModifiedDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 4, 29, 17, 1, 38, 34, DateTimeKind.Local).AddTicks(4150), null, false, null, "Elma" },
-                    { 2, 1, new DateTime(2024, 4, 29, 17, 1, 38, 34, DateTimeKind.Local).AddTicks(4165), null, false, null, "Muz" },
-                    { 3, 2, new DateTime(2024, 4, 29, 17, 1, 38, 34, DateTimeKind.Local).AddTicks(4177), null, false, null, "Pırasa" },
-                    { 4, 2, new DateTime(2024, 4, 29, 17, 1, 38, 34, DateTimeKind.Local).AddTicks(4189), null, false, null, "Salatalık" }
+                    { 1, 1, new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3798), null, false, null, "Elma" },
+                    { 2, 1, new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3814), null, false, null, "Muz" },
+                    { 3, 2, new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3827), null, false, null, "Pırasa" },
+                    { 4, 2, new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3839), null, false, null, "Salatalık" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "CreatedDate", "DeletedDate", "Email", "FirstName", "IsDeleted", "LastName", "ModifiedDate", "Password", "Phone", "RoleId", "Status", "UserGuid", "Username" },
-                values: new object[] { 1, "Ankara", new DateTime(2024, 4, 29, 17, 1, 38, 34, DateTimeKind.Local).AddTicks(4228), null, "admin@test.com", "Şebnem", false, "Ferah", null, "CfDJ8Lhzc99II2tHnoigxoZuezNKMvygKvU3dalRROHCl1qoEps6DIl2gpbPRQhGhATTRMr9HP3xb38QJzp_wy2WqiBZRACitptifYifWMXFo627WbMaw63pZvXMzk86NvnR6w", "0850", 1, true, new Guid("6e01fec0-35cf-4e54-a9dc-9c47ce2ee22d"), "Admin" });
+                values: new object[] { 1, "Ankara", new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3876), null, "admin@test.com", "Şebnem", false, "Ferah", null, "CfDJ8Lhzc99II2tHnoigxoZuezMMHSUcfhDlEkDga3K3c5RsN11TKDwl7GKsOsIHf0rpO4J_Tw4iLdJfjbvTCcVg3dMKX1L2lGWzo_eSVo0oyCTME-X_VvKjkNTsY4W_rMoHIA", "0850", 1, true, new Guid("43881afc-a502-47d6-8ec8-c6f847b55ce2"), "Admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Baskets_MenuTableId",

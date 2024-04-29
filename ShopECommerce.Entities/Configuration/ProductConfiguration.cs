@@ -7,15 +7,15 @@ namespace ShopECommerce.Entities.Configuration
     {
         public override void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.Property(x => x.Name)
+            builder.Property(x => x.ProductName)
                 .HasMaxLength(50);
 
             builder.Property(x => x.Description)
                 .HasMaxLength(200)
                 .IsRequired(false);
 
-            builder.Property(x => x.Price)
-                .IsRequired(false);
+            //builder.Property(x => x.Price)
+            //    .IsRequired(false);
 
             builder.Property(x => x.ImageUrl)
                 .IsRequired(false);

@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
+using ShopECommerce.Api;
 using ShopECommerce.Data.Context;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddServicesRegistration();
 
 // Add services to the container.
 

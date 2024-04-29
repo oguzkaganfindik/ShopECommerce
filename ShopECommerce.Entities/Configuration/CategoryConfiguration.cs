@@ -8,7 +8,7 @@ namespace ShopECommerce.Entities.Configuration
         public override void Configure(EntityTypeBuilder<Category> builder)
         {
 
-            builder.Property(x => x.Name)
+            builder.Property(x => x.CategoryName)
                 .HasMaxLength(40);
 
             builder.Property(x => x.Description)
