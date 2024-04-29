@@ -3,9 +3,9 @@ using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Entities.Configuration
 {
-    public class CategoryConfiguration : BaseConfiguration<CategoryEntity>
+    public class CategoryConfiguration : BaseConfiguration<Category>
     {
-        public override void Configure(EntityTypeBuilder<CategoryEntity> builder)
+        public override void Configure(EntityTypeBuilder<Category> builder)
         {
 
             builder.Property(x => x.Name)

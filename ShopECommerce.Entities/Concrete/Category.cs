@@ -2,13 +2,15 @@
 
 namespace ShopECommerce.Entities.Concrete
 {
-    public class CategoryEntity : BaseEntity
+    public class Category : BaseEntity
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public bool Status { get; set; }
 
         // Relational Property
 
-        public List<ProductEntity> Products { get; set; }
+        public List<Product> Products { get; set; }
+        public List<SubCategory> SubCategories { get; set; }
     }
 }
