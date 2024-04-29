@@ -24,8 +24,23 @@ namespace ShopECommerce.Data.Context
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<UserEntity> Users => Set<UserEntity>();
-        public DbSet<CategoryEntity> Categories => Set<CategoryEntity>();
-        public DbSet<ProductEntity> Products => Set<ProductEntity>();
+        public DbSet<About> Abouts => Set<About>();
+        public DbSet<Basket> Baskets => Set<Basket>();
+        public DbSet<Booking> Bookings => Set<Booking>();
+        public DbSet<Category> Categories => Set<Category>();
+        public DbSet<Contact> Contacts => Set<Contact>();
+        public DbSet<Discount> Discounts => Set<Discount>();
+        public DbSet<MenuTable> MenuTables => Set<MenuTable>();
+        public DbSet<MoneyCase> MoneyCases => Set<MoneyCase>();
+        public DbSet<Notification> Notifications => Set<Notification>();
+        public DbSet<Order> Orders => Set<Order>();
+        public DbSet<OrderDetail> OrderDetails => Set<OrderDetail>();
+        public DbSet<Product> Products => Set<Product>();
+        public DbSet<Role> Roles => Set<Role>();
+        public DbSet<Slider> Sliders => Set<Slider>();
+        public DbSet<SocialMedia> SocialMedias => Set<SocialMedia>();
+        public DbSet<SubCategory> SubCategories => Set<SubCategory>();
+        public DbSet<Testimonial> Testimonials => Set<Testimonial>();
+        public DbSet<User> Users => Set<User>();
     }
 }
