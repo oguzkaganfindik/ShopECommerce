@@ -1,10 +1,12 @@
-﻿using ShopECommerce.Entities.Concrete;
+﻿using ShopECommerce.DTOs.ProductDto;
+using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Business.Abstract
 {
     public interface IProductService : IGenericService<Product>
     {
-        List<Product> TGetProductsWithCategories();
+        //List<Product> TGetProductsWithCategories();
+        List<ResultProductWithCategory> TGetProductsWithCategories();
         int TProductCount();
         int TProductCountByCategoryNameHamburger();
         int TProductCountByCategoryNameDrink();

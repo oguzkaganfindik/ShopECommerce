@@ -8,10 +8,10 @@ namespace ShopECommerce.Business.Mapping
     {
         public CategoryMapping()
         {
-            CreateMap<Category, ResultSubCategoryDto>().ReverseMap();
-            CreateMap<Category, CreateSubCategoryDto>().ReverseMap();
-            CreateMap<Category, GetSubCategoryDto>().ReverseMap();
-            CreateMap<Category, UpdateSubCategoryDto>().ReverseMap();
+            CreateMap<Category, ResultCategoryDto>().ReverseMap();
+            CreateMap<Category, CreateCategoryDto>().ReverseMap();
+            CreateMap<Category, GetCategoryDto>().ReverseMap();
+            CreateMap<Category, UpdateCategoryDto>().ReverseMap();
         }
     }
 }

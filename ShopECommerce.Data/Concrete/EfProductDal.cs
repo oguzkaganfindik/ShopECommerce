@@ -2,6 +2,7 @@
 using ShopECommerce.Data.Abstract;
 using ShopECommerce.Data.Context;
 using ShopECommerce.Data.Repositories;
+using ShopECommerce.DTOs.ProductDto;
 using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Data.Concrete
@@ -14,11 +15,11 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public List<Product> GetProductsWithCategories()
-        {
-            var values = _context.Products.Include(x => x.Category).ToList();
-            return values;
-        }
+        //public List<Product> GetProductsWithCategories()
+        //{
+        //    var values = _context.Products.Include(x => x.Category).ToList();
+        //    return values;
+        //}
 
         public int ProductCount()
         {
@@ -74,6 +75,22 @@ namespace ShopECommerce.Data.Concrete
         {
             int id = _context.Categories.Where(x => x.CategoryName == "Salata").Select(y => y.Id).FirstOrDefault();
             return _context.Products.Where(x => x.CategoryId == id).Sum(y => y.Price);
+        }
+
+        public List<ResultProductWithCategory> GetProductsWithCategories()
+        {
+            var values = _context.Products.Include(x => x.Category).Select(y => new ResultProductWithCategory
+            {
+                Description = y.Description,
+                ImageUrl = y.ImageUrl,
+                Price = y.Price,
+                Id = y.Id,
+                ProductName = y.ProductName,
+                ProductStatus = y.ProductStatus,
+                CategoryName = y.Category.CategoryName
+            }).ToList();
+
+            return values;
         }
     }
 }

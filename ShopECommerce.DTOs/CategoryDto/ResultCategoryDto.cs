@@ -1,9 +1,10 @@
 ﻿namespace ShopECommerce.DTOs.CategoryDto
 {
-    public class ResultSubCategoryDto
+    public class ResultCategoryDto
     {
-        public int CategoryId { get; set; }
+        public int Id { get; set; }
         public string CategoryName { get; set; }
+        public string Description { get; set; }
         public bool Status { get; set; }
     }
 }

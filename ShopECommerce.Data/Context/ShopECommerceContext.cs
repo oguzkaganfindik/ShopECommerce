@@ -33,6 +33,7 @@ namespace ShopECommerce.Data.Context
         public DbSet<Contact> Contacts => Set<Contact>();
         public DbSet<Discount> Discounts => Set<Discount>();
         public DbSet<MenuTable> MenuTables => Set<MenuTable>();
+        public DbSet<Message> Messages => Set<Message>();
         public DbSet<MoneyCase> MoneyCases => Set<MoneyCase>();
         public DbSet<Notification> Notifications => Set<Notification>();
         public DbSet<Order> Orders => Set<Order>();
