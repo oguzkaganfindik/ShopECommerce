@@ -1,22 +1,24 @@
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
-using ShopECommerce.Api;
+using ShopECommerce.Business;
 using ShopECommerce.Data.Context;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 builder.Services.AddServicesRegistration();
 
-// Add services to the container.
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+builder.Services.AddSignalR();
 
 builder.Services.AddControllers();
 
-var connectionString = builder.Configuration.GetConnectionString
-    ("DefaultConnection");
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ShopECommerceContext>(options => options.UseSqlServer(connectionString));
-
-builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -4,7 +4,7 @@ using ShopECommerce.Business.Concrete;
 using ShopECommerce.Data.Abstract;
 using ShopECommerce.Data.Concrete;
 
-namespace ShopECommerce.Api
+namespace ShopECommerce.Business
 {
     public static class ServiceRegistration
     {
