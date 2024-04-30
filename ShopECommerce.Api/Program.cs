@@ -2,19 +2,21 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using ShopECommerce.Business;
 using ShopECommerce.Data.Context;
-using System.Reflection;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddServicesRegistration();
 
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddMappingRegistration();
 
 builder.Services.AddSignalR();
 
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
+builder.Services.AddControllers();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 

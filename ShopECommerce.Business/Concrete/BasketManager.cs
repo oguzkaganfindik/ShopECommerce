@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.BasketDto;
 using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Business.Concrete
@@ -28,6 +29,11 @@ namespace ShopECommerce.Business.Concrete
             return _basketDal.GetBasketByMenuTableNumber(id);
         }
 
+        public List<ResultBasketListWithProductsDto> TGetBasketListByMenuTableWithProductName(int id)
+        {
+            return _basketDal.GetBasketListByMenuTableWithProductName(id);
+        }
+
         public Basket TGetById(int id)
         {
             return _basketDal.GetById(id);
@@ -36,6 +42,11 @@ namespace ShopECommerce.Business.Concrete
         public List<Basket> TGetListAll()
         {
             return _basketDal.GetListAll();
+        }
+
+        public decimal TGetProductPrice(int productId)
+        {
+            return _basketDal.GetProductPrice(productId);
         }
 
         public void TUpdate(Basket entity)

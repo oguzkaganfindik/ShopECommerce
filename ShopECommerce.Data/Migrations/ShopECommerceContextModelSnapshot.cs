@@ -190,7 +190,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             CategoryName = "Meyve",
-                            CreatedDate = new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3764),
+                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(5980),
                             Description = "Meyveler",
                             IsDeleted = false,
                             Status = false
@@ -199,7 +199,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             CategoryName = "Sebze",
-                            CreatedDate = new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3778),
+                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6037),
                             Description = "Sebzeler",
                             IsDeleted = false,
                             Status = false
@@ -337,6 +337,57 @@ namespace ShopECommerce.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MenuTables");
+                });
+
+            modelBuilder.Entity("ShopECommerce.Entities.Concrete.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MessageContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MessageSendDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NameSurname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.MoneyCase", b =>
@@ -573,14 +624,14 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3713),
+                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(5930),
                             IsDeleted = false,
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3748),
+                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(5964),
                             IsDeleted = false,
                             Name = "User"
                         });
@@ -710,7 +761,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3798),
+                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6058),
                             IsDeleted = false,
                             Name = "Elma"
                         },
@@ -718,7 +769,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3814),
+                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6075),
                             IsDeleted = false,
                             Name = "Muz"
                         },
@@ -726,7 +777,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 3,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3827),
+                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6088),
                             IsDeleted = false,
                             Name = "Pırasa"
                         },
@@ -734,7 +785,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 4,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3839),
+                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6102),
                             IsDeleted = false,
                             Name = "Salatalık"
                         });
@@ -853,16 +904,16 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Address = "Ankara",
-                            CreatedDate = new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3876),
+                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6143),
                             Email = "admin@test.com",
                             FirstName = "Şebnem",
                             IsDeleted = false,
                             LastName = "Ferah",
-                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezMMHSUcfhDlEkDga3K3c5RsN11TKDwl7GKsOsIHf0rpO4J_Tw4iLdJfjbvTCcVg3dMKX1L2lGWzo_eSVo0oyCTME-X_VvKjkNTsY4W_rMoHIA",
+                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezPef_87I7SkLmaI-Mq4t868QGNUdmlj4Niy-J83XJ9Be83X501s97zcDNKPur78HqIVf3sHdteTL31wfDcFmGiWK2ZF8Z5Pn-i4k2MZ0DatVQ",
                             Phone = "0850",
                             RoleId = 1,
                             Status = true,
-                            UserGuid = new Guid("43881afc-a502-47d6-8ec8-c6f847b55ce2"),
+                            UserGuid = new Guid("4b04cc21-73f4-4199-a240-bde9d8bea1e4"),
                             Username = "Admin"
                         });
                 });

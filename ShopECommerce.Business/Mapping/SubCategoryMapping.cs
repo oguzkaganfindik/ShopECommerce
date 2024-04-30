@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ShopECommerce.DTOs.CategoryDto;
+using ShopECommerce.DTOs.SubCategoryDto;
 using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Business.Mapping

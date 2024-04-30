@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.ProductDto;
 using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Business.Concrete
@@ -43,10 +44,10 @@ namespace ShopECommerce.Business.Concrete
             return _productDal.GetListAll();
         }
 
-        public List<Product> TGetProductsWithCategories()
-        {
-            return _productDal.GetProductsWithCategories();
-        }
+        //public List<Product> TGetProductsWithCategories()
+        //{
+        //    return _productDal.GetProductsWithCategories();
+        //}
 
         public int TProductCount()
         {
@@ -91,6 +92,11 @@ namespace ShopECommerce.Business.Concrete
         public decimal TTotalPriceBySaladCategory()
         {
             return _productDal.TotalPriceBySaladCategory();
+        }
+
+        public List<ResultProductWithCategory> TGetProductsWithCategories()
+        {
+            return _productDal.GetProductsWithCategories();
         }
     }
 }

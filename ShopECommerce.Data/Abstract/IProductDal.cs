@@ -1,10 +1,12 @@
-﻿using ShopECommerce.Entities.Concrete;
+﻿using ShopECommerce.DTOs.ProductDto;
+using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Data.Abstract
 {
     public interface IProductDal : IGenericDal<Product>
     {
-        List<Product> GetProductsWithCategories();
+        //List<Product> GetProductsWithCategories();
+        List<ResultProductWithCategory> GetProductsWithCategories();
         int ProductCount();
         int ProductCountByCategoryNameHamburger();
         int ProductCountByCategoryNameDrink();

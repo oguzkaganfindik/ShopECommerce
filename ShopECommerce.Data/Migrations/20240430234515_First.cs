@@ -137,6 +137,29 @@ namespace ShopECommerce.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Messages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NameSurname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Mail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MessageContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MessageSendDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Messages", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MoneyCases",
                 columns: table => new
                 {
@@ -427,8 +450,8 @@ namespace ShopECommerce.Data.Migrations
                 columns: new[] { "Id", "CategoryName", "CreatedDate", "DeletedDate", "Description", "IsDeleted", "ModifiedDate", "Status" },
                 values: new object[,]
                 {
-                    { 1, "Meyve", new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3764), null, "Meyveler", false, null, false },
-                    { 2, "Sebze", new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3778), null, "Sebzeler", false, null, false }
+                    { 1, "Meyve", new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(5980), null, "Meyveler", false, null, false },
+                    { 2, "Sebze", new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6037), null, "Sebzeler", false, null, false }
                 });
 
             migrationBuilder.InsertData(
@@ -436,8 +459,8 @@ namespace ShopECommerce.Data.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "IsDeleted", "ModifiedDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3713), null, false, null, "Admin" },
-                    { 2, new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3748), null, false, null, "User" }
+                    { 1, new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(5930), null, false, null, "Admin" },
+                    { 2, new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(5964), null, false, null, "User" }
                 });
 
             migrationBuilder.InsertData(
@@ -445,16 +468,16 @@ namespace ShopECommerce.Data.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "DeletedDate", "IsDeleted", "ModifiedDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3798), null, false, null, "Elma" },
-                    { 2, 1, new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3814), null, false, null, "Muz" },
-                    { 3, 2, new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3827), null, false, null, "Pırasa" },
-                    { 4, 2, new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3839), null, false, null, "Salatalık" }
+                    { 1, 1, new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6058), null, false, null, "Elma" },
+                    { 2, 1, new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6075), null, false, null, "Muz" },
+                    { 3, 2, new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6088), null, false, null, "Pırasa" },
+                    { 4, 2, new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6102), null, false, null, "Salatalık" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "CreatedDate", "DeletedDate", "Email", "FirstName", "IsDeleted", "LastName", "ModifiedDate", "Password", "Phone", "RoleId", "Status", "UserGuid", "Username" },
-                values: new object[] { 1, "Ankara", new DateTime(2024, 4, 29, 21, 49, 24, 66, DateTimeKind.Local).AddTicks(3876), null, "admin@test.com", "Şebnem", false, "Ferah", null, "CfDJ8Lhzc99II2tHnoigxoZuezMMHSUcfhDlEkDga3K3c5RsN11TKDwl7GKsOsIHf0rpO4J_Tw4iLdJfjbvTCcVg3dMKX1L2lGWzo_eSVo0oyCTME-X_VvKjkNTsY4W_rMoHIA", "0850", 1, true, new Guid("43881afc-a502-47d6-8ec8-c6f847b55ce2"), "Admin" });
+                values: new object[] { 1, "Ankara", new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6143), null, "admin@test.com", "Şebnem", false, "Ferah", null, "CfDJ8Lhzc99II2tHnoigxoZuezPef_87I7SkLmaI-Mq4t868QGNUdmlj4Niy-J83XJ9Be83X501s97zcDNKPur78HqIVf3sHdteTL31wfDcFmGiWK2ZF8Z5Pn-i4k2MZ0DatVQ", "0850", 1, true, new Guid("4b04cc21-73f4-4199-a240-bde9d8bea1e4"), "Admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Baskets_MenuTableId",
@@ -509,6 +532,9 @@ namespace ShopECommerce.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Discounts");
+
+            migrationBuilder.DropTable(
+                name: "Messages");
 
             migrationBuilder.DropTable(
                 name: "MoneyCases");

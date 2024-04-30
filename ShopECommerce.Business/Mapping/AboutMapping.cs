@@ -8,7 +8,7 @@ namespace ShopECommerce.Business.Mapping
     {
         public AboutMapping()
         {
-            CreateMap<About, ResultAboutDto>().ReverseMap();
+            CreateMap<About, ResultAboutDto>();
             CreateMap<About, CreateAboutDto>().ReverseMap();
             CreateMap<About, GetAboutDto>().ReverseMap();
             CreateMap<About, UpdateAboutDto>().ReverseMap();
