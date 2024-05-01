@@ -1,0 +1,68 @@
+﻿ @model LoginViewModel
+
+@{
+    ViewData["Title"] = "Giriş Yap";
+    Layout = "_AuthLayout";
+}
+
+<div class="login-box" style="top:33%; margin-top:80px; width:34%">
+    <h2 style="font-family:'Lucida Fax'">Giriş Formu</h2>
+    <form method="post" asp-controller="Auth" asp-action="Login">
+        <div class="user-box">
+            <input asp-for="Email" type="email" required>
+            <label class="required" asp-for="Email"></label>
+        </div>
+        <div class="user-box">
+            <input asp-for="Password" type="password" required>
+            <label class="required" asp-for="Password"></label>
+        </div>
+
+        <div class="text-danger" asp-validation-summary="All">
+        </div>
+
+
+        <div class="row">
+            <div class="col-4">
+                <a style="font-family:'Lucida Fax'" class="float-end" asp-action="Register" asp-controller="Auth"><center>Kayıt Ol</center></a>
+            </div>
+            <div class="col-4">
+                <button style="font-family:'Lucida Fax'" type="submit" class="float-end" asp-action="Login" asp-controller="Auth"><center>Giriş Yap</center></button>
+            </div>
+            <div class="col-4">
+                <a style="font-family:'Lucida Fax'" class="float-end" asp-action="Index" asp-controller="Home"><center>Ana Sayfa</center></a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // https://codeseven.github.io/toastr/demo.html
+
+        $(document).ready(function () {
+
+            toastr.options = {
+                'closeButton': false,
+                'debug': false,
+                'newestOnTop': true,
+                'progressBar': false,
+                'positionClass': 'toast-top-center',
+                'preventDuplicates': false,
+                'showDuration': '1000',
+                'hideDuration': '1000',
+                'timeOut': '5000',
+                'extendedTimeOut': '1000',
+                'showEasing': 'swing',
+                'hideEasing': 'linear',
+                'showMethod': 'fadeIn',
+                'hideMethod': 'fadeOut',
+            }
+
+        @if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage?.ToString()))
+        {
+            @:toastr.options.closeHtml = '<button class="closebtn"><i class="bi bi-x"></i></button>';
+            @:toastr.error("@ViewBag.ErrorMessage?.ToString()", "Bildirim:");
+        }
+                            });
+    </script>
+}

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
+using ShopECommerce.Api.Hubs;
 using ShopECommerce.Business;
 using ShopECommerce.Data.Context;
 using System.Text.Json.Serialization;
@@ -49,5 +50,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<SignalRHub>("/signalrhub");
 
 app.Run();
