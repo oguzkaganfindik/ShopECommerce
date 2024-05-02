@@ -22,7 +22,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet]
         public IActionResult CategoryList()
         {
-            var value = _mapper.Map<List<CreateCategoryDto>>(_categoryService.TGetListAll());
+            var value = _mapper.Map<List<ResultCategoryDto>>(_categoryService.TGetAll());
             return Ok(value);
         }
 
@@ -80,10 +80,23 @@ namespace ShopECommerce.Api.Controllers
             {
                 CategoryName = updateCategoryDto.CategoryName,
                 Id = updateCategoryDto.Id,
-                Status = updateCategoryDto.Status
+                Status = updateCategoryDto.Status,
             });
 
             return Ok("Kategori Güncellendi");
+        }
+
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
+        {
+            _categoryService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_categoryService.TGetListByStatusTrue());
         }
     }
 }

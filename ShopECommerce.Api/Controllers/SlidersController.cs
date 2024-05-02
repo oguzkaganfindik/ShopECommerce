@@ -21,7 +21,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet]
         public IActionResult SliderList()
         {
-            var value = _mapper.Map<List<ResultSliderDto>>(_sliderService.TGetListAll());
+            var value = _mapper.Map<List<ResultSliderDto>>(_sliderService.TGetAll());
             return Ok(value);
         }
 
@@ -71,6 +71,19 @@ namespace ShopECommerce.Api.Controllers
             });
 
             return Ok("Slider Bilgisi Güncellendi");
+        }
+
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
+        {
+            _sliderService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_sliderService.TGetListByStatusTrue());
         }
     }
 }

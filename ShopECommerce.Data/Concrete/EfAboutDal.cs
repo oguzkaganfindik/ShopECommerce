@@ -7,8 +7,11 @@ namespace ShopECommerce.Data.Concrete
 {
     public class EfAboutDal : GenericRepository<About>, IAboutDal
     {
+        private readonly ShopECommerceContext _context;
+
         public EfAboutDal(ShopECommerceContext context) : base(context)
         {
+            _context = context;
         }
     }
 }

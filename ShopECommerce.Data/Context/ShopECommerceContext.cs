@@ -42,7 +42,6 @@ namespace ShopECommerce.Data.Context
         public DbSet<Role> Roles => Set<Role>();
         public DbSet<Slider> Sliders => Set<Slider>();
         public DbSet<SocialMedia> SocialMedias => Set<SocialMedia>();
-        public DbSet<SubCategory> SubCategories => Set<SubCategory>();
         public DbSet<Testimonial> Testimonials => Set<Testimonial>();
         public DbSet<User> Users => Set<User>();
     }

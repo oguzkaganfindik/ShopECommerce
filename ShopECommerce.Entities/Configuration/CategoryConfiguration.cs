@@ -11,9 +11,6 @@ namespace ShopECommerce.Entities.Configuration
             builder.Property(x => x.CategoryName)
                 .HasMaxLength(40);
 
-            builder.Property(x => x.Description)
-                .IsRequired(false);
-
             base.Configure(builder);
         }
     }

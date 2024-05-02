@@ -17,7 +17,6 @@ namespace ShopECommerce.Business
             services.AddAutoMapper(typeof(RoleMapping));
             services.AddAutoMapper(typeof(SliderMapping));
             services.AddAutoMapper(typeof(SocialMediaMapping));
-            services.AddAutoMapper(typeof(SubCategoryMapping));
             services.AddAutoMapper(typeof(TestimonialMapping));
         }
     }

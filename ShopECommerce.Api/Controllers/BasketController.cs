@@ -53,5 +53,18 @@ namespace ShopECommerce.Api.Controllers
             _basketService.TDelete(value);
             return Ok("Sepetteki Seçilen Ürün Silindi");
         }
+
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
+        {
+            _basketService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_basketService.TGetListByStatusTrue());
+        }
     }
 }

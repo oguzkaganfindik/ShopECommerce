@@ -12,7 +12,7 @@ using ShopECommerce.Data.Context;
 namespace ShopECommerce.Data.Migrations
 {
     [DbContext(typeof(ShopECommerceContext))]
-    [Migration("20240430234515_First")]
+    [Migration("20240502234249_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -52,6 +52,9 @@ namespace ShopECommerce.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -93,6 +96,9 @@ namespace ShopECommerce.Data.Migrations
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
@@ -148,6 +154,9 @@ namespace ShopECommerce.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Bookings");
@@ -172,9 +181,6 @@ namespace ShopECommerce.Data.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -187,26 +193,6 @@ namespace ShopECommerce.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryName = "Meyve",
-                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(5980),
-                            Description = "Meyveler",
-                            IsDeleted = false,
-                            Status = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryName = "Sebze",
-                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6037),
-                            Description = "Sebzeler",
-                            IsDeleted = false,
-                            Status = false
-                        });
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Contact", b =>
@@ -260,6 +246,9 @@ namespace ShopECommerce.Data.Migrations
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -413,6 +402,9 @@ namespace ShopECommerce.Data.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
 
@@ -491,6 +483,9 @@ namespace ShopECommerce.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("Date");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.Property<string>("TableNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -532,6 +527,9 @@ namespace ShopECommerce.Data.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
@@ -565,10 +563,11 @@ namespace ShopECommerce.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
@@ -585,7 +584,7 @@ namespace ShopECommerce.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<bool>("ProductStatus")
+                    b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -619,6 +618,9 @@ namespace ShopECommerce.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
@@ -627,16 +629,18 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(5930),
+                            CreatedDate = new DateTime(2024, 5, 3, 2, 42, 48, 538, DateTimeKind.Local).AddTicks(8819),
                             IsDeleted = false,
-                            Name = "Admin"
+                            Name = "Admin",
+                            Status = false
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(5964),
+                            CreatedDate = new DateTime(2024, 5, 3, 2, 42, 48, 538, DateTimeKind.Local).AddTicks(8862),
                             IsDeleted = false,
-                            Name = "User"
+                            Name = "User",
+                            Status = false
                         });
                 });
 
@@ -671,6 +675,9 @@ namespace ShopECommerce.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title1")
                         .IsRequired()
@@ -713,6 +720,9 @@ namespace ShopECommerce.Data.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -724,74 +734,6 @@ namespace ShopECommerce.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SocialMedias");
-                });
-
-            modelBuilder.Entity("ShopECommerce.Entities.Concrete.SubCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("SubCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6058),
-                            IsDeleted = false,
-                            Name = "Elma"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6075),
-                            IsDeleted = false,
-                            Name = "Muz"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6088),
-                            IsDeleted = false,
-                            Name = "Pırasa"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6102),
-                            IsDeleted = false,
-                            Name = "Salatalık"
-                        });
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Testimonial", b =>
@@ -862,16 +804,16 @@ namespace ShopECommerce.Data.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -889,9 +831,6 @@ namespace ShopECommerce.Data.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("UserGuid")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -907,16 +846,15 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Address = "Ankara",
-                            CreatedDate = new DateTime(2024, 5, 1, 2, 45, 14, 547, DateTimeKind.Local).AddTicks(6143),
+                            CreatedDate = new DateTime(2024, 5, 3, 2, 42, 48, 538, DateTimeKind.Local).AddTicks(8882),
                             Email = "admin@test.com",
                             FirstName = "Şebnem",
                             IsDeleted = false,
                             LastName = "Ferah",
-                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezPef_87I7SkLmaI-Mq4t868QGNUdmlj4Niy-J83XJ9Be83X501s97zcDNKPur78HqIVf3sHdteTL31wfDcFmGiWK2ZF8Z5Pn-i4k2MZ0DatVQ",
+                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezOKospIVc4kt-B242Bn5a-LH1q4q51_RcEGxM83fDXy-gt9NIfqyeGdZLLSAkl-l5FMGQ4uX22EfF4H1mQkLZN8EP4sCooK5SSqRaon7aTq5w",
                             Phone = "0850",
                             RoleId = 1,
                             Status = true,
-                            UserGuid = new Guid("4b04cc21-73f4-4199-a240-bde9d8bea1e4"),
                             Username = "Admin"
                         });
                 });
@@ -970,17 +908,6 @@ namespace ShopECommerce.Data.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("ShopECommerce.Entities.Concrete.SubCategory", b =>
-                {
-                    b.HasOne("ShopECommerce.Entities.Concrete.Category", "Category")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.User", b =>
                 {
                     b.HasOne("ShopECommerce.Entities.Concrete.Role", "Role")
@@ -993,8 +920,6 @@ namespace ShopECommerce.Data.Migrations
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Category", b =>
                 {
                     b.Navigation("Products");
-
-                    b.Navigation("SubCategories");
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.MenuTable", b =>

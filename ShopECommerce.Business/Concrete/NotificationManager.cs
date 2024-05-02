@@ -1,6 +1,7 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
 using ShopECommerce.Entities.Concrete;
+using System.Linq.Expressions;
 
 namespace ShopECommerce.Business.Concrete
 {
@@ -55,6 +56,31 @@ namespace ShopECommerce.Business.Concrete
         public void TUpdate(Notification entity)
         {
             _notificationDal.Update(entity);
+        }
+
+        public void TDelete(int id)
+        {
+            _notificationDal.Delete(id);
+        }
+
+        public Notification TGet(Expression<Func<Notification, bool>> predicate)
+        {
+            return _notificationDal.Get(predicate);
+        }
+
+        public IQueryable<Notification> TGetAll(Expression<Func<Notification, bool>> predicate = null)
+        {
+            return _notificationDal.GetAll(predicate);
+        }
+
+        public void TToggleStatus(int id)
+        {
+            _notificationDal.ToggleStatus(id);
+        }
+
+        public IQueryable<Notification> TGetListByStatusTrue(Expression<Func<Notification, bool>> predicate = null)
+        {
+            return _notificationDal.GetListByStatusTrue(predicate);
         }
     }
 }

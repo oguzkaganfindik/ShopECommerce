@@ -7,5 +7,6 @@
         public DateTime? ModifiedDate { get; set; }
         public DateTime? DeletedDate { get; set; }
         public bool IsDeleted { get; set; }
+        public bool Status { get; set; }
     }
 }

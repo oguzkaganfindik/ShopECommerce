@@ -1,6 +1,7 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
 using ShopECommerce.Entities.Concrete;
+using System.Linq.Expressions;
 
 namespace ShopECommerce.Business.Concrete
 {
@@ -23,6 +24,21 @@ namespace ShopECommerce.Business.Concrete
             _messageDal.Delete(entity);
         }
 
+        public void TDelete(int id)
+        {
+            _messageDal.Delete(id);
+        }
+
+        public Message TGet(Expression<Func<Message, bool>> predicate)
+        {
+            return _messageDal.Get(predicate);
+        }
+
+        public IQueryable<Message> TGetAll(Expression<Func<Message, bool>> predicate = null)
+        {
+            return _messageDal.GetAll(predicate);
+        }
+
         public Message TGetById(int id)
         {
             return _messageDal.GetById(id);
@@ -31,6 +47,16 @@ namespace ShopECommerce.Business.Concrete
         public List<Message> TGetListAll()
         {
             return _messageDal.GetListAll();
+        }
+
+        public IQueryable<Message> TGetListByStatusTrue(Expression<Func<Message, bool>> predicate = null)
+        {
+            return _messageDal.GetListByStatusTrue(predicate);
+        }
+
+        public void TToggleStatus(int id)
+        {
+            _messageDal.ToggleStatus(id);
         }
 
         public void TUpdate(Message entity)

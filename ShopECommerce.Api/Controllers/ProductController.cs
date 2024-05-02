@@ -22,7 +22,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet]
         public IActionResult ProductList()
         {
-            var value = _mapper.Map<List<ResultProductDto>>(_productService.TGetListAll());
+            var value = _mapper.Map<List<ResultProductDto>>(_productService.TGetAll());
             return Ok(value);
         }
 
@@ -84,7 +84,7 @@ namespace ShopECommerce.Api.Controllers
                 ProductName = createProductDto.ProductName,
                 Description = createProductDto.Description,
                 ImageUrl = createProductDto.ImageUrl,
-                ProductStatus = createProductDto.ProductStatus,
+                Status = createProductDto.Status,
                 Price = createProductDto.Price,
                 CategoryId = createProductDto.CategoryId
             });
@@ -115,7 +115,7 @@ namespace ShopECommerce.Api.Controllers
                 Id = updateProductDto.Id,
                 ProductName = updateProductDto.ProductName,
                 Description = updateProductDto.Description,
-                ProductStatus = updateProductDto.ProductStatus,
+                Status = updateProductDto.Status,
                 ImageUrl = updateProductDto.ImageUrl,
                 Price = updateProductDto.Price,
                 CategoryId = updateProductDto.CategoryId
@@ -140,6 +140,19 @@ namespace ShopECommerce.Api.Controllers
         public IActionResult TotalPriceBySaladCategory()
         {
             return Ok(_productService.TTotalPriceBySaladCategory());
+        }
+
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
+        {
+            _productService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_productService.TGetListByStatusTrue());
         }
     }
 }

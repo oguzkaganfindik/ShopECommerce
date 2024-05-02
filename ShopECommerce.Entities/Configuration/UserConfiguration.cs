@@ -11,10 +11,10 @@ namespace ShopECommerce.Entities.Configuration
                 .HasMaxLength(50);
 
             builder.Property(x => x.FirstName)
-                .HasMaxLength(25);
+                .HasMaxLength(50);
 
             builder.Property(x => x.LastName)
-                .HasMaxLength(25);
+                .HasMaxLength(50);
 
             base.Configure(builder);
         }

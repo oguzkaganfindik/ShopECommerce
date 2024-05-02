@@ -22,7 +22,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet]
         public IActionResult SocialMediaList()
         {
-            var value = _mapper.Map<List<ResultSocialMediaDto>>(_socialMediaService.TGetListAll());
+            var value = _mapper.Map<List<ResultSocialMediaDto>>(_socialMediaService.TGetAll());
             return Ok(value);
         }
 
@@ -66,6 +66,19 @@ namespace ShopECommerce.Api.Controllers
             });
 
             return Ok("Sosyal Medya Bilgisi Güncellendi");
+        }
+
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
+        {
+            _socialMediaService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_socialMediaService.TGetListByStatusTrue());
         }
     }
 }
