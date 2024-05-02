@@ -11,9 +11,7 @@ namespace ShopECommerce.Entities.Concrete
         public string Username { get; set; }
         public string? Address { get; set; }
         public string? Phone { get; set; }
-        public bool Status { get; set; }
         public Role Role { get; set; }
         public int? RoleId { get; set; }
-        public Guid? UserGuid { get; set; } = Guid.NewGuid();
     }
 }

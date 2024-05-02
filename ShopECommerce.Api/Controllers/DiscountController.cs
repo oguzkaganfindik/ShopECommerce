@@ -22,7 +22,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet]
         public IActionResult DiscountList()
         {
-            var value = _mapper.Map<List<ResultDiscountDto>>(_discountService.TGetListAll());
+            var value = _mapper.Map<List<ResultDiscountDto>>(_discountService.TGetAll());
             return Ok(value);
         }
 
@@ -72,18 +72,25 @@ namespace ShopECommerce.Api.Controllers
             return Ok("İndirim Bilgisi Güncellendi");
         }
 
-        [HttpGet("ChangeStatusToTrue/{id}")]
-        public IActionResult ChangeStatusToTrue(int id)
-        {
-            _discountService.TChangeStatusToTrue(id);
-            return Ok("Ürün İndirimi Aktif Hale Getirildi");
-        }
+        //[HttpGet("ChangeStatusToTrue/{id}")]
+        //public IActionResult ChangeStatusToTrue(int id)
+        //{
+        //    _discountService.TChangeStatusToTrue(id);
+        //    return Ok("Ürün İndirimi Aktif Hale Getirildi");
+        //}
 
-        [HttpGet("ChangeStatusToFalse/{id}")]
-        public IActionResult ChangeStatusToFalse(int id)
+        //[HttpGet("ChangeStatusToFalse/{id}")]
+        //public IActionResult ChangeStatusToFalse(int id)
+        //{
+        //    _discountService.TChangeStatusToFalse(id);
+        //    return Ok("Ürün İndirimi Pasif Hale Getirildi");
+        //}
+
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
         {
-            _discountService.TChangeStatusToFalse(id);
-            return Ok("Ürün İndirimi Pasif Hale Getirildi");
+            _discountService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
         }
 
         [HttpGet("GetListByStatusTrue")]

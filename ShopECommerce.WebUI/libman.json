@@ -4,7 +4,7 @@
   "libraries": [
     {
       "library": "@microsoft/signalr@6.0.6",
-      "destination": "wwwroot/microsoft/signalr/",
+      "destination": "wwwroot/lib/microsoft/signalr/",
       "files": [
         "dist/browser/signalr.js",
         "dist/browser/signalr.js.map",

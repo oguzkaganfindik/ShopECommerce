@@ -1,6 +1,7 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
 using ShopECommerce.Entities.Concrete;
+using System.Linq.Expressions;
 
 namespace ShopECommerce.Business.Concrete
 {
@@ -23,6 +24,21 @@ namespace ShopECommerce.Business.Concrete
             _testimonialDal.Delete(entity);
         }
 
+        public void TDelete(int id)
+        {
+            _testimonialDal.Delete(id);
+        }
+
+        public Testimonial TGet(Expression<Func<Testimonial, bool>> predicate)
+        {
+            return _testimonialDal.Get(predicate);
+        }
+
+        public IQueryable<Testimonial> TGetAll(Expression<Func<Testimonial, bool>> predicate = null)
+        {
+            return _testimonialDal.GetAll(predicate);
+        }
+
         public Testimonial TGetById(int id)
         {
             return _testimonialDal.GetById(id);
@@ -31,6 +47,16 @@ namespace ShopECommerce.Business.Concrete
         public List<Testimonial> TGetListAll()
         {
             return _testimonialDal.GetListAll();
+        }
+
+        public IQueryable<Testimonial> TGetListByStatusTrue(Expression<Func<Testimonial, bool>> predicate = null)
+        {
+            return _testimonialDal.GetListByStatusTrue(predicate);
+        }
+
+        public void TToggleStatus(int id)
+        {
+            _testimonialDal.ToggleStatus(id);
         }
 
         public void TUpdate(Testimonial entity)

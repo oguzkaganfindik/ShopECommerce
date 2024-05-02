@@ -37,5 +37,18 @@ namespace ShopECommerce.Api.Controllers
         {
             return Ok(_orderService.TTodayTotalPrice());
         }
+
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
+        {
+            _orderService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_orderService.TGetListByStatusTrue());
+        }
     }
 }

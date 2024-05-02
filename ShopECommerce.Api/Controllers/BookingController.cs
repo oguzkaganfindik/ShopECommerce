@@ -22,7 +22,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet]
         public IActionResult BookingList()
         {
-            var value = _mapper.Map<List<ResultBookingDto>>(_bookingService.TGetListAll());
+            var value = _mapper.Map<List<ResultBookingDto>>(_bookingService.TGetAll());
             return Ok(value);
         }
 
@@ -67,7 +67,8 @@ namespace ShopECommerce.Api.Controllers
                 Mail = updateBookingDto.Mail,
                 Phone = updateBookingDto.Phone,
                 Date = updateBookingDto.Date,
-                PersonCount = updateBookingDto.PersonCount
+                PersonCount = updateBookingDto.PersonCount,
+                Description = updateBookingDto.Description
             });
 
             return Ok("Rezervasyon Güncellendi");
@@ -87,5 +88,17 @@ namespace ShopECommerce.Api.Controllers
             return Ok("Rezervasyon Açıklaması Değiştirildi");
         }
 
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
+        {
+            _bookingService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_bookingService.TGetListByStatusTrue());
+        }
     }
 }

@@ -22,9 +22,8 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet]
         public IActionResult AboutList()
         {
-            var abouts = _aboutService.TGetListAll();
-            var resultAboutDtos = _mapper.Map<List<ResultAboutDto>>(abouts);
-            return Ok(resultAboutDtos);
+            var value = _mapper.Map<List<ResultAboutDto>>(_aboutService.TGetAll());
+            return Ok(value);
         }
 
         [HttpPost]
@@ -67,6 +66,19 @@ namespace ShopECommerce.Api.Controllers
             });
 
             return Ok("Hakkımda Alanı Güncellendi");
+        }
+
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
+        {
+            _aboutService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_aboutService.TGetListByStatusTrue());
         }
     }
 }

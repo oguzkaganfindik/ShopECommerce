@@ -13,24 +13,24 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public void ChangeStatusToFalse(int id)
-        {
-            var value = _context.Discounts.Find(id);
-            value.Status = false;
-            _context.SaveChanges();
-        }
+        //public void ChangeStatusToFalse(int id)
+        //{
+        //    var value = _context.Discounts.Find(id);
+        //    value.Status = false;
+        //    _context.SaveChanges();
+        //}
 
-        public void ChangeStatusToTrue(int id)
-        {
-            var value = _context.Discounts.Find(id);
-            value.Status = true;
-            _context.SaveChanges();
-        }
+        //public void ChangeStatusToTrue(int id)
+        //{
+        //    var value = _context.Discounts.Find(id);
+        //    value.Status = true;
+        //    _context.SaveChanges();
+        //}
 
-        public List<Discount> GetListByStatusTrue()
-        {
-            var value = _context.Discounts.Where(x => x.Status == true).ToList();
-            return value;
-        }
+        //public List<Discount> GetListByStatusTrue()
+        //{
+        //    var value = _context.Discounts.Where(x => x.Status == true).ToList();
+        //    return value;
+        //}
     }
 }

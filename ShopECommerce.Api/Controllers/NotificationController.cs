@@ -19,7 +19,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet]
         public ActionResult NotificationList()
         {
-            return Ok(_notificationService.TGetListAll());
+            return Ok(_notificationService.TGetAll());
         }
 
         [HttpGet("NotificationCountByStatusFalse/{id}")]
@@ -96,6 +96,19 @@ namespace ShopECommerce.Api.Controllers
         {
             _notificationService.TNotificationStatusChangeToTrue(id);
             return Ok("Güncelleme Yapıldı");
+        }
+
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
+        {
+            _notificationService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_notificationService.TGetListByStatusTrue());
         }
     }
 }

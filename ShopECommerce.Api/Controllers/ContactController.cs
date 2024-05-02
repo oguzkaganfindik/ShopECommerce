@@ -22,7 +22,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet]
         public IActionResult ContactList()
         {
-            var value = _mapper.Map<List<ResultContactDto>>(_contactService.TGetListAll());
+            var value = _mapper.Map<List<ResultContactDto>>(_contactService.TGetAll());
             return Ok(value);
         }
 
@@ -75,6 +75,19 @@ namespace ShopECommerce.Api.Controllers
                 OpenHours = updateContactDto.OpenHours
             });
             return Ok("İletişim Bilgisi Güncellendi");
+        }
+
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
+        {
+            _contactService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_contactService.TGetListByStatusTrue());
         }
     }
 }

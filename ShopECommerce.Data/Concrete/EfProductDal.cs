@@ -86,7 +86,7 @@ namespace ShopECommerce.Data.Concrete
                 Price = y.Price,
                 Id = y.Id,
                 ProductName = y.ProductName,
-                ProductStatus = y.ProductStatus,
+                Status = y.Status,
                 CategoryName = y.Category.CategoryName
             }).ToList();
 

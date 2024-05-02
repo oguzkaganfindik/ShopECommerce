@@ -22,7 +22,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet]
         public IActionResult MessageList()
         {
-            var value = _mapper.Map<List<ResultMessageDto>>(_messageService.TGetListAll());
+            var value = _mapper.Map<List<ResultMessageDto>>(_messageService.TGetAll());
             return Ok(value);
         }
 
@@ -74,6 +74,19 @@ namespace ShopECommerce.Api.Controllers
         {
             var value = _messageService.TGetById(id);
             return Ok(value);
+        }
+
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
+        {
+            _messageService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_messageService.TGetListByStatusTrue());
         }
     }
 }

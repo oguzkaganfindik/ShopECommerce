@@ -1,6 +1,7 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
 using ShopECommerce.Entities.Concrete;
+using System.Linq.Expressions;
 
 namespace ShopECommerce.Business.Concrete
 {
@@ -33,6 +34,21 @@ namespace ShopECommerce.Business.Concrete
             _categoryDal.Delete(entity);
         }
 
+        public void TDelete(int id)
+        {
+            _categoryDal.Delete(id);
+        }
+
+        public Category TGet(Expression<Func<Category, bool>> predicate)
+        {
+            return _categoryDal.Get(predicate);
+        }
+
+        public IQueryable<Category> TGetAll(Expression<Func<Category, bool>> predicate = null)
+        {
+            return _categoryDal.GetAll(predicate);
+        }
+
         public Category TGetById(int id)
         {
             return _categoryDal.GetById(id);
@@ -43,9 +59,19 @@ namespace ShopECommerce.Business.Concrete
             return _categoryDal.GetListAll();
         }
 
+        public IQueryable<Category> TGetListByStatusTrue(Expression<Func<Category, bool>> predicate = null)
+        {
+            return _categoryDal.GetListByStatusTrue(predicate);
+        }
+
         public int TPassiveCategoryCount()
         {
             return _categoryDal.PassiveCategoryCount();
+        }
+
+        public void TToggleStatus(int id)
+        {
+            _categoryDal.ToggleStatus(id);
         }
 
         public void TUpdate(Category entity)

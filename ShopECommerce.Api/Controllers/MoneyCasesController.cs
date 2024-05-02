@@ -19,5 +19,18 @@ namespace ShopECommerce.Api.Controllers
         {
             return Ok(_moneyCaseService.TTotalMoneyCaseAmount());
         }
+
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
+        {
+            _moneyCaseService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_moneyCaseService.TGetListByStatusTrue());
+        }
     }
 }

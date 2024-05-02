@@ -24,7 +24,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet]
         public IActionResult MenuTableList()
         {
-            var values = _menuTableService.TGetListAll();
+            var values = _menuTableService.TGetAll();
             return Ok(values);
         }
 
@@ -68,6 +68,19 @@ namespace ShopECommerce.Api.Controllers
         {
             var value = _menuTableService.TGetById(id);
             return Ok(value);
+        }
+
+        [HttpGet("ToggleStatus/{id}")]
+        public IActionResult ToggleStatus(int id)
+        {
+            _menuTableService.TToggleStatus(id);
+            return Ok("Status Değiştirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_menuTableService.TGetListByStatusTrue());
         }
     }
 }

@@ -2,6 +2,7 @@
 using ShopECommerce.Data.Abstract;
 using ShopECommerce.DTOs.ProductDto;
 using ShopECommerce.Entities.Concrete;
+using System.Linq.Expressions;
 
 namespace ShopECommerce.Business.Concrete
 {
@@ -97,6 +98,31 @@ namespace ShopECommerce.Business.Concrete
         public List<ResultProductWithCategory> TGetProductsWithCategories()
         {
             return _productDal.GetProductsWithCategories();
+        }
+
+        public void TDelete(int id)
+        {
+            _productDal.Delete(id);
+        }
+
+        public Product TGet(Expression<Func<Product, bool>> predicate)
+        {
+            return _productDal.Get(predicate);
+        }
+
+        public IQueryable<Product> TGetAll(Expression<Func<Product, bool>> predicate = null)
+        {
+            return TGetAll(predicate);
+        }
+
+        public void TToggleStatus(int id)
+        {
+            _productDal.ToggleStatus(id);
+        }
+
+        public IQueryable<Product> TGetListByStatusTrue(Expression<Func<Product, bool>> predicate = null)
+        {
+            return _productDal.GetListByStatusTrue(predicate);
         }
     }
 }
