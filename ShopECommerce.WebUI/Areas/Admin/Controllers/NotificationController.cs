@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.DTOs.NotificationDto;
+using ShopECommerce.WebUI.Dtos.NotificationDto;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
