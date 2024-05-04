@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.DTOs.MenuTableDto;
+using ShopECommerce.WebUI.Dtos.MenuTableDtos;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
