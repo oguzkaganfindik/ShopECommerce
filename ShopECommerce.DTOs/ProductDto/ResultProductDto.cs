@@ -7,10 +7,8 @@
         public string Description { get; set; }
         public decimal Price { get; set; }
         public string ImageUrl { get; set; }
+        public int SubCategoryId { get; set; }
         public bool Status { get; set; }
-        public int CategoryId { get; set; }
-        public int OrderDetailId { get; set; }
-        public int BasketId { get; set; }
 
     }
 }

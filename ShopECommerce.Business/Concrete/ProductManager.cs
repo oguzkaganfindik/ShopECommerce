@@ -55,14 +55,14 @@ namespace ShopECommerce.Business.Concrete
             return _productDal.ProductCount();
         }
 
-        public int TProductCountByCategoryNameDrink()
+        public int TProductCountBySubCategoryNameDrink()
         {
-            return _productDal.ProductCountByCategoryNameDrink();
+            return _productDal.ProductCountBySubCategoryNameDrink();
         }
 
-        public int TProductCountByCategoryNameHamburger()
+        public int TProductCountBySubCategoryNameHamburger()
         {
-            return _productDal.ProductCountByCategoryNameHamburger();
+            return _productDal.ProductCountBySubCategoryNameHamburger();
         }
 
         public decimal TProductPriceAvg()
@@ -85,19 +85,19 @@ namespace ShopECommerce.Business.Concrete
             return _productDal.ProductPriceBySteakBurger();
         }
 
-        public decimal TTotalPriceByDrinkCategory()
+        public decimal TTotalPriceByDrinkSubCategory()
         {
-            return _productDal.TotalPriceByDrinkCategory();
+            return _productDal.TotalPriceByDrinkSubCategory();
         }
 
-        public decimal TTotalPriceBySaladCategory()
+        public decimal TTotalPriceBySaladSubCategory()
         {
-            return _productDal.TotalPriceBySaladCategory();
+            return _productDal.TotalPriceBySaladSubCategory();
         }
 
-        public List<ResultProductWithCategory> TGetProductsWithCategories()
+        public List<ResultProductWithSubCategory> TGetProductsWithCategories()
         {
-            return _productDal.GetProductsWithCategories();
+            return _productDal.GetProductsWithSubCategories();
         }
 
         public void TDelete(int id)

@@ -16,6 +16,9 @@ namespace ShopECommerce.Business
             services.AddScoped<IBookingService, BookingManager>();
             services.AddScoped<IBookingDal, EfBookingDal>();
 
+            services.AddScoped<ISubCategoryService, SubCategoryManager>();
+            services.AddScoped<ISubCategoryDal, EfSubCategoryDal>();
+
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryDal>();
 

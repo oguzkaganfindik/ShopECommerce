@@ -9,6 +9,10 @@ namespace ShopECommerce.Entities.Configuration
         {
             builder.Property(x => x.ProductName)
                 .HasMaxLength(50);
+            
+            builder.HasOne(p => p.SubCategory)        
+                   .WithMany(s => s.Products)        
+                   .HasForeignKey(p => p.SubCategoryId);
 
             base.Configure(builder);
         }

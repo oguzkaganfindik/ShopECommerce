@@ -7,6 +7,5 @@ namespace ShopECommerce.Data.Abstract
         int CategoryCount();
         int ActiveCategoryCount();
         int PassiveCategoryCount();
-
     }
 }

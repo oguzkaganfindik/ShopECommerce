@@ -9,6 +9,7 @@ namespace ShopECommerce.Business
         {
             services.AddAutoMapper(typeof(AboutMapping));
             services.AddAutoMapper(typeof(BookingMapping));
+            services.AddAutoMapper(typeof(SubCategoryMapping));
             services.AddAutoMapper(typeof(CategoryMapping));
             services.AddAutoMapper(typeof(ContactMapping));
             services.AddAutoMapper(typeof(DiscountMapping));

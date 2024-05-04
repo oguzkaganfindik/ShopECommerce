@@ -26,21 +26,21 @@ namespace ShopECommerce.Api.Controllers
             return Ok(value);
         }
 
-        [HttpGet("CategoryCount")]
+        [HttpGet("SubCategoryCount")]
         public IActionResult CategoryCount()
         {
             return Ok(_categoryService.TCategoryCount());
         }
 
 
-        [HttpGet("ActiveCategoryCount")]
+        [HttpGet("ActiveSubCategoryCount")]
         public IActionResult ActiveCategoryCount()
         {
             return Ok(_categoryService.TActiveCategoryCount());
         }
 
 
-        [HttpGet("PassiveCategoryCount")]
+        [HttpGet("PassiveSubCategoryCount")]
         public IActionResult PassiveCategoryCount()
         {
             return Ok(_categoryService.TPassiveCategoryCount());
@@ -98,5 +98,7 @@ namespace ShopECommerce.Api.Controllers
         {
             return Ok(_categoryService.TGetListByStatusTrue());
         }
+
+        
     }
 }

@@ -8,10 +8,10 @@ namespace ShopECommerce.Entities.Concrete
         public string Description { get; set; }
         public decimal Price { get; set; }
         public string ImageUrl { get; set; }
-        public int CategoryId { get; set; }
+        public int SubCategoryId { get; set; }
 
         // Relational Property
-        public Category Category { get; set; }
+        public SubCategory SubCategory { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
         public List<Basket> Baskets { get; set; }
     }

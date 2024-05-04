@@ -15,9 +15,9 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        //public List<Product> GetProductsWithCategories()
+        //public List<Product> GetProductsWithSubCategories()
         //{
-        //    var values = _context.Products.Include(x => x.Category).ToList();
+        //    var values = _context.Products.Include(x => x.SubCategory).ToList();
         //    return values;
         //}
 
@@ -26,14 +26,14 @@ namespace ShopECommerce.Data.Concrete
             return _context.Products.Count();
         }
 
-        public int ProductCountByCategoryNameDrink()
+        public int ProductCountBySubCategoryNameDrink()
         {
-            return _context.Products.Where(x => x.CategoryId == _context.Categories.Where(y => y.CategoryName == "içecek").Select(z => z.Id).FirstOrDefault()).Count();
+            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "içecek").Select(z => z.Id).FirstOrDefault()).Count();
         }
 
-        public int ProductCountByCategoryNameHamburger()
+        public int ProductCountBySubCategoryNameHamburger()
         {
-            return _context.Products.Where(x => x.CategoryId == _context.Categories.Where(y => y.CategoryName == "Hamburger").Select(z => z.Id).FirstOrDefault()).Count();
+            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "Hamburger").Select(z => z.Id).FirstOrDefault()).Count();
         }
 
         public string ProductNameByMaxPrice()
@@ -55,7 +55,7 @@ namespace ShopECommerce.Data.Concrete
 
         public decimal ProductAvgPriceByHamburger()
         {
-            return _context.Products.Where(x => x.CategoryId == _context.Categories.Where(y => y.CategoryName == "Hamburger").Select(z => z.Id).FirstOrDefault()).Average(w => w.Price);
+            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "Hamburger").Select(z => z.Id).FirstOrDefault()).Average(w => w.Price);
         }
 
         public decimal ProductPriceBySteakBurger()
@@ -65,29 +65,30 @@ namespace ShopECommerce.Data.Concrete
 
         }
 
-        public decimal TotalPriceByDrinkCategory()
+        public decimal TotalPriceByDrinkSubCategory()
         {
-            int id = _context.Categories.Where(x => x.CategoryName == "içecek").Select(y => y.Id).FirstOrDefault();
-            return _context.Products.Where(x => x.CategoryId == id).Sum(y => y.Price);
+            int id = _context.SubCategories.Where(x => x.SubCategoryName == "içecek").Select(y => y.Id).FirstOrDefault();
+            return _context.Products.Where(x => x.SubCategoryId == id).Sum(y => y.Price);
         }
 
-        public decimal TotalPriceBySaladCategory()
+        public decimal TotalPriceBySaladSubCategory()
         {
-            int id = _context.Categories.Where(x => x.CategoryName == "Salata").Select(y => y.Id).FirstOrDefault();
-            return _context.Products.Where(x => x.CategoryId == id).Sum(y => y.Price);
+            int id = _context.SubCategories.Where(x => x.SubCategoryName == "Salata").Select(y => y.Id).FirstOrDefault();
+            return _context.Products.Where(x => x.SubCategoryId == id).Sum(y => y.Price);
         }
 
-        public List<ResultProductWithCategory> GetProductsWithCategories()
+        public List<ResultProductWithSubCategory> GetProductsWithSubCategories()
         {
-            var values = _context.Products.Include(x => x.Category).Select(y => new ResultProductWithCategory
+            var values = _context.Products.Include(x => x.SubCategory).Include(x => x.SubCategory.Category).Select(y => new ResultProductWithSubCategory
             {
-                Description = y.Description,
-                ImageUrl = y.ImageUrl,
-                Price = y.Price,
                 Id = y.Id,
                 ProductName = y.ProductName,
-                Status = y.Status,
-                CategoryName = y.Category.CategoryName
+                Description = y.Description,
+                Price = y.Price,
+                ImageUrl = y.ImageUrl,
+                SubCategoryName = y.SubCategory.SubCategoryName,
+                CategoryName = y.SubCategory.Category.CategoryName,
+                Status = y.Status
             }).ToList();
 
             return values;

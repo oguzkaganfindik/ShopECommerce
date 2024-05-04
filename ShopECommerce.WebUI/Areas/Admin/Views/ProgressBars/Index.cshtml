@@ -81,9 +81,9 @@
                         `);
                 });
 
-                connection.on("ReceiveProductCountByCategoryNameDrink", (value7) => {
-                    $("#ReceiveProductCountByCategoryNameDrinkProgress").empty();
-                    $("#ReceiveProductCountByCategoryNameDrinkProgress").append(`
+                connection.on("ReceiveProductCountBySubCategoryNameDrink", (value7) => {
+                    $("#ReceiveProductCountBySubCategoryNameDrinkProgress").empty();
+                    $("#ReceiveProductCountBySubCategoryNameDrinkProgress").append(`
 
                      <div class="d-flex justify-content-between mb-1">
                            <span class="text-muted">İçecek Kategori Sayısı</span>
@@ -126,9 +126,9 @@
                        `);
                 });
 
-                connection.on("ReceiveTotalPriceByDrinkCategory", (value10) => {
-                    $("#ReceiveTotalPriceByDrinkCategoryProgress").empty();
-                    $("#ReceiveTotalPriceByDrinkCategoryProgress").append(`
+                connection.on("ReceiveTotalPriceByDrinkSubCategory", (value10) => {
+                    $("#ReceiveTotalPriceByDrinkSubCategoryProgress").empty();
+                    $("#ReceiveTotalPriceByDrinkSubCategoryProgress").append(`
 
                      <div class="d-flex justify-content-between mb-1">
                           <span class="text-muted">Toplam İçecek Fiyatı</span>
@@ -141,9 +141,9 @@
                        `);
                 });
 
-                connection.on("ReceiveTotalPriceBySaladCategory", (value11) => {
-                    $("#ReceiveTotalPriceBySaladCategoryProgress").empty();
-                    $("#ReceiveTotalPriceBySaladCategoryProgress").append(`
+                connection.on("ReceiveTotalPriceBySaladSubCategory", (value11) => {
+                    $("#ReceiveTotalPriceBySaladSubCategoryProgress").empty();
+                    $("#ReceiveTotalPriceBySaladSubCategoryProgress").append(`
 
                      <div class="d-flex justify-content-between mb-1">
                           <span class="text-muted">Toplam Salata Fiyatı</span>
@@ -204,15 +204,15 @@
                                 
                                 <div class="progress-card" id="ReceiveAvgPriceByHamburgerProgress"></div>
 
-                                <div class="progress-card" id="ReceiveProductCountByCategoryNameDrinkProgress"></div>
+                                <div class="progress-card" id="ReceiveProductCountBySubCategoryNameDrinkProgress"></div>
 
                                 <div class="progress-card" id="ReceiveTotalOrderCountProgress"></div>
 
                                 <div class="progress-card" id="ReceiveProductPriceBySteakBurgerProgress"></div>
 
-                                <div class="progress-card" id="ReceiveTotalPriceByDrinkCategoryProgress"></div>
+                                <div class="progress-card" id="ReceiveTotalPriceByDrinkSubCategoryProgress"></div>
 
-                                <div class="progress-card" id="ReceiveTotalPriceBySaladCategoryProgress"></div>
+                                <div class="progress-card" id="ReceiveTotalPriceBySaladSubCategoryProgress"></div>
 
                             </div>
                         </div>
@@ -229,7 +229,7 @@
                                     </div>
                                     <div class="col-7 d-flex align-items-center">
                                         <div class="numbers">
-                                            <p class="card-category">Aktif Siparişler</p>
+                                            <p class="card-SubCategory">Aktif Siparişler</p>
                                             <h4 class="card-title" id="activeordercount"></h4>
                                         </div>
                                     </div>
@@ -243,7 +243,7 @@
                                     </div>
                                     <div class="col-7 d-flex align-items-center">
                                         <div class="numbers">
-                                            <p class="card-category">Masa Sayısı</p>
+                                            <p class="card-SubCategory">Masa Sayısı</p>
                                             <h4 class="card-title" id="menutablecount"></h4>
                                         </div>
                                     </div>
@@ -257,7 +257,7 @@
                                     </div>
                                     <div class="col-7 d-flex align-items-center">
                                         <div class="numbers">
-                                            <p class="card-category">Kategori Sayısı</p>
+                                            <p class="card-SubCategory">Kategori Sayısı</p>
                                             <h4 class="card-title" id="30"></h4>
                                         </div>
                                     </div>
@@ -271,7 +271,7 @@
                                     </div>
                                     <div class="col-7 d-flex align-items-center">
                                         <div class="numbers">
-                                            <p class="card-category">Ürün Sayısı</p>
+                                            <p class="card-SubCategory">Ürün Sayısı</p>
                                             <h4 class="card-title" id="">48</h4>
                                         </div>
                                     </div>
@@ -285,7 +285,7 @@
                                     </div>
                                     <div class="col-7 d-flex align-items-center">
                                         <div class="numbers">
-                                            <p class="card-category">Rezervasyon Sayısı</p>
+                                            <p class="card-SubCategory">Rezervasyon Sayısı</p>
                                             <h4 class="card-title" id="">51</h4>
                                         </div>
                                     </div>
