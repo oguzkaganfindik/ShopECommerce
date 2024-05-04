@@ -1,4 +1,4 @@
-﻿@model List<ResultProductDto>
+﻿@model List<ResultProductWithSubCategory>
 
 @{
     ViewData["Title"] = "Index";
@@ -26,6 +26,7 @@
                                     <th scope="col">Ürün Adı</th>
                                     <th scope="col">Fiyat</th>
                                     <th scope="col">Kategori</th>
+                                    <th scope="col">Alt Kategori</th>
                                     <th scope="col">Durum</th>
                                     <th scope="col">Sil</th>
                                     <th scope="col">Güncelle</th>
@@ -41,6 +42,7 @@
                                         <td>@item.ProductName</td>
                                         <td>@item.Price</td>
                                         <td>@item.CategoryName</td>
+                                        <td>@item.SubCategoryName</td>
                                         <td>@item.Status</td>
                                         <td><a href="/Admin/Product/DeleteProduct/@item.Id" class="btn btn-outline-danger btn-round">Sil</a></td>
                                         <td><a href="/Admin/Product/UpdateProduct/@item.Id" class="btn btn-outline-success btn-round">Güncelle</a></td>

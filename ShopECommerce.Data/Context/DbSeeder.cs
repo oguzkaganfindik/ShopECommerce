@@ -22,58 +22,57 @@ namespace ShopECommerce.Data.Context
                 CreatedDate = DateTime.Now,
             });
 
-            //modelBuilder.Entity<Category>().HasData(new Category
-            //{
-            //    Id = 1,
-            //    CategoryName = "İthal Muz",
-            //    CategoryType = 0,
-            //    CreatedDate = DateTime.Now,
-            //    Status = true
-            //});
+            modelBuilder.Entity<Category>().HasData(new Category
+            {
+                Id = 1,
+                CategoryName = "Meyve",
+                CreatedDate = DateTime.Now,
+                Status = true
+            });
 
-            //modelBuilder.Entity<Category>().HasData(new Category
-            //{
-            //    Id = 2,
-            //    CategoryName = "Yerli Muz",
-            //    CategoryType = 0,
-            //    CreatedDate = DateTime.Now,
-            //    Status = true
-            //});
+            modelBuilder.Entity<Category>().HasData(new Category
+            {
+                Id = 2,
+                CategoryName = "Sebze",
+                CreatedDate = DateTime.Now,
+                Status = true
+            });
 
-            //modelBuilder.Entity<Category>().HasData(new Category
-            //{
-            //    Id = 3,
-            //    CategoryName = "Salatalık",
-            //    CategoryType = CategoryTypeEnum.Sebze,
-            //    CreatedDate = DateTime.Now,
-            //    Status = true
-            //});
+            modelBuilder.Entity<SubCategory>().HasData(new SubCategory
+            {
+                Id = 1,
+                CategoryId = 1,
+                SubCategoryName = "Elma",
+                CreatedDate = DateTime.Now,
+                Status = true
+            });
 
-            //modelBuilder.Entity<Category>().HasData(new Category
-            //{
-            //    Id = 4,
-            //    CategoryName = "Domates",
-            //    CategoryType = CategoryTypeEnum.Meyve,
-            //    CreatedDate = DateTime.Now,
-            //    Status = true
-            //});
+            modelBuilder.Entity<SubCategory>().HasData(new SubCategory
+            {
+                Id = 2,
+                CategoryId = 2,
+                SubCategoryName = "Salatalık",
+                CreatedDate = DateTime.Now,
+                Status = true
+            });
 
             //modelBuilder.Entity<Product>().HasData(new Product
             //{
             //    Id = 1,
-            //    CategoryId = 1,
+            //    CategoryId = 1
+            //    SubCategoryId = 2,
             //    ProductName = "Bahçe Domatesi",
             //    Description = "Lezzetli",
             //    Price = 50,
             //    ImageUrl = "kjlnhsjkdf",
-            //    Status = true,                
+            //    Status = true,
             //    CreatedDate = DateTime.Now,
             //});
 
             //modelBuilder.Entity<Product>().HasData(new Product
             //{
             //    Id = 2,
-            //    CategoryId = 2,
+            //    SubCategoryId = 2,
             //    ProductName = "Yerli Muz",
             //    Description = "Lezzetli",
             //    Price = 75,

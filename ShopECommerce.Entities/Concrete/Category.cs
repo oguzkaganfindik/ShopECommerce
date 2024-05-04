@@ -7,6 +7,6 @@ namespace ShopECommerce.Entities.Concrete
         public string CategoryName { get; set; }
 
         // Relational Property
-        public List<Product> Products { get; set; }
+        public List<SubCategory> SubCategories { get; set; }
     }
 }

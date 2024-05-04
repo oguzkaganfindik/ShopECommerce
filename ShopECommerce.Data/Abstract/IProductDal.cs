@@ -5,17 +5,17 @@ namespace ShopECommerce.Data.Abstract
 {
     public interface IProductDal : IGenericDal<Product>
     {
-        //List<Product> GetProductsWithCategories();
-        List<ResultProductWithCategory> GetProductsWithCategories();
+        //List<Product> GetProductsWithSubCategories();
+        List<ResultProductWithSubCategory> GetProductsWithSubCategories();
         int ProductCount();
-        int ProductCountByCategoryNameHamburger();
-        int ProductCountByCategoryNameDrink();
+        int ProductCountBySubCategoryNameHamburger();
+        int ProductCountBySubCategoryNameDrink();
         decimal ProductPriceAvg();
         string ProductNameByMaxPrice();
         string ProductNameByMinPrice();
         decimal ProductAvgPriceByHamburger();
         decimal ProductPriceBySteakBurger();
-        decimal TotalPriceByDrinkCategory();
-        decimal TotalPriceBySaladCategory();
+        decimal TotalPriceByDrinkSubCategory();
+        decimal TotalPriceBySaladSubCategory();
     }
 }

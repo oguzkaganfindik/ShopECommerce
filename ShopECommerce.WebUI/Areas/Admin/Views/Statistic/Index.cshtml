@@ -7,6 +7,7 @@
 <script src="~/js/site.js" asp-append-version="true"></script>
 <script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
 
+
 <div class="content">
     <div class="container-fluid">
 
@@ -24,28 +25,28 @@
 
                 }).catch((err) => { console.log(err) });
 
-                connection.on("ReceiveCategoryCount", (value) => {
-                    $("#categorycount").text(value);
+                connection.on("ReceiveSubCategoryCount", (value) => {
+                    $("#subcategorycount").text(value);
                 });
 
                 connection.on("ReceiveProductCount", (value2) => {
                     $("#productcount").text(value2);
                 });
 
-                connection.on("ReceiveActiveCategoryCount", (value3) => {
-                    $("#activecategorycount").text(value3);
+                connection.on("ReceiveActiveSubCategoryCount", (value3) => {
+                    $("#activesubcategorycount").text(value3);
                 });
 
-                connection.on("ReceivePassiveCategoryCount", (value4) => {
-                    $("#passivecategorycount").text(value4);
+                connection.on("ReceivePassiveSubCategoryCount", (value4) => {
+                    $("#passivesubcategorycount").text(value4);
                 });
 
-                connection.on("ReceiveProductCountByCategoryNameHamburger", (value5) => {
-                    $("#productcountbycategorynamehamburger").text(value5);
+                connection.on("ReceiveProductCountBySubCategoryNameHamburger", (value5) => {
+                    $("#productcountbysubcategorynamehamburger").text(value5);
                 });
 
-                connection.on("ReceiveProductCountByCategoryNameDrink", (value6) => {
-                    $("#productcountbycategorynamedrink").text(value6);
+                connection.on("ReceiveProductCountBySubCategoryNameDrink", (value6) => {
+                    $("#productcountbysubcategorynamedrink").text(value6);
                 });
 
                 connection.on("ReceiveProductPriceAvg", (value7) => {
@@ -101,8 +102,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Kategori Sayısı</p>
-                                    <h4 class="card-title" id="categorycount"></h4>
+                                    <p class="card-subcategory">Kategori Sayısı</p>
+                                    <h4 class="card-title" id="subcategorycount"></h4>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +121,7 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Ürün Sayısı</p>
+                                    <p class="card-subcategory">Ürün Sayısı</p>
                                     <h4 class="card-title" id="productcount"></h4>
                                 </div>
                             </div>
@@ -139,8 +140,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Aktif Kategori</p>
-                                    <h4 class="card-title" id="activecategorycount"></h4>
+                                    <p class="card-subcategory">Aktif Kategori</p>
+                                    <h4 class="card-title" id="activesubcategorycount"></h4>
                                 </div>
                             </div>
                         </div>
@@ -158,8 +159,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Pasif Kategori</p>
-                                    <h4 class="card-title" id="passivecategorycount"></h4>
+                                    <p class="card-subcategory">Pasif Kategori</p>
+                                    <h4 class="card-title" id="passivesubcategorycount"></h4>
                                 </div>
                             </div>
                         </div>
@@ -179,8 +180,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Hamburger</p>
-                                    <h4 class="card-title" id="productcountbycategorynamehamburger"></h4>
+                                    <p class="card-subcategory">Hamburger</p>
+                                    <h4 class="card-title" id="productcountbysubcategorynamehamburger"></h4>
                                 </div>
                             </div>
                         </div>
@@ -198,8 +199,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">İçecek Sayısı</p>
-                                    <h4 class="card-title" id="productcountbycategorynamedrink"></h4>
+                                    <p class="card-subcategory">İçecek Sayısı</p>
+                                    <h4 class="card-title" id="productcountbysubcategorynamedrink"></h4>
                                 </div>
                             </div>
                         </div>
@@ -217,7 +218,7 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Ortalama Fiyat</p>
+                                    <p class="card-subcategory">Ortalama Fiyat</p>
                                     <h4 class="card-title" id="productpriceavg"></h4>
                                 </div>
                             </div>
@@ -236,7 +237,7 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">En Pahalı Ürün</p>
+                                    <p class="card-subcategory">En Pahalı Ürün</p>
                                     <h4 class="card-title" id="productnamebymaxprice"></h4>
                                 </div>
                             </div>
@@ -257,7 +258,7 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">En Ucuz Ürün</p>
+                                    <p class="card-subcategory">En Ucuz Ürün</p>
                                     <h4 class="card-title" id="productnamebyminprice"></h4>
                                 </div>
                             </div>
@@ -276,7 +277,7 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Hamburger Fiyat</p>
+                                    <p class="card-subcategory">Hamburger Fiyat</p>
                                     <h4 class="card-title" id="productavgpricebyhamburger"></h4>
                                 </div>
                             </div>
@@ -295,7 +296,7 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Toplam Sipariş</p>
+                                    <p class="card-subcategory">Toplam Sipariş</p>
                                     <h4 class="card-title" id="totalordercount"></h4>
                                 </div>
                             </div>
@@ -314,7 +315,7 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Aktif Siparişler</p>
+                                    <p class="card-subcategory">Aktif Siparişler</p>
                                     <h4 class="card-title" id="activeordercount"></h4>
                                 </div>
                             </div>
@@ -335,7 +336,7 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Son Sipariş</p>
+                                    <p class="card-subcategory">Son Sipariş</p>
                                     <h4 class="card-title" id="lastorderprice"></h4>
                                 </div>
                             </div>
@@ -354,7 +355,7 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Kasadaki Tutar</p>
+                                    <p class="card-subcategory">Kasadaki Tutar</p>
                                     <h4 class="card-title" id="totalmoneycaseamount"></h4>
                                 </div>
                             </div>
@@ -373,7 +374,7 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Bugünkü Kazanç</p>
+                                    <p class="card-subcategory">Bugünkü Kazanç</p>
                                     <h4 class="card-title" id="">125.45 TL</h4>
                                 </div>
                             </div>
@@ -392,7 +393,7 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-category">Masa Sayısı</p>
+                                    <p class="card-subcategory">Masa Sayısı</p>
                                     <h4 class="card-title" id="menutablecount"></h4>
                                 </div>
                             </div>

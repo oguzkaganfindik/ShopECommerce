@@ -12,7 +12,7 @@ using ShopECommerce.Data.Context;
 namespace ShopECommerce.Data.Migrations
 {
     [DbContext(typeof(ShopECommerceContext))]
-    [Migration("20240502234249_First")]
+    [Migration("20240503152724_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -193,6 +193,24 @@ namespace ShopECommerce.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryName = "Meyve",
+                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8117),
+                            IsDeleted = false,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryName = "Sebze",
+                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8131),
+                            IsDeleted = false,
+                            Status = true
+                        });
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Contact", b =>
@@ -553,9 +571,6 @@ namespace ShopECommerce.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -587,9 +602,12 @@ namespace ShopECommerce.Data.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
+                    b.Property<int>("SubCategoryId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("SubCategoryId");
 
                     b.ToTable("Products");
                 });
@@ -629,7 +647,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 3, 2, 42, 48, 538, DateTimeKind.Local).AddTicks(8819),
+                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8067),
                             IsDeleted = false,
                             Name = "Admin",
                             Status = false
@@ -637,7 +655,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 3, 2, 42, 48, 538, DateTimeKind.Local).AddTicks(8862),
+                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8100),
                             IsDeleted = false,
                             Name = "User",
                             Status = false
@@ -734,6 +752,64 @@ namespace ShopECommerce.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SocialMedias");
+                });
+
+            modelBuilder.Entity("ShopECommerce.Entities.Concrete.SubCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SubCategoryName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SubCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8148),
+                            IsDeleted = false,
+                            Status = true,
+                            SubCategoryName = "Elma"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 2,
+                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8200),
+                            IsDeleted = false,
+                            Status = true,
+                            SubCategoryName = "Salatalık"
+                        });
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Testimonial", b =>
@@ -846,12 +922,12 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Address = "Ankara",
-                            CreatedDate = new DateTime(2024, 5, 3, 2, 42, 48, 538, DateTimeKind.Local).AddTicks(8882),
+                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8218),
                             Email = "admin@test.com",
                             FirstName = "Şebnem",
                             IsDeleted = false,
                             LastName = "Ferah",
-                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezOKospIVc4kt-B242Bn5a-LH1q4q51_RcEGxM83fDXy-gt9NIfqyeGdZLLSAkl-l5FMGQ4uX22EfF4H1mQkLZN8EP4sCooK5SSqRaon7aTq5w",
+                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezNrUDRvOvdGIAxhRhZE_ln7zNZ_yRLVK_F8qRWjysn6EO3apsh5xteUDIhbeiYZcceF00PfnvwrFN4nCsTaV8TlHLA4G9c3pmhclhDvVjlKZA",
                             Phone = "0850",
                             RoleId = 1,
                             Status = true,
@@ -899,8 +975,19 @@ namespace ShopECommerce.Data.Migrations
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Product", b =>
                 {
-                    b.HasOne("ShopECommerce.Entities.Concrete.Category", "Category")
+                    b.HasOne("ShopECommerce.Entities.Concrete.SubCategory", "SubCategory")
                         .WithMany("Products")
+                        .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SubCategory");
+                });
+
+            modelBuilder.Entity("ShopECommerce.Entities.Concrete.SubCategory", b =>
+                {
+                    b.HasOne("ShopECommerce.Entities.Concrete.Category", "Category")
+                        .WithMany("SubCategories")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -919,7 +1006,7 @@ namespace ShopECommerce.Data.Migrations
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Category", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("SubCategories");
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.MenuTable", b =>
@@ -942,6 +1029,11 @@ namespace ShopECommerce.Data.Migrations
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Role", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("ShopECommerce.Entities.Concrete.SubCategory", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

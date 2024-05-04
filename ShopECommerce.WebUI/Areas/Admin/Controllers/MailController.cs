@@ -37,7 +37,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             client.Send(mimeMessage);
             client.Disconnect(true);
 
-            return RedirectToAction("Index", "Category");
+            return RedirectToAction("Index", "SubCategory");
         }
     }
 }

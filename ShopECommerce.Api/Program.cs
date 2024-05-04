@@ -7,6 +7,8 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSignalR();
+
 builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("CorsPolicy", builder =>
@@ -18,7 +20,6 @@ builder.Services.AddCors(opt =>
     });
 });
 
-builder.Services.AddSignalR();
 
 // Add services to the container.
 builder.Services.AddServicesRegistration();

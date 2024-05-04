@@ -304,15 +304,12 @@ namespace ShopECommerce.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "SubCategories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SubCategoryName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -322,9 +319,9 @@ namespace ShopECommerce.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_SubCategories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Categories_CategoryId",
+                        name: "FK_SubCategories_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
@@ -359,6 +356,34 @@ namespace ShopECommerce.Data.Migrations
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SubCategoryId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_SubCategories_SubCategoryId",
+                        column: x => x.SubCategoryId,
+                        principalTable: "SubCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -430,18 +455,36 @@ namespace ShopECommerce.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "CategoryName", "CreatedDate", "DeletedDate", "IsDeleted", "ModifiedDate", "Status" },
+                values: new object[,]
+                {
+                    { 1, "Meyve", new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8117), null, false, null, true },
+                    { 2, "Sebze", new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8131), null, false, null, true }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "IsDeleted", "ModifiedDate", "Name", "Status" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 3, 2, 42, 48, 538, DateTimeKind.Local).AddTicks(8819), null, false, null, "Admin", false },
-                    { 2, new DateTime(2024, 5, 3, 2, 42, 48, 538, DateTimeKind.Local).AddTicks(8862), null, false, null, "User", false }
+                    { 1, new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8067), null, false, null, "Admin", false },
+                    { 2, new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8100), null, false, null, "User", false }
+                });
+
+            migrationBuilder.InsertData(
+                table: "SubCategories",
+                columns: new[] { "Id", "CategoryId", "CreatedDate", "DeletedDate", "IsDeleted", "ModifiedDate", "Status", "SubCategoryName" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8148), null, false, null, true, "Elma" },
+                    { 2, 2, new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8200), null, false, null, true, "Salatalık" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "CreatedDate", "DeletedDate", "Email", "FirstName", "IsDeleted", "LastName", "ModifiedDate", "Password", "Phone", "RoleId", "Status", "Username" },
-                values: new object[] { 1, "Ankara", new DateTime(2024, 5, 3, 2, 42, 48, 538, DateTimeKind.Local).AddTicks(8882), null, "admin@test.com", "Şebnem", false, "Ferah", null, "CfDJ8Lhzc99II2tHnoigxoZuezOKospIVc4kt-B242Bn5a-LH1q4q51_RcEGxM83fDXy-gt9NIfqyeGdZLLSAkl-l5FMGQ4uX22EfF4H1mQkLZN8EP4sCooK5SSqRaon7aTq5w", "0850", 1, true, "Admin" });
+                values: new object[] { 1, "Ankara", new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8218), null, "admin@test.com", "Şebnem", false, "Ferah", null, "CfDJ8Lhzc99II2tHnoigxoZuezNrUDRvOvdGIAxhRhZE_ln7zNZ_yRLVK_F8qRWjysn6EO3apsh5xteUDIhbeiYZcceF00PfnvwrFN4nCsTaV8TlHLA4G9c3pmhclhDvVjlKZA", "0850", 1, true, "Admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Baskets_MenuTableId",
@@ -464,8 +507,13 @@ namespace ShopECommerce.Data.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CategoryId",
+                name: "IX_Products_SubCategoryId",
                 table: "Products",
+                column: "SubCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubCategories_CategoryId",
+                table: "SubCategories",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
@@ -527,6 +575,9 @@ namespace ShopECommerce.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "SubCategories");
 
             migrationBuilder.DropTable(
                 name: "Categories");

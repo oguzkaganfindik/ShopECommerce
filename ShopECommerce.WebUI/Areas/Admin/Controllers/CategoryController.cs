@@ -28,6 +28,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             return View();
         }
 
+
         [HttpGet]
         public IActionResult CreateCategory()
         {

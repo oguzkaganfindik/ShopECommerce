@@ -18,6 +18,7 @@ namespace ShopECommerce.Data.Context
         {
 
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new SubCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
 
@@ -29,6 +30,7 @@ namespace ShopECommerce.Data.Context
         public DbSet<About> Abouts => Set<About>();
         public DbSet<Basket> Baskets => Set<Basket>();
         public DbSet<Booking> Bookings => Set<Booking>();
+        public DbSet<SubCategory> SubCategories => Set<SubCategory>();
         public DbSet<Category> Categories => Set<Category>();
         public DbSet<Contact> Contacts => Set<Contact>();
         public DbSet<Discount> Discounts => Set<Discount>();

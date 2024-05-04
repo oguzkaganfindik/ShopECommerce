@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.CategoryDtos;
+using ShopECommerce.WebUI.Dtos.SubCategoryDtos;
 using ShopECommerce.WebUI.Dtos.ProductDtos;
 using System.Text;
 
@@ -20,11 +20,11 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/Product/ProductListWithCategory");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Product/ProductListWithSubCategory");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultProductWithSubCategory>>(jsonData);
                 return View(values);
             }
 
@@ -35,16 +35,17 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> CreateProduct()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/Category");
-            var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+            var responseMessage1 = await client.GetAsync("https://localhost:7046/api/SubCategory");
+            var jsonData = await responseMessage1.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultSubCategoryDto>>(jsonData);
             List<SelectListItem> values2 = (from x in values
                                             select new SelectListItem
                                             {
-                                                Text = x.CategoryName,
+                                                Text = x.SubCategoryName,
                                                 Value = x.Id.ToString()
                                             }).ToList();
             ViewBag.v = values2;
+
             return View();
         }
 
@@ -78,13 +79,13 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateProduct(int id)
         {
             var client1 = _httpClientFactory.CreateClient();
-            var responseMessage1 = await client1.GetAsync("https://localhost:7046/api/Category");
+            var responseMessage1 = await client1.GetAsync("https://localhost:7046/api/SubCategory");
             var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
-            var values1 = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData1);
+            var values1 = JsonConvert.DeserializeObject<List<ResultSubCategoryDto>>(jsonData1);
             List<SelectListItem> values2 = (from x in values1
                                             select new SelectListItem
                                             {
-                                                Text = x.CategoryName,
+                                                Text = x.SubCategoryName,
                                                 Value = x.Id.ToString()
                                             }).ToList();
             ViewBag.v = values2;

@@ -22,8 +22,64 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet]
         public IActionResult ProductList()
         {
-            var value = _mapper.Map<List<ResultProductDto>>(_productService.TGetAll());
+            var value = _mapper.Map<List<ResultProductDto>>(_productService.TGetListAll());
             return Ok(value);
+        }
+
+        [HttpGet("ProductListWithSubCategory")]
+        public IActionResult ProductListWithSubCategory()
+        {
+            var values = _productService.TGetProductsWithCategories();
+            var result = _mapper.Map<List<ResultProductWithSubCategory>>(values);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public IActionResult CreateProduct(CreateProductDto createProductDto)
+        {
+            _productService.TAdd(new Product()
+            {
+                ProductName = createProductDto.ProductName,
+                Description = createProductDto.Description,
+                ImageUrl = createProductDto.ImageUrl,
+                Price = createProductDto.Price,
+                SubCategoryId = createProductDto.SubCategoryId,
+                Status = createProductDto.Status
+            });
+
+            return Ok("Ürün Bilgisi Eklendi");
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetProduct(int id)
+        {
+            var value = _productService.TGetById(id);
+            return Ok(value);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateProduct(UpdateProductDto updateProductDto)
+        {
+            _productService.TUpdate(new Product()
+            {
+                Id = updateProductDto.Id,
+                ProductName = updateProductDto.ProductName,
+                Description = updateProductDto.Description,
+                ImageUrl = updateProductDto.ImageUrl,
+                Price = updateProductDto.Price,
+                SubCategoryId = updateProductDto.SubCategoryId,
+                Status = updateProductDto.Status
+            });
+
+            return Ok("Ürün Bilgisi Güncellendi");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteProduct(int id)
+        {
+            var value = _productService.TGetById(id);
+            _productService.TDelete(value);
+            return Ok("Ürün Bilgisi Silindi");
         }
 
         [HttpGet("ProductCount")]
@@ -53,7 +109,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet("ProductCountByDrink")]
         public IActionResult ProductCountByDrink()
         {
-            return Ok(_productService.TProductCountByCategoryNameDrink());
+            return Ok(_productService.TProductCountBySubCategoryNameDrink());
         }
 
         [HttpGet("ProductPriceAvg")]
@@ -65,64 +121,8 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet("ProductCountByHamburger")]
         public IActionResult ProductCountByHamburger()
         {
-            return Ok(_productService.TProductCountByCategoryNameHamburger());
-        }
-
-        [HttpGet("ProductListWithCategory")]
-        public IActionResult ProductListWithCategory()
-        {
-            var values = _productService.TGetProductsWithCategories();
-            var result = _mapper.Map<List<ResultProductWithCategory>>(values);
-            return Ok(result);
-        }
-
-        [HttpPost]
-        public IActionResult CreateProduct(CreateProductDto createProductDto)
-        {
-            _productService.TAdd(new Product()
-            {
-                ProductName = createProductDto.ProductName,
-                Description = createProductDto.Description,
-                ImageUrl = createProductDto.ImageUrl,
-                Status = createProductDto.Status,
-                Price = createProductDto.Price,
-                CategoryId = createProductDto.CategoryId
-            });
-
-            return Ok("Ürün Bilgisi Eklendi");
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult DeleteProduct(int id)
-        {
-            var value = _productService.TGetById(id);
-            _productService.TDelete(value);
-            return Ok("Ürün Bilgisi Silindi");
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult GetProduct(int id)
-        {
-            var value = _productService.TGetById(id);
-            return Ok(value);
-        }
-
-        [HttpPut]
-        public IActionResult UpdateProduct(UpdateProductDto updateProductDto)
-        {
-            _productService.TUpdate(new Product()
-            {
-                Id = updateProductDto.Id,
-                ProductName = updateProductDto.ProductName,
-                Description = updateProductDto.Description,
-                Status = updateProductDto.Status,
-                ImageUrl = updateProductDto.ImageUrl,
-                Price = updateProductDto.Price,
-                CategoryId = updateProductDto.CategoryId
-            });
-
-            return Ok("Ürün Bilgisi Güncellendi");
-        }
+            return Ok(_productService.TProductCountBySubCategoryNameHamburger());
+        }     
 
         [HttpGet("ProductPriceBySteakBurger")]
         public IActionResult ProductPriceBySteakBurger()
@@ -130,16 +130,16 @@ namespace ShopECommerce.Api.Controllers
             return Ok(_productService.TProductPriceBySteakBurger());
         }
 
-        [HttpGet("TotalPriceByDrinkCategory")]
-        public IActionResult TotalPriceByDrinkCategory()
+        [HttpGet("TotalPriceByDrinkSubCategory")]
+        public IActionResult TotalPriceByDrinkSubCategory()
         {
-            return Ok(_productService.TTotalPriceByDrinkCategory());
+            return Ok(_productService.TTotalPriceByDrinkSubCategory());
         }
 
-        [HttpGet("TotalPriceBySaladCategory")]
-        public IActionResult TotalPriceBySaladCategory()
+        [HttpGet("TotalPriceBySaladSubCategory")]
+        public IActionResult TotalPriceBySaladSubCategory()
         {
-            return Ok(_productService.TTotalPriceBySaladCategory());
+            return Ok(_productService.TTotalPriceBySaladSubCategory());
         }
 
         [HttpGet("ToggleStatus/{id}")]
