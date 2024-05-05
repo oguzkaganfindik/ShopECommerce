@@ -26,6 +26,13 @@ namespace ShopECommerce.Api.Controllers
             return Ok(value);
         }
 
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            var value = _mapper.Map<List<ResultTestimonialDto>>(_testimonialService.TGetListByStatusTrue());
+            return Ok(value);
+        }
+
         [HttpPost]
         public IActionResult CreateTestimonial(CreateTestimonialDto createTestimonialDto)
         {
@@ -75,12 +82,6 @@ namespace ShopECommerce.Api.Controllers
         {
             _testimonialService.TToggleStatus(id);
             return Ok("Status Değiştirildi");
-        }
-
-        [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
-        {
-            return Ok(_testimonialService.TGetListByStatusTrue());
         }
     }
 }

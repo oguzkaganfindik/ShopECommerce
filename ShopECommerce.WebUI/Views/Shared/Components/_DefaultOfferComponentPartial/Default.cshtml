@@ -1,0 +1,33 @@
+﻿@model List<ResultDiscountDto>
+
+<div class="container-fluid service py-5">
+    <div class="container py-5">
+        <div class="row g-4 justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <a href="#">
+                        <div class="service-item bg-primary rounded border border-primary">
+                            <img src="@item.ImageUrl" class="img-fluid rounded-top w-100" alt="">
+                            <div class="px-4 rounded-bottom">
+                                <div class="service-content bg-secondary text-center p-4 rounded">
+                                    <h5 class="text-white">@item.Title</h5>
+                                    <h3 class="mb-0">
+                                        @if (item.Amount != "0")
+                                        {
+                                            <span>@item.Amount</span>
+                                        }
+                                        else
+                                        {
+                                        }
+                                            @item.Description
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -19,12 +19,12 @@ namespace ShopECommerce.Api.Controllers
             _mapper = mapper;
         }
 
-        //[HttpGet]
-        //public IActionResult SubCategoryList()
-        //{
-        //    var value = _mapper.Map<List<ResultSubCategoryDto>>(_subCategoryService.TGetAll());
-        //    return Ok(value);
-        //}
+        [HttpGet]
+        public IActionResult SubCategoryList()
+        {
+            var value = _mapper.Map<List<ResultSubCategoryDto>>(_subCategoryService.TGetAll());
+            return Ok(value);
+        }
 
         [HttpGet("GetSubCategoriesWithCategories")]
         public IActionResult GetSubCategoriesWithCategories()

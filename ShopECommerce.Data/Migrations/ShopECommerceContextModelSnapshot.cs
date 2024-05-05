@@ -196,7 +196,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             CategoryName = "Meyve",
-                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8117),
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(7060),
                             IsDeleted = false,
                             Status = true
                         },
@@ -204,7 +204,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             CategoryName = "Sebze",
-                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8131),
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(7078),
                             IsDeleted = false,
                             Status = true
                         });
@@ -312,6 +312,41 @@ namespace ShopECommerce.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Discounts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = "20",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "OFF",
+                            ImageUrl = "/WebT/img/featur-1.jpg",
+                            IsDeleted = false,
+                            Status = false,
+                            Title = "Fresh Apples"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = "",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Free delivery",
+                            ImageUrl = "/WebT/img/featur-2.jpg",
+                            IsDeleted = false,
+                            Status = false,
+                            Title = "Tasty Fruits"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Amount = "30",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Discount",
+                            ImageUrl = "/WebT/img/featur-3.jpg",
+                            IsDeleted = false,
+                            Status = false,
+                            Title = "Exotic Vegitable"
+                        });
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.MenuTable", b =>
@@ -607,6 +642,32 @@ namespace ShopECommerce.Data.Migrations
                     b.HasIndex("SubCategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(7171),
+                            Description = "Lezzetli",
+                            ImageUrl = "kjlnhsjkdf",
+                            IsDeleted = false,
+                            Price = 50m,
+                            ProductName = "Bahçe Domatesi",
+                            Status = true,
+                            SubCategoryId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(7186),
+                            Description = "Lezzetli",
+                            ImageUrl = "asdasd",
+                            IsDeleted = false,
+                            Price = 75m,
+                            ProductName = "Yerli Muz",
+                            Status = true,
+                            SubCategoryId = 2
+                        });
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Role", b =>
@@ -644,18 +705,18 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8067),
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(7006),
                             IsDeleted = false,
                             Name = "Admin",
-                            Status = false
+                            Status = true
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8100),
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(7042),
                             IsDeleted = false,
                             Name = "User",
-                            Status = false
+                            Status = true
                         });
                 });
 
@@ -673,20 +734,28 @@ namespace ShopECommerce.Data.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description1")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description2")
+                    b.Property<string>("ImageUrl1")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description3")
+                    b.Property<string>("ImageUrl2")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Label1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Label2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -694,21 +763,38 @@ namespace ShopECommerce.Data.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Title1")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title2")
+                    b.Property<string>("Url1")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title3")
+                    b.Property<string>("Url2")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Sliders");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(8433),
+                            Description = "Organic Veggies & Fruits Foods",
+                            ImageUrl1 = "/WebT/img/hero-img-1.png",
+                            ImageUrl2 = "/WebT/img/hero-img-2.jpg",
+                            IsDeleted = false,
+                            Label1 = "Fruites",
+                            Label2 = "Vesitables",
+                            Status = true,
+                            Title = "100% Organic Foods",
+                            Url1 = "#",
+                            Url2 = "#"
+                        });
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.SocialMedia", b =>
@@ -718,6 +804,10 @@ namespace ShopECommerce.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Cls")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -749,6 +839,52 @@ namespace ShopECommerce.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SocialMedias");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Cls = "btn btn-outline-secondary me-2 btn-md-square rounded-circle",
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(8401),
+                            Icon = "fab fa-facebook-f",
+                            IsDeleted = false,
+                            Status = true,
+                            Title = "Facebook",
+                            Url = "http://www.facebook.com"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Cls = "btn btn-outline-secondary me-2 btn-md-square rounded-circle",
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(8404),
+                            Icon = "fab fa-youtube",
+                            IsDeleted = false,
+                            Status = true,
+                            Title = "Youtube",
+                            Url = "http://www.youtube.com"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Cls = "btn btn-outline-secondary me-2 btn-md-square rounded-circle",
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(8406),
+                            Icon = "fab fa-linkedin-in",
+                            IsDeleted = false,
+                            Status = true,
+                            Title = "Linkedin",
+                            Url = "http://www.linkedin.com"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Cls = "btn btn-outline-secondary btn-md-square rounded-circle",
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(8407),
+                            Icon = "fab fa-twitter",
+                            IsDeleted = false,
+                            Status = true,
+                            Title = "Twitter",
+                            Url = "http://www.x.com"
+                        });
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.SubCategory", b =>
@@ -793,7 +929,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8148),
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(7096),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Elma"
@@ -802,7 +938,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8200),
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(7151),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Salatalık"
@@ -851,6 +987,19 @@ namespace ShopECommerce.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Testimonials");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Comment = "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,",
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(8380),
+                            ImageUrl = "/WebT/img/testimonial-1.jpg",
+                            IsDeleted = false,
+                            Name = "Şebnem Ferah",
+                            Status = true,
+                            Title = "Şef Aşçı"
+                        });
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.User", b =>
@@ -919,12 +1068,12 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Address = "Ankara",
-                            CreatedDate = new DateTime(2024, 5, 3, 18, 27, 23, 283, DateTimeKind.Local).AddTicks(8218),
+                            CreatedDate = new DateTime(2024, 5, 5, 3, 41, 23, 354, DateTimeKind.Local).AddTicks(8325),
                             Email = "admin@test.com",
                             FirstName = "Şebnem",
                             IsDeleted = false,
                             LastName = "Ferah",
-                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezNrUDRvOvdGIAxhRhZE_ln7zNZ_yRLVK_F8qRWjysn6EO3apsh5xteUDIhbeiYZcceF00PfnvwrFN4nCsTaV8TlHLA4G9c3pmhclhDvVjlKZA",
+                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezMQH6CtdEf6ESPDcxswn39sTEOfYVqZZNdxrbHD4T6JyX5uH0aA4qBWURuYzBNheqv3h0bVVYxSgcqByCkPEnX9a92xSVFcIv28nwrihDLuRg",
                             Phone = "0850",
                             RoleId = 1,
                             Status = true,

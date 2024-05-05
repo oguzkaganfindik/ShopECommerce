@@ -26,12 +26,20 @@ namespace ShopECommerce.Api.Controllers
             return Ok(value);
         }
 
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            var value = _mapper.Map<List<ResultSocialMediaDto>>(_socialMediaService.TGetListByStatusTrue());
+            return Ok(value);
+        }
+
         [HttpPost]
         public IActionResult CreateSocialMedia(CreateSocialMediaDto createSocialMediaDto)
         {
             _socialMediaService.TAdd(new SocialMedia()
             {
                 Title = createSocialMediaDto.Title,
+                Cls = createSocialMediaDto.Cls,
                 Icon = createSocialMediaDto.Icon,
                 Url = createSocialMediaDto.Url
             });
@@ -60,8 +68,9 @@ namespace ShopECommerce.Api.Controllers
             _socialMediaService.TUpdate(new SocialMedia()
             {
                 Id = updateSocialMediaDto.Id,
-                Icon = updateSocialMediaDto.Icon,
                 Title = updateSocialMediaDto.Title,
+                Cls=updateSocialMediaDto.Cls,
+                Icon = updateSocialMediaDto.Icon,
                 Url = updateSocialMediaDto.Url
             });
 
@@ -73,12 +82,6 @@ namespace ShopECommerce.Api.Controllers
         {
             _socialMediaService.TToggleStatus(id);
             return Ok("Status Değiştirildi");
-        }
-
-        [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
-        {
-            return Ok(_socialMediaService.TGetListByStatusTrue());
-        }
+        }    
     }
 }
