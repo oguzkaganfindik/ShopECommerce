@@ -23,8 +23,11 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Başlık Adı</th>
+                                    <th scope="col">Adı</th>
+                                    <th scope="col">Class</th>
                                     <th scope="col">Link</th>
+                                    <th scope="col">Icon</th>
+                                    <th scope="col">Durum</th>
                                     <th scope="col">Sil</th>
                                     <th scope="col">Güncelle</th>
                                     <th scope="col">Durumu Değiştir</th>
@@ -37,7 +40,9 @@
                                     <tr>
                                         <th>@count</th>
                                         <td>@item.Title</td>
+                                        <td>@item.Cls</td>
                                         <td>@item.Url</td>
+                                        <td>@item.Icon</td>
                                         <td>@item.Status</td>
                                         <td><a href="/Admin/SocialMedia/DeleteSocialMedia/@item.Id" class="btn btn-outline-danger btn-round">Sil</a></td>
                                         <td><a href="/Admin/SocialMedia/UpdateSocialMedia/@item.Id" class="btn btn-outline-success btn-round">Güncelle</a></td>

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<!-- Head Start -->
+@await Component.InvokeAsync("_UILayoutHeadComponentPartial")
+<!-- Head End -->
+<body>
+    <!-- Navbar start -->
+    @await Component.InvokeAsync("_UILayoutNavbarComponentPartial")
+    <!-- Navbar End -->
+    @RenderBody()
+    <!-- Footer Start -->
+    @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
+    <!-- Footer End -->
+    @await Component.InvokeAsync("_UILayoutScriptComponentPartial")
+</body>
+</html>
+
+@*</header>
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div> *@

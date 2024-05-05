@@ -25,17 +25,26 @@ namespace ShopECommerce.Api.Controllers
             return Ok(value);
         }
 
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            var value = _mapper.Map<List<ResultSliderDto>>(_sliderService.TGetListByStatusTrue());
+            return Ok(value);
+        }
+
         [HttpPost]
         public IActionResult CreateSlider(CreateSliderDto createSliderDto)
         {
             _sliderService.TAdd(new Slider()
             {
-                Title1 = createSliderDto.Title1,
-                Title2 = createSliderDto.Title2,
-                Title3 = createSliderDto.Title3,
-                Description1 = createSliderDto.Description1,
-                Description2 = createSliderDto.Description2,
-                Description3 = createSliderDto.Description3
+                Title = createSliderDto.Title,
+                Description = createSliderDto.Description,
+                Label1 = createSliderDto.Label1,
+                ImageUrl1 = createSliderDto.ImageUrl1,
+                Url1 = createSliderDto.Url1,
+                Label2 = createSliderDto.Label2,
+                ImageUrl2 = createSliderDto.ImageUrl2,
+                Url2 = createSliderDto.Url2
             });
 
             return Ok("Slider Bilgisi Eklendi");
@@ -61,13 +70,14 @@ namespace ShopECommerce.Api.Controllers
         {
             _sliderService.TUpdate(new Slider()
             {
-                Id = updateSliderDto.Id,
-                Title1 = updateSliderDto.Title1,
-                Title2 = updateSliderDto.Title2,
-                Title3 = updateSliderDto.Title3,
-                Description1 = updateSliderDto.Description1,
-                Description2 = updateSliderDto.Description2,
-                Description3 = updateSliderDto.Description3
+                Title = updateSliderDto.Title,
+                Description = updateSliderDto.Description,
+                Label1 = updateSliderDto.Label1,
+                ImageUrl1 = updateSliderDto.ImageUrl1,
+                Url1 = updateSliderDto.Url1,
+                Label2 = updateSliderDto.Label2,
+                ImageUrl2 = updateSliderDto.ImageUrl2,
+                Url2 = updateSliderDto.Url2
             });
 
             return Ok("Slider Bilgisi Güncellendi");
@@ -78,12 +88,6 @@ namespace ShopECommerce.Api.Controllers
         {
             _sliderService.TToggleStatus(id);
             return Ok("Status Değiştirildi");
-        }
-
-        [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
-        {
-            return Ok(_sliderService.TGetListByStatusTrue());
-        }
+        }    
     }
 }
