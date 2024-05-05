@@ -17,5 +17,7 @@ namespace ShopECommerce.Data.Abstract
         decimal ProductPriceBySteakBurger();
         decimal TotalPriceByDrinkSubCategory();
         decimal TotalPriceBySaladSubCategory();
+        List<ResultProductWithCategory> GetProductListByVegetable();
+        List<ResultProductWithCategory> GetProductListByFruites();
     }
 }

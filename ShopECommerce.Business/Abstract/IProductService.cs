@@ -6,7 +6,7 @@ namespace ShopECommerce.Business.Abstract
     public interface IProductService : IGenericService<Product>
     {
         //List<Product> TGetProductsWithCategories();
-        List<ResultProductWithSubCategory> TGetProductsWithCategories();
+        List<ResultProductWithSubCategory> TGetProductsWithSubCategories();
         int TProductCount();
         int TProductCountBySubCategoryNameHamburger();
         int TProductCountBySubCategoryNameDrink();
@@ -17,5 +17,7 @@ namespace ShopECommerce.Business.Abstract
         decimal TProductPriceBySteakBurger();
         decimal TTotalPriceByDrinkSubCategory();
         decimal TTotalPriceBySaladSubCategory();
+        List<ResultProductWithCategory> TGetProductListByVegetable();
+        List<ResultProductWithCategory> TGetProductListByFruites();
     }
 }

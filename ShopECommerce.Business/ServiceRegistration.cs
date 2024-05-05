@@ -61,6 +61,11 @@ namespace ShopECommerce.Business
             services.AddScoped<IMessageService, MessageManager>();
             services.AddScoped<IMessageDal, EfMessageDal>();
 
+            services.AddScoped<IFactService, FactManager>();
+            services.AddScoped<IFactDal, EfFactDal>();
+
+            services.AddScoped<IFeaturService, FeaturManager>();
+            services.AddScoped<IFeaturDal, EfFeaturDal>();
         }
     }
 }
