@@ -13,6 +13,7 @@ namespace ShopECommerce.Business.Mapping
             CreateMap<Product, UpdateProductDto>().ReverseMap();
             CreateMap<Product, GetProductDto>().ReverseMap();
             CreateMap<Product, ResultProductWithSubCategory>().ReverseMap();
+            CreateMap<Product, ResultProductWithCategory>().ReverseMap();
         }
     }
 }

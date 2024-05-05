@@ -29,7 +29,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet("ProductListWithSubCategory")]
         public IActionResult ProductListWithSubCategory()
         {
-            var values = _productService.TGetProductsWithCategories();
+            var values = _productService.TGetProductsWithSubCategories();
             var result = _mapper.Map<List<ResultProductWithSubCategory>>(values);
             return Ok(result);
         }
@@ -153,6 +153,22 @@ namespace ShopECommerce.Api.Controllers
         public IActionResult GetListByStatusTrue()
         {
             return Ok(_productService.TGetListByStatusTrue());
+        }
+        
+        [HttpGet("GetProductListByVegetable")]
+        public IActionResult GetProductListByVegetable()
+        {
+            var values = _productService.TGetProductListByVegetable();
+            var result = _mapper.Map<List<ResultProductWithCategory>>(values);
+            return Ok(result);
+        }
+        
+        [HttpGet("GetProductListByFruites")]
+        public IActionResult GetProductListByFruites()
+        {
+            var values = _productService.TGetProductListByFruites();
+            var result = _mapper.Map<List<ResultProductWithCategory>>(values);
+            return Ok(result);
         }
     }
 }

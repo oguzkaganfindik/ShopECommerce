@@ -95,7 +95,7 @@ namespace ShopECommerce.Business.Concrete
             return _productDal.TotalPriceBySaladSubCategory();
         }
 
-        public List<ResultProductWithSubCategory> TGetProductsWithCategories()
+        public List<ResultProductWithSubCategory> TGetProductsWithSubCategories()
         {
             return _productDal.GetProductsWithSubCategories();
         }
@@ -123,6 +123,16 @@ namespace ShopECommerce.Business.Concrete
         public IQueryable<Product> TGetListByStatusTrue(Expression<Func<Product, bool>> predicate = null)
         {
             return _productDal.GetListByStatusTrue(predicate);
+        }
+
+        public List<ResultProductWithCategory> TGetProductListByVegetable()
+        {
+            return _productDal.GetProductListByVegetable();
+        }      
+
+        public List<ResultProductWithCategory> TGetProductListByFruites()
+        {
+            return _productDal.GetProductListByFruites();
         }
     }
 }

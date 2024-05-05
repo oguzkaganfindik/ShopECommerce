@@ -1,0 +1,55 @@
+﻿@model List<ResultFactDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Ana Sayfa Fact İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Fact Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Fact alanıyla ile ilgili işlemleri yapabilirsiniz. Tema bütünlüğü için sadece 4 tane Fact alanı oluşturmayı unutmayın.
+                        </div>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Başlık</th>
+                                    <th scope="col">Açıklama</th>
+                                    <th scope="col">Icon</th>
+                                    <th scope="col">Durum</th>
+                                    <th scope="col">Sil</th>
+                                    <th scope="col">Güncelle</th>
+                                    <th scope="col">Durum</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Title</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.Icon</td>
+                                        <td>@item.Status</td>
+                                        <td><a href="/Admin/Fact/DeleteFact/@item.Id" class="btn btn-outline-danger btn-round">Sil</a></td>
+                                        <td><a href="/Admin/Fact/UpdateFact/@item.Id" class="btn btn-outline-success btn-round">Güncelle</a></td>
+                                        <td><a href="/Admin/Fact/ToggleStatus/@item.Id" class="btn btn-outline-dark btn-round">Durumu Değiştir</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <a href="/Admin/Fact/CreateFact/" class="btn btn-outline-primary btn-round">Yeni Fact Yazısı Girişi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

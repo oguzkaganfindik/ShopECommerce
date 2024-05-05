@@ -34,6 +34,8 @@ namespace ShopECommerce.Data.Context
         public DbSet<Category> Categories => Set<Category>();
         public DbSet<Contact> Contacts => Set<Contact>();
         public DbSet<Discount> Discounts => Set<Discount>();
+        public DbSet<Featur> Featurs => Set<Featur>();
+        public DbSet<Fact> Facts => Set<Fact>();
         public DbSet<MenuTable> MenuTables => Set<MenuTable>();
         public DbSet<Message> Messages => Set<Message>();
         public DbSet<MoneyCase> MoneyCases => Set<MoneyCase>();

@@ -93,5 +93,46 @@ namespace ShopECommerce.Data.Concrete
 
             return values;
         }
+
+        public List<ResultProductWithCategory> GetProductListByVegetable()
+        {
+            var values = _context.Products
+                            .Where(x => x.SubCategory.Category.CategoryName == "Vesitables")
+                            .Select(y => new ResultProductWithCategory
+                            {
+                                Id = y.Id,
+                                ProductName = y.ProductName,
+                                Description = y.Description,
+                                Price = y.Price,
+                                ImageUrl = y.ImageUrl,
+                                SubCategoryName = y.SubCategory.SubCategoryName,
+                                CategoryName = y.SubCategory.Category.CategoryName,
+                                Status = y.Status
+                            })
+                            .ToList();
+
+            return values;
+        }
+
+        public List<ResultProductWithCategory> GetProductListByFruites()
+        {
+            var values = _context.Products
+                            .Where(x => x.SubCategory.Category.CategoryName == "Fruites")
+                            .Select(y => new ResultProductWithCategory
+                            {
+                                Id = y.Id,
+                                ProductName = y.ProductName,
+                                Description = y.Description,
+                                Price = y.Price,
+                                ImageUrl = y.ImageUrl,
+                                SubCategoryName = y.SubCategory.SubCategoryName,
+                                CategoryName = y.SubCategory.Category.CategoryName,
+                                Status = y.Status
+                            })
+                            .ToList();
+
+            return values;
+        }
     }
 }
+
