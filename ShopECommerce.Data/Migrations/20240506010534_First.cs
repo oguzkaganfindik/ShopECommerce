@@ -34,6 +34,31 @@ namespace ShopECommerce.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Banners",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SubTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UrlLabel = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Banners", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Bookings",
                 columns: table => new
                 {
@@ -498,12 +523,17 @@ namespace ShopECommerce.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Banners",
+                columns: new[] { "Id", "CreatedDate", "DeletedDate", "Description", "ImageUrl", "IsDeleted", "ModifiedDate", "Price1", "Price2", "Status", "SubTitle", "Title", "Url", "UrlLabel" },
+                values: new object[] { 1, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1265), null, "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.", "/WebT/img/baner-1.png", false, null, "1", "50", true, "in Our Store", "Fresh Exotic Fruits", "#", "BUY" });
+
+            migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CategoryName", "CreatedDate", "DeletedDate", "IsDeleted", "ModifiedDate", "Status" },
                 values: new object[,]
                 {
-                    { 1, "Fruites", new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(736), null, false, null, true },
-                    { 2, "Vesitables", new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(739), null, false, null, true }
+                    { 1, "Fruites", new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9708), null, false, null, true },
+                    { 2, "Vesitables", new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9712), null, false, null, true }
                 });
 
             migrationBuilder.InsertData(
@@ -511,9 +541,9 @@ namespace ShopECommerce.Data.Migrations
                 columns: new[] { "Id", "Amount", "CreatedDate", "DeletedDate", "Description", "ImageUrl", "IsDeleted", "ModifiedDate", "Status", "Title" },
                 values: new object[,]
                 {
-                    { 1, "20", new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2028), null, "OFF", "/WebT/img/featur-1.jpg", false, null, true, "Fresh Apples" },
-                    { 2, "", new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2031), null, "Free delivery", "/WebT/img/featur-2.jpg", false, null, true, "Tasty Fruits" },
-                    { 3, "30", new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2033), null, "Discount", "/WebT/img/featur-3.jpg", false, null, true, "Exotic Vegitable" }
+                    { 1, "20%", new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1080), null, "OFF", "/WebT/img/featur-1.jpg", false, null, true, "Fresh Apples" },
+                    { 2, "", new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1082), null, "Free delivery", "/WebT/img/featur-2.jpg", false, null, true, "Tasty Fruits" },
+                    { 3, "30$", new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1083), null, "Discount", "/WebT/img/featur-3.jpg", false, null, true, "Exotic Vegitable" }
                 });
 
             migrationBuilder.InsertData(
@@ -521,10 +551,10 @@ namespace ShopECommerce.Data.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Description", "Icon", "IsDeleted", "ModifiedDate", "Status", "Title" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2135), null, "1963", "fa fa-users text-secondary", false, null, true, "SATISFIED CUSTOMERS" },
-                    { 2, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2136), null, "99%", "fa fa-users text-secondary", false, null, true, "QUALITY OF SERVICE" },
-                    { 3, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2138), null, "33", "fa fa-users text-secondary", false, null, true, "QUALITY CERTIFICATES" },
-                    { 4, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2139), null, "789", "fa fa-users text-secondary", false, null, true, "AVAILABLE PRODUCTS" }
+                    { 1, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1184), null, "1963", "fa fa-users text-secondary", false, null, true, "SATISFIED CUSTOMERS" },
+                    { 2, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1186), null, "99%", "fa fa-users text-secondary", false, null, true, "QUALITY OF SERVICE" },
+                    { 3, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1187), null, "33", "fa fa-users text-secondary", false, null, true, "QUALITY CERTIFICATES" },
+                    { 4, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1188), null, "789", "fa fa-users text-secondary", false, null, true, "AVAILABLE PRODUCTS" }
                 });
 
             migrationBuilder.InsertData(
@@ -532,10 +562,10 @@ namespace ShopECommerce.Data.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Description", "Icon", "IsDeleted", "ModifiedDate", "Status", "Title" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2106), null, "Free on order over $300", "fas fa-car-side fa-3x text-white", false, null, true, "Free Shipping" },
-                    { 2, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2108), null, "100% security payment", "fas fa-user-shield fa-3x text-white", false, null, true, "Security Payment" },
-                    { 3, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2109), null, "30 day money guarantee", "fas fa-exchange-alt fa-3x text-white", false, null, true, "30 Day Return" },
-                    { 4, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2110), null, "Support every time fast", "fa fa-phone-alt fa-3x text-white", false, null, true, "24/7 Support" }
+                    { 1, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1156), null, "Free on order over $300", "fas fa-car-side fa-3x text-white", false, null, true, "Free Shipping" },
+                    { 2, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1159), null, "100% security payment", "fas fa-user-shield fa-3x text-white", false, null, true, "Security Payment" },
+                    { 3, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1161), null, "30 day money guarantee", "fas fa-exchange-alt fa-3x text-white", false, null, true, "30 Day Return" },
+                    { 4, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1162), null, "Support every time fast", "fa fa-phone-alt fa-3x text-white", false, null, true, "24/7 Support" }
                 });
 
             migrationBuilder.InsertData(
@@ -543,24 +573,24 @@ namespace ShopECommerce.Data.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "IsDeleted", "ModifiedDate", "Name", "Status" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(686), null, false, null, "Admin", true },
-                    { 2, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(719), null, false, null, "User", true }
+                    { 1, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9653), null, false, null, "Admin", true },
+                    { 2, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9690), null, false, null, "User", true }
                 });
 
             migrationBuilder.InsertData(
                 table: "Sliders",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Description", "ImageUrl1", "ImageUrl2", "IsDeleted", "Label1", "Label2", "ModifiedDate", "Status", "Title", "Url1", "Url2" },
-                values: new object[] { 1, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1984), null, "Organic Veggies & Fruits Foods", "/WebT/img/hero-img-1.png", "/WebT/img/hero-img-2.jpg", false, "Fruites", "Vesitables", null, true, "100% Organic Foods", "#", "#" });
+                values: new object[] { 1, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1056), null, "Organic Veggies & Fruits Foods", "/WebT/img/hero-img-1.png", "/WebT/img/hero-img-2.jpg", false, "Fruites", "Vesitables", null, true, "100% Organic Foods", "#", "#" });
 
             migrationBuilder.InsertData(
                 table: "SocialMedias",
                 columns: new[] { "Id", "Cls", "CreatedDate", "DeletedDate", "Icon", "IsDeleted", "ModifiedDate", "Status", "Title", "Url" },
                 values: new object[,]
                 {
-                    { 1, "btn btn-outline-secondary me-2 btn-md-square rounded-circle", new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1950), null, "fab fa-facebook-f", false, null, true, "Facebook", "http://www.facebook.com" },
-                    { 2, "btn btn-outline-secondary me-2 btn-md-square rounded-circle", new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1952), null, "fab fa-youtube", false, null, true, "Youtube", "http://www.youtube.com" },
-                    { 3, "btn btn-outline-secondary me-2 btn-md-square rounded-circle", new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1953), null, "fab fa-linkedin-in", false, null, true, "Linkedin", "http://www.linkedin.com" },
-                    { 4, "btn btn-outline-secondary btn-md-square rounded-circle", new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1955), null, "fab fa-twitter", false, null, true, "Twitter", "http://www.x.com" }
+                    { 1, "btn btn-outline-secondary me-2 btn-md-square rounded-circle", new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1025), null, "fab fa-facebook-f", false, null, true, "Facebook", "http://www.facebook.com" },
+                    { 2, "btn btn-outline-secondary me-2 btn-md-square rounded-circle", new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1028), null, "fab fa-youtube", false, null, true, "Youtube", "http://www.youtube.com" },
+                    { 3, "btn btn-outline-secondary me-2 btn-md-square rounded-circle", new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1030), null, "fab fa-linkedin-in", false, null, true, "Linkedin", "http://www.linkedin.com" },
+                    { 4, "btn btn-outline-secondary btn-md-square rounded-circle", new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1031), null, "fab fa-twitter", false, null, true, "Twitter", "http://www.x.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -568,8 +598,8 @@ namespace ShopECommerce.Data.Migrations
                 columns: new[] { "Id", "Comment", "CreatedDate", "DeletedDate", "ImageUrl", "IsDeleted", "ModifiedDate", "Name", "Status", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,", new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1927), null, "/WebT/img/testimonial-1.jpg", false, null, "Şebnem Ferah", true, "Şef Aşçı" },
-                    { 2, "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,", new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1930), null, "/WebT/img/testimonial-1.jpg", false, null, "Teoman Yakupoğlu", true, "Şef Aşçı" }
+                    { 1, "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,", new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(997), null, "/WebT/img/testimonial-1.jpg", false, null, "Şebnem Ferah", true, "Şef Aşçı" },
+                    { 2, "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,", new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1000), null, "/WebT/img/testimonial-1.jpg", false, null, "Teoman Yakupoğlu", true, "Şef Aşçı" }
                 });
 
             migrationBuilder.InsertData(
@@ -577,42 +607,42 @@ namespace ShopECommerce.Data.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "DeletedDate", "IsDeleted", "ModifiedDate", "Status", "SubCategoryName" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(766), null, false, null, true, "Grapes" },
-                    { 2, 1, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(768), null, false, null, true, "Raspberries" },
-                    { 3, 1, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(769), null, false, null, true, "Apricots" },
-                    { 4, 1, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(771), null, false, null, true, "Banana" },
-                    { 5, 1, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(772), null, false, null, true, "Oranges" },
-                    { 6, 1, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(774), null, false, null, true, "Apple" },
-                    { 7, 2, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(776), null, false, null, true, "Patatoes" },
-                    { 8, 2, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(777), null, false, null, true, "Persely" },
-                    { 9, 2, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(778), null, false, null, true, "Tomato" },
-                    { 10, 2, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(780), null, false, null, true, "Brocoli" },
-                    { 11, 2, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(781), null, false, null, true, "Bell Papper" },
-                    { 12, 1, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(782), null, false, null, true, "Strawberry" }
+                    { 1, 1, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9735), null, false, null, true, "Grapes" },
+                    { 2, 1, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9737), null, false, null, true, "Raspberries" },
+                    { 3, 1, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9738), null, false, null, true, "Apricots" },
+                    { 4, 1, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9740), null, false, null, true, "Banana" },
+                    { 5, 1, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9741), null, false, null, true, "Oranges" },
+                    { 6, 1, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9744), null, false, null, true, "Apple" },
+                    { 7, 2, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9745), null, false, null, true, "Patatoes" },
+                    { 8, 2, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9746), null, false, null, true, "Persely" },
+                    { 9, 2, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9747), null, false, null, true, "Tomato" },
+                    { 10, 2, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9749), null, false, null, true, "Brocoli" },
+                    { 11, 2, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9771), null, false, null, true, "Bell Papper" },
+                    { 12, 1, new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9773), null, false, null, true, "Strawberry" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "CreatedDate", "DeletedDate", "Email", "FirstName", "IsDeleted", "LastName", "ModifiedDate", "Password", "Phone", "RoleId", "Status", "Username" },
-                values: new object[] { 1, "Ankara", new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1870), null, "admin@test.com", "Şebnem", false, "Ferah", null, "CfDJ8Lhzc99II2tHnoigxoZuezN58D-cusRS4mlpb03hJX8qR6hCPbuZBTDsbK1sWCjZNYIdjm-6qiXzjzxgxpkqbc_JggLx5KSH7QU5bytYmmSchVvO4Sboait3inyd4WAiVA", "0850", 1, true, "Admin" });
+                values: new object[] { 1, "Ankara", new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(936), null, "admin@test.com", "Şebnem", false, "Ferah", null, "CfDJ8Lhzc99II2tHnoigxoZuezNYY0Zk80gv5_YdA4UluSE3u7I-ngfUDS45-kEpS0c_FyFwj6FCgOiydftLtbayDIU5zdmBhKlqfx036gSPizRC8SMEd0h-7zAKWF4SZPu0Ig", "0850", 1, true, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Description", "ImageUrl", "IsDeleted", "ModifiedDate", "Price", "ProductName", "Status", "SubCategoryId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2058), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/fruite-item-5.jpg", false, null, 4.95m, "Native Grapes", true, 1 },
-                    { 2, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2062), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/fruite-item-2.jpg", false, null, 4.95m, "Native Raspberries", true, 2 },
-                    { 3, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2064), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/fruite-item-4.jpg", false, null, 4.95m, "Native Apricots", true, 3 },
-                    { 4, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2065), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/fruite-item-3.jpg", false, null, 4.95m, "Native Banana", true, 4 },
-                    { 5, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2067), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/fruite-item-1.jpg", false, null, 4.95m, "Native Oranges", true, 5 },
-                    { 6, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2070), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/featur-1.jpg", false, null, 4.95m, "Native Apple", true, 6 },
-                    { 7, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2071), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/vegetable-item-5.jpg", false, null, 4.95m, "Native Patatoes", true, 7 },
-                    { 8, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2072), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/vegetable-item-6.jpg", false, null, 4.95m, "Native Persely", true, 8 },
-                    { 9, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2074), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/vegetable-item-1.jpg", false, null, 4.95m, "Native Tomato", true, 9 },
-                    { 10, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2076), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/featur-3.jpg", false, null, 4.95m, "Native Brocoli", true, 10 },
-                    { 11, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2078), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/vegetable-item-4.jpg", false, null, 4.95m, "Native Bell Papper", true, 11 },
-                    { 12, new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2080), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/featur-2.jpg", false, null, 4.95m, "Native Strawberry", true, 12 }
+                    { 1, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1106), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/fruite-item-5.jpg", false, null, 4.95m, "Native Grapes", true, 1 },
+                    { 2, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1109), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/fruite-item-2.jpg", false, null, 4.95m, "Native Raspberries", true, 2 },
+                    { 3, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1110), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/fruite-item-4.jpg", false, null, 4.95m, "Native Apricots", true, 3 },
+                    { 4, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1112), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/fruite-item-3.jpg", false, null, 4.95m, "Native Banana", true, 4 },
+                    { 5, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1113), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/fruite-item-1.jpg", false, null, 4.95m, "Native Oranges", true, 5 },
+                    { 6, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1117), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/featur-1.jpg", false, null, 4.95m, "Native Apple", true, 6 },
+                    { 7, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1119), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/vegetable-item-5.jpg", false, null, 4.95m, "Native Patatoes", true, 7 },
+                    { 8, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1120), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/vegetable-item-6.jpg", false, null, 4.95m, "Native Persely", true, 8 },
+                    { 9, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1122), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/vegetable-item-1.jpg", false, null, 4.95m, "Native Tomato", true, 9 },
+                    { 10, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1124), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/featur-3.jpg", false, null, 4.95m, "Native Brocoli", true, 10 },
+                    { 11, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1126), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/vegetable-item-4.jpg", false, null, 4.95m, "Native Bell Papper", true, 11 },
+                    { 12, new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1128), null, "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt", "/WebT/img/featur-2.jpg", false, null, 4.95m, "Native Strawberry", true, 12 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -656,6 +686,9 @@ namespace ShopECommerce.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Abouts");
+
+            migrationBuilder.DropTable(
+                name: "Banners");
 
             migrationBuilder.DropTable(
                 name: "Baskets");

@@ -66,6 +66,9 @@ namespace ShopECommerce.Business
 
             services.AddScoped<IFeaturService, FeaturManager>();
             services.AddScoped<IFeaturDal, EfFeaturDal>();
+
+            services.AddScoped<IBannerService, BannerManager>();
+            services.AddScoped<IBannerDal, EfBannerDal>();
         }
     }
 }

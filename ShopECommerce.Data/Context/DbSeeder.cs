@@ -292,7 +292,7 @@ namespace ShopECommerce.Data.Context
                     Id = 1,
                     Title = "Fresh Apples",
                     Description = "OFF",
-                    Amount = "20",
+                    Amount = "20%",
                     ImageUrl = "/WebT/img/featur-1.jpg",
                     Status = true,
                     IsDeleted = false,
@@ -314,7 +314,7 @@ namespace ShopECommerce.Data.Context
                     Id = 3,
                     Title = "Exotic Vegitable",
                     Description = "Discount",
-                    Amount = "30",
+                    Amount = "30$",
                     ImageUrl = "/WebT/img/featur-3.jpg",
                     Status = true,
                     IsDeleted = false,
@@ -562,6 +562,25 @@ namespace ShopECommerce.Data.Context
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
                 },
+            });
+
+            modelBuilder.Entity<Banner>().HasData(new List<Banner>()
+            {
+                new Banner()
+                {
+                    Id = 1,
+                    Title = "Fresh Exotic Fruits",
+                    SubTitle = "in Our Store",
+                    Description = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                    Url = "#",
+                    UrlLabel = "BUY",
+                    Price1 = "1",
+                    Price2 = "50",
+                    ImageUrl = "/WebT/img/baner-1.png",                    
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                }
             });
         }
     }

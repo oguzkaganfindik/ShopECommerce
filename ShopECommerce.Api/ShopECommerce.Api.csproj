@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="App_Data\Keys\" />
-    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
