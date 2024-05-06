@@ -12,7 +12,7 @@ using ShopECommerce.Data.Context;
 namespace ShopECommerce.Data.Migrations
 {
     [DbContext(typeof(ShopECommerceContext))]
-    [Migration("20240505164959_First")]
+    [Migration("20240506010534_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -63,6 +63,83 @@ namespace ShopECommerce.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Abouts");
+                });
+
+            modelBuilder.Entity("ShopECommerce.Entities.Concrete.Banner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Price1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Price2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SubTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UrlLabel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Banners");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1265),
+                            Description = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                            ImageUrl = "/WebT/img/baner-1.png",
+                            IsDeleted = false,
+                            Price1 = "1",
+                            Price2 = "50",
+                            Status = true,
+                            SubTitle = "in Our Store",
+                            Title = "Fresh Exotic Fruits",
+                            Url = "#",
+                            UrlLabel = "BUY"
+                        });
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Basket", b =>
@@ -199,7 +276,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             CategoryName = "Fruites",
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(736),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9708),
                             IsDeleted = false,
                             Status = true
                         },
@@ -207,7 +284,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             CategoryName = "Vesitables",
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(739),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9712),
                             IsDeleted = false,
                             Status = true
                         });
@@ -320,8 +397,8 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Amount = "20",
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2028),
+                            Amount = "20%",
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1080),
                             Description = "OFF",
                             ImageUrl = "/WebT/img/featur-1.jpg",
                             IsDeleted = false,
@@ -332,7 +409,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             Amount = "",
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2031),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1082),
                             Description = "Free delivery",
                             ImageUrl = "/WebT/img/featur-2.jpg",
                             IsDeleted = false,
@@ -342,8 +419,8 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 3,
-                            Amount = "30",
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2033),
+                            Amount = "30$",
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1083),
                             Description = "Discount",
                             ImageUrl = "/WebT/img/featur-3.jpg",
                             IsDeleted = false,
@@ -395,7 +472,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2135),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1184),
                             Description = "1963",
                             Icon = "fa fa-users text-secondary",
                             IsDeleted = false,
@@ -405,7 +482,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2136),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1186),
                             Description = "99%",
                             Icon = "fa fa-users text-secondary",
                             IsDeleted = false,
@@ -415,7 +492,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2138),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1187),
                             Description = "33",
                             Icon = "fa fa-users text-secondary",
                             IsDeleted = false,
@@ -425,7 +502,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2139),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1188),
                             Description = "789",
                             Icon = "fa fa-users text-secondary",
                             IsDeleted = false,
@@ -477,7 +554,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2106),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1156),
                             Description = "Free on order over $300",
                             Icon = "fas fa-car-side fa-3x text-white",
                             IsDeleted = false,
@@ -487,7 +564,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2108),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1159),
                             Description = "100% security payment",
                             Icon = "fas fa-user-shield fa-3x text-white",
                             IsDeleted = false,
@@ -497,7 +574,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2109),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1161),
                             Description = "30 day money guarantee",
                             Icon = "fas fa-exchange-alt fa-3x text-white",
                             IsDeleted = false,
@@ -507,7 +584,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2110),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1162),
                             Description = "Support every time fast",
                             Icon = "fa fa-phone-alt fa-3x text-white",
                             IsDeleted = false,
@@ -814,7 +891,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2058),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1106),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/fruite-item-5.jpg",
                             IsDeleted = false,
@@ -826,7 +903,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2062),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1109),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/fruite-item-2.jpg",
                             IsDeleted = false,
@@ -838,7 +915,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2064),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1110),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/fruite-item-4.jpg",
                             IsDeleted = false,
@@ -850,7 +927,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2065),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1112),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/fruite-item-3.jpg",
                             IsDeleted = false,
@@ -862,7 +939,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2067),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1113),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/fruite-item-1.jpg",
                             IsDeleted = false,
@@ -874,7 +951,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2070),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1117),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/featur-1.jpg",
                             IsDeleted = false,
@@ -886,7 +963,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2071),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1119),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/vegetable-item-5.jpg",
                             IsDeleted = false,
@@ -898,7 +975,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2072),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1120),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/vegetable-item-6.jpg",
                             IsDeleted = false,
@@ -910,7 +987,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2074),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1122),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/vegetable-item-1.jpg",
                             IsDeleted = false,
@@ -922,7 +999,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2076),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1124),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/featur-3.jpg",
                             IsDeleted = false,
@@ -934,7 +1011,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2078),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1126),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/vegetable-item-4.jpg",
                             IsDeleted = false,
@@ -946,7 +1023,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(2080),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1128),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/featur-2.jpg",
                             IsDeleted = false,
@@ -992,7 +1069,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(686),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9653),
                             IsDeleted = false,
                             Name = "Admin",
                             Status = true
@@ -1000,7 +1077,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(719),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9690),
                             IsDeleted = false,
                             Name = "User",
                             Status = true
@@ -1070,7 +1147,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1984),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1056),
                             Description = "Organic Veggies & Fruits Foods",
                             ImageUrl1 = "/WebT/img/hero-img-1.png",
                             ImageUrl2 = "/WebT/img/hero-img-2.jpg",
@@ -1132,7 +1209,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Cls = "btn btn-outline-secondary me-2 btn-md-square rounded-circle",
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1950),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1025),
                             Icon = "fab fa-facebook-f",
                             IsDeleted = false,
                             Status = true,
@@ -1143,7 +1220,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             Cls = "btn btn-outline-secondary me-2 btn-md-square rounded-circle",
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1952),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1028),
                             Icon = "fab fa-youtube",
                             IsDeleted = false,
                             Status = true,
@@ -1154,7 +1231,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 3,
                             Cls = "btn btn-outline-secondary me-2 btn-md-square rounded-circle",
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1953),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1030),
                             Icon = "fab fa-linkedin-in",
                             IsDeleted = false,
                             Status = true,
@@ -1165,7 +1242,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 4,
                             Cls = "btn btn-outline-secondary btn-md-square rounded-circle",
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1955),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1031),
                             Icon = "fab fa-twitter",
                             IsDeleted = false,
                             Status = true,
@@ -1216,7 +1293,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(766),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9735),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Grapes"
@@ -1225,7 +1302,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(768),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9737),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Raspberries"
@@ -1234,7 +1311,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 3,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(769),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9738),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Apricots"
@@ -1243,7 +1320,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 4,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(771),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9740),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Banana"
@@ -1252,7 +1329,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 5,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(772),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9741),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Oranges"
@@ -1261,7 +1338,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 6,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(774),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9744),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Apple"
@@ -1270,7 +1347,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 7,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(776),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9745),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Patatoes"
@@ -1279,7 +1356,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 8,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(777),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9746),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Persely"
@@ -1288,7 +1365,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 9,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(778),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9747),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Tomato"
@@ -1297,7 +1374,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 10,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(780),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9749),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Brocoli"
@@ -1306,7 +1383,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 11,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(781),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9771),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Bell Papper"
@@ -1315,7 +1392,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 12,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(782),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 675, DateTimeKind.Local).AddTicks(9773),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Strawberry"
@@ -1370,7 +1447,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Comment = "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,",
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1927),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(997),
                             ImageUrl = "/WebT/img/testimonial-1.jpg",
                             IsDeleted = false,
                             Name = "Şebnem Ferah",
@@ -1381,7 +1458,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             Comment = "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,",
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1930),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(1000),
                             ImageUrl = "/WebT/img/testimonial-1.jpg",
                             IsDeleted = false,
                             Name = "Teoman Yakupoğlu",
@@ -1456,12 +1533,12 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Address = "Ankara",
-                            CreatedDate = new DateTime(2024, 5, 5, 19, 49, 58, 447, DateTimeKind.Local).AddTicks(1870),
+                            CreatedDate = new DateTime(2024, 5, 6, 4, 5, 32, 676, DateTimeKind.Local).AddTicks(936),
                             Email = "admin@test.com",
                             FirstName = "Şebnem",
                             IsDeleted = false,
                             LastName = "Ferah",
-                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezN58D-cusRS4mlpb03hJX8qR6hCPbuZBTDsbK1sWCjZNYIdjm-6qiXzjzxgxpkqbc_JggLx5KSH7QU5bytYmmSchVvO4Sboait3inyd4WAiVA",
+                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezNYY0Zk80gv5_YdA4UluSE3u7I-ngfUDS45-kEpS0c_FyFwj6FCgOiydftLtbayDIU5zdmBhKlqfx036gSPizRC8SMEd0h-7zAKWF4SZPu0Ig",
                             Phone = "0850",
                             RoleId = 1,
                             Status = true,

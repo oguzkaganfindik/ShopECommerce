@@ -23,6 +23,7 @@ namespace ShopECommerce.Business
             services.AddAutoMapper(typeof(MenuTableMapping));
             services.AddAutoMapper(typeof(FactMapping));
             services.AddAutoMapper(typeof(FeaturMapping));
+            services.AddAutoMapper(typeof(BannerMapping));
         }
     }
 }

@@ -30,6 +30,7 @@ namespace ShopECommerce.Data.Context
         public DbSet<About> Abouts => Set<About>();
         public DbSet<Basket> Baskets => Set<Basket>();
         public DbSet<Booking> Bookings => Set<Booking>();
+        public DbSet<Banner> Banners => Set<Banner>();
         public DbSet<SubCategory> SubCategories => Set<SubCategory>();
         public DbSet<Category> Categories => Set<Category>();
         public DbSet<Contact> Contacts => Set<Contact>();

@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.BannerDtos;
+using ShopECommerce.WebUI.Dtos.ProductDtos;
 
 namespace ShopECommerce.WebUI.ViewComponents.DefaultComponents
 {
-    public class _DefaultBannerComponentPartial : ViewComponent
+    public class _DefaultFruitesOurComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public _DefaultBannerComponentPartial(IHttpClientFactory httpClientFactory)
+        public _DefaultFruitesOurComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -16,10 +16,10 @@ namespace ShopECommerce.WebUI.ViewComponents.DefaultComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/Banner/GetListByStatusTrue");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Product/GetProductListByFruites/");
 
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultBannerDto>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultProductWithCategory>>(jsonData);
             return View(values);
 
 
