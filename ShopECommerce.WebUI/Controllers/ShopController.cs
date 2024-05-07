@@ -4,14 +4,14 @@ using ShopECommerce.DTOs.BasketDto;
 using ShopECommerce.DTOs.ProductDto;
 using System.Text;
 
-namespace ShopECommerce.WebUI.Areas.Admin.Controllers
+namespace ShopECommerce.WebUI.Controllers
 {
     [Area("Admin")]
-    public class MenuController : Controller
+    public class ShopController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public MenuController(IHttpClientFactory httpClientFactory)
+        public ShopController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -44,7 +44,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> ToggleStatus(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            await client.GetAsync($"https://localhost:7046/api/Menu/ToggleStatus/{id}");
+            await client.GetAsync($"https://localhost:7046/api/Shop/ToggleStatus/{id}");
             return RedirectToAction("Index");
         }
     }

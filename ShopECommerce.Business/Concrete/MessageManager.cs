@@ -14,6 +14,16 @@ namespace ShopECommerce.Business.Concrete
             _messageDal = messageDal;
         }
 
+        public void TMessageStatusApproved(int id)
+        {
+            _messageDal.MessageStatusApproved(id);
+        }
+
+        public void TMessageStatusCancelled(int id)
+        {
+            _messageDal.MessageStatusCancelled(id);
+        }
+
         public void TAdd(Message entity)
         {
             _messageDal.Add(entity);

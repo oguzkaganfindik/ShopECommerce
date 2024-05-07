@@ -8,12 +8,12 @@ namespace ShopECommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MessagesController : ControllerBase
+    public class MessageController : ControllerBase
     {
         private readonly IMessageService _messageService;
         private readonly IMapper _mapper;
 
-        public MessagesController(IMessageService messageService, IMapper mapper)
+        public MessageController(IMessageService messageService, IMapper mapper)
         {
             _messageService = messageService;
             _mapper = mapper;
@@ -23,6 +23,13 @@ namespace ShopECommerce.Api.Controllers
         public IActionResult MessageList()
         {
             var value = _mapper.Map<List<ResultMessageDto>>(_messageService.TGetAll());
+            return Ok(value);
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            var value = _mapper.Map<List<ResultMessageDto>>(_messageService.TGetListByStatusTrue());
             return Ok(value);
         }
 
@@ -38,6 +45,7 @@ namespace ShopECommerce.Api.Controllers
                 Phone = createMessageDto.Phone,
                 Status = false,
                 Subject = createMessageDto.Subject,
+                Description = createMessageDto.Description
             });
 
             return Ok("Mesaj Başarılı Bir Şekilde Gönderildi");
@@ -63,6 +71,7 @@ namespace ShopECommerce.Api.Controllers
                 Phone = updateMessageDto.Phone,
                 Status = false,
                 Subject = updateMessageDto.Subject,
+                Description = updateMessageDto.Description,
                 Id = updateMessageDto.Id
             });
 
@@ -76,17 +85,26 @@ namespace ShopECommerce.Api.Controllers
             return Ok(value);
         }
 
+
+        [HttpGet("MessageStatusApproved/{id}")]
+        public IActionResult MessageStatusApproved(int id)
+        {
+            _messageService.TMessageStatusApproved(id);
+            return Ok("Message Açıklaması Değiştirildi");
+        }
+
+        [HttpGet("MessageStatusCancelled/{id}")]
+        public IActionResult MessageStatusCancelled(int id)
+        {
+            _messageService.TMessageStatusCancelled(id);
+            return Ok("Message Açıklaması Değiştirildi");
+        }
+
         [HttpGet("ToggleStatus/{id}")]
         public IActionResult ToggleStatus(int id)
         {
             _messageService.TToggleStatus(id);
             return Ok("Status Değiştirildi");
-        }
-
-        [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
-        {
-            return Ok(_messageService.TGetListByStatusTrue());
         }
     }
 }

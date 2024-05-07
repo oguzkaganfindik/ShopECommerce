@@ -576,7 +576,27 @@ namespace ShopECommerce.Data.Context
                     UrlLabel = "BUY",
                     Price1 = "1",
                     Price2 = "50",
-                    ImageUrl = "/WebT/img/baner-1.png",                    
+                    ImageUrl = "/WebT/img/baner-1.png",
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                }
+            });
+
+            modelBuilder.Entity<Contact>().HasData(new List<Contact>()
+            {
+                new Contact()
+                {
+                    Id = 1,
+                    Location = "1429 Netus Rd, NY 48247",
+                    Phone = "+0123 4567 8910",
+                    Mail = "Example@gmail.com",
+                    FooterTitle = "Why People Like us!",
+                    FooterDescription = "typesetting, remaining essentially unchanged. It was popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.",
+                    SiteName = "Fruitables",
+                    SiteTitle = "Fresh products",
+                    SiteUrl = "www.fruitables.com",
+                    GoogleMapsApi = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.33750346623!2d-73.97968099999999!3d40.6974881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1694259649153!5m2!1sen!2sbd",
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now

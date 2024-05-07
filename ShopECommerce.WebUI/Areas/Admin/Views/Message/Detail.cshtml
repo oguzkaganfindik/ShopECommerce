@@ -1,0 +1,65 @@
+﻿@model ResultMessageDto
+@{
+    ViewData["Title"] = "Mesaj Detayı";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Mesaj Detayı</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Mesaj Detayları</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Mesaj alanıyla ilgili detayları görebilirsiniz.
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" style="width: 30%;">Ad Soyad</th>
+                                        <td>@Model.NameSurname</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">E-Mail</th>
+                                        <td>@Model.Mail</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Telefon</th>
+                                        <td>@Model.Phone</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Konu</th>
+                                        <td>@Model.Subject</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Mesaj İçeriği</th>
+                                        <td>@Model.MessageContent</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Mesaj Gönderim Tarihi</th>
+                                        <td>@Model.MessageSendDate</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Mesaj Durumu</th>
+                                        <td>@Model.Description</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="/Admin/Message/DeleteMessage/@Model.Id" class="btn btn-outline-danger btn-round">Sil</a>
+                                <a href="/Admin/Message/MessageStatusApproved/@Model.Id" class="btn btn-outline-info btn-round">Mesajı Okundu Yap</a>
+                                <a href="/Admin/Message/MessageStatusCancelled/@Model.Id" class="btn btn-outline-dark btn-round">Mesajı Kapandı Yap</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

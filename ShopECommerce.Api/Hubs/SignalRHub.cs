@@ -11,10 +11,11 @@ namespace ShopECommerce.Api.Hubs
         private readonly IMoneyCaseService _moneyCaseService;
         private readonly IMenuTableService _menuTableService;
         private readonly IBookingService _bookingService;
+        private readonly IMessageService _messageService;
         private readonly INotificationService _notificationService;
 
 
-        public SignalRHub(ISubCategoryService subCategoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService, INotificationService notificationService)
+        public SignalRHub(ISubCategoryService subCategoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService, INotificationService notificationService, IMessageService messageService)
         {
             _subCategoryService = subCategoryService;
             _productService = productService;
@@ -23,6 +24,7 @@ namespace ShopECommerce.Api.Hubs
             _menuTableService = menuTableService;
             _bookingService = bookingService;
             _notificationService = notificationService;
+            _messageService = messageService;
         }
 
         public static int clientCount { get; set; } = 0;
@@ -116,6 +118,12 @@ namespace ShopECommerce.Api.Hubs
         {
             var values = _bookingService.TGetListAll();
             await Clients.All.SendAsync("ReceiveBookingList", values);
+        }
+
+        public async Task GetMessageList()
+        {
+            var values = _messageService.TGetListAll();
+            await Clients.All.SendAsync("ReceiveMessageList", values);
         }
 
         public async Task SendNotification()

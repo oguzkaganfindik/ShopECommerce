@@ -1,0 +1,16 @@
+﻿@model CreateMessageDto
+
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<div class="col-lg-7">
+    <form method="post" asp-action="SendMessage" asp-controller="Default">
+        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Your Name SurName" asp-for="NameSurname">
+        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Your Name Phone" asp-for="Phone">
+        <input type="email" class="w-100 form-control border-0 py-3 mb-4" placeholder="Enter Your Email" asp-for="Mail">
+        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Enter Your Subject" asp-for="Subject">
+        <textarea class="w-100 form-control border-0 mb-4" rows="5" cols="10" placeholder="Your Message" asp-for="MessageContent"></textarea>
+        <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary " type="submit">Submit</button>
+    </form>
+</div>

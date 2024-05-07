@@ -1,0 +1,181 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .message-container {
+        height: 100px;
+        overflow-y: auto;
+    }
+
+    .message-item {
+        list-style-type: none;
+        margin: 5px 0;
+    }
+
+    .message-content {
+        margin-left: 50px;
+    }
+
+    .message-wrapper {
+        display: flex;
+        justify-content: space-between; /* Mesajları ve anlık kişi sayısını yatayda eşit aralıklı olarak hizala */
+        align-items: flex-start; /* Dikeyde üste hizala */
+    }
+
+    .client-count {
+        margin-top: 6px; /* Anlık kişi sayısını mesajlara dikeyde ortala */
+    }
+</style>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+
+<br />
+<br />
+
+
+<section class="food_section layout_padding">
+    <div class="container">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-6">
+                    <h2 class="text-center mb-4">Anlık Mesajlaşma</h2>
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col-6">
+                    <div id="messageContainer" class="message-container">
+                        <!-- Mesajlar -->
+                    </div>
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col-6">
+                    <div class="message-wrapper">
+                        <h6 class="client-count">Anlık Kişi Sayısı: <strong id="clientCountValue">0</strong></h6>
+                        <span id="currentTime"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row p-1">
+                <div class="col-2">Kullanıcı Adınız:</div>
+                <div class="col-5">
+                    <input type="text" id="userinput" class="form-control" />
+                </div>
+            </div>
+
+            <div class="row p-1">
+                <div class="col-2">Mesajınız:</div>
+                <div class="col-5">
+                    <textarea type="text" class="form-control" id="messageinput" rows="10"></textarea>
+                </div>
+            </div>
+
+            <div class="row p-1">
+                <div class="col-2"></div>
+                <div class="col-3">
+                    <input type="button" id="sendbutton" value="Mesaj Gönder" class="btn btn-warning" />
+                </div>
+            </div>
+
+            <div class="row p-1">
+                <div class="col-12">
+                    <hr />
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.8/signalr.min.js"></script>
+<script src="~/js/chat.js"></script>
+
+<script>
+    var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7046/SignalRHub").build();
+
+    connection.on("ReceiveMessage", function (user, message, timestamp) {
+        var li = document.createElement("li");
+        li.classList.add("message-item");
+
+        var spanUser = document.createElement("span");
+        spanUser.style.fontWeight = "bold";
+        spanUser.textContent = user + ": ";
+
+        var spanMessage = document.createElement("span");
+        spanMessage.textContent = message;
+
+        var spanTimestamp = document.createElement("span");
+        spanTimestamp.style.fontSize = "small";
+        spanTimestamp.style.color = "#888";
+        spanTimestamp.textContent = timestamp;
+
+        li.appendChild(spanUser);
+        li.appendChild(spanMessage);
+        li.appendChild(document.createElement("br")); // Line break
+        li.appendChild(spanTimestamp); // Timestamp
+
+        var container = document.getElementById("messageContainer");
+        container.appendChild(li); // Yeni mesajları en alta ekle
+
+        // Yeni mesaj geldiğinde en alta göstermek için scroll'u en aşağıya çek
+        container.scrollTop = container.scrollHeight;
+    });
+
+    connection.on("ReceiveClientCount", function (clientCount) {
+        $("#clientCountValue").text(clientCount);
+    });
+
+    connection.start().then(function () {
+        document.getElementById("sendbutton").disabled = false;
+
+        document.getElementById("sendbutton").addEventListener("click", function (event) {
+            var user = document.getElementById("userinput").value;
+            var message = document.getElementById("messageinput").value;
+            var timestamp = new Date().toLocaleString(); // Mesajın gönderildiği zamanı al
+            connection.invoke("SendMessage", user, message, timestamp).catch(function (err) {
+                return console.error(err.toString());
+            });
+            // Mesaj gönderildikten sonra alanı temizle
+            document.getElementById("messageinput").value = "";
+            event.preventDefault();
+        });
+
+        $("#connstatus").text(connection.state);
+
+        // Anlık saat güncelleme
+        setInterval(function () {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+
+            // Tek haneli rakamlar için önüne 0 ekleme
+            if (hours < 10) {
+                hours = "0" + hours;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+
+            var formattedTime = hours + ":" + minutes + ":" + seconds;
+            document.getElementById("currentTime").textContent = formattedTime;
+        }, 1000); // Her saniye güncelle
+
+        // Anlık client sayısı güncelleme
+        connection.on("ReceiveClientCount", function (clientCount) {
+            $("#clientCountValue").text(clientCount);
+        });
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+</script>

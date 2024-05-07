@@ -7,7 +7,8 @@
         public string Phone { get; set; }
         public string Subject { get; set; }
         public string MessageContent { get; set; }
-        public DateTime MessageSendDate { get; set; }
+		public DateTime MessageSendDate { get; set; }
+        public string Description { get; set; }
         public bool Status { get; set; }
     }
 }
