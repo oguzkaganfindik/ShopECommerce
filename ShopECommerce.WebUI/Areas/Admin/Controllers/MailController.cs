@@ -18,7 +18,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         {
             MimeMessage mimeMessage = new MimeMessage();
 
-            MailboxAddress mailboxAddressFrom = new MailboxAddress("Restaurant", "Buraya Mail Adresi Gelecek");
+            MailboxAddress mailboxAddressFrom = new MailboxAddress("ShopECommerce", "Buraya Mail Adresi Gelecek");
             mimeMessage.From.Add(mailboxAddressFrom);
 
             MailboxAddress mailboxAddressTo = new MailboxAddress("User", createMailDto.ReceiverMail);
@@ -37,7 +37,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             client.Send(mimeMessage);
             client.Disconnect(true);
 
-            return RedirectToAction("Index", "SubCategory");
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }

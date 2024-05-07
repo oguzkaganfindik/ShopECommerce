@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using ShopECommerce.WebUI.Dtos.BasketDtos;
 
-namespace ShopECommerce.WebUI.Areas.Admin.Controllers
+namespace ShopECommerce.WebUI.Controllers
 {
     [Area("Admin")]
     public class BasketController : Controller

@@ -26,19 +26,27 @@ namespace ShopECommerce.Api.Controllers
             return Ok(value);
         }
 
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            var value = _mapper.Map<List<ResultContactDto>>(_contactService.TGetListByStatusTrue());
+            return Ok(value);
+        }
+
         [HttpPost]
         public IActionResult CreateContact(CreateContactDto createContactDto)
         {
             _contactService.TAdd(new Contact()
             {
-                FooterDescription = createContactDto.FooterDescription,
                 Location = createContactDto.Location,
-                Mail = createContactDto.Mail,
                 Phone = createContactDto.Phone,
+                Mail = createContactDto.Mail,
                 FooterTitle = createContactDto.FooterTitle,
-                OpenDays = createContactDto.OpenDays,
-                OpenDaysDescription = createContactDto.OpenDaysDescription,
-                OpenHours = createContactDto.OpenHours
+                FooterDescription = createContactDto.FooterDescription,
+                SiteName = createContactDto.SiteName,
+                SiteTitle = createContactDto.SiteTitle,
+                SiteUrl = createContactDto.SiteUrl,
+                GoogleMapsApi = createContactDto.GoogleMapsApi
             });
 
             return Ok("İletişim Bilgisi Eklendi");
@@ -65,14 +73,15 @@ namespace ShopECommerce.Api.Controllers
             _contactService.TUpdate(new Contact()
             {
                 Id = updateContactDto.Id,
-                FooterDescription = updateContactDto.FooterDescription,
                 Location = updateContactDto.Location,
-                Mail = updateContactDto.Mail,
                 Phone = updateContactDto.Phone,
+                Mail = updateContactDto.Mail,
                 FooterTitle = updateContactDto.FooterTitle,
-                OpenDays = updateContactDto.OpenDays,
-                OpenDaysDescription = updateContactDto.OpenDaysDescription,
-                OpenHours = updateContactDto.OpenHours
+                FooterDescription = updateContactDto.FooterDescription,
+                SiteName = updateContactDto.SiteName,
+                SiteTitle = updateContactDto.SiteTitle,
+                SiteUrl = updateContactDto.SiteUrl,
+                GoogleMapsApi= updateContactDto.GoogleMapsApi
             });
             return Ok("İletişim Bilgisi Güncellendi");
         }
@@ -82,12 +91,6 @@ namespace ShopECommerce.Api.Controllers
         {
             _contactService.TToggleStatus(id);
             return Ok("Status Değiştirildi");
-        }
-
-        [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
-        {
-            return Ok(_contactService.TGetListByStatusTrue());
-        }
+        }      
     }
 }

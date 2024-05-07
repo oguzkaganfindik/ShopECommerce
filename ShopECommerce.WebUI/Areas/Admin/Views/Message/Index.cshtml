@@ -1,73 +1,90 @@
-﻿@{
+﻿@model List<ResultMessageDto>
+
+@{
     ViewData["Title"] = "Index";
-    Layout = null;
+    int count = 0;
 }
 
-<!DOCTYPE html>
-<html>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
 
-@await Component.InvokeAsync("_UILayoutHeadComponentPartial")
+<div class="content">
+    <div class="container-fluid">
 
+        <script type="text/javascript">
 
-<body class="sub_page">
+            $(document).ready(() => {
 
-    @await Component.InvokeAsync("_MenuNavbarComponentPartial")
+                var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7046/SignalRHub").build();
+                $("#connstatus").text(connection.state);
+                connection.start().then(() => {
+                    $("#connstatus").text(connection.state);
+                    setInterval(() => {
+                        connection.invoke("GetMessageList");
+                    }, 1000);
 
-    <section class="food_section layout_padding">
-        <div class="container">
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-12">
-                        <h3 class="text-center mb-4">Restaurant Anlık Mesajlaşma</h3>
+                }).catch((err) => { console.log(err) });
+
+                connection.on("ReceiveMessageList", (value) => {
+                    console.log(value);
+                    let tablehtml = `<table class=table mt-3><thead>
+                                                <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Ad Soyad</th>
+                                                <th scope="col">Mail</th>
+                                                <th scope="col">Konu</th>
+                                                <th scope="col">Mesaj İçeriği</th>
+                                                <th scope="col">Durum</th>
+                                                <th scope="col">Mesaj Detayı</th>
+                                                <th scope="col">Sil</th>
+                                                <th scope="col">Mesajı Oku</th>
+                                                <th scope="col">Mesajı Kapat</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>`
+                    $.each(value, (index, item) => {
+                        let shortenednameSurname = item.nameSurname.length > 15 ? item.nameSurname.substring(0, 15) + "..." : item.nameSurname;
+                        let shortenedmail = item.mail.length > 10 ? item.mail.substring(0, 10) + "..." : item.mail;
+                        let shortenedsubject = item.subject.length > 15 ? item.subject.substring(0, 15) + "..." : item.subject;
+                        let shortenedMessageContent = item.messageContent.length > 10 ? item.messageContent.substring(0, 10) + "..." : item.messageContent;
+                        tablehtml += `<tr>
+                                        <th>${index + 1}</th>
+                                        <td>${shortenednameSurname}</td>
+                                        <td>${shortenedmail}</td>
+                                        <td>${shortenedsubject}</td>
+                                        <td>${shortenedMessageContent}</td>
+                                        <td>${item.description}</td>
+                                        <td><a href="/Admin/Message/Detail/${item.id}" class="btn btn-outline-primary btn-round" >Detay</a></td>
+                                        <td><a href="/Admin/Message/DeleteMessage/${item.id}" class="btn btn-outline-danger btn-round" >Sil</a></td>
+                                        <td><a href="/Admin/Message/MessageStatusApproved/${item.id}" class="btn btn-outline-info btn-round" >Mesajı Oku</a></td>
+                                         <td><a href="/Admin/Message/MessageStatusCancelled/${item.id}" class="btn btn-outline-dark btn-round" >Mesajı Kapat</a></td>
+                                        </tr>`
+                    });
+                    tablehtml += "</tbody></table>";
+                    $("#MessageList").html(tablehtml);
+                });
+            });
+        </script>
+
+        <h4 class="page-title">Mesaj İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Mesaj Listesi</div>
                     </div>
-                </div>
-
-                <div class="row p-1">
-                    <div class="col-2">Kullanıcı Adınız:</div>
-                    <div class="col-5">
-                        <input type="text" id="userinput" class="form-control" />
-                    </div>
-                </div>
-
-                <div class="row p-1">
-                    <div class="col-2">Mesajınız:</div>
-                    <div class="col-5">
-                        <textarea type="text" class="form-control" id="messageinput" rows="5"> </textarea>
-                    </div>
-                </div>
-
-                <div class="row p-1">
-                    <div class="col-2"></div>
-                    <div class="col-3">
-                        <input type="button" id="sendbutton" value="Mesaj Gönder" class="btn btn-warning" />
-                    </div>
-                </div>
-
-                <div class="row p-1">
-                    <div class="col-12">
-                        <hr />
-                    </div>
-                </div>
-
-                <div class="row p-1">
-                    <div class="col-12">
-                        <ul id="messagelist" class="list-group"></ul>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Mesaj ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+                        </div>
+                        <div id="MessageList"></div>
                     </div>
                 </div>
             </div>
         </div>
-        @* wwwroot klasörüne /js/chat.js eklendi *@
-    </section>
-
-    @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
-
-    @await Component.InvokeAsync("_UILayoutScriptComponentPartial")
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.8/signalr.min.js"></script>
-    <script src="~/js/chat.js"></script>
-
-</body>
-
-</html>
+    </div>
+</div>
 

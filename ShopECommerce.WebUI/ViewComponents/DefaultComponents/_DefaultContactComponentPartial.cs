@@ -2,13 +2,13 @@
 using Newtonsoft.Json;
 using ShopECommerce.WebUI.Dtos.ContactDtos;
 
-namespace ShopECommerce.WebUI.ViewComponents.UILayoutComponents
+namespace ShopECommerce.WebUI.ViewComponents.DefaultComponents
 {
-    public class _UILayoutFooterComponentPartial : ViewComponent
+    public class _DefaultContactComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public _UILayoutFooterComponentPartial(IHttpClientFactory httpClientFactory)
+        public _DefaultContactComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
