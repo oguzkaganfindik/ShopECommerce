@@ -33,7 +33,7 @@ namespace ShopECommerce.Api.Controllers
             {
                 Amount = createDiscountDto.Amount,
                 Description = createDiscountDto.Description,
-                ImageUrl = createDiscountDto.ImageUrl,
+                ImagePath = createDiscountDto.ImagePath,
                 Title = createDiscountDto.Title,
                 Status = false,
             });
@@ -63,7 +63,7 @@ namespace ShopECommerce.Api.Controllers
             {
                 Id = updateDiscountDto.Id,
                 Amount = updateDiscountDto.Amount,
-                ImageUrl = updateDiscountDto.ImageUrl,
+                ImagePath = updateDiscountDto.ImagePath,
                 Title = updateDiscountDto.Title,
                 Description = updateDiscountDto.Description,
                 Status = false

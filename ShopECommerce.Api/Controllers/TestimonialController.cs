@@ -41,7 +41,7 @@ namespace ShopECommerce.Api.Controllers
                 Name = createTestimonialDto.Name,
                 Title = createTestimonialDto.Title,
                 Comment = createTestimonialDto.Comment,
-                ImageUrl = createTestimonialDto.ImageUrl
+                ImagePath = createTestimonialDto.ImagePath
             });
 
             return Ok("Müşteri Yorum Bilgisi Eklendi");
@@ -71,7 +71,7 @@ namespace ShopECommerce.Api.Controllers
                 Name = updateTestimonialDto.Name,
                 Title = updateTestimonialDto.Title,
                 Comment = updateTestimonialDto.Comment,
-                ImageUrl = updateTestimonialDto.ImageUrl
+                ImagePath = updateTestimonialDto.ImagePath
             });
 
             return Ok("Müşteri Yorum Bilgisi Güncellendi");

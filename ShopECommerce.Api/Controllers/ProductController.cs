@@ -42,7 +42,7 @@ namespace ShopECommerce.Api.Controllers
                 ProductName = createProductDto.ProductName,
                 Description = createProductDto.Description,
                 Price = createProductDto.Price,
-                ImageUrl = createProductDto.ImageUrl,
+                ImagePath = createProductDto.ImagePath,
                 SubCategoryId = createProductDto.SubCategoryId,
                 ProductTitle = createProductDto.ProductTitle,
                 Weight = createProductDto.Weight,
@@ -66,8 +66,8 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet("GetProductShowcaseDetailId/{id}")]
         public IActionResult GetProductShowcaseDetailId(int id)
         {
-            var products = _productService.TGetProductShowcaseDetailId(id);
-            return Ok(products);
+            var value = _productService.TGetProductShowcaseDetailId(id);
+            return Ok(value);
         }
 
         [HttpPut]
@@ -78,7 +78,7 @@ namespace ShopECommerce.Api.Controllers
                 Id = updateProductDto.Id,
                 ProductName = updateProductDto.ProductName,
                 Description = updateProductDto.Description,
-                ImageUrl = updateProductDto.ImageUrl,
+                ImagePath = updateProductDto.ImagePath,
                 Price = updateProductDto.Price,
                 SubCategoryId = updateProductDto.SubCategoryId,
                 Status = updateProductDto.Status,

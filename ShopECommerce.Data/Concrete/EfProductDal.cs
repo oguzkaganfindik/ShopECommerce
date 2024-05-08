@@ -85,9 +85,10 @@ namespace ShopECommerce.Data.Concrete
                 ProductName = y.ProductName,
                 Description = y.Description,
                 Price = y.Price,
-                ImageUrl = y.ImageUrl,
+                ImagePath = y.ImagePath,
                 SubCategoryName = y.SubCategory.SubCategoryName,
                 CategoryName = y.SubCategory.Category.CategoryName,
+                ProductTitle = y.ProductTitle,
                 Status = y.Status
             }).ToList();
 
@@ -104,9 +105,10 @@ namespace ShopECommerce.Data.Concrete
                                 ProductName = y.ProductName,
                                 Description = y.Description,
                                 Price = y.Price,
-                                ImageUrl = y.ImageUrl,
+                                ImagePath = y.ImagePath,
                                 SubCategoryName = y.SubCategory.SubCategoryName,
                                 CategoryName = y.SubCategory.Category.CategoryName,
+                                ProductTitle = y.ProductTitle,
                                 Status = y.Status
                             })
                             .ToList();
@@ -124,9 +126,10 @@ namespace ShopECommerce.Data.Concrete
                                 ProductName = y.ProductName,
                                 Description = y.Description,
                                 Price = y.Price,
-                                ImageUrl = y.ImageUrl,
+                                ImagePath = y.ImagePath,
                                 SubCategoryName = y.SubCategory.SubCategoryName,
                                 CategoryName = y.SubCategory.Category.CategoryName,
+                                ProductTitle = y.ProductTitle,
                                 Status = y.Status
                             })
                             .ToList();
@@ -136,17 +139,15 @@ namespace ShopECommerce.Data.Concrete
 
         public GetProductShowcaseDetailDto GetProductShowcaseDetailId(int id)
         {
-            var values = _context.Products
-                .Include(x => x.SubCategory)
-                .ThenInclude(x => x.Category)
-                .Where(p => p.SubCategory.Id == id)
+            var value = _context.Products
+                .Where(p => p.Id == id)
                 .Select(p => new GetProductShowcaseDetailDto
                 {
                     Id = p.Id,
                     ProductName = p.ProductName,
                     Description = p.Description,
                     Price = p.Price,
-                    ImageUrl = p.ImageUrl,
+                    ImagePath = p.ImagePath,
                     SubCategoryName = p.SubCategory.SubCategoryName,
                     CategoryName = p.SubCategory.Category.CategoryName,
                     Status = p.Status,
@@ -159,7 +160,7 @@ namespace ShopECommerce.Data.Concrete
                 })
                 .FirstOrDefault();
 
-            return values;
+            return value;
         }
     }
 }
