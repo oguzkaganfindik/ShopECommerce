@@ -1,8 +1,13 @@
 using ShopECommerce.Data.Context;
+using ShopECommerce.WebUI.Services.Abstract;
+using ShopECommerce.WebUI.Services.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ShopECommerceContext>();
+
+builder.Services.AddScoped<IImageProcessingService, ImageProcessingManager>();
+builder.Services.AddScoped<IImageService, ImageManager>();
 
 // Add services to the container.
 builder.Services.AddHttpClient();

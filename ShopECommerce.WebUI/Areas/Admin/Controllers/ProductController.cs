@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.SubCategoryDtos;
 using ShopECommerce.WebUI.Dtos.ProductDtos;
+using ShopECommerce.WebUI.Dtos.SubCategoryDtos;
+using ShopECommerce.WebUI.Services.Abstract;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
@@ -11,10 +12,16 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IImageProcessingService _imageProcessingService;
+        private readonly IWebHostEnvironment _environment;
+        private readonly IImageService _ImageManager;
 
-        public ProductController(IHttpClientFactory httpClientFactory)
+        public ProductController(IHttpClientFactory httpClientFactory, IImageProcessingService imageProcessingService, IWebHostEnvironment environment, IImageService ımageManager)
         {
             _httpClientFactory = httpClientFactory;
+            _imageProcessingService = imageProcessingService;
+            _environment = environment;
+            _ImageManager = ımageManager;
         }
 
         public async Task<IActionResult> Index()
@@ -73,6 +80,23 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
             createProductDto.Status = true;
+
+
+            string newFileName = "";
+            string filePath = "";
+            string errorMessage;
+
+            newFileName = _ImageManager.Image(createProductDto.File, filePath, out errorMessage, "images", "products");
+
+            if (!string.IsNullOrEmpty(newFileName))
+            {
+                createProductDto.ImagePath = "/images/products/" + newFileName;
+            }
+            else
+            {
+                createProductDto.ImagePath = "" + newFileName;
+            }
+
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createProductDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -124,7 +148,22 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
         {
-            updateProductDto.Status = true;
+            string newFileName = "";
+            string filePath = "/images/products/";
+            string errorMessage;
+
+            newFileName = _ImageManager.Image(updateProductDto.File, filePath, out errorMessage, "images", "products");
+
+            if (!string.IsNullOrEmpty(newFileName))
+            {
+                updateProductDto.ImagePath = "/images/products/" + newFileName;
+            }
+            else
+            {
+                updateProductDto.ImagePath = "" + newFileName;
+            }
+
+
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateProductDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");

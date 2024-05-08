@@ -9,7 +9,7 @@
         <h4 class="page-title">Ürün İşlemleri</h4>
         <div class="row">
             <div class="col-md-12">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">Ürün Güncelleme Sayfası</div>
@@ -27,12 +27,26 @@
                                 <input type="text" class="form-control" asp-for=Price id="price">
                             </div>
                         </div>
+
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="imageurl">Ürün Görselini Giriniz</label>
-                                <input type="text" class="form-control" asp-for="ImageUrl" id="imageurl">
+                                <label asp-for="File">Ürün Görselini Giriniz</label>
+                                <input type="File" asp-for="File" class="form-control" />
+
+                                @if (!string.IsNullOrWhiteSpace(ViewBag.ImagePath))
+                                {
+                                    <img class="mt-4" width="200" height="150" src="~/images/products/@ViewBag.ImagePath" />
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(ViewBag.ImageErrorMessage))
+                                {
+                                    <div class="alert alert-warning fw-bold mt-2">
+                                        @ViewBag.ImageErrorMessage
+                                    </div>
+                                }
                             </div>
                         </div>
+                        
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="price">Ürün Kategorisini Seçiniz</label>

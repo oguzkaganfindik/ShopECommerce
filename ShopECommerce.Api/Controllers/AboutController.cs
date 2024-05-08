@@ -33,7 +33,7 @@ namespace ShopECommerce.Api.Controllers
             {
                 Title = createAboutDto.Title,
                 Description = createAboutDto.Description,
-                ImageUrl = createAboutDto.ImageUrl
+                ImagePath = createAboutDto.ImagePath
             });
 
             return Ok("Hakkımda Kısmı Başarılı Bir Şekilde Eklendi");
@@ -62,7 +62,7 @@ namespace ShopECommerce.Api.Controllers
                 Id = updateAboutDto.Id,
                 Title = updateAboutDto.Title,
                 Description = updateAboutDto.Description,
-                ImageUrl = updateAboutDto.ImageUrl
+                ImagePath = updateAboutDto.ImagePath
             });
 
             return Ok("Hakkımda Alanı Güncellendi");

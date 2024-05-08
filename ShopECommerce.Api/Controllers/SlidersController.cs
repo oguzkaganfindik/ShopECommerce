@@ -40,10 +40,10 @@ namespace ShopECommerce.Api.Controllers
                 Title = createSliderDto.Title,
                 Description = createSliderDto.Description,
                 Label1 = createSliderDto.Label1,
-                ImageUrl1 = createSliderDto.ImageUrl1,
+                ImagePath1 = createSliderDto.ImagePath1,
                 Url1 = createSliderDto.Url1,
                 Label2 = createSliderDto.Label2,
-                ImageUrl2 = createSliderDto.ImageUrl2,
+                ImagePath2 = createSliderDto.ImagePath2,
                 Url2 = createSliderDto.Url2
             });
 
@@ -73,10 +73,10 @@ namespace ShopECommerce.Api.Controllers
                 Title = updateSliderDto.Title,
                 Description = updateSliderDto.Description,
                 Label1 = updateSliderDto.Label1,
-                ImageUrl1 = updateSliderDto.ImageUrl1,
+                ImagePath1 = updateSliderDto.ImagePath1,
                 Url1 = updateSliderDto.Url1,
                 Label2 = updateSliderDto.Label2,
-                ImageUrl2 = updateSliderDto.ImageUrl2,
+                ImagePath2 = updateSliderDto.ImagePath2,
                 Url2 = updateSliderDto.Url2
             });
 
