@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.AboutDto;
-using ShopECommerce.DTOs.FeaturDto;
 using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
@@ -23,7 +22,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet]
         public IActionResult AboutList()
         {
-            var value = _mapper.Map<List<ResultFeaturDto>>(_aboutService.TGetAll());
+            var value = _mapper.Map<List<ResultAboutDto>>(_aboutService.TGetAll());
             return Ok(value);
         }
 
@@ -79,7 +78,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpGet("GetListByStatusTrue")]
         public IActionResult GetListByStatusTrue()
         {
-            var value = _mapper.Map<List<ResultFeaturDto>>(_aboutService.TGetListByStatusTrue());
+            var value = _mapper.Map<List<ResultAboutDto>>(_aboutService.TGetListByStatusTrue());
             return Ok(value);
         }
     }

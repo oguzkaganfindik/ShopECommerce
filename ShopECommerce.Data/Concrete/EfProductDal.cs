@@ -133,6 +133,34 @@ namespace ShopECommerce.Data.Concrete
 
             return values;
         }
+
+        public GetProductShowcaseDetailDto GetProductShowcaseDetailId(int id)
+        {
+            var values = _context.Products
+                .Include(x => x.SubCategory)
+                .ThenInclude(x => x.Category)
+                .Where(p => p.SubCategory.Id == id)
+                .Select(p => new GetProductShowcaseDetailDto
+                {
+                    Id = p.Id,
+                    ProductName = p.ProductName,
+                    Description = p.Description,
+                    Price = p.Price,
+                    ImageUrl = p.ImageUrl,
+                    SubCategoryName = p.SubCategory.SubCategoryName,
+                    CategoryName = p.SubCategory.Category.CategoryName,
+                    Status = p.Status,
+                    ProductTitle = p.ProductTitle,
+                    Weight = p.Weight,
+                    CountryOfOrigin = p.CountryOfOrigin,
+                    Quality = p.Quality,
+                    Сheck = p.Сheck,
+                    MinWeight = p.MinWeight
+                })
+                .FirstOrDefault();
+
+            return values;
+        }
     }
 }
 

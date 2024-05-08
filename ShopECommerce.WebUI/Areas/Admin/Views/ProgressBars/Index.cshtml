@@ -32,13 +32,13 @@
                     $("#activeordercount").text(value2);
                 });
 
-                connection.on("ReceiveMenuTableCount", (value3) => {
-                    $("#menutablecount").text(value3);
+                connection.on("ReceiveShopTableCount", (value3) => {
+                    $("#shoptablecount").text(value3);
                 });
 
-                connection.on("ReceiveMenuTableCount", (value4) => {
-                    $("#totalMenuTableCountProgress").empty();
-                    $("#totalMenuTableCountProgress").append(`
+                connection.on("ReceiveShopTableCount", (value4) => {
+                    $("#totalShopTableCountProgress").empty();
+                    $("#totalShopTableCountProgress").append(`
 
                     <div class="d-flex justify-content-between mb-1">
                         <span class="text-muted">Toplam Masa Sayısı</span>
@@ -198,7 +198,7 @@
                     <div class="col-md-5">
                         <div class="card">
                             <div class="card-body">
-                                <div class="progress-card" id="totalMenuTableCountProgress"></div>
+                                <div class="progress-card" id="totalShopTableCountProgress"></div>
 
                                 <div class="progress-card" id="ReceiveProductPriceAvgProgress"></div>
                                 
@@ -244,7 +244,7 @@
                                     <div class="col-7 d-flex align-items-center">
                                         <div class="numbers">
                                             <p class="card-SubCategory">Masa Sayısı</p>
-                                            <h4 class="card-title" id="menutablecount"></h4>
+                                            <h4 class="card-title" id="shoptablecount"></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -285,7 +285,7 @@
                                     </div>
                                     <div class="col-7 d-flex align-items-center">
                                         <div class="numbers">
-                                            <p class="card-SubCategory">Rezervasyon Sayısı</p>
+                                            <p class="card-SubCategory">User Sayısı</p>
                                             <h4 class="card-title" id="">51</h4>
                                         </div>
                                     </div>

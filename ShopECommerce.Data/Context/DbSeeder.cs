@@ -180,6 +180,7 @@ namespace ShopECommerce.Data.Context
                     Phone = "0850",
                     Address = "Ankara",
                     Password = dataProtector.Protect("123"),
+                    Description = "x",
                     RoleId = 1,
                     Status = true,
                     IsDeleted = false,
@@ -333,7 +334,13 @@ namespace ShopECommerce.Data.Context
                     ImageUrl = "/WebT/img/fruite-item-5.jpg",
                     Status = true,
                     IsDeleted = false,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                    Weight = 1,
+                    CountryOfOrigin = "Agro Farm",
+                    Quality = "Organic",
+                    Сheck = "Healthy",
+                    MinWeight = 0.250M
                 },
                 new Product()
                 {
@@ -345,7 +352,13 @@ namespace ShopECommerce.Data.Context
                     ImageUrl = "/WebT/img/fruite-item-2.jpg",
                     Status = true,
                     IsDeleted = false,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                    Weight = 1,
+                    CountryOfOrigin = "Agro Farm",
+                    Quality = "Organic",
+                    Сheck = "Healthy",
+                    MinWeight = 0.250M
                 },
                 new Product()
                 {
@@ -357,7 +370,13 @@ namespace ShopECommerce.Data.Context
                     ImageUrl = "/WebT/img/fruite-item-4.jpg",
                     Status = true,
                     IsDeleted = false,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                    Weight = 1,
+                    CountryOfOrigin = "Agro Farm",
+                    Quality = "Organic",
+                    Сheck = "Healthy",
+                    MinWeight = 0.250M
                 },
                 new Product()
                 {
@@ -369,7 +388,13 @@ namespace ShopECommerce.Data.Context
                     ImageUrl = "/WebT/img/fruite-item-3.jpg",
                     Status = true,
                     IsDeleted = false,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                    Weight = 1,
+                    CountryOfOrigin = "Agro Farm",
+                    Quality = "Organic",
+                    Сheck = "Healthy",
+                    MinWeight = 0.250M
                 },
                 new Product()
                 {
@@ -381,7 +406,13 @@ namespace ShopECommerce.Data.Context
                     ImageUrl = "/WebT/img/fruite-item-1.jpg",
                     Status = true,
                     IsDeleted = false,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                    Weight = 1,
+                    CountryOfOrigin = "Agro Farm",
+                    Quality = "Organic",
+                    Сheck = "Healthy",
+                    MinWeight = 0.250M
                 },
                 new Product()
                 {
@@ -393,7 +424,13 @@ namespace ShopECommerce.Data.Context
                     ImageUrl = "/WebT/img/featur-1.jpg",
                     Status = true,
                     IsDeleted = false,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                    Weight = 1,
+                    CountryOfOrigin = "Agro Farm",
+                    Quality = "Organic",
+                    Сheck = "Healthy",
+                    MinWeight = 0.250M
                 },
                 new Product()
                 {
@@ -405,7 +442,13 @@ namespace ShopECommerce.Data.Context
                     ImageUrl = "/WebT/img/vegetable-item-5.jpg",
                     Status = true,
                     IsDeleted = false,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                    Weight = 1,
+                    CountryOfOrigin = "Agro Farm",
+                    Quality = "Organic",
+                    Сheck = "Healthy",
+                    MinWeight = 0.250M
                 },
                 new Product()
                 {
@@ -417,7 +460,13 @@ namespace ShopECommerce.Data.Context
                     ImageUrl = "/WebT/img/vegetable-item-6.jpg",
                     Status = true,
                     IsDeleted = false,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                    Weight = 1,
+                    CountryOfOrigin = "Agro Farm",
+                    Quality = "Organic",
+                    Сheck = "Healthy",
+                    MinWeight = 0.250M
                 },
                 new Product()
                 {
@@ -429,7 +478,13 @@ namespace ShopECommerce.Data.Context
                     ImageUrl = "/WebT/img/vegetable-item-1.jpg",
                     Status = true,
                     IsDeleted = false,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                    Weight = 1,
+                    CountryOfOrigin = "Agro Farm",
+                    Quality = "Organic",
+                    Сheck = "Healthy",
+                    MinWeight = 0.250M
                 },
                 new Product()
                 {
@@ -441,7 +496,13 @@ namespace ShopECommerce.Data.Context
                     ImageUrl = "/WebT/img/featur-3.jpg",
                     Status = true,
                     IsDeleted = false,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                    Weight = 1,
+                    CountryOfOrigin = "Agro Farm",
+                    Quality = "Organic",
+                    Сheck = "Healthy",
+                    MinWeight = 0.250M
                 },
                 new Product()
                 {
@@ -453,7 +514,13 @@ namespace ShopECommerce.Data.Context
                     ImageUrl = "/WebT/img/vegetable-item-4.jpg",
                     Status = true,
                     IsDeleted = false,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                    Weight = 1,
+                    CountryOfOrigin = "Agro Farm",
+                    Quality = "Organic",
+                    Сheck = "Healthy",
+                    MinWeight = 0.250M
                 },
 
                 new Product()
@@ -466,7 +533,13 @@ namespace ShopECommerce.Data.Context
                     ImageUrl = "/WebT/img/featur-2.jpg",
                     Status = true,
                     IsDeleted = false,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                    Weight = 1,
+                    CountryOfOrigin = "Agro Farm",
+                    Quality = "Organic",
+                    Сheck = "Healthy",
+                    MinWeight = 0.250M
                 }
             });
 

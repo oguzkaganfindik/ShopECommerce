@@ -15,22 +15,22 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public List<Basket> GetBasketByMenuTableNumber(int id)
+        public List<Basket> GetBasketByShopTableNumber(int id)
         {
-            var values = _context.Baskets.Where(x => x.MenuTableId == id).Include(y => y.Product).ToList();
+            var values = _context.Baskets.Where(x => x.ShopTableId == id).Include(y => y.Product).ToList();
             return values;
         }
 
-        public List<ResultBasketListWithProductsDto> GetBasketListByMenuTableWithProductName(int id)
+        public List<ResultBasketListWithProductsDto> GetBasketListByShopTableWithProductName(int id)
         {
             var values = _context.Baskets
                                   .Include(x => x.Product)
-                                  .Where(y => y.MenuTableId == id)
+                                  .Where(y => y.ShopTableId == id)
                                   .Select(z => new ResultBasketListWithProductsDto
                                   {
                                       BasketId = z.Id,
                                       Count = z.Count,
-                                      MenuTableId = z.MenuTableId,
+                                      ShopTableId = z.ShopTableId,
                                       Price = z.Price,
                                       ProductId = z.ProductId,
                                       TotalPrice = z.TotalPrice,

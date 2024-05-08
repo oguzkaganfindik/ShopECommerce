@@ -45,14 +45,14 @@ namespace ShopECommerce.Business.Concrete
             return _basketDal.GetAll(predicate);
         }
 
-        public List<Basket> TGetBasketByMenuTableNumber(int id)
+        public List<Basket> TGetBasketByShopTableNumber(int id)
         {
-            return _basketDal.GetBasketByMenuTableNumber(id);
+            return _basketDal.GetBasketByShopTableNumber(id);
         }
 
-        public List<ResultBasketListWithProductsDto> TGetBasketListByMenuTableWithProductName(int id)
+        public List<ResultBasketListWithProductsDto> TGetBasketListByShopTableWithProductName(int id)
         {
-            return _basketDal.GetBasketListByMenuTableWithProductName(id);
+            return _basketDal.GetBasketListByShopTableWithProductName(id);
         }
 
         public Basket TGetById(int id)

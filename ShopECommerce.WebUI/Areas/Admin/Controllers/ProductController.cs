@@ -32,6 +32,26 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Detail(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Product/GetProductShowcaseDetailId/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                if (!string.IsNullOrEmpty(jsonData))
+                {
+                    var value = JsonConvert.DeserializeObject<GetProductShowcaseDetailDto>(jsonData);
+                    if (value != null)
+                    {
+                        return View(value);
+                    }
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
         public async Task<IActionResult> CreateProduct()
         {
             var client = _httpClientFactory.CreateClient();

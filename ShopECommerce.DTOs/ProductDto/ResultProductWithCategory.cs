@@ -10,5 +10,11 @@
         public string SubCategoryName { get; set; }
         public string CategoryName { get; set; }
         public bool Status { get; set; }
+        public string? ProductTitle { get; set; }
+        public decimal? Weight { get; set; }
+        public string? CountryOfOrigin { get; set; }
+        public string? Quality { get; set; }
+        public string? Сheck { get; set; }
+        public decimal? MinWeight { get; set; }
     }
 }

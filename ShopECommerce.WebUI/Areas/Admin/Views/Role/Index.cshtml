@@ -1,0 +1,51 @@
+﻿@model List<ResultRoleDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Role İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Role Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Role ile ilgili işlemleri yapabilirsiniz.
+                        </div>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Rol Adı</th>
+                                    <th scope="col">Durum</th>
+                                    <th scope="col">Sil</th>
+                                    <th scope="col">Güncelle</th>
+                                    <th scope="col">Durumu Değiştir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.Status</td>
+                                        <td><a href="/Admin/Role/DeleteRole/@item.Id" class="btn btn-outline-danger btn-round">Sil</a></td>
+                                        <td><a href="/Admin/Role/UpdateRole/@item.Id" class="btn btn-outline-success btn-round">Güncelle</a></td>
+                                        <td><a href="/Admin/Role/ToggleStatus/@item.Id" class="btn btn-outline-dark btn-round">Durumu Değiştir</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <a href="/Admin/Role/CreateRole/" class="btn btn-outline-primary btn-round">Yeni Role Girişi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

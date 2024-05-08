@@ -1,0 +1,65 @@
+﻿@model List<GetUserWithRoleDto>
+
+@{
+    ViewData["Title"] = "Index";
+    int count = 0;
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">User İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">User Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            User alanıyla ile ilgili işlemleri yapabilirsiniz.
+                        </div>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <th scope="col">Adı</th>
+                                    <th scope="col">Soyadı</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Rol</th>
+                                    <th scope="col">Detay</th>
+                                    <th scope="col">Sil</th>
+                                    <th scope="col">Güncelle</th>
+                                    <th scope="col">Onayla</th>
+                                    <th scope="col">İptal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <td>@count</td>
+                                        <td>@item.FirstName</td>
+                                        <td>@item.LastName</td>
+                                        <td>@item.Username</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.RoleName</td>
+                                        <td><a href="/Admin/User/Detail/@item.Id" class="btn btn-outline-primary btn-round">Detay</a></td>
+                                        <td><a href="/Admin/User/DeleteUser/@item.Id" class="btn btn-outline-danger btn-round">Sil</a></td>
+                                        <td><a href="/Admin/User/UpdateUser/@item.Id" class="btn btn-outline-success btn-round">Güncelle</a></td>
+                                        <td><a href="/Admin/User/UserStatusApproved/@item.Id" class="btn btn-outline-primary btn-round">User Onayla</a></td>
+                                        <td><a href="/Admin/User/UserStatusCancelled/@item.Id" class="btn btn-outline-warning btn-round">User İptal</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <a href="/Admin/User/CreateUser/" class="btn btn-outline-primary btn-round">User Girişi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

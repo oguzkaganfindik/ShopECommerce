@@ -3,6 +3,6 @@
     public class CreateRoleDto
     {
         public string Name { get; set; }
-        public string User { get; set; }
+        public bool Status { get; set; }
     }
 }
