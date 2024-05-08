@@ -125,7 +125,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5226),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(195),
                             Description = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
                             ImageUrl = "/WebT/img/baner-1.png",
                             IsDeleted = false,
@@ -159,9 +159,6 @@ namespace ShopECommerce.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MenuTableId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
@@ -169,6 +166,9 @@ namespace ShopECommerce.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShopTableId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Status")
@@ -179,61 +179,11 @@ namespace ShopECommerce.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MenuTableId");
-
                     b.HasIndex("ProductId");
 
+                    b.HasIndex("ShopTableId");
+
                     b.ToTable("Baskets");
-                });
-
-            modelBuilder.Entity("ShopECommerce.Entities.Concrete.Booking", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Mail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PersonCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Category", b =>
@@ -273,7 +223,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             CategoryName = "Fruites",
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3759),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8606),
                             IsDeleted = false,
                             Status = true
                         },
@@ -281,7 +231,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             CategoryName = "Vesitables",
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3763),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8609),
                             IsDeleted = false,
                             Status = true
                         });
@@ -354,7 +304,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5249),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(221),
                             FooterDescription = "typesetting, remaining essentially unchanged. It was popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.",
                             FooterTitle = "Why People Like us!",
                             GoogleMapsApi = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.33750346623!2d-73.97968099999999!3d40.6974881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1694259649153!5m2!1sen!2sbd",
@@ -417,7 +367,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Amount = "20%",
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5039),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(9987),
                             Description = "OFF",
                             ImageUrl = "/WebT/img/featur-1.jpg",
                             IsDeleted = false,
@@ -428,7 +378,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             Amount = "",
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5041),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(9989),
                             Description = "Free delivery",
                             ImageUrl = "/WebT/img/featur-2.jpg",
                             IsDeleted = false,
@@ -439,7 +389,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 3,
                             Amount = "30$",
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5043),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(9991),
                             Description = "Discount",
                             ImageUrl = "/WebT/img/featur-3.jpg",
                             IsDeleted = false,
@@ -491,7 +441,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5196),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(166),
                             Description = "1963",
                             Icon = "fa fa-users text-secondary",
                             IsDeleted = false,
@@ -501,7 +451,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5198),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(168),
                             Description = "99%",
                             Icon = "fa fa-users text-secondary",
                             IsDeleted = false,
@@ -511,7 +461,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5200),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(170),
                             Description = "33",
                             Icon = "fa fa-users text-secondary",
                             IsDeleted = false,
@@ -521,7 +471,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5201),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(171),
                             Description = "789",
                             Icon = "fa fa-users text-secondary",
                             IsDeleted = false,
@@ -573,7 +523,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5170),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(82),
                             Description = "Free on order over $300",
                             Icon = "fas fa-car-side fa-3x text-white",
                             IsDeleted = false,
@@ -583,7 +533,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5173),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(138),
                             Description = "100% security payment",
                             Icon = "fas fa-user-shield fa-3x text-white",
                             IsDeleted = false,
@@ -593,7 +543,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5174),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(139),
                             Description = "30 day money guarantee",
                             Icon = "fas fa-exchange-alt fa-3x text-white",
                             IsDeleted = false,
@@ -603,45 +553,13 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5176),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(140),
                             Description = "Support every time fast",
                             Icon = "fa fa-phone-alt fa-3x text-white",
                             IsDeleted = false,
                             Status = true,
                             Title = "24/7 Support"
                         });
-                });
-
-            modelBuilder.Entity("ShopECommerce.Entities.Concrete.MenuTable", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MenuTables");
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Message", b =>
@@ -870,6 +788,9 @@ namespace ShopECommerce.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CountryOfOrigin")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -887,6 +808,9 @@ namespace ShopECommerce.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<decimal?>("MinWeight")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
@@ -898,11 +822,23 @@ namespace ShopECommerce.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("ProductTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Quality")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.Property<int>("SubCategoryId")
                         .HasColumnType("int");
+
+                    b.Property<decimal?>("Weight")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Сheck")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -914,150 +850,273 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5065),
+                            CountryOfOrigin = "Agro Farm",
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(15),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/fruite-item-5.jpg",
                             IsDeleted = false,
+                            MinWeight = 0.250m,
                             Price = 4.95m,
                             ProductName = "Native Grapes",
+                            ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                            Quality = "Organic",
                             Status = true,
-                            SubCategoryId = 1
+                            SubCategoryId = 1,
+                            Weight = 1m,
+                            Сheck = "Healthy"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5068),
+                            CountryOfOrigin = "Agro Farm",
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(23),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/fruite-item-2.jpg",
                             IsDeleted = false,
+                            MinWeight = 0.250m,
                             Price = 4.95m,
                             ProductName = "Native Raspberries",
+                            ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                            Quality = "Organic",
                             Status = true,
-                            SubCategoryId = 2
+                            SubCategoryId = 2,
+                            Weight = 1m,
+                            Сheck = "Healthy"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5069),
+                            CountryOfOrigin = "Agro Farm",
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(26),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/fruite-item-4.jpg",
                             IsDeleted = false,
+                            MinWeight = 0.250m,
                             Price = 4.95m,
                             ProductName = "Native Apricots",
+                            ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                            Quality = "Organic",
                             Status = true,
-                            SubCategoryId = 3
+                            SubCategoryId = 3,
+                            Weight = 1m,
+                            Сheck = "Healthy"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5071),
+                            CountryOfOrigin = "Agro Farm",
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(29),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/fruite-item-3.jpg",
                             IsDeleted = false,
+                            MinWeight = 0.250m,
                             Price = 4.95m,
                             ProductName = "Native Banana",
+                            ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                            Quality = "Organic",
                             Status = true,
-                            SubCategoryId = 4
+                            SubCategoryId = 4,
+                            Weight = 1m,
+                            Сheck = "Healthy"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5073),
+                            CountryOfOrigin = "Agro Farm",
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(32),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/fruite-item-1.jpg",
                             IsDeleted = false,
+                            MinWeight = 0.250m,
                             Price = 4.95m,
                             ProductName = "Native Oranges",
+                            ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                            Quality = "Organic",
                             Status = true,
-                            SubCategoryId = 5
+                            SubCategoryId = 5,
+                            Weight = 1m,
+                            Сheck = "Healthy"
                         },
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5076),
+                            CountryOfOrigin = "Agro Farm",
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(36),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/featur-1.jpg",
                             IsDeleted = false,
+                            MinWeight = 0.250m,
                             Price = 4.95m,
                             ProductName = "Native Apple",
+                            ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                            Quality = "Organic",
                             Status = true,
-                            SubCategoryId = 6
+                            SubCategoryId = 6,
+                            Weight = 1m,
+                            Сheck = "Healthy"
                         },
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5077),
+                            CountryOfOrigin = "Agro Farm",
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(40),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/vegetable-item-5.jpg",
                             IsDeleted = false,
+                            MinWeight = 0.250m,
                             Price = 4.95m,
                             ProductName = "Native Patatoes",
+                            ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                            Quality = "Organic",
                             Status = true,
-                            SubCategoryId = 7
+                            SubCategoryId = 7,
+                            Weight = 1m,
+                            Сheck = "Healthy"
                         },
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5078),
+                            CountryOfOrigin = "Agro Farm",
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(42),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/vegetable-item-6.jpg",
                             IsDeleted = false,
+                            MinWeight = 0.250m,
                             Price = 4.95m,
                             ProductName = "Native Persely",
+                            ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                            Quality = "Organic",
                             Status = true,
-                            SubCategoryId = 8
+                            SubCategoryId = 8,
+                            Weight = 1m,
+                            Сheck = "Healthy"
                         },
                         new
                         {
                             Id = 9,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5080),
+                            CountryOfOrigin = "Agro Farm",
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(45),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/vegetable-item-1.jpg",
                             IsDeleted = false,
+                            MinWeight = 0.250m,
                             Price = 4.95m,
                             ProductName = "Native Tomato",
+                            ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                            Quality = "Organic",
                             Status = true,
-                            SubCategoryId = 9
+                            SubCategoryId = 9,
+                            Weight = 1m,
+                            Сheck = "Healthy"
                         },
                         new
                         {
                             Id = 10,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5083),
+                            CountryOfOrigin = "Agro Farm",
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(48),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/featur-3.jpg",
                             IsDeleted = false,
+                            MinWeight = 0.250m,
                             Price = 4.95m,
                             ProductName = "Native Brocoli",
+                            ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                            Quality = "Organic",
                             Status = true,
-                            SubCategoryId = 10
+                            SubCategoryId = 10,
+                            Weight = 1m,
+                            Сheck = "Healthy"
                         },
                         new
                         {
                             Id = 11,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5132),
+                            CountryOfOrigin = "Agro Farm",
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(51),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/vegetable-item-4.jpg",
                             IsDeleted = false,
+                            MinWeight = 0.250m,
                             Price = 4.95m,
                             ProductName = "Native Bell Papper",
+                            ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                            Quality = "Organic",
                             Status = true,
-                            SubCategoryId = 11
+                            SubCategoryId = 11,
+                            Weight = 1m,
+                            Сheck = "Healthy"
                         },
                         new
                         {
                             Id = 12,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5134),
+                            CountryOfOrigin = "Agro Farm",
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 514, DateTimeKind.Local).AddTicks(54),
                             Description = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
                             ImageUrl = "/WebT/img/featur-2.jpg",
                             IsDeleted = false,
+                            MinWeight = 0.250m,
                             Price = 4.95m,
                             ProductName = "Native Strawberry",
+                            ProductTitle = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
+                            Quality = "Organic",
                             Status = true,
-                            SubCategoryId = 12
+                            SubCategoryId = 12,
+                            Weight = 1m,
+                            Сheck = "Healthy"
                         });
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8552),
+                            IsDeleted = false,
+                            Name = "Admin",
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8588),
+                            IsDeleted = false,
+                            Name = "User",
+                            Status = true
+                        });
+                });
+
+            modelBuilder.Entity("ShopECommerce.Entities.Concrete.ShopTable", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1086,25 +1145,7 @@ namespace ShopECommerce.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3673),
-                            IsDeleted = false,
-                            Name = "Admin",
-                            Status = true
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3716),
-                            IsDeleted = false,
-                            Name = "User",
-                            Status = true
-                        });
+                    b.ToTable("ShopTables");
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Slider", b =>
@@ -1170,7 +1211,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(5016),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(9965),
                             Description = "Organic Veggies & Fruits Foods",
                             ImageUrl1 = "/WebT/img/hero-img-1.png",
                             ImageUrl2 = "/WebT/img/hero-img-2.jpg",
@@ -1232,7 +1273,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Cls = "btn btn-outline-secondary me-2 btn-md-square rounded-circle",
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(4983),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(9931),
                             Icon = "fab fa-facebook-f",
                             IsDeleted = false,
                             Status = true,
@@ -1243,7 +1284,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             Cls = "btn btn-outline-secondary me-2 btn-md-square rounded-circle",
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(4985),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(9933),
                             Icon = "fab fa-youtube",
                             IsDeleted = false,
                             Status = true,
@@ -1254,7 +1295,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 3,
                             Cls = "btn btn-outline-secondary me-2 btn-md-square rounded-circle",
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(4987),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(9935),
                             Icon = "fab fa-linkedin-in",
                             IsDeleted = false,
                             Status = true,
@@ -1265,7 +1306,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 4,
                             Cls = "btn btn-outline-secondary btn-md-square rounded-circle",
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(4988),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(9937),
                             Icon = "fab fa-twitter",
                             IsDeleted = false,
                             Status = true,
@@ -1316,7 +1357,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3789),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8635),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Grapes"
@@ -1325,7 +1366,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3791),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8637),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Raspberries"
@@ -1334,7 +1375,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 3,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3792),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8638),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Apricots"
@@ -1343,7 +1384,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 4,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3793),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8639),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Banana"
@@ -1352,7 +1393,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 5,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3794),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8640),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Oranges"
@@ -1361,7 +1402,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 6,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3798),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8643),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Apple"
@@ -1370,7 +1411,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 7,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3799),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8644),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Patatoes"
@@ -1379,7 +1420,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 8,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3800),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8645),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Persely"
@@ -1388,7 +1429,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 9,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3801),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8647),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Tomato"
@@ -1397,7 +1438,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 10,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3803),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8670),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Brocoli"
@@ -1406,7 +1447,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 11,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3805),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8672),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Bell Papper"
@@ -1415,7 +1456,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 12,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(3806),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(8673),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Strawberry"
@@ -1470,7 +1511,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Comment = "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,",
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(4955),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(9906),
                             ImageUrl = "/WebT/img/testimonial-1.jpg",
                             IsDeleted = false,
                             Name = "Şebnem Ferah",
@@ -1481,7 +1522,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             Comment = "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,",
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(4959),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(9908),
                             ImageUrl = "/WebT/img/testimonial-1.jpg",
                             IsDeleted = false,
                             Name = "Teoman Yakupoğlu",
@@ -1506,6 +1547,10 @@ namespace ShopECommerce.Data.Migrations
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -1535,7 +1580,7 @@ namespace ShopECommerce.Data.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RoleId")
+                    b.Property<int>("RoleId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Status")
@@ -1556,12 +1601,13 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Address = "Ankara",
-                            CreatedDate = new DateTime(2024, 5, 7, 1, 16, 42, 577, DateTimeKind.Local).AddTicks(4904),
+                            CreatedDate = new DateTime(2024, 5, 8, 3, 43, 43, 513, DateTimeKind.Local).AddTicks(9845),
+                            Description = "x",
                             Email = "admin@test.com",
                             FirstName = "Şebnem",
                             IsDeleted = false,
                             LastName = "Ferah",
-                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezO7kxnJ4PkrcExpd5rGLVfCvP3rMiEKIMjJCyUomsJHxxaY_7QLwAO9z5ys58_Rclll0J8S5Dy6qsnhOMNZedTaEB-UYE5jXpTst32f9m3egg",
+                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezO_Stk7ns_bmZu2o_J9yFFnWUTX05419eQcu4wDglwjfDik2SYzc5sGQM3_nsbGnd05Ox62s0DmjRm-3wYfeXOQo-p86gVzqgFY2U2kAO-OvA",
                             Phone = "0850",
                             RoleId = 1,
                             Status = true,
@@ -1571,21 +1617,21 @@ namespace ShopECommerce.Data.Migrations
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Basket", b =>
                 {
-                    b.HasOne("ShopECommerce.Entities.Concrete.MenuTable", "MenuTable")
-                        .WithMany("Baskets")
-                        .HasForeignKey("MenuTableId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ShopECommerce.Entities.Concrete.Product", "Product")
                         .WithMany("Baskets")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("MenuTable");
+                    b.HasOne("ShopECommerce.Entities.Concrete.ShopTable", "ShopTable")
+                        .WithMany("Baskets")
+                        .HasForeignKey("ShopTableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
+
+                    b.Navigation("ShopTable");
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.OrderDetail", b =>
@@ -1633,7 +1679,9 @@ namespace ShopECommerce.Data.Migrations
                 {
                     b.HasOne("ShopECommerce.Entities.Concrete.Role", "Role")
                         .WithMany("Users")
-                        .HasForeignKey("RoleId");
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Role");
                 });
@@ -1641,11 +1689,6 @@ namespace ShopECommerce.Data.Migrations
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Category", b =>
                 {
                     b.Navigation("SubCategories");
-                });
-
-            modelBuilder.Entity("ShopECommerce.Entities.Concrete.MenuTable", b =>
-                {
-                    b.Navigation("Baskets");
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Order", b =>
@@ -1663,6 +1706,11 @@ namespace ShopECommerce.Data.Migrations
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.Role", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("ShopECommerce.Entities.Concrete.ShopTable", b =>
+                {
+                    b.Navigation("Baskets");
                 });
 
             modelBuilder.Entity("ShopECommerce.Entities.Concrete.SubCategory", b =>

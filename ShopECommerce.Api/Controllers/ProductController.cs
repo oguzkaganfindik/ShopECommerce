@@ -41,9 +41,15 @@ namespace ShopECommerce.Api.Controllers
             {
                 ProductName = createProductDto.ProductName,
                 Description = createProductDto.Description,
-                ImageUrl = createProductDto.ImageUrl,
                 Price = createProductDto.Price,
+                ImageUrl = createProductDto.ImageUrl,
                 SubCategoryId = createProductDto.SubCategoryId,
+                ProductTitle = createProductDto.ProductTitle,
+                Weight = createProductDto.Weight,
+                CountryOfOrigin = createProductDto.CountryOfOrigin,
+                Quality = createProductDto.Quality,
+                Сheck = createProductDto.Сheck,
+                MinWeight = createProductDto.MinWeight,
                 Status = createProductDto.Status
             });
 
@@ -57,6 +63,13 @@ namespace ShopECommerce.Api.Controllers
             return Ok(value);
         }
 
+        [HttpGet("GetProductShowcaseDetailId/{id}")]
+        public IActionResult GetProductShowcaseDetailId(int id)
+        {
+            var products = _productService.TGetProductShowcaseDetailId(id);
+            return Ok(products);
+        }
+
         [HttpPut]
         public IActionResult UpdateProduct(UpdateProductDto updateProductDto)
         {
@@ -68,7 +81,13 @@ namespace ShopECommerce.Api.Controllers
                 ImageUrl = updateProductDto.ImageUrl,
                 Price = updateProductDto.Price,
                 SubCategoryId = updateProductDto.SubCategoryId,
-                Status = updateProductDto.Status
+                Status = updateProductDto.Status,
+                ProductTitle = updateProductDto.ProductTitle,
+                Weight = updateProductDto.Weight,
+                CountryOfOrigin = updateProductDto.CountryOfOrigin,
+                Quality = updateProductDto.Quality,
+                Сheck = updateProductDto.Сheck,
+                MinWeight = updateProductDto.MinWeight,
             });
 
             return Ok("Ürün Bilgisi Güncellendi");
@@ -122,7 +141,7 @@ namespace ShopECommerce.Api.Controllers
         public IActionResult ProductCountByHamburger()
         {
             return Ok(_productService.TProductCountBySubCategoryNameHamburger());
-        }     
+        }
 
         [HttpGet("ProductPriceBySteakBurger")]
         public IActionResult ProductPriceBySteakBurger()
@@ -154,7 +173,7 @@ namespace ShopECommerce.Api.Controllers
         {
             return Ok(_productService.TGetListByStatusTrue());
         }
-        
+
         [HttpGet("GetProductListByVegetable")]
         public IActionResult GetProductListByVegetable()
         {
@@ -162,7 +181,7 @@ namespace ShopECommerce.Api.Controllers
             var result = _mapper.Map<List<ResultProductWithCategory>>(values);
             return Ok(result);
         }
-        
+
         [HttpGet("GetProductListByFruites")]
         public IActionResult GetProductListByFruites()
         {

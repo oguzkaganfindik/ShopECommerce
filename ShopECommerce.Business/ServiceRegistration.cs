@@ -13,8 +13,11 @@ namespace ShopECommerce.Business
             services.AddScoped<IAboutService, AboutManager>();
             services.AddScoped<IAboutDal, EfAboutDal>();
 
-            services.AddScoped<IBookingService, BookingManager>();
-            services.AddScoped<IBookingDal, EfBookingDal>();
+            services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<IUserDal, EfUserDal>();
+
+            services.AddScoped<IRoleService, RoleManager>();
+            services.AddScoped<IRoleDal, EfRoleDal>();
 
             services.AddScoped<ISubCategoryService, SubCategoryManager>();
             services.AddScoped<ISubCategoryDal, EfSubCategoryDal>();
@@ -46,8 +49,8 @@ namespace ShopECommerce.Business
             services.AddScoped<IMoneyCaseService, MoneyCaseManager>();
             services.AddScoped<IMoneyCaseDal, EfMoneyCaseDal>();
 
-            services.AddScoped<IMenuTableService, MenuTableManager>();
-            services.AddScoped<IMenuTableDal, EfMenuTableDal>();
+            services.AddScoped<IShopTableService, ShopTableManager>();
+            services.AddScoped<IShopTableDal, EfShopTableDal>();
 
             services.AddScoped<ISliderService, SliderManager>();
             services.AddScoped<ISliderDal, EfSliderDal>();

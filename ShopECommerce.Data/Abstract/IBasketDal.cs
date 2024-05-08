@@ -5,8 +5,8 @@ namespace ShopECommerce.Data.Abstract
 {
     public interface IBasketDal : IGenericDal<Basket>
     {
-        List<ResultBasketListWithProductsDto> GetBasketListByMenuTableWithProductName(int id);
-        List<Basket> GetBasketByMenuTableNumber(int id);
+        List<ResultBasketListWithProductsDto> GetBasketListByShopTableWithProductName(int id);
+        List<Basket> GetBasketByShopTableNumber(int id);
         decimal GetProductPrice(int productId);
     }
 }

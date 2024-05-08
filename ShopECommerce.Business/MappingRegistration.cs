@@ -8,7 +8,7 @@ namespace ShopECommerce.Business
         public static void AddMappingRegistration(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(AboutMapping));
-            services.AddAutoMapper(typeof(BookingMapping));
+            services.AddAutoMapper(typeof(UserMapping));
             services.AddAutoMapper(typeof(SubCategoryMapping));
             services.AddAutoMapper(typeof(CategoryMapping));
             services.AddAutoMapper(typeof(ContactMapping));
@@ -20,7 +20,7 @@ namespace ShopECommerce.Business
             services.AddAutoMapper(typeof(SocialMediaMapping));
             services.AddAutoMapper(typeof(TestimonialMapping));
             services.AddAutoMapper(typeof(NotificationMapping));
-            services.AddAutoMapper(typeof(MenuTableMapping));
+            services.AddAutoMapper(typeof(ShopTableMapping));
             services.AddAutoMapper(typeof(FactMapping));
             services.AddAutoMapper(typeof(FeaturMapping));
             services.AddAutoMapper(typeof(BannerMapping));

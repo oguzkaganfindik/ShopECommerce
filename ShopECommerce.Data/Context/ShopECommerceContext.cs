@@ -18,6 +18,7 @@ namespace ShopECommerce.Data.Context
         {
 
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new SubCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
@@ -29,7 +30,6 @@ namespace ShopECommerce.Data.Context
 
         public DbSet<About> Abouts => Set<About>();
         public DbSet<Basket> Baskets => Set<Basket>();
-        public DbSet<Booking> Bookings => Set<Booking>();
         public DbSet<Banner> Banners => Set<Banner>();
         public DbSet<SubCategory> SubCategories => Set<SubCategory>();
         public DbSet<Category> Categories => Set<Category>();
@@ -37,7 +37,7 @@ namespace ShopECommerce.Data.Context
         public DbSet<Discount> Discounts => Set<Discount>();
         public DbSet<Featur> Featurs => Set<Featur>();
         public DbSet<Fact> Facts => Set<Fact>();
-        public DbSet<MenuTable> MenuTables => Set<MenuTable>();
+        public DbSet<ShopTable> ShopTables => Set<ShopTable>();
         public DbSet<Message> Messages => Set<Message>();
         public DbSet<MoneyCase> MoneyCases => Set<MoneyCase>();
         public DbSet<Notification> Notifications => Set<Notification>();

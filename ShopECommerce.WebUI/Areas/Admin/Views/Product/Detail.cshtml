@@ -1,0 +1,89 @@
+﻿@model GetProductShowcaseDetailDto
+@{
+    ViewData["Title"] = "Mesaj Detayı";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Mesaj Detayı</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Mesaj Detayları</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Mesaj alanıyla ilgili detayları görebilirsiniz.
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" style="width: 30%;">ProductName</th>
+                                        <td>@Model.ProductName</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">ProductTitle</th>
+                                        <td>@Model.ProductTitle</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Description</th>
+                                        <td>@Model.Description</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">CategoryName</th>
+                                        <td>@Model.CategoryName</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">SubCategoryName</th>
+                                        <td>@Model.SubCategoryName</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Price</th>
+                                        <td>@Model.Price</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">ImageUrl</th>
+                                        <td>@Model.ImageUrl</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Weight</th>
+                                        <td>@Model.Weight</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">MinWeight</th>
+                                        <td>@Model.MinWeight</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">CountryOfOrigin</th>
+                                        <td>@Model.CountryOfOrigin</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Quality</th>
+                                        <td>@Model.Quality</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Сheck</th>
+                                        <td>@Model.Сheck</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Durum</th>
+                                        <td>@Model.Status</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <td><a href="/Admin/Product/DeleteProduct/@Model.Id" class="btn btn-outline-danger btn-round">Sil</a></td>
+                                <td><a href="/Admin/Product/UpdateProduct/@Model.Id" class="btn btn-outline-success btn-round">Güncelle</a></td>
+                                <td><a href="/Admin/Product/ToggleStatus/@Model.Id" class="btn btn-outline-dark btn-round">Durum Değiştir</a></td>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

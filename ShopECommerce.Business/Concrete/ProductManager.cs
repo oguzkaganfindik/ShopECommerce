@@ -40,6 +40,7 @@ namespace ShopECommerce.Business.Concrete
             return _productDal.GetById(id);
         }
 
+
         public List<Product> TGetListAll()
         {
             return _productDal.GetListAll();
@@ -133,6 +134,11 @@ namespace ShopECommerce.Business.Concrete
         public List<ResultProductWithCategory> TGetProductListByFruites()
         {
             return _productDal.GetProductListByFruites();
+        }
+
+        public GetProductShowcaseDetailDto TGetProductShowcaseDetailId(int id)
+        {
+            return _productDal.GetProductShowcaseDetailId(id);
         }
     }
 }

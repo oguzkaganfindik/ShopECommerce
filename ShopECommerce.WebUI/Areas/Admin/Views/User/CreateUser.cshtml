@@ -1,0 +1,79 @@
+﻿@model CreateUserDto
+
+@{
+    ViewData["Title"] = "CreateUser";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">User İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yeni User Girişi</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Name">Ad</label>
+                                <input type="text" class="form-control" asp-for="FirstName" id="Name">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="LastName">Soyad</label>
+                                <input type="text" class="form-control" asp-for="LastName" id="LastName">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="EMail">Mail Adresi</label>
+                                <input type="email" class="form-control" asp-for="Email" id="EMail">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Password">Şifre</label>
+                                <input type="password" class="form-control" asp-for="Password" id="Password">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="UserName">UserName</label>
+                                <input type="text" class="form-control" asp-for="Username" id="UserName">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Phone">Phone</label>
+                                <input type="text" class="form-control" asp-for="Phone" id="Phone">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Adres">Adres</label>
+                                <input type="text" class="form-control" asp-for="Address" id="Adres">
+                            </div>
+                        </div>                      
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Role">Lütfen bir Rol seçin</label>
+                                @Html.DropDownListFor(x => x.RoleId, (List<SelectListItem>)ViewBag.vc, "Lütfen bir Rol seçin", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Description">Description</label>
+                                <input type="text" class="form-control" asp-for="Description" id="Description">
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-outline-primary btn-round">User Oluştur</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

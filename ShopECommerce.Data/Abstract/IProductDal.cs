@@ -19,5 +19,6 @@ namespace ShopECommerce.Data.Abstract
         decimal TotalPriceBySaladSubCategory();
         List<ResultProductWithCategory> GetProductListByVegetable();
         List<ResultProductWithCategory> GetProductListByFruites();
+        GetProductShowcaseDetailDto GetProductShowcaseDetailId(int id);
     }
 }

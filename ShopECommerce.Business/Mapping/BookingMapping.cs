@@ -1,17 +1,17 @@
 ﻿using AutoMapper;
-using ShopECommerce.DTOs.BookingDto;
+using ShopECommerce.DTOs.UserDto;
 using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Business.Mapping
 {
-    public class BookingMapping : Profile
+    public class UserMapping : Profile
     {
-        public BookingMapping()
+        public UserMapping()
         {
-            CreateMap<Booking, ResultBookingDto>().ReverseMap();
-            CreateMap<Booking, CreateBookingDto>().ReverseMap();
-            CreateMap<Booking, GetBookingDto>().ReverseMap();
-            CreateMap<Booking, UpdateBookingDto>().ReverseMap();
+            CreateMap<User, ResultUserDto>().ReverseMap();
+            CreateMap<User, CreateUserDto>().ReverseMap();
+            CreateMap<User, GetUserDto>().ReverseMap();
+            CreateMap<User, UpdateUserDto>().ReverseMap();
         }
     }
 }

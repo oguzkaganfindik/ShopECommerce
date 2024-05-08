@@ -9,20 +9,20 @@ namespace ShopECommerce.Api.Hubs
         private readonly IProductService _productService;
         private readonly IOrderService _orderService;
         private readonly IMoneyCaseService _moneyCaseService;
-        private readonly IMenuTableService _menuTableService;
-        private readonly IBookingService _bookingService;
+        private readonly IShopTableService _shopTableService;
+        private readonly IUserService _userService;
         private readonly IMessageService _messageService;
         private readonly INotificationService _notificationService;
 
 
-        public SignalRHub(ISubCategoryService subCategoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService, INotificationService notificationService, IMessageService messageService)
+        public SignalRHub(ISubCategoryService subCategoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IShopTableService shopTableService, IUserService userService, INotificationService notificationService, IMessageService messageService)
         {
             _subCategoryService = subCategoryService;
             _productService = productService;
             _orderService = orderService;
             _moneyCaseService = moneyCaseService;
-            _menuTableService = menuTableService;
-            _bookingService = bookingService;
+            _shopTableService = shopTableService;
+            _userService = userService;
             _notificationService = notificationService;
             _messageService = messageService;
         }
@@ -75,8 +75,8 @@ namespace ShopECommerce.Api.Hubs
 
 
 
-            var value16 = _menuTableService.TMenuTableCount();
-            await Clients.All.SendAsync("ReceiveMenuTableCount", value16);
+            var value16 = _shopTableService.TShopTableCount();
+            await Clients.All.SendAsync("ReceiveShopTableCount", value16);
 
 
         }
@@ -89,8 +89,8 @@ namespace ShopECommerce.Api.Hubs
             var value2 = _orderService.TActiveOrderCount();
             await Clients.All.SendAsync("ReceiveActiveOrderCount", value2);
 
-            var value3 = _menuTableService.TMenuTableCount();
-            await Clients.All.SendAsync("ReceiveMenuTableCount", value3);
+            var value3 = _shopTableService.TShopTableCount();
+            await Clients.All.SendAsync("ReceiveShopTableCount", value3);
 
             var value5 = _productService.TProductPriceAvg();
             await Clients.All.SendAsync("ReceiveProductPriceAvg", value5);
@@ -114,10 +114,10 @@ namespace ShopECommerce.Api.Hubs
             await Clients.All.SendAsync("ReceiveTotalPriceBySaladSubCategory", value11);
         }
 
-        public async Task GetBookingList()
+        public async Task GetUserList()
         {
-            var values = _bookingService.TGetListAll();
-            await Clients.All.SendAsync("ReceiveBookingList", values);
+            var values = _userService.TGetListAll();
+            await Clients.All.SendAsync("ReceiveUserList", values);
         }
 
         public async Task GetMessageList()
@@ -135,10 +135,10 @@ namespace ShopECommerce.Api.Hubs
             await Clients.All.SendAsync("ReceiveNotificationListByFalse", notificationListByFalse);
         }
 
-        public async Task GetMenuTableStatus()
+        public async Task GetShopTableStatus()
         {
-            var value = _menuTableService.TGetListAll();
-            await Clients.All.SendAsync("ReceiveMenuTableStatus", value);
+            var value = _shopTableService.TGetListAll();
+            await Clients.All.SendAsync("ReceiveShopTableStatus", value);
         }
 
         public async Task SendMessage(string user, string message)

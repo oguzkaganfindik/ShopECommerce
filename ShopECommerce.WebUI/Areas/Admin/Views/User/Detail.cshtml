@@ -1,0 +1,70 @@
+﻿@model ResultUserDto
+@{
+    ViewData["Title"] = "Mesaj Detayı";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Mesaj Detayı</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Mesaj Detayları</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Mesaj alanıyla ilgili detayları görebilirsiniz.
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" style="width: 30%;">Ad</th>
+                                        <td>@Model.FirstName</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Soyad</th>
+                                        <td>@Model.LastName</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Mail</th>
+                                        <td>@Model.Email</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">UserName</th>
+                                        <td>@Model.Username</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Adres</th>
+                                        <td>@Model.Address</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Telefon</th>
+                                        <td>@Model.Phone</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Açıklama</th>
+                                        <td>@Model.Description</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Durum</th>
+                                        <td>@Model.Status</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <td><a href="/Admin/User/DeleteUser/@Model.Id" class="btn btn-outline-danger btn-round">Sil</a></td>
+                                <td><a href="/Admin/User/UpdateUser/@Model.Id" class="btn btn-outline-success btn-round">Güncelle</a></td>
+                                <td><a href="/Admin/User/UserStatusApproved/@Model.Id" class="btn btn-outline-primary btn-round">User Onayla</a></td>
+                                <td><a href="/Admin/User/UserStatusCancelled/@Model.Id" class="btn btn-outline-warning btn-round">User İptal</a></td>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

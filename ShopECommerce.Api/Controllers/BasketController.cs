@@ -17,16 +17,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetBasketByMenuTableId(int id)
+        public IActionResult GetBasketByShopTableId(int id)
         {
-            var values = _basketService.TGetBasketByMenuTableNumber(id);
+            var values = _basketService.TGetBasketByShopTableNumber(id);
             return Ok(values);
         }
 
-        [HttpGet("BasketListByMenuTableWithProductName")]
-        public IActionResult BasketListByMenuTableWithProductName(int id)
+        [HttpGet("BasketListByShopTableWithProductName")]
+        public IActionResult BasketListByShopTableWithProductName(int id)
         {
-            var values = _basketService.TGetBasketListByMenuTableWithProductName(id);
+            var values = _basketService.TGetBasketListByShopTableWithProductName(id);
             return Ok(values);
         }
 
@@ -39,7 +39,7 @@ namespace ShopECommerce.Api.Controllers
             {
                 ProductId = createBasketDto.ProductId,
                 Count = 1,
-                MenuTableId = 4,
+                ShopTableId = 4,
                 Price = productPrice,
                 TotalPrice = 0,
             });

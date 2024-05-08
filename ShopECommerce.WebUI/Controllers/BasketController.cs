@@ -17,7 +17,7 @@ namespace ShopECommerce.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/Basket/BasketListByMenuTableWithProductName?id=4");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Basket/BasketListByShopTableWithProductName?id=4");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
