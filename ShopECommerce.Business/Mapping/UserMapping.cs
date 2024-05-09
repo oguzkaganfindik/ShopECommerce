@@ -8,10 +8,12 @@ namespace ShopECommerce.Business.Mapping
     {
         public UserMapping()
         {
-            CreateMap<User, ResultUserDto>().ReverseMap();
             CreateMap<User, CreateUserDto>().ReverseMap();
             CreateMap<User, GetUserDto>().ReverseMap();
+            CreateMap<User, GetUserWithRoleDto>().ReverseMap();
+            CreateMap<User, ResultUserDto>().ReverseMap();
             CreateMap<User, UpdateUserDto>().ReverseMap();
+            CreateMap<User, UserInfoDto>().ReverseMap();
         }
     }
 }
