@@ -112,6 +112,13 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateUser(UpdateUserDto updateUserDto)
         {
+            // Mevcut kullanıcıyı al
+            var existingUser = await GetUserById(updateUserDto.Id);
+
+            // Eğer şifre güncellenmişse, yeni şifreyi kullan
+            // Eğer şifre güncellenmemişse, mevcut kullanıcının şifresini kullan
+            updateUserDto.Password = string.IsNullOrEmpty(updateUserDto.Password) ? existingUser.Password : updateUserDto.Password;
+
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateUserDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -122,6 +129,22 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+
+        // Kullanıcıyı Id'ye göre alacak yardımcı metot
+        private async Task<UpdateUserDto> GetUserById(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:7046/api/User/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var user = JsonConvert.DeserializeObject<UpdateUserDto>(jsonData);
+                return user;
+            }
+            // Eğer kullanıcı bulunamazsa null döndür
+            return null;
+        }
+
 
         public async Task<IActionResult> DeleteUser(int id)
         {
