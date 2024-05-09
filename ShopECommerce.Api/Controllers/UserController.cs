@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.UserDto;
@@ -11,12 +12,14 @@ namespace ShopECommerce.Api.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IDataProtector _dataProtector;
         private readonly IMapper _mapper;
 
-        public UserController(IUserService userService, IMapper mapper)
+        public UserController(IUserService userService, IMapper mapper, IDataProtectionProvider dataProtectionProvider)
         {
             _userService = userService;
             _mapper = mapper;
+            _dataProtector = dataProtectionProvider.CreateProtector("security");
         }
 
         [HttpGet]
@@ -41,10 +44,10 @@ namespace ShopECommerce.Api.Controllers
             _userService.TAdd(new User()
             {
                 Email = createUserDto.Email,
-                Password = createUserDto.Password,
                 FirstName = createUserDto.FirstName,
                 LastName = createUserDto.LastName,
                 Username = createUserDto.Username,
+                Password = _dataProtector.Protect(createUserDto.Password),
                 Address = createUserDto.Address,
                 Phone = createUserDto.Phone,
                 RoleId = createUserDto.RoleId,
@@ -76,7 +79,7 @@ namespace ShopECommerce.Api.Controllers
             {
                 Id = updateUserDto.Id,
                 Email = updateUserDto.Email,
-                Password = updateUserDto.Password,
+                Password = _dataProtector.Protect(updateUserDto.Password),
                 FirstName = updateUserDto.FirstName,
                 LastName = updateUserDto.LastName,
                 Username = updateUserDto.Username,
