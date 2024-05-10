@@ -14,6 +14,11 @@ namespace ShopECommerce.Business.Concrete
             _moneyCaseDal = moneyCaseDal;
         }
 
+        public void THardDelete(int id)
+        {
+            _moneyCaseDal.HardDelete(id);
+        }
+
         public void TAdd(MoneyCase entity)
         {
             _moneyCaseDal.Add(entity);

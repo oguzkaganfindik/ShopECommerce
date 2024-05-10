@@ -14,6 +14,11 @@ namespace ShopECommerce.Business.Concrete
             _featurDal = featurDal;
         }
 
+        public void THardDelete(int id)
+        {
+            _featurDal.HardDelete(id);
+        }
+
         public void TAdd(Featur entity)
         {
             _featurDal.Add(entity);

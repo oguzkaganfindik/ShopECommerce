@@ -85,5 +85,10 @@ namespace ShopECommerce.Business.Concrete
         {
             return _subCategoryDal.GetSubCategoriesWithCategories();
         }
+
+        public void THardDelete(int id)
+        {
+            _subCategoryDal.HardDelete(id);
+        }
     }
 }

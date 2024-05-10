@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ShopECommerce.WebUI.ViewComponents.MenuComponents
+namespace ShopECommerce.WebUI.ViewComponents.ShopComponents
 {
     public class _ShopNavbarComponentPartial : ViewComponent
     {

@@ -14,6 +14,11 @@ namespace ShopECommerce.Business.Concrete
             _orderDetailDal = orderDetailDal;
         }
 
+        public void THardDelete(int id)
+        {
+            _orderDetailDal.HardDelete(id);
+        }
+
         public void TAdd(OrderDetail entity)
         {
             _orderDetailDal.Add(entity);

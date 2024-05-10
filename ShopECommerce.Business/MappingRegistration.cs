@@ -8,6 +8,7 @@ namespace ShopECommerce.Business
         public static void AddMappingRegistration(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(AboutMapping));
+            services.AddAutoMapper(typeof(BasketMapping));
             services.AddAutoMapper(typeof(UserMapping));
             services.AddAutoMapper(typeof(SubCategoryMapping));
             services.AddAutoMapper(typeof(CategoryMapping));

@@ -46,12 +46,19 @@ namespace ShopECommerce.Api.Controllers
             return Ok();
         }
 
+        //[HttpDelete("{id}")] //SoftDelete
+        //public IActionResult DeleteBasket(int id)
+        //{
+        //    var value = _basketService.TGetById(id);
+        //    _basketService.TDelete(value);
+        //    return Ok("Kategori Silindi");
+        //}
+
         [HttpDelete("{id}")]
         public IActionResult DeleteBasket(int id)
         {
-            var value = _basketService.TGetById(id);
-            _basketService.TDelete(value);
-            return Ok("Sepetteki Seçilen Ürün Silindi");
+            _basketService.THardDelete(id);
+            return Ok("Basketteki Ürün Kalıcı Olarak Silindi");
         }
 
         [HttpGet("ToggleStatus/{id}")]

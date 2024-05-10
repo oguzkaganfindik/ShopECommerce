@@ -82,5 +82,10 @@ namespace ShopECommerce.Business.Concrete
         {
             return _notificationDal.GetListByStatusTrue(predicate);
         }
+
+        public void THardDelete(int id)
+        {
+            _notificationDal.HardDelete(id);
+        }
     }
 }

@@ -80,5 +80,10 @@ namespace ShopECommerce.Business.Concrete
         {
             return _basketDal.GetListByStatusTrue(predicate);
         }
+
+        public void THardDelete(int id)
+        {
+            _basketDal.HardDelete(id);
+        }
     }
 }

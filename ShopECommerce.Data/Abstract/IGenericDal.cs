@@ -7,6 +7,7 @@ namespace ShopECommerce.Data.Abstract
         void Add(T entity);
         void Delete(T entity);
         void Delete(int id);
+        void HardDelete(int id);
         void Update(T entity);
         T GetById(int id);
         List<T> GetListAll();

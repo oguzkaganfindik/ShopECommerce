@@ -14,6 +14,11 @@ namespace ShopECommerce.Business.Concrete
             _categoryDal = categoryDal;
         }
 
+        public void THardDelete(int id)
+        {
+            _categoryDal.HardDelete(id);
+        }
+
         public int TActiveCategoryCount()
         {
             return _categoryDal.ActiveCategoryCount();

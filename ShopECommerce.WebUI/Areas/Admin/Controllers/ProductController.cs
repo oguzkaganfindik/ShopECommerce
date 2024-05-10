@@ -16,12 +16,12 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         private readonly IWebHostEnvironment _environment;
         private readonly IImageService _ImageManager;
 
-        public ProductController(IHttpClientFactory httpClientFactory, IImageProcessingService imageProcessingService, IWebHostEnvironment environment, IImageService ımageManager)
+        public ProductController(IHttpClientFactory httpClientFactory, IImageProcessingService imageProcessingService, IWebHostEnvironment environment, IImageService imageManager)
         {
             _httpClientFactory = httpClientFactory;
             _imageProcessingService = imageProcessingService;
             _environment = environment;
-            _ImageManager = ımageManager;
+            _ImageManager = imageManager;
         }
 
         public async Task<IActionResult> Index()

@@ -73,5 +73,10 @@ namespace ShopECommerce.Business.Concrete
         {
             _messageDal.Update(entity);
         }
+
+        public void THardDelete(int id)
+        {
+            _messageDal.HardDelete(id);
+        }
     }
 }

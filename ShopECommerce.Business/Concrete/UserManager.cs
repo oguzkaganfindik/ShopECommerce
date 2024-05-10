@@ -79,5 +79,10 @@ namespace ShopECommerce.Business.Concrete
         {
             return _userDal.GetUserWithRole();
         }
+
+        public void THardDelete(int id)
+        {
+            _userDal.HardDelete(id);
+        }
     }
 }

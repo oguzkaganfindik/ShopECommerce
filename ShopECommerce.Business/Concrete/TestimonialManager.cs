@@ -14,6 +14,11 @@ namespace ShopECommerce.Business.Concrete
             _testimonialDal = testimonialDal;
         }
 
+        public void THardDelete(int id)
+        {
+            _testimonialDal.HardDelete(id);
+        }
+
         public void TAdd(Testimonial entity)
         {
             _testimonialDal.Add(entity);

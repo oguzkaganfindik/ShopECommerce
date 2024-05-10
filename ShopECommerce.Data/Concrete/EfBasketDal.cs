@@ -34,7 +34,8 @@ namespace ShopECommerce.Data.Concrete
                                       Price = z.Price,
                                       ProductId = z.ProductId,
                                       TotalPrice = z.TotalPrice,
-                                      ProductName = z.Product.ProductName
+                                      ProductName = z.Product.ProductName,
+                                      ImagePath = z.Product.ImagePath
                                   })
                                   .ToList();
 

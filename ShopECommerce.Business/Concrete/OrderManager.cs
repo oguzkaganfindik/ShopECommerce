@@ -14,6 +14,11 @@ namespace ShopECommerce.Business.Concrete
             _orderDal = orderDal;
         }
 
+        public void THardDelete(int id)
+        {
+            _orderDal.HardDelete(id);
+        }
+
         public int TActiveOrderCount()
         {
             return _orderDal.ActiveOrderCount();

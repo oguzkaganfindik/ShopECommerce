@@ -4,7 +4,6 @@ using ShopECommerce.WebUI.Dtos.BasketDtos;
 
 namespace ShopECommerce.WebUI.Controllers
 {
-    [Area("Admin")]
     public class BasketController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -17,7 +16,7 @@ namespace ShopECommerce.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/Basket/BasketListByShopTableWithProductName?id=4");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Basket/GetBasketByShopTableId");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
