@@ -46,11 +46,6 @@ namespace ShopECommerce.Business.Concrete
             return _productDal.GetListAll();
         }
 
-        //public List<Product> TGetProductsWithCategories()
-        //{
-        //    return _productDal.GetProductsWithCategories();
-        //}
-
         public int TProductCount()
         {
             return _productDal.ProductCount();
@@ -139,6 +134,16 @@ namespace ShopECommerce.Business.Concrete
         public GetProductShowcaseDetailDto TGetProductShowcaseDetailId(int id)
         {
             return _productDal.GetProductShowcaseDetailId(id);
+        }
+
+        //public void THardDelete(Product entity)
+        //{
+        //    _productDal.HardDelete(entity);
+        //}
+
+        public void THardDelete(int id)
+        {
+            _productDal.HardDelete(id);
         }
     }
 }

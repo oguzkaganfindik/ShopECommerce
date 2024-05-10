@@ -13,6 +13,10 @@ namespace ShopECommerce.Business.Concrete
         {
             _socialMediaDal = socialMediaDal;
         }
+        public void THardDelete(int id)
+        {
+            _socialMediaDal.HardDelete(id);
+        }
 
         public void TAdd(SocialMedia entity)
         {

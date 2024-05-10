@@ -14,6 +14,11 @@ namespace ShopECommerce.Business.Concrete
             _aboutDal = aboutDal;
         }
 
+        public void THardDelete(int id)
+        {
+            _aboutDal.HardDelete(id);
+        }
+
         public void TAdd(About entity)
         {
             _aboutDal.Add(entity);

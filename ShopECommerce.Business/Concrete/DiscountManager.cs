@@ -14,6 +14,11 @@ namespace ShopECommerce.Business.Concrete
             _discountDal = discountDal;
         }
 
+        public void THardDelete(int id)
+        {
+            _discountDal.HardDelete(id);
+        }
+
         public void TAdd(Discount entity)
         {
             _discountDal.Add(entity);

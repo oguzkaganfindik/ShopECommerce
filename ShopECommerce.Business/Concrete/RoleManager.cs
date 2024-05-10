@@ -14,6 +14,11 @@ namespace ShopECommerce.Business.Concrete
             _roleDal = roleDal;
         }
 
+        public void THardDelete(int id)
+        {
+            _roleDal.HardDelete(id);
+        }
+
         public void TAdd(Role entity)
         {
             _roleDal.Add(entity);

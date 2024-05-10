@@ -14,6 +14,11 @@ namespace ShopECommerce.Business.Concrete
             _bannerDal = bannerDal;
         }
 
+        public void THardDelete(int id)
+        {
+            _bannerDal.HardDelete(id);
+        }
+
         public void TAdd(Banner entity)
         {
             _bannerDal.Add(entity);

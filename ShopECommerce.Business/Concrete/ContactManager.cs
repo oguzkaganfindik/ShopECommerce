@@ -19,6 +19,11 @@ namespace ShopECommerce.Business.Concrete
             return _contactDal.GetListAll();
         }
 
+        public void THardDelete(int id)
+        {
+            _contactDal.HardDelete(id);
+        }
+
         public void TAdd(Contact entity)
         {
             _contactDal.Add(entity);

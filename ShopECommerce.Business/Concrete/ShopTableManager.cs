@@ -14,6 +14,11 @@ namespace ShopECommerce.Business.Concrete
             _shopTableDal = shopTableDal;
         }
 
+        public void THardDelete(int id)
+        {
+            _shopTableDal.HardDelete(id);
+        }
+
         public void TAdd(ShopTable entity)
         {
             _shopTableDal.Add(entity);

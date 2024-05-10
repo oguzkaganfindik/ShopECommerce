@@ -14,6 +14,11 @@ namespace ShopECommerce.Business.Concrete
             _sliderDal = sliderDal;
         }
 
+        public void THardDelete(int id)
+        {
+            _sliderDal.HardDelete(id);
+        }
+
         public void TAdd(Slider entity)
         {
             _sliderDal.Add(entity);

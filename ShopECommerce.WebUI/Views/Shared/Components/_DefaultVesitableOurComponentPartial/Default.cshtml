@@ -1,31 +1,38 @@
 ﻿@model List<ResultProductWithCategory>
 
+@* Shop/Vegetables *@
+
 @foreach (var item in Model)
 {
     <div class="col-md-6 col-lg-4 col-xl-3">
         <div class="rounded position-relative fruite-item">
             <div class="fruite-img">
-                <img src="@item.ImagePath" class="img-fluid w-100 rounded-top" alt="">
+                <a href="/Shop/Detail/@item.Id">
+                    <img src="@item.ImagePath" class="img-fluid w-100 rounded-top" alt="">
+                </a>
             </div>
             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">@item.CategoryName</div>
             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                <h4>@item.ProductName</h4>
+                <a href="/Shop/Detail/@item.Id">
+                    <h4>@item.ProductName</h4>
+                </a>
                 <p class="text-truncate">@item.ProductTitle</p>
                 <div class="d-flex justify-content-between flex-lg-wrap">
                     <p class="text-dark fs-5 fw-bold mb-0">$@item.Price / kg</p>
-                    <a href="/Shop/Detail/@item.Id" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                    <a style="cursor: pointer;" onclick="showproductid(@item.Id)" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                 </div>
             </div>
         </div>
     </div>
 }
+
 <script>
     function showproductid(value) {
         var id = value;
         $.ajax({
             type: 'POST',
             data: { item: id },
-            url: "/Shop/AddBasket/" + id,
+            //url: "/Shop/AddBasket/" + id,
             contentType: 'json',
             success: function () {
                 swal("Seçilen Ürün Id: " + id, "Seçtiğiniz Ürün Sepete Eklendi!", "success");

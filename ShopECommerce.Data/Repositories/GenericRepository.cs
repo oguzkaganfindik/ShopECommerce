@@ -49,6 +49,15 @@ namespace ShopECommerce.Data.Repositories
             var entity = _dbSet.Find(id);
             Delete(entity);
         }
+        public void HardDelete(int id)
+        {
+            var entity = _dbSet.Find(id);
+            if (entity != null)
+            {
+                _dbSet.Remove(entity);
+                _db.SaveChanges();
+            }
+        }
 
         public T Get(Expression<Func<T, bool>> predicate)
         {
