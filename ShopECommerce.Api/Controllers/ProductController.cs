@@ -119,16 +119,16 @@ namespace ShopECommerce.Api.Controllers
             return Ok(_productService.TProductNameByMinPrice());
         }
 
-        [HttpGet("ProductAvgPriceByHamburger")]
-        public IActionResult ProductAvgPriceByHamburger()
+        [HttpGet("ProductAvgPriceByApple")]
+        public IActionResult ProductAvgPriceByApple()
         {
-            return Ok(_productService.TProductAvgPriceByHamburger());
+            return Ok(_productService.TProductAvgPriceByApple());
         }
 
-        [HttpGet("ProductCountByDrink")]
-        public IActionResult ProductCountByDrink()
+        [HttpGet("ProductCountByTomato")]
+        public IActionResult ProductCountByTomato()
         {
-            return Ok(_productService.TProductCountBySubCategoryNameDrink());
+            return Ok(_productService.TProductCountBySubCategoryNameTomato());
         }
 
         [HttpGet("ProductPriceAvg")]
@@ -137,28 +137,28 @@ namespace ShopECommerce.Api.Controllers
             return Ok(_productService.TProductPriceAvg());
         }
 
-        [HttpGet("ProductCountByHamburger")]
-        public IActionResult ProductCountByHamburger()
+        [HttpGet("ProductCountByApple")]
+        public IActionResult ProductCountByApple()
         {
-            return Ok(_productService.TProductCountBySubCategoryNameHamburger());
+            return Ok(_productService.TProductCountBySubCategoryNameApple());
         }
 
-        [HttpGet("ProductPriceBySteakBurger")]
-        public IActionResult ProductPriceBySteakBurger()
+        [HttpGet("ProductPriceByNativeOranges")]
+        public IActionResult ProductPriceByNativeOranges()
         {
-            return Ok(_productService.TProductPriceBySteakBurger());
+            return Ok(_productService.TProductPriceByNativeOranges());
         }
 
-        [HttpGet("TotalPriceByDrinkSubCategory")]
-        public IActionResult TotalPriceByDrinkSubCategory()
+        [HttpGet("TotalPriceByTomatoSubCategory")]
+        public IActionResult TotalPriceByTomatoSubCategory()
         {
-            return Ok(_productService.TTotalPriceByDrinkSubCategory());
+            return Ok(_productService.TTotalPriceByTomatoSubCategory());
         }
 
-        [HttpGet("TotalPriceBySaladSubCategory")]
-        public IActionResult TotalPriceBySaladSubCategory()
+        [HttpGet("TotalPriceByStrawberrySubCategory")]
+        public IActionResult TotalPriceByStrawberrySubCategory()
         {
-            return Ok(_productService.TTotalPriceBySaladSubCategory());
+            return Ok(_productService.TTotalPriceByStrawberrySubCategory());
         }
 
         [HttpGet("ToggleStatus/{id}")]

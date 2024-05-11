@@ -85,5 +85,15 @@ namespace ShopECommerce.Business.Concrete
         {
             _basketDal.HardDelete(id);
         }
+
+        public void TUpdateQuantity(int basketId, int newQuantity) 
+        {
+            _basketDal.UpdateQuantity(basketId, newQuantity);
+        }
+
+        public async Task<int> TGetBasketItemCount()
+        {
+            return await _basketDal.GetBasketItemCount();
+        }
     }
 }

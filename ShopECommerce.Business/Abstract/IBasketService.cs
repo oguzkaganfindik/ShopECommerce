@@ -8,5 +8,7 @@ namespace ShopECommerce.Business.Abstract
         List<ResultBasketListWithProductsDto> TGetBasketListByShopTableWithProductName(int id);
         List<Basket> TGetBasketByShopTableNumber(int id);
         decimal TGetProductPrice(int productId);
+        void TUpdateQuantity(int basketId, int newQuantity);
+        Task<int> TGetBasketItemCount();
     }
 }

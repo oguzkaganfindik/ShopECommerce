@@ -26,14 +26,14 @@ namespace ShopECommerce.Data.Concrete
             return _context.Products.Count();
         }
 
-        public int ProductCountBySubCategoryNameDrink()
+        public int ProductCountBySubCategoryNameTomato()
         {
-            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "içecek").Select(z => z.Id).FirstOrDefault()).Count();
+            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "tomato").Select(z => z.Id).FirstOrDefault()).Count();
         }
 
-        public int ProductCountBySubCategoryNameHamburger()
+        public int ProductCountBySubCategoryNameApple()
         {
-            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "Hamburger").Select(z => z.Id).FirstOrDefault()).Count();
+            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "Apple").Select(z => z.Id).FirstOrDefault()).Count();
         }
 
         public string ProductNameByMaxPrice()
@@ -53,27 +53,27 @@ namespace ShopECommerce.Data.Concrete
 
         }
 
-        public decimal ProductAvgPriceByHamburger()
+        public decimal ProductAvgPriceByApple()
         {
-            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "Hamburger").Select(z => z.Id).FirstOrDefault()).Average(w => w.Price);
+            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "Apple").Select(z => z.Id).FirstOrDefault()).Average(w => w.Price);
         }
 
-        public decimal ProductPriceBySteakBurger()
+        public decimal ProductPriceByNativeOranges()
         {
 
-            return _context.Products.Where(x => x.ProductName == "Steak Burger").Select(y => y.Price).FirstOrDefault();
+            return _context.Products.Where(x => x.ProductName == "Native Oranges").Select(y => y.Price).FirstOrDefault();
 
         }
 
-        public decimal TotalPriceByDrinkSubCategory()
+        public decimal TotalPriceByTomatoSubCategory()
         {
-            int id = _context.SubCategories.Where(x => x.SubCategoryName == "içecek").Select(y => y.Id).FirstOrDefault();
+            int id = _context.SubCategories.Where(x => x.SubCategoryName == "Tomato").Select(y => y.Id).FirstOrDefault();
             return _context.Products.Where(x => x.SubCategoryId == id).Sum(y => y.Price);
         }
 
-        public decimal TotalPriceBySaladSubCategory()
+        public decimal TotalPriceByStrawberrySubCategory()
         {
-            int id = _context.SubCategories.Where(x => x.SubCategoryName == "Salata").Select(y => y.Id).FirstOrDefault();
+            int id = _context.SubCategories.Where(x => x.SubCategoryName == "Strawberry").Select(y => y.Id).FirstOrDefault();
             return _context.Products.Where(x => x.SubCategoryId == id).Sum(y => y.Price);
         }
 

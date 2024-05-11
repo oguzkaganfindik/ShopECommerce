@@ -39,8 +39,13 @@ namespace ShopECommerce.Api.Controllers
             _bannerService.TAdd(new Banner()
             {
                 Title = createBannerDto.Title,
+                SubTitle = createBannerDto.SubTitle,
                 Description = createBannerDto.Description,
-                
+                Url = createBannerDto.Url,
+                UrlLabel = createBannerDto.UrlLabel,
+                ImagePath = createBannerDto.ImagePath,
+                Price1 = createBannerDto.Price1,
+                Price2 = createBannerDto.Price2
             });
 
             return Ok("Başarılı Bir Şekilde Eklendi");
@@ -68,7 +73,13 @@ namespace ShopECommerce.Api.Controllers
             {
                 Id = updateBannerDto.Id,
                 Title = updateBannerDto.Title,
+                SubTitle = updateBannerDto.SubTitle,
                 Description = updateBannerDto.Description,
+                Url = updateBannerDto.Url,
+                UrlLabel = updateBannerDto.UrlLabel,
+                ImagePath = updateBannerDto.ImagePath,
+                Price1 = updateBannerDto.Price1,
+                Price2 = updateBannerDto.Price2
             });
 
             return Ok("Güncellendi");

@@ -1,7 +1,8 @@
-﻿namespace ShopECommerce.WebUI.Dtos.NotificationDto
+﻿namespace ShopECommerce.WebUI.Dtos.NotificationDtos
 {
-    public class CreateNotificationDto
+    public class UpdateNotificationDto
     {
+        public int Id { get; set; }
         public string Type { get; set; }
         public string Icon { get; set; }
         public string Description { get; set; }

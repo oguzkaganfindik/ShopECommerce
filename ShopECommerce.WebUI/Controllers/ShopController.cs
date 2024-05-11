@@ -28,18 +28,24 @@ namespace ShopECommerce.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddBasket(int id)
         {
-            CreateBasketDto createBasketDto = new CreateBasketDto();
-            createBasketDto.ProductId = id;
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createBasketDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7046/api/Basket", stringContent);
+
+            var jsonData = JsonConvert.SerializeObject(new CreateBasketDto { ProductId = id });
+            var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            var responseMessage = await client.PostAsync("https://localhost:7046/api/Basket/CreateBasket", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Shop");
             }
-            return View(createBasketDto);
+            else
+            {
+                var errorData = await responseMessage.Content.ReadAsStringAsync();
+                ModelState.AddModelError("", errorData);
+                return View("Error");
+            }
         }
+
         public async Task<IActionResult> ToggleStatus(int id)
         {
             var client = _httpClientFactory.CreateClient();

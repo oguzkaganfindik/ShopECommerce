@@ -51,14 +51,14 @@ namespace ShopECommerce.Business.Concrete
             return _productDal.ProductCount();
         }
 
-        public int TProductCountBySubCategoryNameDrink()
+        public int TProductCountBySubCategoryNameTomato()
         {
-            return _productDal.ProductCountBySubCategoryNameDrink();
+            return _productDal.ProductCountBySubCategoryNameTomato();
         }
 
-        public int TProductCountBySubCategoryNameHamburger()
+        public int TProductCountBySubCategoryNameApple()
         {
-            return _productDal.ProductCountBySubCategoryNameHamburger();
+            return _productDal.ProductCountBySubCategoryNameApple();
         }
 
         public decimal TProductPriceAvg()
@@ -71,24 +71,24 @@ namespace ShopECommerce.Business.Concrete
             _productDal.Update(entity);
         }
 
-        public decimal TProductAvgPriceByHamburger()
+        public decimal TProductAvgPriceByApple()
         {
-            return _productDal.ProductAvgPriceByHamburger();
+            return _productDal.ProductAvgPriceByApple();
         }
 
-        public decimal TProductPriceBySteakBurger()
+        public decimal TProductPriceByNativeOranges()
         {
-            return _productDal.ProductPriceBySteakBurger();
+            return _productDal.ProductPriceByNativeOranges();
         }
 
-        public decimal TTotalPriceByDrinkSubCategory()
+        public decimal TTotalPriceByTomatoSubCategory()
         {
-            return _productDal.TotalPriceByDrinkSubCategory();
+            return _productDal.TotalPriceByTomatoSubCategory();
         }
 
-        public decimal TTotalPriceBySaladSubCategory()
+        public decimal TTotalPriceByStrawberrySubCategory()
         {
-            return _productDal.TotalPriceBySaladSubCategory();
+            return _productDal.TotalPriceByStrawberrySubCategory();
         }
 
         public List<ResultProductWithSubCategory> TGetProductsWithSubCategories()

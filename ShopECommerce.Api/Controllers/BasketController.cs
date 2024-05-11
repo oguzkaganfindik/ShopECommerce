@@ -16,7 +16,7 @@ namespace ShopECommerce.Api.Controllers
             _basketService = basketService;
         }
 
-        [HttpGet]
+        [HttpGet("GetBasketByShopTableId")]
         public IActionResult GetBasketByShopTableId(int id)
         {
             var values = _basketService.TGetBasketByShopTableNumber(id);
@@ -30,7 +30,23 @@ namespace ShopECommerce.Api.Controllers
             return Ok(values);
         }
 
-        [HttpPost]
+        //[HttpPost]
+        //public IActionResult CreateBasket(CreateBasketDto createBasketDto)
+        //{
+        //    var productPrice = _basketService.TGetProductPrice(createBasketDto.ProductId);
+
+        //    _basketService.TAdd(new Basket()
+        //    {
+        //        ProductId = createBasketDto.ProductId,
+        //        Count = 1,
+        //        ShopTableId = 4,
+        //        Price = productPrice,
+        //        TotalPrice = 0,
+        //    });
+        //    return Ok();
+        //}
+
+        [HttpPost("CreateBasket")]
         public IActionResult CreateBasket(CreateBasketDto createBasketDto)
         {
             var productPrice = _basketService.TGetProductPrice(createBasketDto.ProductId);
@@ -39,12 +55,22 @@ namespace ShopECommerce.Api.Controllers
             {
                 ProductId = createBasketDto.ProductId,
                 Count = 1,
-                ShopTableId = 4,
+                ShopTableId = 1, // Burada ShopTableId'yi istediğiniz değere ayarlayın
                 Price = productPrice,
-                TotalPrice = 0,
+                TotalPrice = productPrice,
             });
             return Ok();
         }
+
+
+        [HttpPost("UpdateBasketQuantity")]
+        public IActionResult UpdateBasketQuantity(int productId, int newQuantity)
+        {
+            // Ürün miktarını güncelle
+            _basketService.TUpdateQuantity(productId, newQuantity);
+            return Ok();
+        }
+
 
         //[HttpDelete("{id}")] //SoftDelete
         //public IActionResult DeleteBasket(int id)

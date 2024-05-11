@@ -23,17 +23,17 @@ namespace ShopECommerce.Data.Concrete
 
         public List<ResultBasketListWithProductsDto> GetBasketListByShopTableWithProductName(int id)
         {
-            var values = _context.Baskets
-                                  .Include(x => x.Product)
+            var values = _context.Baskets                            
                                   .Where(y => y.ShopTableId == id)
+                                  .Include(x => x.Product)
                                   .Select(z => new ResultBasketListWithProductsDto
                                   {
-                                      BasketId = z.Id,
-                                      Count = z.Count,
-                                      ShopTableId = z.ShopTableId,
+                                      Id = z.Id,
                                       Price = z.Price,
-                                      ProductId = z.ProductId,
+                                      Count = z.Count,
                                       TotalPrice = z.TotalPrice,
+                                      ProductId = z.Product.Id,
+                                      ShopTableId = z.ShopTable.Id,
                                       ProductName = z.Product.ProductName,
                                       ImagePath = z.Product.ImagePath
                                   })
@@ -48,6 +48,23 @@ namespace ShopECommerce.Data.Concrete
                            .Where(x => x.Id == productId)
                            .Select(y => y.Price)
                            .FirstOrDefault();
+        }
+
+        public void UpdateQuantity(int basketId, int newQuantity)
+        {
+            // Sepet öğesini belirli Id'ye göre bul
+            var basketItem = _context.Baskets.FirstOrDefault(x => x.Id == basketId);
+            if (basketItem != null)
+            {
+                basketItem.Count = newQuantity;
+                _context.Update(basketItem);
+                _context.SaveChanges(); // Değişikliği kaydetmeyi unutmayın
+            }
+        }
+
+        public async Task<int> GetBasketItemCount()
+        {
+            return await _context.Baskets.CountAsync(); // Veritabanında Baskets tablosundaki satır sayısını döndürür
         }
     }
 }
