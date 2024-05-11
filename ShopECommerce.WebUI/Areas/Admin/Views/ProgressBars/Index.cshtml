@@ -66,12 +66,12 @@
                       `);
                 });
 
-                connection.on("ReceiveAvgPriceByHamburger", (value6) => {
-                    $("#ReceiveAvgPriceByHamburgerProgress").empty();
-                    $("#ReceiveAvgPriceByHamburgerProgress").append(`
+                connection.on("ReceiveAvgPriceByApple", (value6) => {
+                    $("#ReceiveAvgPriceByAppleProgress").empty();
+                    $("#ReceiveAvgPriceByAppleProgress").append(`
 
                      <div class="d-flex justify-content-between mb-1">
-                        <span class="text-muted">Ortalama Hamburger Fiyatı</span>
+                        <span class="text-muted">Ortalama  Fiyatı</span>
                         <span class="text-muted fw-bold">${value6}</span>
                      </div>
                         <div class="progress mb-2" style="height: 7px;">
@@ -81,12 +81,12 @@
                         `);
                 });
 
-                connection.on("ReceiveProductCountBySubCategoryNameDrink", (value7) => {
-                    $("#ReceiveProductCountBySubCategoryNameDrinkProgress").empty();
-                    $("#ReceiveProductCountBySubCategoryNameDrinkProgress").append(`
+                connection.on("ReceiveProductCountBySubCategoryNameTomato", (value7) => {
+                    $("#ReceiveProductCountBySubCategoryNameTomatoProgress").empty();
+                    $("#ReceiveProductCountBySubCategoryNameTomatoProgress").append(`
 
                      <div class="d-flex justify-content-between mb-1">
-                           <span class="text-muted">İçecek Kategori Sayısı</span>
+                           <span class="text-muted">Tomato Kategori Sayısı</span>
                            <span class="text-muted fw-bold">${value7}</span>
                      </div>
                            <div class="progress mb-2" style="height: 7px;">
@@ -111,12 +111,12 @@
                        `);
                 });
 
-                connection.on("ReceiveProductPriceBySteakBurger", (value9) => {
-                    $("#ReceiveProductPriceBySteakBurgerProgress").empty();
-                    $("#ReceiveProductPriceBySteakBurgerProgress").append(`
+                connection.on("ReceiveProductPriceByNativeOranges", (value9) => {
+                    $("#ReceiveProductPriceByNativeOrangesProgress").empty();
+                    $("#ReceiveProductPriceByNativeOrangesProgress").append(`
 
                      <div class="d-flex justify-content-between mb-1">
-                         <span class="text-muted">Steak Burger Fiyatı</span>
+                         <span class="text-muted">Native Oranges Fiyatı</span>
                          <span class="text-muted fw-bold">${value9}</span>
                      </div>
                      <div class="progress mb-2" style="height: 7px;">
@@ -126,12 +126,12 @@
                        `);
                 });
 
-                connection.on("ReceiveTotalPriceByDrinkSubCategory", (value10) => {
-                    $("#ReceiveTotalPriceByDrinkSubCategoryProgress").empty();
-                    $("#ReceiveTotalPriceByDrinkSubCategoryProgress").append(`
+                connection.on("ReceiveTotalPriceByTomatoSubCategory", (value10) => {
+                    $("#ReceiveTotalPriceByTomatoSubCategoryProgress").empty();
+                    $("#ReceiveTotalPriceByTomatoSubCategoryProgress").append(`
 
                      <div class="d-flex justify-content-between mb-1">
-                          <span class="text-muted">Toplam İçecek Fiyatı</span>
+                          <span class="text-muted">Toplam Tomato Fiyatı</span>
                           <span class="text-muted fw-bold">${value10}</span>
                      </div>
                     <div class="progress mb-2" style="height: 7px;">
@@ -141,12 +141,12 @@
                        `);
                 });
 
-                connection.on("ReceiveTotalPriceBySaladSubCategory", (value11) => {
-                    $("#ReceiveTotalPriceBySaladSubCategoryProgress").empty();
-                    $("#ReceiveTotalPriceBySaladSubCategoryProgress").append(`
+                connection.on("ReceiveTotalPriceByStrawberrySubCategory", (value11) => {
+                    $("#ReceiveTotalPriceByStrawberrySubCategoryProgress").empty();
+                    $("#ReceiveTotalPriceByStrawberrySubCategoryProgress").append(`
 
                      <div class="d-flex justify-content-between mb-1">
-                          <span class="text-muted">Toplam Salata Fiyatı</span>
+                          <span class="text-muted">Toplam Çilek Fiyatı</span>
                           <span class="text-muted fw-bold">${value11}</span>
                      </div>
                      <div class="progress mb-2" style="height: 7px;">
@@ -202,17 +202,17 @@
 
                                 <div class="progress-card" id="ReceiveProductPriceAvgProgress"></div>
                                 
-                                <div class="progress-card" id="ReceiveAvgPriceByHamburgerProgress"></div>
+                                <div class="progress-card" id="ReceiveAvgPriceByAppleProgress"></div>
 
-                                <div class="progress-card" id="ReceiveProductCountBySubCategoryNameDrinkProgress"></div>
+                                <div class="progress-card" id="ReceiveProductCountBySubCategoryNameTomatoProgress"></div>
 
                                 <div class="progress-card" id="ReceiveTotalOrderCountProgress"></div>
 
-                                <div class="progress-card" id="ReceiveProductPriceBySteakBurgerProgress"></div>
+                                <div class="progress-card" id="ReceiveProductPriceByNativeOrangesProgress"></div>
 
-                                <div class="progress-card" id="ReceiveTotalPriceByDrinkSubCategoryProgress"></div>
+                                <div class="progress-card" id="ReceiveTotalPriceByTomatoSubCategoryProgress"></div>
 
-                                <div class="progress-card" id="ReceiveTotalPriceBySaladSubCategoryProgress"></div>
+                                <div class="progress-card" id="ReceiveTotalPriceByStrawberrySubCategoryProgress"></div>
 
                             </div>
                         </div>

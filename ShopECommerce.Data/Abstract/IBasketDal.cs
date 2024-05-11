@@ -8,5 +8,7 @@ namespace ShopECommerce.Data.Abstract
         List<ResultBasketListWithProductsDto> GetBasketListByShopTableWithProductName(int id);
         List<Basket> GetBasketByShopTableNumber(int id);
         decimal GetProductPrice(int productId);
+        void UpdateQuantity(int basketId, int newQuantity);
+        Task<int> GetBasketItemCount();
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace ShopECommerce.WebUI.Dtos.NotificationDto
+﻿namespace ShopECommerce.WebUI.Dtos.NotificationDtos
 {
     public class ResultNotificationDto
     {

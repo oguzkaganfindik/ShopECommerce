@@ -13,9 +13,10 @@ namespace ShopECommerce.Api.Hubs
         private readonly IUserService _userService;
         private readonly IMessageService _messageService;
         private readonly INotificationService _notificationService;
+        private readonly IBasketService _basketService;
 
 
-        public SignalRHub(ISubCategoryService subCategoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IShopTableService shopTableService, IUserService userService, INotificationService notificationService, IMessageService messageService)
+        public SignalRHub(ISubCategoryService subCategoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IShopTableService shopTableService, IUserService userService, INotificationService notificationService, IMessageService messageService, IBasketService basketService)
         {
             _subCategoryService = subCategoryService;
             _productService = productService;
@@ -25,6 +26,7 @@ namespace ShopECommerce.Api.Hubs
             _userService = userService;
             _notificationService = notificationService;
             _messageService = messageService;
+            _basketService = basketService;
         }
 
         public static int clientCount { get; set; } = 0;
@@ -43,11 +45,11 @@ namespace ShopECommerce.Api.Hubs
             var value4 = _subCategoryService.TPassiveSubCategoryCount();
             await Clients.All.SendAsync("ReceivePassiveSubCategoryCount", value4);
 
-            var value5 = _productService.TProductCountBySubCategoryNameHamburger();
-            await Clients.All.SendAsync("ReceiveProductCountBySubCategoryNameHamburger", value5);
+            var value5 = _productService.TProductCountBySubCategoryNameApple();
+            await Clients.All.SendAsync("ReceiveProductCountBySubCategoryNameApple", value5);
 
-            var value6 = _productService.TProductCountBySubCategoryNameDrink();
-            await Clients.All.SendAsync("ReceiveProductCountBySubCategoryNameDrink", value6);
+            var value6 = _productService.TProductCountBySubCategoryNameTomato();
+            await Clients.All.SendAsync("ReceiveProductCountBySubCategoryNameTomato", value6);
 
             var value7 = _productService.TProductPriceAvg();
             await Clients.All.SendAsync("ReceiveProductPriceAvg", value7.ToString("0.00") + " TL");
@@ -58,8 +60,8 @@ namespace ShopECommerce.Api.Hubs
             var value9 = _productService.TProductNameByMinPrice();
             await Clients.All.SendAsync("ReceiveProductNameByMinPrice", value9);
 
-            var value10 = _productService.TProductAvgPriceByHamburger();
-            await Clients.All.SendAsync("ReceiveProductAvgPriceByHamburger", value10.ToString("0.00") + " TL");
+            var value10 = _productService.TProductAvgPriceByApple();
+            await Clients.All.SendAsync("ReceiveProductAvgPriceByApple", value10.ToString("0.00") + " TL");
 
             var value11 = _orderService.TTotalOrderCount();
             await Clients.All.SendAsync("ReceiveTotalOrderCount", value11);
@@ -95,23 +97,23 @@ namespace ShopECommerce.Api.Hubs
             var value5 = _productService.TProductPriceAvg();
             await Clients.All.SendAsync("ReceiveProductPriceAvg", value5);
 
-            var value6 = _productService.TProductAvgPriceByHamburger();
-            await Clients.All.SendAsync("ReceiveAvgPriceByHamburger", value6);
+            var value6 = _productService.TProductAvgPriceByApple();
+            await Clients.All.SendAsync("ReceiveAvgPriceByApple", value6);
 
-            var value7 = _productService.TProductCountBySubCategoryNameDrink();
-            await Clients.All.SendAsync("ReceiveProductCountBySubCategoryNameDrink", value7);
+            var value7 = _productService.TProductCountBySubCategoryNameTomato();
+            await Clients.All.SendAsync("ReceiveProductCountBySubCategoryNameTomato", value7);
 
             var value8 = _orderService.TTotalOrderCount();
             await Clients.All.SendAsync("ReceiveTotalOrderCount", value8);
 
-            var value9 = _productService.TProductPriceBySteakBurger();
-            await Clients.All.SendAsync("ReceiveProductPriceBySteakBurger", value9);
+            var value9 = _productService.TProductPriceByNativeOranges();
+            await Clients.All.SendAsync("ReceiveProductPriceByNativeOranges", value9);
 
-            var value10 = _productService.TTotalPriceByDrinkSubCategory();
-            await Clients.All.SendAsync("ReceiveTotalPriceByDrinkSubCategory", value10);
+            var value10 = _productService.TTotalPriceByTomatoSubCategory();
+            await Clients.All.SendAsync("ReceiveTotalPriceByTomatoSubCategory", value10);
 
-            var value11 = _productService.TTotalPriceBySaladSubCategory();
-            await Clients.All.SendAsync("ReceiveTotalPriceBySaladSubCategory", value11);
+            var value11 = _productService.TTotalPriceByStrawberrySubCategory();
+            await Clients.All.SendAsync("ReceiveTotalPriceByStrawberrySubCategory", value11);
         }
 
         public async Task GetUserList()
@@ -133,6 +135,12 @@ namespace ShopECommerce.Api.Hubs
 
             var notificationListByFalse = _notificationService.TGetAllNotificationsByFalse();
             await Clients.All.SendAsync("ReceiveNotificationListByFalse", notificationListByFalse);
+
+            var basketItemCount = await _basketService.TGetBasketItemCount(); // Sepet içindeki ürün sayısını al
+            if (basketItemCount > 0) // Eğer sepet boş değilse
+            {
+                await Clients.All.SendAsync("ReceiveBasketItemCount", basketItemCount); // Tüm istemcilere ürün sayısını gönder
+            }
         }
 
         public async Task GetShopTableStatus()

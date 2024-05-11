@@ -37,10 +37,10 @@
         $.ajax({
             type: 'POST',
             data: { item: id },
-            //url: "/Shop/AddBasket/" + id,
+            url: "/Shop/AddBasket/" + id,
             contentType: 'json',
             success: function () {
-                swal("Seçilen Ürün Id: " + id, "Seçtiğiniz Ürün Sepete Eklendi!", "success");
+                swal("", "Seçtiğiniz Ürün Sepete Eklendi!", "success");
             }
         });
     };

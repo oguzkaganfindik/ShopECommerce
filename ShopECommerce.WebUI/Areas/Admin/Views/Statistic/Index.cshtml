@@ -41,12 +41,12 @@
                     $("#passivesubcategorycount").text(value4);
                 });
 
-                connection.on("ReceiveProductCountBySubCategoryNameHamburger", (value5) => {
-                    $("#productcountbysubcategorynamehamburger").text(value5);
+                connection.on("ReceiveProductCountBySubCategoryNameApple", (value5) => {
+                    $("#productcountbysubcategorynameapple").text(value5);
                 });
 
-                connection.on("ReceiveProductCountBySubCategoryNameDrink", (value6) => {
-                    $("#productcountbysubcategorynamedrink").text(value6);
+                connection.on("ReceiveProductCountBySubCategoryNameTomato", (value6) => {
+                    $("#productcountbysubcategorynametomato").text(value6);
                 });
 
                 connection.on("ReceiveProductPriceAvg", (value7) => {
@@ -61,8 +61,8 @@
                     $("#productnamebyminprice").text(value9);
                 });
 
-                connection.on("ReceiveProductAvgPriceByHamburger", (value10) => {
-                    $("#productavgpricebyhamburger").text(value10);
+                connection.on("ReceiveProductAvgPriceByApple", (value10) => {
+                    $("#productavgpricebyapple").text(value10);
                 });
 
                 connection.on("ReceiveTotalOrderCount", (value11) => {
@@ -102,7 +102,7 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-subcategory">Kategori Sayısı</p>
+                                    <p class="card-subcategory">Alt Kategori Sayısı</p>
                                     <h4 class="card-title" id="subcategorycount"></h4>
                                 </div>
                             </div>
@@ -180,8 +180,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-subcategory">Hamburger</p>
-                                    <h4 class="card-title" id="productcountbysubcategorynamehamburger"></h4>
+                                    <p class="card-subcategory">Elma Adlı Ürün Sayısı</p>
+                                    <h4 class="card-title" id="productcountbysubcategorynameapple"></h4>
                                 </div>
                             </div>
                         </div>
@@ -199,8 +199,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-subcategory">İçecek Sayısı</p>
-                                    <h4 class="card-title" id="productcountbysubcategorynamedrink"></h4>
+                                    <p class="card-subcategory">Tomato Sayısı</p>
+                                    <h4 class="card-title" id="productcountbysubcategorynametomato"></h4>
                                 </div>
                             </div>
                         </div>
@@ -277,8 +277,8 @@
                             </div>
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
-                                    <p class="card-subcategory">Hamburger Fiyat</p>
-                                    <h4 class="card-title" id="productavgpricebyhamburger"></h4>
+                                    <p class="card-subcategory">Ortalama Elma Fiyatı</p>
+                                    <h4 class="card-title" id="productavgpricebyapple"></h4>
                                 </div>
                             </div>
                         </div>
