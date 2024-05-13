@@ -84,5 +84,25 @@ namespace ShopECommerce.Business.Concrete
         {
             _userDal.HardDelete(id);
         }
+
+        public User TGetByEmail(string email)
+        {
+            return _userDal.GetByEmail(email);
+        }
+
+        public Task<User> TGetByEmailAndPassword(string email, string hashedPassword)
+        {
+            return _userDal.GetByEmailAndPassword(email, hashedPassword);
+        }
+
+        public Task<User> TGetByEmailAndCode(string email, int code)
+        {
+            return _userDal.GetByEmailAndCode(email, code);
+        }
+
+        public async Task TUpdateAsync(User entity)
+        {
+            await _userDal.UpdateAsync(entity);
+        }
     }
 }

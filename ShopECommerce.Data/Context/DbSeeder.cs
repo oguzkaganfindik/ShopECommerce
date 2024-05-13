@@ -26,6 +26,15 @@ namespace ShopECommerce.Data.Context
                 CreatedDate = DateTime.Now
             });
 
+            modelBuilder.Entity<Role>().HasData(new Role
+            {
+                Id = 3,
+                Name = "Customer",
+                Status = true,
+                IsDeleted = false,
+                CreatedDate = DateTime.Now
+            });
+
             modelBuilder.Entity<Category>().HasData(new List<Category>()
             {
                 new Category()

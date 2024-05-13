@@ -1,5 +1,4 @@
-﻿using ShopECommerce.Data.Concrete;
-using ShopECommerce.DTOs.UserDto;
+﻿using ShopECommerce.DTOs.UserDto;
 using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Data.Abstract
@@ -9,5 +8,9 @@ namespace ShopECommerce.Data.Abstract
         void UserStatusApproved(int id);
         void UserStatusCancelled(int id);
         public List<GetUserWithRoleDto> GetUserWithRole();
+        User GetByEmail(string email);
+        Task<User> GetByEmailAndPassword(string email, string hashedPassword);
+        Task<User> GetByEmailAndCode(string email, int code);
+        Task UpdateAsync(User entity);
     }
 }

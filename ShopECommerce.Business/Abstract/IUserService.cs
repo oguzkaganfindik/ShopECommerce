@@ -8,5 +8,9 @@ namespace ShopECommerce.Business.Abstract
         void UserStatusApproved(int id);
         void UserStatusCancelled(int id);
         List<GetUserWithRoleDto> TGetUserWithRole();
+        User TGetByEmail(string email);
+        Task<User> TGetByEmailAndPassword(string email, string hashedPassword);
+        Task<User> TGetByEmailAndCode(string email, int code);
+        Task TUpdateAsync(User entity);
     }
 }
