@@ -2,7 +2,6 @@
 using ShopECommerce.Data.Abstract;
 using ShopECommerce.Data.Context;
 using ShopECommerce.Data.Repositories;
-using ShopECommerce.DTOs.SubCategoryDto;
 using ShopECommerce.DTOs.UserDto;
 using ShopECommerce.Entities.Concrete;
 
@@ -49,6 +48,28 @@ namespace ShopECommerce.Data.Concrete
             }).ToList();
 
             return values;
+        }
+
+        public User GetByEmail(string email)
+        {
+            return _context.Users.FirstOrDefault(u => u.Email == email);
+        }
+
+
+        public async Task<User> GetByEmailAndPassword(string email, string hashedPassword)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == hashedPassword);
+        }
+
+        public async Task<User> GetByEmailAndCode(string email, int code)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.ChangeMailCode == code);
+        }
+
+        public async Task UpdateAsync(User entity)
+        {
+            _context.Update(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }

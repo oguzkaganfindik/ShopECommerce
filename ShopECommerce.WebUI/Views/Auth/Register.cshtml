@@ -1,11 +1,11 @@
-﻿@model RegisterViewModel
+﻿@model UserRegisterDto
 
 @{
     ViewData["Title"] = "Kayıt Ol";
     Layout = "_AuthLayout";
 }
 
-<div class="login-box" style="top:33%; margin-top:80px; width:34%">
+<div class="login-box" style="top:33%; margin-top:80px; width:28%">
     <h2 style="font-family:'Lucida Fax'">Kayıt Formu</h2>
     <form method="post" asp-controller="Auth" asp-action="Register">
         <div class="d-flex">
@@ -18,9 +18,15 @@
                 <label class="required" asp-for="LastName"></label>
             </div>
         </div>
-        <div class="user-box">
-            <input asp-for="Email" type="email" required>
-            <label class="required" asp-for="Email"></label>
+        <div class="d-flex">
+            <div class="user-box me-4">
+                <input asp-for=UserName type="text" required>
+                <label class="required" asp-for="UserName"></label>
+            </div>
+            <div class="user-box">
+                <input asp-for="Email" type="email" required>
+                <label class="required" asp-for="Email"></label>
+            </div>
         </div>
         <div class="d-flex">
             <div class="user-box me-4">
@@ -29,17 +35,17 @@
             </div>
 
             <div class="user-box ">
-                <input asp-for="PasswordConfirm" type="password" required>
-                <label class="required" asp-for="PasswordConfirm"></label>
+                <input asp-for="ConfirmPassword" type="password" required>
+                <label class="required" asp-for="ConfirmPassword"></label>
             </div>
 
         </div>
 
-        <div class="text-danger" asp-validation-summary="All">
+        <div class="text-danger" asp-validation-summary="ModelOnly" value="">
         </div>
 
         <div class="row">
-            
+
             <div class="col-4">
                 <a style="font-family:'Lucida Fax'" type="submit" class="float-end" asp-action="Login" asp-controller="Auth"><center>Giriş Yap</center></a>
             </div>
@@ -47,7 +53,7 @@
                 <button style="font-family:'Lucida Fax'" class="float-end" asp-action="Register" asp-controller="Auth"><center>Kayıt Ol</center></button>
             </div>
             <div class="col-4">
-                <a style="font-family:'Lucida Fax'" class="float-end" asp-action="Index" asp-controller="Home"><center>Ana Sayfa</center></a>
+                <a style="font-family:'Lucida Fax'" class="float-end" asp-action="Index" asp-controller="Default"><center>Ana Sayfa</center></a>
             </div>
         </div>
 
@@ -82,6 +88,6 @@
             @:toastr.options.closeHtml = '<button class="closebtn"><i class="bi bi-x"></i></button>';
             @:toastr.error("@ViewBag.ErrorMessage?.ToString()", "Bildirim:");
         }
-                });
+           });
     </script>
 }

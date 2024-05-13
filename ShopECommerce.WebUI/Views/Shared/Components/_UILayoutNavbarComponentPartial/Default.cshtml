@@ -60,13 +60,55 @@
                         <a href="/Default/Contact/" class="nav-item nav-link active">Contact</a>
                         <a href="/Default/Messenger/" class="nav-item nav-link active">Messenger</a>
                     </div>
+
+                    <ul class="navbar-nav text-primary display-6">
+
+                        @if (Context.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link login-button">Welcome, @Context.User.Identity.Name!</span>
+                            </li>
+                        }
+
+                        @if (Context.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                @if (Context.User.IsInRole("Admin"))
+                                {
+                                    <a href="/Admin/Dashboard/Index/" class="nav-link login-button">Control Panel</a>
+                                }
+                                else if (Context.User.IsInRole("User"))
+                                {
+                                    <a href="/MyProfile/Index/" class="nav-link login-button">My Profile</a>
+                                }
+                                else
+                                {
+                                    <a href="/MyProfile/Index/" class="nav-link login-button">My Profile</a>
+                                }
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Auth" asp-action="Logout" class="nav-link login-button">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Auth" asp-action="Login" class="nav-link login-button">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Auth" asp-action="Register" class="nav-link login-button">Register</a>
+                            </li>
+                        }                       
+                    </ul>
+
+
                     <div class="d-flex m-3 me-0">
                         <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
                         <a href="/Basket/Index/" class="position-relative me-4 my-auto">
                             <i class="fa fa-shopping-bag fa-2x"></i>
                             <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;" id="notificationcount"></span>
                         </a>
-                        <a href="#" class="my-auto">
+                        <a href="/MyProfile/Index/" class="my-auto">
                             <i class="fas fa-user fa-2x"></i>
                         </a>
                     </div>

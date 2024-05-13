@@ -1,0 +1,23 @@
+﻿@model ChangeMailDto
+
+<div class="login-box text-white" style="top:33%; margin-top:80px; width:32%">
+    <h1>Mail Adresini Değiştir</h1>
+
+    @if (!string.IsNullOrEmpty(ViewData["Message"] as string))
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewData["Message"]
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(ViewData["Error"] as string))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewData["Error"]
+        </div>
+    }
+
+    <p>Lütfen mail adresini doğrulamak için aşağıdaki adımları takip edin.</p>
+
+    <a href="@Model.ChangeMailLink">Mail adresini değiştirmek için tıklayın</a>
+</div>
