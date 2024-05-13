@@ -12,7 +12,7 @@ using ShopECommerce.Data.Context;
 namespace ShopECommerce.Data.Migrations
 {
     [DbContext(typeof(ShopECommerceContext))]
-    [Migration("20240513154544_First")]
+    [Migration("20240513212459_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -128,7 +128,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(2070),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(542),
                             Description = "The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.",
                             ImagePath = "/WebT/img/baner-1.png",
                             IsDeleted = false,
@@ -226,7 +226,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             CategoryName = "Fruites",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(539),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8720),
                             IsDeleted = false,
                             Status = true
                         },
@@ -234,7 +234,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             CategoryName = "Vesitables",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(542),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8723),
                             IsDeleted = false,
                             Status = true
                         });
@@ -307,7 +307,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(2093),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(572),
                             FooterDescription = "typesetting, remaining essentially unchanged. It was popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.",
                             FooterTitle = "Why People Like us!",
                             GoogleMapsApi = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.33750346623!2d-73.97968099999999!3d40.6974881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1694259649153!5m2!1sen!2sbd",
@@ -370,7 +370,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Amount = "20%",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1871),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(329),
                             Description = "OFF",
                             ImagePath = "/WebT/img/featur-1.jpg",
                             IsDeleted = false,
@@ -381,7 +381,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             Amount = "",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1873),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(332),
                             Description = "Free delivery",
                             ImagePath = "/WebT/img/featur-2.jpg",
                             IsDeleted = false,
@@ -392,7 +392,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 3,
                             Amount = "30$",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1875),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(333),
                             Description = "Discount",
                             ImagePath = "/WebT/img/featur-3.jpg",
                             IsDeleted = false,
@@ -444,7 +444,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(2041),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(510),
                             Description = "1963",
                             Icon = "fa fa-users text-secondary",
                             IsDeleted = false,
@@ -454,7 +454,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(2043),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(513),
                             Description = "99%",
                             Icon = "fa fa-users text-secondary",
                             IsDeleted = false,
@@ -464,7 +464,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(2044),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(514),
                             Description = "33",
                             Icon = "fa fa-users text-secondary",
                             IsDeleted = false,
@@ -474,7 +474,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(2046),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(515),
                             Description = "789",
                             Icon = "fa fa-users text-secondary",
                             IsDeleted = false,
@@ -526,7 +526,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(2010),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(476),
                             Description = "Free on order over $300",
                             Icon = "fas fa-car-side fa-3x text-white",
                             IsDeleted = false,
@@ -536,7 +536,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(2013),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(479),
                             Description = "100% security payment",
                             Icon = "fas fa-user-shield fa-3x text-white",
                             IsDeleted = false,
@@ -546,7 +546,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(2014),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(481),
                             Description = "30 day money guarantee",
                             Icon = "fas fa-exchange-alt fa-3x text-white",
                             IsDeleted = false,
@@ -556,7 +556,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(2016),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(482),
                             Description = "Support every time fast",
                             Icon = "fa fa-phone-alt fa-3x text-white",
                             IsDeleted = false,
@@ -854,7 +854,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             CountryOfOrigin = "Agro Farm",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1902),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(359),
                             Description = "Yeşil üzümler de siyah üzümler gibi antioksidan içerir ve özellikle C ve K vitaminleri açısından çok zengindir. İçerdiği yüksek C ve K vitaminleri sayesinde bağışıklık sistemini güçlendirerek cilt sağlığını destekleyebilir, ayrıca K vitamini sayesinde kalp ve damar sağlığına olumlu katkıda bulunabilir. Yeşil üzümün faydaları arasında tıpkı siyah üzüm gibi damar sağlığı ve dolaşıma desteği vardır. Bunun yanı sıra siyah üzümün tersine kandaki HDL (yüksek yoğunluklu lipoprotein) ya da iyi kolesterolü arttırdığı gözlenmiştir. Kandaki yağ miktarını dengeleyen yeşil üzümün aynı zamanda karın bölgesinde oluşan ve özellikle organ yağlanmasına işaret eden göbek yağlarını da erittiği tespit edilmiştir. Siyah üzümlere kıyasla yeşil üzümlerde antosiyanin oranı daha düşük olsa da yeşil üzümler stilbenler açısından oldukça zengindir. Stilbenler, bitkinin stres yanıtına karşılık olarak ürettiği moleküler bileşenlerdir ve insan sağlığı için kritik öneme sahiplerdir. Bunlardan en önemlisi olan resveratrolün hastalıkların gelişmesini ya da ilerlemesini önlediği keşfedilmiştir. Dolayısıyla yeşil üzümün faydaları dendiğinde en önemli noktalardan biri kabuğundaki resveratrol miktardır. Bu sayede tıpkı koyu renkli üzümler gibi yeşil üzümler de vücudu enfeksiyona karşı koruyarak daha dirençli bir hale getirir. Hücresel boyutta bakıldığında üzümün içinde bulunan bileşenler hücrelerin işlevlerini desteklerken yapısal bozukluklarını önler. Bu nedenle hücre yapısının bozulmasından kaynaklanan kanser için de önleyici ve koruyucu bir etkiye sahiptir.",
                             ImagePath = "/WebT/img/fruite-item-5.jpg",
                             IsDeleted = false,
@@ -872,7 +872,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             CountryOfOrigin = "Agro Farm",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1909),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(367),
                             Description = "Gülgiller ailesinden olan frambuaz, ülkemizde ahududu olarak bilinir (İng.raspberry). Doğada yaklaşık 200 kadar çeşidi olduğu bilinmektedir. Kırmızı/pembe renklerdeki bu meyve tam bir antioksidant deposudur.Diğer tüm minik taneli meyvelerde olduğu gibi C vitamini yönünden zengindir, antioksidant (kansere karşı koruyucu) aktivitesi yüksektir.rambuaz/ahududu ile ilgili yapılan çoğu araştırma antioksidant etkisi ve kalp damar sağlığı üzerindeki faydalarıyla ilgilidir. Bu araştırma sonuçlarına göre östrojen kaynaklı meme tümörlerinin oluşumunu engelleyici, mide ve kalın barsak (kolon) kanseri risklerini azaltıcı etkileri ortaya çıkarılmıştır. Ayrıca kan sulandırıcı/pıhtı çözücü etkisi sayesinde ateroskleroz (damar tıkanıklığı) oluşumunu azaltarak kalp damar hastalığı risklerini azaltmaktadır. Bazı araştırmalar karaciğer lezyonları üzerinde iyileştirici etkisinin olduğunu da göstermektedir. Kan sulandırıcı (antikoagülant) etkisi nedeni ile bazı ilaçların (özellikle pıhtı çözücü) aktivitelerini bozabileceği için hastaların bu meyveyi tüketirken mutlaka doktorlarına danışmaları gerekmektedir. Aynı zamanda antienflamatuar (iltihap önleyici) etkisi sayesinde iltihabi rahatsızlıkların tedavisinde bağışıklık sistemini destekleyici etkisi de vardır.",
                             ImagePath = "/WebT/img/fruite-item-2.jpg",
                             IsDeleted = false,
@@ -890,7 +890,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 3,
                             CountryOfOrigin = "Agro Farm",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1913),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(370),
                             Description = "Lif açısından zengindir: Kuru kayısı, sindirim sistemi sağlığı için önemli olan lif açısından zengindir. Lif, kabızlığı önleyebilir ve bağırsak hareketlerini düzenleyebilir.\r\n\r\nVitamin ve mineral kaynağıdır: Kuru kayısı, C vitamini, A vitamini, potasyum ve demir gibi vitamin ve mineraller açısından zengindir. Bu vitamin ve mineraller, vücut fonksiyonlarının düzgün çalışmasını sağlayabilir ve bağışıklık sisteminin güçlenmesine yardımcı olabilir.\r\n\r\nDüşük kalorili bir atıştırmalık: Kuru kayısı, düşük kalorili bir atıştırmalık seçeneğidir. Oruçlu zamanlarda tokluk hissini artırmaya yardımcı olabilir.\r\n\r\nAncak, hurma ve kuru kayısı gibi kuruyemişler yüksek şeker içeriği nedeniyle aşırı tüketilmemelidir. Oruçlu zamanlarda ölçülü tüketmeye dikkat edin. Ayrıca, özellikle şeker hastalığı gibi bir sağlık sorununuz varsa, hurma ve kuru kayısı tüketimini doktorunuzla konuşmanız önerilir.",
                             ImagePath = "/WebT/img/fruite-item-4.jpg",
                             IsDeleted = false,
@@ -908,7 +908,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 4,
                             CountryOfOrigin = "Agro Farm",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1918),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(372),
                             Description = "Muz, dünyada en çok yetiştirilen tropik meyvelerden biridir. Bazen şeker ihtiyacımızı giderme, bazen tok tutması için yediğimiz muz, en sevilen ve en çok tüketilen meyvelerden olup; yüksek besin ögesi içeriğiyle dikkat çeker. Kolay sindirilebilen karbonhidrat içeriği ve yumuşak dokusu sayesinde tüm yaş grupları arasında yaygın olarak tercih edilir. Çocukların da severek tükettiği bu tatlı besleyici meyvenin sağlığa pek çok faydası olduğu bilinir. Sindirim sisteminden kemik sağlığına, bağırsak hastalarından kansere, kalp sağlığından beyin sağlığına kadar muz tüketiminin faydaları saymakla bitmez. Her gün muz yemek için sebep çok.\r\n\r\n\r\nPotasyumun Gücü\r\n“Muzun faydaları nelerdir?” deyince akla hemen potasyum içeriği gelir. Muzda yüksek miktarda bulunan potasyum minerali sıvı dengesinin düzenlenmesine yardım eden önemli bir elektrolittir. Potasyum, kasların kasılması ve sinir hücrelerinin yanıt vermesine yardımcı olur. Kalp atışlarını düzenler ve sodyumun kan basıncı üzerindeki etkisini dengeleyerek normal kan basıncı ve kalp fonksiyonlarının sürdürülmesi için önemlidir. Yaş ilerledikçe kemik sağlığını korurken böbrek taşı oluşma riskini de düşürmeye destek olabilir. Ancak, böbrek hastalığı olan potasyum kısıtlaması gereken bireylerde muzun zengin potasyum içeriği kan potasyum seviyelerini arttırarak kalp ritmini olumsuz etkileyebilir. Bu sebeple bu bireylerin muz tüketmeden önce diyetisyene danışmalarında fayda var.",
                             ImagePath = "/WebT/img/fruite-item-3.jpg",
                             IsDeleted = false,
@@ -926,7 +926,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 5,
                             CountryOfOrigin = "Agro Farm",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1922),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(374),
                             Description = "Portakal faydaları ya da portakalın sağlık açısından katkıları dendiğinde akla gelen ilk şey, C vitaminidir. Narenciyeler genel olarak bağışıklık sistemini desteklemeye yardımcı olan, bol miktarda C vitamini içeren meyvelerdir. Ancak portakalın faydaları C vitamini ile sınırlı değildir. 3 Portakal; vitaminler, mineraller ve antioksidanlar gibi pek çok farklı besin maddelerinin yanı sıra koruyucu bitki bileşikleri açısından da zengin bir hazine olarak kabul edilir. Yapılan araştırmalar, düzenli olarak portakal tüketmenin sağlığa çeşitli şekillerde fayda sağlayabileceğini gösterir.1\r\n\r\nPortakal, flavonoidler, karotenoidler ve C vitamini gibi çeşitli biyoaktif bitki bileşikleri içerir. Hesperidin ve naringenin portakalda bulunan flavonoidler arasında yer alır. Hesperidin, portakalda yer alan ana antioksidanlardan biridir. Naringenin ise sağlık yararları ile bağlantılı olan başka bir narenciye flavonoididir. Örneğin naringenin açısından zengin portakal suyu içmek, vücuttaki antioksidan aktiviteyi güçlendirmeye yardımcı olabilir. Bu aynı zamanda taze sıkılmış portakal suyu faydaları arasında da gösterilebilir.1,4\r\n\r\nPortakala turuncu, kırmızı ve sarı rengini veren karotenoidler de bir tür antioksidandır. Yapılan bazı araştırmalar, portakal suyu faydaları arasında vücudun toplam antioksidan durumunun iyi bir göstergesi olan cilt karotenoid düzeylerini artırmaya yardımcı olduğunu gösterir.1, 5 Portakalın faydaları arasında yer alan karotenoidlerden biri olan beta kriptoksantin; hücreleri oksidatif hasara karşı korumaya yardımcı olur. Ayrıca vücut beta kriptoksantin'i A vitamininin aktif formuna dönüştürebilir. 6 Portakalda bulunan bir diğer karotenoid ise likopen adlı bileşiktir. Likopen, kırmızı renkli ve etli portakallarda yüksek miktarlarda bulunan güçlü bir antioksidandır. ",
                             ImagePath = "/WebT/img/fruite-item-1.jpg",
                             IsDeleted = false,
@@ -944,7 +944,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 6,
                             CountryOfOrigin = "Agro Farm",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1928),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(380),
                             Description = "Elmanın glisemik indeksi, protein ve yağ içeriği düşüktür. Elma, lifli bir yapısı olması nedeni ile bağırsak tembelliğine iyi gelen, bununla beraber kolesterol ve karbonhidratların emilimini düzenlemeye yardımcı çözünür bir lif olan pektin içeriği en yüksek meyvelerden biridir.\r\n\r\nElmada C, A, K, B6 ve E vitaminleri bulunur. C vitamini besinler yoluyla sağlanmalıdır. Yorgunluğu azaltmaya yardımcı olur, sinir sisteminin düzgün çalışması ve bağışıklık savunması için gereklidir, demir emilimini artırır. İçerisinde bulunan polifenoller sayesinde antioksidan özelliklere sahiptir.\r\n\r\nElma, potasyum, fosfor, kalsiyum, çinko, demir gibi mineraller içermektedir. Potasyum, normal kan basıncını ve kas fonksiyonunu korumaya yardımcı olan bir mineraldir.\r\n\r\nElmadaki vitaminden en iyi şekilde yararlanmak için elma çiğ olarak, kabuklu veya kabuğu soyulduktan hemen sonra tüketilmeli çünkü C vitamini havadaki ısı ve oksijenin etkisine karşı hassastır. Elma, enerji metabolizmasına katkıda bulunur ve hücreleri oksidatif strese karşı korur.  ",
                             ImagePath = "/WebT/img/featur-1.jpg",
                             IsDeleted = false,
@@ -962,7 +962,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 7,
                             CountryOfOrigin = "Agro Farm",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1932),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(382),
                             Description = "Patates tüm tartışmalara rağmen faydalıdır. Patates faydaları düşünüldüğünde akla hemen potasyum kaynağı olması ve potasyumun kalp hastalıklarına pozitif etkisi gelir. Ancak patatesin faydaları bununla sınırlı değildir. Detaylı açıklarsak patatesin faydaları şöyle sıralanabilir:\r\n\r\nTansiyonu Dengeler: Böbrek, kalp ve beyin sağlığını riske atan yüksek tansiyon, düşük potasyum ile ilişkilendirilir. Çünkü düşük potasyum nedeniyle vücuttaki sodyum tutulur. Bu da tansiyonun yükselmesine neden olur. Patates zengin bir potasyum kaynağı olarak sodyumun dengelenmesine yardımcı olurken felç ve kalp krizi riskini de azaltmaya destektir. Patates ayrıca lifli yapısı sayesinde kolesterolü damarlardan dışarı itmekle ilişkilendirilir ve böylece kalp sağlığına katkı sağlar.\r\n\r\nAntioksidan Deposu: Serbest radikallere karşı mücadele veren antioksidanlar, bu sayede hücrelerdeki oksidatif stresin yarattığı hasarı da azaltmaya ve önlemeye yardımcı olur. Flavonoidler, karotenoidler ve fenolik asitler patatesteki antioksidanlar olarak karşımıza çıkar. Antioksidanların diyabet hastaları için de faydalı bilinir. Antioksidan zengini tatlı patatesi de anti-inflamatuar etki gösterir. Bu özellik artrit ve gut hastalığı olan kişilerin patatesi tercih etmesi için bir nedendir.\r\n\r\nBağışıklığı Güçlendirir: Güçlü bir bağışıklık grip gibi hastalıklarla ve alerjiyle savaşmak için elzemdir. Güçlü bağışıklık ise vitamin ve minerallerden zengin beslenme ile mümkündür. Patatesteki C vitamini, B6 vitamini ve potasyum güçlü bağışıklığa katkı sağlar.",
                             ImagePath = "/WebT/img/vegetable-item-5.jpg",
                             IsDeleted = false,
@@ -980,7 +980,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 8,
                             CountryOfOrigin = "Agro Farm",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1936),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(385),
                             Description = "Maydanoz, petroselinum crispumdur adı verilen ve yaygın olarak yetiştirilen yeşil yapraklı, çiçekli bir bitkidir. Kokusu ve tadında yoğun bir aroma bulunan maydanoz ülkemizde yaygın olarak Akdeniz Bölgesi'nde yetişir. Çok faydalı bir bitki olan maydanoz salatalara ve yemeklerin üzerine süs olarak eklenmesiyle birlikte tomatolerin içerisinde de tüketilebilir.\r\n\r\nForm olarak birçok farklı şekilde kullanılabilen maydanoz, sağlık açısından sağladığı faydalarla öne çıkar. Maydanoz temel olarak antibakteriyel etkisiyle öne çıkar. Bu sayede vücudu ve özellikle karaciğeri zararlı maddelerden korur. Kalp sağlığını destekleyen, antikanser etkisi bulunan, kemikleri güçlendiren ve kanın pıhtılaşmasını sağlayan maydanoz aynı zamanda çiğ tüketildiğinde ağız kokusunun da önüne geçebilir.",
                             ImagePath = "/WebT/img/vegetable-item-6.jpg",
                             IsDeleted = false,
@@ -998,7 +998,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 9,
                             CountryOfOrigin = "Agro Farm",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1941),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(387),
                             Description = "Domatesin ana vatanı Güney ve Orta Amerika kabul ediliyor. Domates, ülkemizde Ege, Akdeniz ve Marmara bölgelerinde yoğun şekilde yetiştiriliyor. Domates, hemen her tarifte kullanıldığı için Türk mutfağının temelini oluşturan sebzelerdendir.\r\n\r\nVücut için bilinen en etkili antioksidan olan likopen en fazla domateste bulunmaktadır. Domates ayrıca C, A ve K vitamininde önemli bir kaynağıdır. Yapılan çalışmalar yüksek likopen alımının kardiovasküler sağlığa olan olumlu etkilerini göstermektedir.\r\n\r\n1 kupa (yaklaşık olarak 180 gram) domates tüketildiğinde günlük C vitamini ihtiyacının % 57,3’ü, A vitamini ihtiyacının %22,4’ünü, K vitamini ihtiyacının % 17,8’ini ve lif ihtiyacının % 7,9’ü karşılanmış olacaktır. Bunun yanında domates; potasyum, niasin, B6 vitamini ve folatında iyi bir kaynağıdır. Günlük potasyum ihtiyacının %11,4’ü, niasin ihtiyacının %5,6’sını, B6 vitamini ihtiyacının % 7,0’si ve folat ihtiyacının %6,8’i karşılanmaktadır.",
                             ImagePath = "/WebT/img/vegetable-item-1.jpg",
                             IsDeleted = false,
@@ -1016,7 +1016,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 10,
                             CountryOfOrigin = "Agro Farm",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1949),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(390),
                             Description = "Brokoli, lahana grubu sebzeler çatısı altında yer alan bir sebzedir. Son yıllarda besleyici değerinin anlaşılması ile tüketimi artan bir besindir. İçerdiği bazı fitokimyasal ve biyoaktif bileşikler sayesinde insan sağlığında yararlı olarak kabul edilir. Vücudu toksik bileşiklerden uzaklaştırması, hücre hasarını önlemek, hastalıklara karşı koruyucu etkinliği ile bağışıklık sistemini güçlendirmeye yardımcıdır.\r\n\r\nGlukosinolat adı verilen kükürt ve şeker bileşiklerinin parçalanması sonucu oluşan sülforafan çeşitli hastalıklara karşı koruyucudur. Son yıllarda özellikle antioksidan ve antikanserojen olması sebebiyle kanser riskinin azaltılmasında etkinlik gösterdiği bilinir. Çeşitli araştırmalara konu olan brokoli, kalp ve damar hastalıkları, meme ve prostat kanseri gibi kronik hastalıkların önlenmesinde rol oynar. Brokolinin yaklaşık %30 kısmını oluşturan çiçekleri yemeklerde çoğunlukla kullanılan kısımdır. Daha az kullanılan yaprak ve sapları önemli oranda fitokimyasal kaynağıdır.",
                             ImagePath = "/WebT/img/featur-3.jpg",
                             IsDeleted = false,
@@ -1034,7 +1034,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 11,
                             CountryOfOrigin = "Agro Farm",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1953),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(393),
                             Description = "Kırmızı biber, C vitamini açısından zengindir. 2 Sağlıklı bir bağışıklık sistemini desteklemedeki rolüyle bilinen ve suda çözünen bir vitamin olan C vitamini, vücudun her yerindeki dokuların büyümesi ve onarımı için gereklidir. 5 C vitamini vücudun doğal savunmasını güçlendirebilen güçlü bir antioksidandır. Antioksidanlar ise bağışıklık sistemini güçlendiren moleküller olarak açıklanabilir. Bunu hücreleri serbest radikaller adı verilen zararlı moleküllerden koruyarak yapar. Serbest radikaller vücutta biriktiğinde, birçok kronik hastalıkla bağlantılı olan oksidatif stres olarak bilinen durumu teşvik edebilir.7, 8, 9 Ek olarak kırmızı biber faydaları arasında beyaz kan hücrelerinin daha etkili çalışmasına yardımcı olmak onları serbest radikaller gibi potansiyel zararlı moleküllerden korumak da gösterilebilir. 7\r\n\r\nC vitamini eksikliği, bağışıklığın bozulmasına ve enfeksiyonlara karşı daha yüksek duyarlılığa neden olur. Enfeksiyonlar, artan inflamasyon ve metabolik gereksinimler nedeniyle C vitamini düzeyleri etkilenir. Ayrıca, C vitamini, solunum yolu ve sistemik enfeksiyonları hem önleyebildiği hem de tedaviye yardımcı olabileceği bilinir. C vitamini hem doğuştan hem de kazanılmış bağışıklık sisteminin çeşitli hücresel fonksiyonlarını destekleyerek bağışıklık savunmasına katkıda bulunur.6 C vitamini, hücre hasarıyla savaşan, bağışıklık sisteminin mikroplara karşı tepkisini artıran ve antiinflamatuar etkiye sahip güçlü bir antioksidandır. 2 Farklı bir anlatımla C vitamini, vücudun enfeksiyona karşı korunmasına yardımcı olan, lenfositler ve fagositler olarak bilinen beyaz kan hücrelerinin üretimini teşvik etmeye yardımcı olur.7, 10 Enfeksiyon bölgesine savunma mekanizmasının önemli bir parçası olan nötrofillerin yönlendirilmesinde rol oynar. Oksidan oluşumunu ve mikrobiyal öldürmeyi artırır. Bu nedenle, kişiye enfeksiyonların zarar verilmesini önlerken, bağışıklık sisteminin patojenlere karşı yeterli bir yanıt oluşturması için C vitamininin gerekli olduğu söylenebilir. 6\r\n\r\nTüm bunlara ek olarak kırmızı biberde bulunan A vitamini de vücudu hastalıklardan ve enfeksiyonlardan koruyan bağışıklık tepkisinin uyarılmasını sağlar. B ve T hücreleri de dahil olmak üzere bazı hücrelerin oluşumunda da rol oynayan A vitamini, oksidatif stresi kontrol altında tutarak, bağışıklık sistemini güçlendirebilir ve bazı hastalıklara karşı koruma sağlayarak sağlığı olumlu yönde etkiler.",
                             ImagePath = "/WebT/img/vegetable-item-4.jpg",
                             IsDeleted = false,
@@ -1052,7 +1052,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 12,
                             CountryOfOrigin = "Agro Farm",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1980),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(400),
                             Description = "Vitamin ve mineralce zengin bir meyve olan çilek içeriğinde çok sayıda fitokimyasal madde bulundurur. Fitokimyasallar sebze, meyve, tahıl ve baklagillerin sağlığını koruyan ve sağlık için faydalı olan kimyasal maddelerdir. İçerisinde fitokimyasal bulunan besinleri tüketmek insan yaşamını olumsuz etkileyen kanser, kalp damar hastalıkları ve diyabet oluşmasını önlerken var olan hastalıkların tedavisinde destekleyici bir etki gösterir. Ayrıca çilek iyi bir antioksidan kaynağıdır. Antioksidanlar vücut tarafından doğal olarak üretilebilen ve besinlerle dışarıdan alınan ve vücutta hücre hasarını önleyen maddelerdir.\r\n\r\nEşsiz lezzeti ve lif, manganez, C vitamini, potasyum, folik asit gibi önemli vitamin ve mineral madde içeriği ile; taze, işlenmiş ya da dondurulmuş olarak tüketilebilen çileğin insan sağlığı açısından birden çok yararı bulunmaktadır. ",
                             ImagePath = "/WebT/img/featur-2.jpg",
                             IsDeleted = false,
@@ -1104,7 +1104,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(418),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8585),
                             IsDeleted = false,
                             Name = "Admin",
                             Status = true
@@ -1112,7 +1112,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(505),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8686),
                             IsDeleted = false,
                             Name = "User",
                             Status = true
@@ -1120,7 +1120,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(522),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8703),
                             IsDeleted = false,
                             Name = "Customer",
                             Status = true
@@ -1222,7 +1222,7 @@ namespace ShopECommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1848),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(303),
                             Description = "Organic Veggies & Fruits Foods",
                             ImagePath1 = "/WebT/img/hero-img-1.png",
                             ImagePath2 = "/WebT/img/hero-img-2.jpg",
@@ -1284,7 +1284,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Cls = "btn btn-outline-secondary me-2 btn-md-square rounded-circle",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1814),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(269),
                             Icon = "fab fa-facebook-f",
                             IsDeleted = false,
                             Status = true,
@@ -1295,7 +1295,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             Cls = "btn btn-outline-secondary me-2 btn-md-square rounded-circle",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1817),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(272),
                             Icon = "fab fa-youtube",
                             IsDeleted = false,
                             Status = true,
@@ -1306,7 +1306,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 3,
                             Cls = "btn btn-outline-secondary me-2 btn-md-square rounded-circle",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1819),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(274),
                             Icon = "fab fa-linkedin-in",
                             IsDeleted = false,
                             Status = true,
@@ -1317,7 +1317,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 4,
                             Cls = "btn btn-outline-secondary btn-md-square rounded-circle",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1820),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(275),
                             Icon = "fab fa-twitter",
                             IsDeleted = false,
                             Status = true,
@@ -1368,7 +1368,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(567),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8753),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Grapes"
@@ -1377,7 +1377,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(601),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8755),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Raspberries"
@@ -1386,7 +1386,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 3,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(603),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8757),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Apricots"
@@ -1395,7 +1395,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 4,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(604),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8758),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Banana"
@@ -1404,7 +1404,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 5,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(606),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8759),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Oranges"
@@ -1413,7 +1413,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 6,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(608),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8762),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Apple"
@@ -1422,7 +1422,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 7,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(609),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8764),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Patatoes"
@@ -1431,7 +1431,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 8,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(610),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8793),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Persely"
@@ -1440,7 +1440,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 9,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(612),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8794),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Tomato"
@@ -1449,7 +1449,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 10,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(614),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8796),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Brocoli"
@@ -1458,7 +1458,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 11,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(615),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8798),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Bell Papper"
@@ -1467,7 +1467,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 12,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(617),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 931, DateTimeKind.Local).AddTicks(8800),
                             IsDeleted = false,
                             Status = true,
                             SubCategoryName = "Strawberry"
@@ -1522,7 +1522,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Comment = "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1786),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(242),
                             ImagePath = "/WebT/img/testimonial-1.jpg",
                             IsDeleted = false,
                             Name = "Şebnem Ferah",
@@ -1533,7 +1533,7 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 2,
                             Comment = "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1791),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(246),
                             ImagePath = "/WebT/img/testimonial-1.jpg",
                             IsDeleted = false,
                             Name = "Teoman Yakupoğlu",
@@ -1629,18 +1629,18 @@ namespace ShopECommerce.Data.Migrations
                         {
                             Id = 1,
                             Address = "Ankara",
-                            CreatedDate = new DateTime(2024, 5, 13, 18, 45, 43, 46, DateTimeKind.Local).AddTicks(1737),
+                            CreatedDate = new DateTime(2024, 5, 14, 0, 24, 57, 932, DateTimeKind.Local).AddTicks(180),
                             Description = "x",
                             Email = "admin@test.com",
                             EmailConfirmed = false,
                             FirstName = "Şebnem",
                             IsDeleted = false,
                             LastName = "Ferah",
-                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezOWTREkXTPEHXw8BcUk3E4Y38mlpBHxDVYTP3DHG393xifWbMgZnPR5pkYfSIN8NCcNL_XdYXcQElrBfb3ZHs9Rw-2hVZ4J6FeVWXYJsTrayQ",
+                            Password = "CfDJ8Lhzc99II2tHnoigxoZuezNCZZU20PZ0zplaqliBYLhaZYoznsF_D95DGRq9FM6bxAZS4GYzdKU4ZonJ9PVVjFC-4pWx98swoop9EB_8uovHFhWhDdZSw7demu_TUwbdog",
                             Phone = "0850",
                             RoleId = 1,
                             Status = true,
-                            UserGuid = new Guid("2e3b9467-2702-446b-8d13-f485292a123f"),
+                            UserGuid = new Guid("603fbd51-dfa0-4f92-a0a0-057a2184e915"),
                             Username = "Admin"
                         });
                 });

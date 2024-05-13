@@ -7,6 +7,7 @@
 
 <div class="login-box" style="top:33%; margin-top:80px; width:28%">
     <h2 style="font-family:'Lucida Fax'">Giriş Formu</h2>
+
     <form method="post" asp-controller="Auth" asp-action="Login">
         <div class="user-box">
             <input asp-for="Email" type="email" required>
@@ -17,9 +18,17 @@
             <label class="required" asp-for="Password"></label>
         </div>
 
-        <div class="text-danger" asp-validation-summary="ModelOnly" value="">
+        <div class="text-danger">
+            <ul>
+                @foreach (var key in ViewData.ModelState.Keys)
+                {
+                    foreach (var error in ViewData.ModelState[key].Errors)
+                    {
+                        <li>@error.ErrorMessage</li>
+                    }
+                }
+            </ul>
         </div>
-
 
         <div class="row">
 

@@ -1,23 +1,86 @@
-﻿@model ChangeMailDto
+﻿@model ConfirmChangeMailViewModel
+
+@{
+    ViewData["Title"] = "Mail Adresi Değiştirme!";
+    Layout = "_AuthLayout";
+}
 
 <div class="login-box text-white" style="top:33%; margin-top:80px; width:32%">
-    <h1>Mail Adresini Değiştir</h1>
-
-    @if (!string.IsNullOrEmpty(ViewData["Message"] as string))
+    <h2 style="font-family:'Lucida Fax'">Mail Adresi Değiştirme</h2>
+    <p>Lütfen Değiştirmek İstediğiniz Mail Adresini giriniz</p>
+    <br />
+    @if (!string.IsNullOrEmpty(ViewBag.Message))
     {
         <div class="alert alert-success" role="alert">
-            @ViewData["Message"]
+            @ViewBag.Message
         </div>
     }
 
-    @if (!string.IsNullOrEmpty(ViewData["Error"] as string))
+    @if (!ViewData.ModelState.IsValid)
     {
         <div class="alert alert-danger" role="alert">
-            @ViewData["Error"]
+            Lütfen hataları düzeltin ve tekrar deneyin.
         </div>
     }
 
-    <p>Lütfen mail adresini doğrulamak için aşağıdaki adımları takip edin.</p>
+    <br />
 
-    <a href="@Model.ChangeMailLink">Mail adresini değiştirmek için tıklayın</a>
+    <form method="post">
+
+        <div class="user-box">
+            <placeholder class="required" for="NewEmail">Yeni Mail Adresiniz</placeholder>
+            <input type="email" id="NewEmail" name="NewEmail" required>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <a style="font-family:'Lucida Fax'" class="float-end" asp-action="Register" asp-controller="Auth"><center>Kayıt Ol</center></a>
+            </div>
+            <div class="col-4">
+                <button style="font-family:'Lucida Fax'" type="submit" class="float-end"><center>Mail Adresini Değiştir</center></button>
+            </div>
+            <div class="col-4">
+                <a style="font-family:'Lucida Fax'" class="float-end" asp-action="Index" asp-controller="Default"><center>Ana Sayfa</center></a>
+            </div>
+        </div>
+    </form>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Html.ValidationSummary()
+        </div>
+    }
 </div>
+
+@section Scripts {
+    <script>
+        // https://codeseven.github.io/toastr/demo.html
+
+        $(document).ready(function () {
+
+            toastr.options = {
+                'closeButton': false,
+                'debug': false,
+                'newestOnTop': true,
+                'progressBar': false,
+                'positionClass': 'toast-top-center',
+                'preventDuplicates': false,
+                'showDuration': '1000',
+                'hideDuration': '1000',
+                'timeOut': '5000',
+                'extendedTimeOut': '1000',
+                'showEasing': 'swing',
+                'hideEasing': 'linear',
+                'showMethod': 'fadeIn',
+                'hideMethod': 'fadeOut',
+            }
+
+        @if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage?.ToString()))
+        {
+            @:toastr.options.closeHtml = '<button class="closebtn"><i class="bi bi-x"></i></button>';
+            @:toastr.error("@ViewBag.ErrorMessage?.ToString()", "Bildirim:");
+        }
+                });
+    </script>
+}

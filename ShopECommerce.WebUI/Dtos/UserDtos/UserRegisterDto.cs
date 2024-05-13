@@ -1,4 +1,4 @@
-﻿using ShopECommerce.Entities.Concrete;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ShopECommerce.WebUI.Dtos.UserDtos
 {

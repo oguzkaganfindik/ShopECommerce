@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.Entities.Concrete;
 using ShopECommerce.WebUI.Dtos.UserDtos;
@@ -23,9 +21,9 @@ namespace ShopECommerce.WebUI.Controllers
 
         public AuthController(IUserService userService, IEmailService emailService, IDataProtectionProvider dataProtectionProvider, IRoleService roleService)
         {
+            _dataProtector = dataProtectionProvider.CreateProtector("security");
             _userService = userService;
             _emailService = emailService;
-            _dataProtector = dataProtectionProvider.CreateProtector("password");
             _roleService = roleService;
         }
 
@@ -40,6 +38,12 @@ namespace ShopECommerce.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (userRegisterDto.Password != userRegisterDto.ConfirmPassword)
+                {
+                    ModelState.AddModelError("ConfirmPassword", "Şifreler eşleşmiyor.");
+                    return View();
+                }
+
                 byte[] randomNumber = new byte[32];
                 using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
                 {
@@ -47,7 +51,7 @@ namespace ShopECommerce.WebUI.Controllers
                 }
                 int code = new Random(BitConverter.ToInt32(randomNumber, 0)).Next(100000, 1000000);
 
-                var rol =  _roleService.TGet(r => r.Name == "Customer");
+                var rol = _roleService.TGet(r => r.Name == "Customer");
                 if (rol == null)
                 {
                     ModelState.AddModelError("", "Kayıt Başarısız!");
@@ -74,6 +78,8 @@ namespace ShopECommerce.WebUI.Controllers
 
                 return RedirectToAction("ConfirmMail", "Auth");
             }
+
+            ModelState.AddModelError("Register", "Kayıt Başarısız Oldu. Lütfen Gerekli Alanları Kontrol Edip Yeniden Deneyiniz.");
             return View();
         }
 
@@ -88,17 +94,23 @@ namespace ShopECommerce.WebUI.Controllers
         [HttpPost]
         public IActionResult ConfirmMail(ConfirmMailViewModel confirmMailViewModel)
         {
-            var user = _userService.TGetByEmail(confirmMailViewModel.Mail);
-            if (user != null && user.ConfirmCode == confirmMailViewModel.ConfirmCode)
+            if (ModelState.IsValid)
             {
-                user.Description = "Kullanıcı Mail Onayı Yaptı";
-                user.EmailConfirmed = true;
-                _userService.TUpdate(user);
+                var user = _userService.TGetByEmail(confirmMailViewModel.Mail);
+                if (user != null && user.ConfirmCode == confirmMailViewModel.ConfirmCode)
+                {
+                    user.Description = "Kullanıcı Mail Onayı Yaptı";
+                    user.EmailConfirmed = true;
+                    _userService.TUpdate(user);
 
-                return RedirectToAction("Login", "Auth");
+                    return RedirectToAction("Login", "Auth");
+                }
+
+                ModelState.AddModelError("ConfirmCode", "Email Kodunu Yanlış Girdiniz. Email Kodu Olmadan Kayıt İşleminiz Tamamlanamaz. Lütfen Yeniden Deneyin ya da Site Yöneticisi İle İletişime Geçiniz.");
             }
 
-            return RedirectToAction("AccessDenied");
+
+            return View();
         }
 
         [HttpGet]
@@ -110,10 +122,26 @@ namespace ShopECommerce.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
         {
-            // Kullanıcıyı e-posta adresine göre bulalım
             var user = _userService.TGetByEmail(userLoginDto.Email);
 
-            // Eğer kullanıcı varsa ve şifre doğruysa
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Kullanıcı Adı ya da Şifre Hatalı.");
+                return View();
+            }
+
+            if (!user.EmailConfirmed)
+            {
+                ModelState.AddModelError("EmailConfirmed", "Mail Adresiniz Henüz Doğrulanmamış. Bu şekilde Giriş Yapamazsınız.");
+                return View();
+            }
+
+            if (!user.Status)
+            {
+                ModelState.AddModelError("Status", "Kullanıcı Kaydınız Pasif Durumdadır. Lütfen Site Yöneticisi İle İletişime Geçiniz.");
+                return View();
+            }
+
             if (user != null && _dataProtector.Unprotect(user.Password) == userLoginDto.Password)
             {
                 var rol = _roleService.TGet(r => r.Id == user.RoleId);
@@ -125,7 +153,6 @@ namespace ShopECommerce.WebUI.Controllers
                     };
                 if (rol is not null)
                 {
-                    //claims.Add(new Claim("Role", rol.Adi));
                     claims.Add(new Claim(ClaimTypes.Role, rol.Name));
                 }
                 var userIdentity = new ClaimsIdentity(claims, "Login");
@@ -150,12 +177,6 @@ namespace ShopECommerce.WebUI.Controllers
             {
                 ModelState.AddModelError("", "Kullanıcı adı veya şifre hatalı.");
             }
-                return View();
-        }
-
-        // E-posta onayı gerektiren bir sayfaya yönlendirme aksiyonu
-        public IActionResult EmailConfirmationRequired()
-        {
             return View();
         }
 
@@ -164,7 +185,6 @@ namespace ShopECommerce.WebUI.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Default");
         }
-
 
 
         [HttpGet]
@@ -201,7 +221,7 @@ namespace ShopECommerce.WebUI.Controllers
 
             TempData["Message"] = "Şifrenizi sıfırlamak için e-posta hesabınızı kontrol edin.";
 
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Default");
         }
 
         [HttpGet]
@@ -240,86 +260,78 @@ namespace ShopECommerce.WebUI.Controllers
 
         }
 
-
-
-
-
-
-
         [HttpGet]
-        [Authorize] // Yetkilendirme
         public IActionResult ChangeMail()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize] // Yetkilendirme
-        public async Task<IActionResult> ChangeMail(ChangeMailDto model)
+        public async Task<IActionResult> ChangeMail(string email)
         {
-            if (ModelState.IsValid)
+            var user = _userService.TGetByEmail(email);
+            if (user == null)
             {
-                var user = await _userService.TGetByEmailAndPassword(model.Email, _dataProtector.Protect(model.Password));
-                if (user == null)
-                {
-                    ModelState.AddModelError("Password", "Mail adresi veya şifre hatalı.");
-                    return View(model);
-                }
-
-                byte[] randomNumber = new byte[32];
-                using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
-                {
-                    rng.GetBytes(randomNumber);
-                }
-                int code = new Random(BitConverter.ToInt32(randomNumber, 0)).Next(100000, 1000000);
-
-                string changeMailLink = Url.Action(nameof(ConfirmChangeMail), "Auth", new { email = model.Email, newEmail = model.NewEmail, code = code }, Request.Scheme);
-                await _emailService.SendChangeMailConfirmationEmail(model.NewEmail, changeMailLink);
-
-                user.ChangeMailCode = code;
-                user.NewEmail = model.NewEmail;
-                await _userService.TUpdateAsync(user);
-
-                TempData["Message"] = "Yeni mail adresinize doğrulama maili gönderildi.";
-
-                model.ChangeMailLink = changeMailLink;
-                ViewBag.Email = model.Email;
-
-                return View(model);
+                ModelState.AddModelError("Email", "Kullanıcı bulunamadı.");
+                return View();
             }
-            ModelState.Clear();
-            return View();
+
+            // E-posta doğrulama kodu oluşturma
+            byte[] randomNumber = new byte[32];
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomNumber);
+            }
+            int code = new Random(BitConverter.ToInt32(randomNumber, 0)).Next(100000, 1000000);
+
+            // E-posta değiştirme bağlantısı oluşturma ve mail gönderme
+            string changeMailLink = Url.Action("ConfirmChangeMail", "Auth", new { email = email, code = code }, Request.Scheme);
+            await _emailService.SendChangeMailConfirmationEmail(user.Email, changeMailLink);
+
+            // E-posta değiştirme kodunu ve yeni e-posta adresini kullanıcı nesnesine kaydetme
+            user.ChangeMailCode = code;
+            //user.NewEmail = email;
+            _userService.TUpdate(user);
+
+            TempData["Message"] = "Mail sıfırlamak için e-posta hesabınızı kontrol edin.";
+
+            return RedirectToAction("Index", "Default");
         }
 
 
-
-
         [HttpGet]
-        public async Task<IActionResult> ConfirmChangeMail(string email, string newEmail, int code)
+        public IActionResult ConfirmChangeMail(string email, int code)
         {
-            var user = await _userService.TGetByEmailAndCode(email, code);
-            if (user != null && user.NewEmail == newEmail && user.ChangeMailCode == code)
+            return View(new ConfirmChangeMailViewModel { Email = email, Code = code });
+        }
+
+        [HttpPost]
+        public IActionResult ConfirmChangeMail(ConfirmChangeMailViewModel model)
+        {
+            if (!ModelState.IsValid)
             {
-                user.Email = newEmail;
-                user.NewEmail = null;
-                user.ChangeMailCode = null;
-                await _userService.TUpdateAsync(user);
-
-                await HttpContext.SignOutAsync();
-
-                TempData["Message"] = "Mail adresiniz başarıyla değiştirildi.";
-
-                var changeMailLink = Url.Action(nameof(Login), "Auth", null, Request.Scheme);
-                var model = new ChangeMailDto
-                {
-                    ChangeMailLink = changeMailLink
-                };
-
                 return View(model);
             }
 
-            TempData["Error"] = "Geçersiz doğrulama isteği.";
-            return RedirectToAction(nameof(DefaultController.Index), "Home");
+            // Kullanıcıyı e-posta adresine göre bulalım
+            var user = _userService.TGetByEmail(model.Email);
+            // Kullanıcıyı kontrol et
+            if (user != null && user.ChangeMailCode == model.Code)
+            {
+                // Mail adresini güncelle
+                user.Email = model.NewEmail;
+                user.ChangeMailCode = null; // Mail değiştirme kodunu temizle
+                user.NewEmail = null; // Yeni e-posta adresini temizle
+                _userService.TUpdate(user);
+
+                TempData["Message"] = "E-posta adresiniz başarıyla güncellendi.";
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Geçersiz e-posta değiştirme talebi.");
+                return View(model);
+            }
         }
     }
 }
