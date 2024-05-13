@@ -6,8 +6,22 @@ namespace ShopECommerce.WebUI.Services.Concrete
 {
     public class EmailService : IEmailService
     {
+        private readonly IConfiguration _configuration;
+
+        public EmailService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public async Task SendConfirmationEmail(string emailAddress, int code)
         {
+            var emailSettings = _configuration.GetSection("EmailSettings");
+            var smtpServer = emailSettings["SmtpServer"];
+            var port = int.Parse(emailSettings["Port"]);
+            var username = emailSettings["Username"];
+            var password = emailSettings["Password"];
+            var fromAddress = emailSettings["FromAddress"];
+
             var mimeMessage = new MimeMessage();
             mimeMessage.From.Add(new MailboxAddress("ShopECommerce Admin", "shopecommerceapp@gmail.com"));
             mimeMessage.To.Add(new MailboxAddress("User", emailAddress));
@@ -20,8 +34,8 @@ namespace ShopECommerce.WebUI.Services.Concrete
 
             using (var client = new SmtpClient())
             {
-                await client.ConnectAsync("smtp.gmail.com", 587, false);
-                await client.AuthenticateAsync("shopecommerceapp@gmail.com", "xham outs ozqj tgjp");
+                await client.ConnectAsync(smtpServer, port, false);
+                await client.AuthenticateAsync(username, password);
                 await client.SendAsync(mimeMessage);
                 await client.DisconnectAsync(true);
             }
@@ -29,6 +43,13 @@ namespace ShopECommerce.WebUI.Services.Concrete
 
         public async Task SendPasswordResetEmail(string email, string resetLink)
         {
+            var emailSettings = _configuration.GetSection("EmailSettings");
+            var smtpServer = emailSettings["SmtpServer"];
+            var port = int.Parse(emailSettings["Port"]);
+            var username = emailSettings["Username"];
+            var password = emailSettings["Password"];
+            var fromAddress = emailSettings["FromAddress"];
+
             var mimeMessage = new MimeMessage();
             mimeMessage.From.Add(new MailboxAddress("ShopECommerce Admin", "shopecommerceapp@gmail.com"));
             mimeMessage.To.Add(new MailboxAddress("User", email));
@@ -41,29 +62,37 @@ namespace ShopECommerce.WebUI.Services.Concrete
 
             using (var client = new SmtpClient())
             {
-                await client.ConnectAsync("smtp.gmail.com", 587, false);
-                await client.AuthenticateAsync("shopecommerceapp@gmail.com", "xham outs ozqj tgjp");
+                await client.ConnectAsync(smtpServer, port, false);
+                await client.AuthenticateAsync(username, password);
                 await client.SendAsync(mimeMessage);
                 await client.DisconnectAsync(true);
             }
         }
 
+
         public async Task SendChangeMailConfirmationEmail(string newEmail, string changeMailLink)
         {
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("ShopECommerce Admin", "shopecommerceapp@gmail.com"));
-            message.To.Add(new MailboxAddress("User", newEmail));
-            message.Subject = "ShopECommerce Mail Adresi Değiştirme Onayı";
-            message.Body = new TextPart("plain")
+            var emailSettings = _configuration.GetSection("EmailSettings");
+            var smtpServer = emailSettings["SmtpServer"];
+            var port = int.Parse(emailSettings["Port"]);
+            var username = emailSettings["Username"];
+            var password = emailSettings["Password"];
+            var fromAddress = emailSettings["FromAddress"];
+
+            var mimeMessage = new MimeMessage();
+            mimeMessage.From.Add(new MailboxAddress("ShopECommerce Admin", "shopecommerceapp@gmail.com"));
+            mimeMessage.To.Add(new MailboxAddress("User", newEmail));
+            mimeMessage.Subject = "ShopECommerce Mail Adresi Değiştirme Onayı";
+            mimeMessage.Body = new TextPart("plain")
             {
                 Text = $"Mail adresinizi değiştirmek için lütfen aşağıdaki linke tıklayın: {changeMailLink}"
             };
 
             using (var client = new SmtpClient())
             {
-                await client.ConnectAsync("smtp.gmail.com", 587, false);
-                await client.AuthenticateAsync("shopecommerceapp@gmail.com", "xham outs ozqj tgjp");
-                await client.SendAsync(message);
+                await client.ConnectAsync(smtpServer, port, false);
+                await client.AuthenticateAsync(username, password);
+                await client.SendAsync(mimeMessage);
                 await client.DisconnectAsync(true);
             }
         }

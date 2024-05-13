@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="App_Data\Keys\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ShopECommerce.Business\ShopECommerce.Business.csproj" />
   </ItemGroup>
 

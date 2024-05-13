@@ -37,25 +37,6 @@ namespace ShopECommerce.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
-        public IActionResult CreateUser(CreateUserDto createUserDto)
-        {
-            createUserDto.Description = "User Kayıt Oldu";
-            _userService.TAdd(new User()
-            {
-                Email = createUserDto.Email,
-                FirstName = createUserDto.FirstName,
-                LastName = createUserDto.LastName,
-                Username = createUserDto.Username,
-                Password = _dataProtector.Protect(createUserDto.Password),
-                Address = createUserDto.Address,
-                Phone = createUserDto.Phone,
-                RoleId = createUserDto.RoleId,
-                Description = createUserDto.Description
-            });
-
-            return Ok("User Yapıldı");
-        }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)

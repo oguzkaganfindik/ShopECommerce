@@ -7,6 +7,12 @@ using ShopECommerce.WebUI.Services.Concrete;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var configuration = builder.Configuration;
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("appsettings.EmailSettings.json", optional: true, reloadOnChange: true);
+
 builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

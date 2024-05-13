@@ -1,10 +1,13 @@
-﻿@model ChangeMailDto
+﻿@model string
 
 @{
+    ViewData["Title"] = "Mail Adresi Değiştirme!";
     Layout = "_AuthLayout";
 }
+
 <div class="login-box text-white" style="top:33%; margin-top:80px; width:32%">
-    <h1>Mail Adresini Değiştir</h1>
+    <h2 style="font-family:'Lucida Fax'">Mail Adresi Değiştirme</h2>
+    <p>Lütfen Değiştirmek İstediğiniz Mail Adresini giriniz</p>
 
     @if (!string.IsNullOrEmpty(ViewBag.Message))
     {
@@ -13,27 +16,61 @@
         </div>
     }
 
-    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    @if (ViewData.ModelState.ErrorCount > 0)
     {
         <div class="alert alert-danger" role="alert">
-            @ViewBag.Error
+            Lütfen hataları düzeltin ve tekrar deneyin.
         </div>
     }
 
     <form method="post">
-        <div class="form-group text-white">
-            <label for="email">Mevcut E-posta Adresi</label>
-            <input type="email" class="form-control" id="email" name="Email" value="@ViewBag.Email" required>
+        <div class="user-box">
+            <placeholder class="required">E-Mail Adresiniz</placeholder>
+            <input type="email" id="email" name="email" required>
         </div>
-        <div class="form-group text-white" ">
-            <label for="password">Şifreniz</label>
-            <input type="password" class="form-control" id="password" name="Password" required>
-        </div>
-        <div class="form-group text-white" ">
-            <label for="newEmail">Yeni E-posta Adresi</label>
-            <input type="email" class="form-control" id="newEmail" name="NewEmail" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Mail Adresimi Değiştir</button>
-    </form>
 
+        <div class="row">
+            <div class="col-4">
+                <a style="font-family:'Lucida Fax'" type="submit" class="float-end" asp-action="Register" asp-controller="Auth"><center>Kayıt Ol</center></a>
+            </div>
+            <div class="col-4">
+                <button style="font-family:'Lucida Fax'" class="float-end" asp-action="ChangeMail" asp-controller="Auth"><center>EMail Sıfırla</center></button>
+            </div>
+            <div class="col-4">
+                <a style="font-family:'Lucida Fax'" class="float-end" asp-action="Index" asp-controller="Default"><center>Ana Sayfa</center></a>
+            </div>
+        </div>
+    </form>
 </div>
+
+@section Scripts {
+    <script>
+        // https://codeseven.github.io/toastr/demo.html
+
+        $(document).ready(function () {
+
+            toastr.options = {
+                'closeButton': false,
+                'debug': false,
+                'newestOnTop': true,
+                'progressBar': false,
+                'positionClass': 'toast-top-center',
+                'preventDuplicates': false,
+                'showDuration': '1000',
+                'hideDuration': '1000',
+                'timeOut': '5000',
+                'extendedTimeOut': '1000',
+                'showEasing': 'swing',
+                'hideEasing': 'linear',
+                'showMethod': 'fadeIn',
+                'hideMethod': 'fadeOut',
+            }
+
+        @if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage?.ToString()))
+        {
+            @:toastr.options.closeHtml = '<button class="closebtn"><i class="bi bi-x"></i></button>';
+            @:toastr.error("@ViewBag.ErrorMessage?.ToString()", "Bildirim:");
+        }
+                    });
+    </script>
+}

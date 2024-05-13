@@ -32,16 +32,28 @@
             <div class="user-box me-4">
                 <input asp-for="Password" type="password" required>
                 <label class="required" asp-for="Password"></label>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
             </div>
 
             <div class="user-box ">
                 <input asp-for="ConfirmPassword" type="password" required>
                 <label class="required" asp-for="ConfirmPassword"></label>
-            </div>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 
+            </div>
         </div>
 
-        <div class="text-danger" asp-validation-summary="ModelOnly" value="">
+        <div class="text-danger">
+            <ul>
+                @foreach (var key in ViewData.ModelState.Keys)
+                {
+                    foreach (var error in ViewData.ModelState[key].Errors)
+                    {
+                        <li>@error.ErrorMessage</li>
+                    }
+                }
+            </ul>
         </div>
 
         <div class="row">
