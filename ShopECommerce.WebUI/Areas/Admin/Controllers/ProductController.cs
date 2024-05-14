@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using ShopECommerce.WebUI.Dtos.ProductDtos;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize(Policy = "AdminPolicy")]
     public class ProductController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ShopECommerce.WebUI.Dtos.OrderDetailDtos;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Controllers
 {
+    [Authorize(Policy = "CustomerPolicy")]
     public class OrderDetailController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

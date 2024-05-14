@@ -331,6 +331,69 @@ namespace ShopECommerce.Data.Context
                     CreatedDate = DateTime.Now
                 }
             });
+
+            modelBuilder.Entity<ShopTable>().HasData(new List<ShopTable>()
+            {
+                new ShopTable()
+                {
+                    Id = 1,
+                    Name = "Musteri",
+                    OrderId = 1,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                }
+            });
+
+            modelBuilder.Entity<Basket>().HasData(new List<Basket>()
+            {
+                new Basket()
+                {
+                    Id = 1,
+                    Price = 5,
+                    Count = 1,
+                    TotalPrice = 5,
+                    ProductId = 1,
+                    ShopTableId = 1,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                }
+            });
+
+
+            modelBuilder.Entity<Order>().HasData(new List<Order>()
+            {
+                new Order()
+                {
+                    Id = 1,
+                    Description = "Siparis",
+                    ShopTableId = 1,
+                    OrderDate = DateTime.Now,
+                    TotalPrice = 200,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                }
+            });
+
+            modelBuilder.Entity<OrderDetail>().HasData(new List<OrderDetail>()
+            {
+                new OrderDetail()
+                {
+                    Id = 1,
+                    ProductId = 1,
+                    Count = 1,
+                    UnitPrice = 50,
+                    TotalPrice = 200,
+                    OrderId = 1,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                }
+            });
+
+            
             modelBuilder.Entity<Product>().HasData(new List<Product>()
             {
                 new Product()

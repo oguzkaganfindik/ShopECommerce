@@ -23,6 +23,11 @@ namespace ShopECommerce.Data.Context
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
 
+            modelBuilder.Entity<ShopTable>()
+                .HasOne(st => st.Order)
+                .WithOne(o => o.ShopTable)
+                .HasForeignKey<Order>(o => o.ShopTableId);
+
             modelBuilder.SeedData(_dataProtector);
 
             base.OnModelCreating(modelBuilder);
