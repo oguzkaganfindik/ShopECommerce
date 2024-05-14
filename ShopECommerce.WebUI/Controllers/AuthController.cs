@@ -165,7 +165,7 @@ namespace ShopECommerce.WebUI.Controllers
                 }
                 else if (rol.Name == "User")
                 {
-                    return RedirectToAction("Index", "MyProfile");
+                    return RedirectToAction("Index", "Default");
                 }
                 else if (rol.Name == "Customer")
                 {
