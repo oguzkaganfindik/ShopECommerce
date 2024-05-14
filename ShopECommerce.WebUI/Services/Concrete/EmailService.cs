@@ -96,5 +96,31 @@ namespace ShopECommerce.WebUI.Services.Concrete
                 await client.DisconnectAsync(true);
             }
         }
+
+        public async Task SendEmail(string receiverEmail, string subject, string body)
+        {
+            var emailSettings = _configuration.GetSection("EmailSettings");
+            var smtpServer = emailSettings["SmtpServer"];
+            var port = int.Parse(emailSettings["Port"]);
+            var username = emailSettings["Username"];
+            var password = emailSettings["Password"];
+
+            var mimeMessage = new MimeMessage();
+            mimeMessage.From.Add(new MailboxAddress("ShopECommerce", "shopecommerceapp@gmail.com"));
+            mimeMessage.To.Add(new MailboxAddress("User", receiverEmail));
+            mimeMessage.Subject = subject;
+            mimeMessage.Body = new TextPart("plain")
+            {
+                Text = body
+            };
+
+            using (var client = new SmtpClient())
+            {
+                await client.ConnectAsync(smtpServer, port, false);
+                await client.AuthenticateAsync(username, password);
+                await client.SendAsync(mimeMessage);
+                await client.DisconnectAsync(true);
+            }
+        }
     }
 }

@@ -7,9 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admin\Models\**" />
     <Compile Remove="wwwroot\gentela-gh-pages\**" />
+    <Content Remove="Areas\Admin\Models\**" />
     <Content Remove="wwwroot\gentela-gh-pages\**" />
+    <EmbeddedResource Remove="Areas\Admin\Models\**" />
     <EmbeddedResource Remove="wwwroot\gentela-gh-pages\**" />
+    <None Remove="Areas\Admin\Models\**" />
     <None Remove="wwwroot\gentela-gh-pages\**" />
   </ItemGroup>
 
@@ -3298,7 +3302,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
 

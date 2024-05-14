@@ -34,11 +34,11 @@
                     $.each(value, (index, item) => {
                         if (item.status == true) {
                             color = "card card-stats card-success";
-                            status = "Masa Dolu";
+                            status = "ShopTable İşlemde";
                         }
                         else {
                             color = "card card-stats card-danger";
-                            status = "Masa Boş";
+                            status = "ShopTable Kapatıldı";
                         }
                         tablehtml += `<div class="col-md-3">
                                                         <div class="${color}">
@@ -66,7 +66,7 @@
             });
         </script>
 
-        <h4 class="page-title">Anlık Masa Durumları Sayfası</h4>       
+        <h4 class="page-title">Anlık ShopTable Durumları Sayfası</h4>       
             <div id="statuslist"></div>       
     </div>
 </div>
