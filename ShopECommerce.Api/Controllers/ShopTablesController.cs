@@ -38,7 +38,7 @@ namespace ShopECommerce.Api.Controllers
             };
 
             _shopTableService.TAdd(shopTable);
-            return Ok("Masa Başarılı Bir Şekilde Eklendi");
+            return Ok("Başarılı Bir Şekilde Eklendi");
         }
 
         [HttpDelete("{id}")]
@@ -46,7 +46,7 @@ namespace ShopECommerce.Api.Controllers
         {
             var value = _shopTableService.TGetById(id);
             _shopTableService.TDelete(value);
-            return Ok("Masa Silindi");
+            return Ok("Silindi");
         }
 
         [HttpPut]
@@ -60,7 +60,7 @@ namespace ShopECommerce.Api.Controllers
             };
 
             _shopTableService.TUpdate(shopTable);
-            return Ok("Masa Bilgisi Güncellendi");
+            return Ok("Güncellendi");
         }
 
         [HttpGet("{id}")]

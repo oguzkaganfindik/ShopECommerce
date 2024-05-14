@@ -155,6 +155,12 @@ namespace ShopECommerce.WebUI.Controllers
                 {
                     claims.Add(new Claim(ClaimTypes.Role, rol.Name));
                 }
+
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())); 
+                claims.Add(new Claim(ClaimTypes.GivenName, user.FirstName)); 
+                claims.Add(new Claim(ClaimTypes.Surname, user.LastName)); 
+
+
                 var userIdentity = new ClaimsIdentity(claims, "Login");
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
                 await HttpContext.SignInAsync(principal);

@@ -1,7 +1,7 @@
 ﻿<div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>ShopECommerce</span></a>
+            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Fruitables</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -13,7 +13,7 @@
             </div>
             <div class="profile_info">
                 <span>Hoş Geldiniz</span>
-                <h2>Müşteri X</h2>
+                <h2>@Context.User.Identity.Name</h2>
             </div>
         </div>
         <!-- /menu profile quick info -->
@@ -26,50 +26,38 @@
                 <h3>Menüler</h3>
                 <ul class="nav side-menu">
                     <li>
-                        <a href="/Default/Index/"><i class="fa fa-home"></i> Ana Sayfa </a>
-
+                        <a href="/Basket/Index/"> <i class="fa fa-clone"> </i> Sepete Git </a>
                     </li>
                     <li>
-                        <a href="/MyAccount/Index/"><i class="fa fa-edit"></i>Hesap Bilgileri</a>
-
+                        <a href="/Default/Index/"><i class="fa fa-home"></i> Siteye Git </a>
+                    </li>
+                    <li>
+                        <a href="/Shop/Index/"><i class="fa fa-home"></i> Mağazaya Git </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/Default/Messenger/"><i class="fa fa-clone"></i> Anlık Messenger </a>
+                    </li>
+                    <li>
+                        <a href="/Default/Contact/"><i class="fa fa-clone"></i> Bize Ulaşın </a>
+                    </li>
+                    <li>
+                        <a href="/MyAccount/Detail/"><i class="fa fa-edit"></i> Hesap Bilgileri </a>
+                    </li>
+                    <li>
+                        <a href="/MyAccount/Update/"><i class="fa fa-clone"></i> Bilgileri Düzenle </a>
                     </li>
                     <li>
                         <a href="/Auth/ForgotPassword/"><i class="fa fa-table"></i> Şifre Değiştir </a>
-
                     </li>
                     <li>
-                        <a href="/Auth/ChangeMail/><i class="fa fa-bar-chart-o"></i> E-Mail Değiştir  </a>
-
+                        <a href="/Auth/ChangeMail/"><i class="fa fa-clone"></i> E-Mail Değiştir </a>
                     </li>
                     <li>
-                        <a><i class="fa fa-clone"></i><i Bilgileri Düzenle  </a>
-
+                        <a href="/Shop/Order/"><i class="fa fa-clone"></i> Siparişler </a>
                     </li>
                     <li>
-                        <a href="/Basket/Index/><i class="fa fa-bar-chart-o"></i> Sepete Git </a>
-
-                    </li>
-                    <li>
-                        <a><i class="fa fa-clone"></i> Siparişler  </a>
-
-                    </li>
-                    <li>
-                        <a><i class="fa fa-clone"></i> Fatura Bilgileri </a>
-
-                    </li>
-                    <li>
-                        <a><i class="fa fa-clone"></i> Ödeme Bilgileri </a>
-
-                    </li>
-
-                    <li>
-                        <a href="/Default/Contact"></i> class="fa fa-clone"></> İletişim </a>
-
-                    </li>
-
-                    <li>
-                        <a href="/Default/Messenger"></i> class="fa fa-clone"></> İletişim </a>
-
+                        <a href="/Shop/OrderDetail/"><i class="fa fa-clone"></i> Fatura Bilgileri </a>
                     </li>
                 </ul>
             </div>
