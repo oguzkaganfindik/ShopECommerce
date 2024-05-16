@@ -75,13 +75,13 @@
                             <li class="nav-item">
                                 @if (Context.User.IsInRole("Admin"))
                                 {
-                                    <a href="/Admin/Dashboard/Index/" class="nav-link login-button">Control Panel</a>
+                                    <a href="/Admin/Statistic/Index/" class="nav-link login-button">Control Panel</a>
                                 }
                                 else if (Context.User.IsInRole("User"))
                                 {
                                     <a href="/MyAccount/Index/" class="nav-link login-button">MyAccount</a>
                                 }
-                                else
+                                else if (Context.User.IsInRole("Customer"))
                                 {
                                     <a href="/MyAccount/Index/" class="nav-link login-button">MyAccount</a>
                                 }

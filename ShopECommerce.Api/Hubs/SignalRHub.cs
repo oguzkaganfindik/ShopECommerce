@@ -75,12 +75,8 @@ namespace ShopECommerce.Api.Hubs
             var value14 = _moneyCaseService.TTotalMoneyCaseAmount();
             await Clients.All.SendAsync("ReceiveTotalMoneyCaseAmount", value14.ToString("0.00") + " TL");
 
-
-
             var value16 = _shopTableService.TShopTableCount();
             await Clients.All.SendAsync("ReceiveShopTableCount", value16);
-
-
         }
 
         public async Task SendProgress()
@@ -115,7 +111,6 @@ namespace ShopECommerce.Api.Hubs
             var value11 = _productService.TTotalPriceByStrawberrySubCategory();
             await Clients.All.SendAsync("ReceiveTotalPriceByStrawberrySubCategory", value11);
         }
-
         public async Task GetUserList()
         {
             var values = _userService.TGetListAll();
@@ -136,10 +131,10 @@ namespace ShopECommerce.Api.Hubs
             var notificationListByFalse = _notificationService.TGetAllNotificationsByFalse();
             await Clients.All.SendAsync("ReceiveNotificationListByFalse", notificationListByFalse);
 
-            var basketItemCount = await _basketService.TGetBasketItemCount(); // Sepet içindeki ürün sayısını al
-            if (basketItemCount > 0) // Eğer sepet boş değilse
+            var basketItemCount = await _basketService.TGetBasketItemCount();
+            if (basketItemCount > 0) 
             {
-                await Clients.All.SendAsync("ReceiveBasketItemCount", basketItemCount); // Tüm istemcilere ürün sayısını gönder
+                await Clients.All.SendAsync("ReceiveBasketItemCount", basketItemCount);
             }
         }
 

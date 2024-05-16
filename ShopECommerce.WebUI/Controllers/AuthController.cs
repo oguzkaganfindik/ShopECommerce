@@ -167,7 +167,7 @@ namespace ShopECommerce.WebUI.Controllers
 
                 if (rol.Name == "Admin")
                 {
-                    return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+                    return RedirectToAction("Index", "Statistic", new { area = "Admin" });
                 }
                 else if (rol.Name == "User")
                 {
@@ -217,11 +217,9 @@ namespace ShopECommerce.WebUI.Controllers
             }
             int code = new Random(BitConverter.ToInt32(randomNumber, 0)).Next(100000, 1000000);
 
-            // Şifre sıfırlama bağlantısı oluşturma ve mail gönderme
             string resetLink = Url.Action("ResetPassword", "Auth", new { email = user.Email, code = code }, Request.Scheme);
             await _emailService.SendPasswordResetEmail(user.Email, resetLink);
 
-            // Şifre sıfırlama kodunu ve kullanıcının e-posta adresini güncelleme
             user.ResetCode = code;
             _userService.TUpdate(user);
 
@@ -244,15 +242,15 @@ namespace ShopECommerce.WebUI.Controllers
                 return View(model);
             }
 
-            // Kullanıcıyı e-posta adresine göre bulalım
+            
             var user = _userService.TGetByEmail(model.Email);
 
-            // Kullanıcıyı kontrol et
+            
             if (user != null && user.ResetCode == model.Code)
             {
-                // Şifreyi güncelle
+                
                 user.Password = _dataProtector.Protect(model.Password);
-                user.ResetCode = null; // Şifre sıfırlama kodunu temizle
+                user.ResetCode = null; 
                 _userService.TUpdate(user);
 
                 TempData["Message"] = "Şifreniz başarıyla güncellendi.";
@@ -282,7 +280,6 @@ namespace ShopECommerce.WebUI.Controllers
                 return View();
             }
 
-            // E-posta doğrulama kodu oluşturma
             byte[] randomNumber = new byte[32];
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
             {
@@ -290,13 +287,11 @@ namespace ShopECommerce.WebUI.Controllers
             }
             int code = new Random(BitConverter.ToInt32(randomNumber, 0)).Next(100000, 1000000);
 
-            // E-posta değiştirme bağlantısı oluşturma ve mail gönderme
             string changeMailLink = Url.Action("ConfirmChangeMail", "Auth", new { email = email, code = code }, Request.Scheme);
             await _emailService.SendChangeMailConfirmationEmail(user.Email, changeMailLink);
 
-            // E-posta değiştirme kodunu ve yeni e-posta adresini kullanıcı nesnesine kaydetme
             user.ChangeMailCode = code;
-            //user.NewEmail = email;
+
             _userService.TUpdate(user);
 
             TempData["Message"] = "Mail sıfırlamak için e-posta hesabınızı kontrol edin.";
@@ -319,15 +314,13 @@ namespace ShopECommerce.WebUI.Controllers
                 return View(model);
             }
 
-            // Kullanıcıyı e-posta adresine göre bulalım
             var user = _userService.TGetByEmail(model.Email);
-            // Kullanıcıyı kontrol et
+
             if (user != null && user.ChangeMailCode == model.Code)
             {
-                // Mail adresini güncelle
                 user.Email = model.NewEmail;
-                user.ChangeMailCode = null; // Mail değiştirme kodunu temizle
-                user.NewEmail = null; // Yeni e-posta adresini temizle
+                user.ChangeMailCode = null; 
+                user.NewEmail = null; 
                 _userService.TUpdate(user);
 
                 TempData["Message"] = "E-posta adresiniz başarıyla güncellendi.";

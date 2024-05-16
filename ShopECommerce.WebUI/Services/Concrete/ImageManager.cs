@@ -1,5 +1,4 @@
-﻿using ShopECommerce.Entities.Concrete;
-using ShopECommerce.WebUI.Services.Abstract;
+﻿using ShopECommerce.WebUI.Services.Abstract;
 
 namespace ShopECommerce.WebUI.Services.Concrete
 {
@@ -14,13 +13,13 @@ namespace ShopECommerce.WebUI.Services.Concrete
             _imageProcessingService = imageProcessingService;
         }
 
-        public string Image(IFormFile formFile, string filePath, out string errorMessage, string Patch1, string Patch2)
+        public string Image(IFormFile formFile, string filePath, out string errorMessage, string Patch1, string Patch2, int width, int height)
         {
             var newFileName = "";
 
             errorMessage = "";
 
-            if (formFile != null && formFile.FileName != null) // dosya yüklenmek isteniyorsa
+            if (formFile != null && formFile.FileName != null) 
             {
                 var allowedFileTypes = new string[] { "image/jpeg", "image/jpg", "image/jfif", "image/avif" };
 
@@ -41,9 +40,8 @@ namespace ShopECommerce.WebUI.Services.Concrete
                     var wwwrootFolderPath = Path.Combine(_environment.WebRootPath, folderPath);
                     Directory.CreateDirectory(wwwrootFolderPath);
                     filePath = Path.Combine(wwwrootFolderPath, newFileName);
-
-                    // Resmi boyutlandırma
-                    _imageProcessingService.ResizeImage(formFile.OpenReadStream(), filePath, 500, 350);
+                 
+                    _imageProcessingService.ResizeImage(formFile.OpenReadStream(), filePath, width, height);
                 }
             }
 

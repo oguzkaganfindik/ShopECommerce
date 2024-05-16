@@ -15,7 +15,7 @@ namespace ShopECommerce.WebUI.Services.Concrete
             {
                 image.Mutate(x => x.Resize(width, height));
 
-                // Decide on the image format based on the file extension
+                
                 IImageEncoder encoder;
                 var extension = Path.GetExtension(destinationImagePath).ToLowerInvariant();
                 switch (extension)
@@ -28,12 +28,11 @@ namespace ShopECommerce.WebUI.Services.Concrete
                         encoder = new PngEncoder();
                         break;
                     default:
-                        // If the file extension is not recognized, default to JPEG
+                        
                         encoder = new JpegEncoder();
                         break;
                 }
-
-                // Save the image to the specified path with the specified encoder
+              
                 using (var outputStream = new FileStream(destinationImagePath, FileMode.Create))
                 {
                     image.Save(outputStream, encoder);

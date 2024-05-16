@@ -22,14 +22,14 @@ namespace ShopECommerce.Api.Controllers
             return Ok(_notificationService.TGetAll());
         }
 
-        [HttpGet("NotificationCountByStatusFalse/{id}")]
-        public ActionResult NotificationCountByStatusFalse()
+        [HttpGet("NotificationCountByStatusTrue/{id}")]
+        public ActionResult NotificationCountByStatusTrue()
         {
             return Ok(_notificationService.TNotificationCountByStatusFalse());
         }
 
-        [HttpGet("GetAllNotificationsByFalse/{id}")]
-        public ActionResult GetAllNotificationsByFalse()
+        [HttpGet("GetAllNotificationsByTrue/{id}")]
+        public ActionResult GetAllNotificationsByTrue()
         {
             return Ok(_notificationService.TGetAllNotificationsByFalse());
         }
@@ -41,9 +41,9 @@ namespace ShopECommerce.Api.Controllers
             {
                 Description = createNotificationDto.Description,
                 Icon = createNotificationDto.Icon,
-                Status = false,
+                Status = createNotificationDto.Status,
                 Type = createNotificationDto.Type,
-                Date = Convert.ToDateTime(DateTime.Now.ToShortDateString())
+                CreatedDate = createNotificationDto.CreatedDate
             };
 
             _notificationService.TAdd(notification);
@@ -54,8 +54,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteNotification(int id)
         {
-            var value = _notificationService.TGetById(id);
-            _notificationService.TDelete(value);
+            _notificationService.THardDelete(id);
             return Ok("Bildirim Silindi");
         }
 
@@ -76,7 +75,7 @@ namespace ShopECommerce.Api.Controllers
                 Icon = updateNotificationDto.Icon,
                 Status = updateNotificationDto.Status,
                 Type = updateNotificationDto.Type,
-                Date = updateNotificationDto.Date
+                ModifiedDate = updateNotificationDto.ModifiedDate
             };
 
             _notificationService.TUpdate(notification);

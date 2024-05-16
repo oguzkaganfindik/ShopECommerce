@@ -18,6 +18,8 @@ namespace ShopECommerce.Data.Concrete
         public void UserStatusApproved(int id)
         {
             var values = _context.Users.Find(id);
+            values.Status = true;
+            values.EmailConfirmed = true;
             values.Description = "User Onaylandı";
             _context.SaveChanges();
         }
@@ -25,6 +27,7 @@ namespace ShopECommerce.Data.Concrete
         public void UserStatusCancelled(int id)
         {
             var values = _context.Users.Find(id);
+            values.Status = false;
             values.Description = "User İptal Edildi";
             _context.SaveChanges();
         }

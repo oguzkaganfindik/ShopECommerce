@@ -63,7 +63,7 @@ namespace ShopECommerce.Api.Controllers
                 CategoryId = createSubCategoryDto.CategoryId,               
             });
 
-            return Ok("Kategori Eklendi");
+            return Ok("SubCategory Eklendi");
         }
 
         [HttpDelete("{id}")]
@@ -71,7 +71,7 @@ namespace ShopECommerce.Api.Controllers
         {
             var value = _subCategoryService.TGetById(id);
             _subCategoryService.TDelete(value);
-            return Ok("Kategori Silindi");
+            return Ok("SubCategory Silindi");
         }
 
         [HttpGet("{id}")]
@@ -91,7 +91,7 @@ namespace ShopECommerce.Api.Controllers
                 CategoryId = updateSubCategoryDto.CategoryId,
             });
 
-            return Ok("Kategori Güncellendi");
+            return Ok("SubCategory Güncellendi");
         }
 
         [HttpGet("ToggleStatus/{id}")]

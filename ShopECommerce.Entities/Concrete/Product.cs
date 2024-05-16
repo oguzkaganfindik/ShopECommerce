@@ -15,8 +15,6 @@ namespace ShopECommerce.Entities.Concrete
         public string? Quality { get; set; }
         public string? Сheck { get; set; }
         public decimal? MinWeight { get; set; }
-
-        // Relational Property
         public SubCategory SubCategory { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
         public List<Basket> Baskets { get; set; }

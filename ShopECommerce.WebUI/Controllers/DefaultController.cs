@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ShopECommerce.WebUI.Dtos.MessageDtos;
+using ShopECommerce.WebUI.Dtos.NotificationDtos;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Controllers
@@ -38,9 +39,30 @@ namespace ShopECommerce.WebUI.Controllers
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Message", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
+                await CreateNotification("Yeni Mesajınız Var");
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        private async Task<IActionResult> CreateNotification(string description)
+        {
+            CreateNotificationDto createNotificationDto = new CreateNotificationDto()
+            {
+                Description = description,
+                Status = false,
+                Icon = "la la-comment",
+                Type = "notif-icon notif-success",
+                CreatedDate = DateTime.Now
+            };
+
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(createNotificationDto);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            var responseMessage = await client.PostAsync("https://localhost:7046/api/Notification", stringContent);
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult PrivacyPolicy()

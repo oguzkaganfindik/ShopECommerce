@@ -34,7 +34,7 @@ namespace ShopECommerce.Api.Controllers
                 Name = createRoleDto.Name
             });
 
-            return Ok("Hakkımda Kısmı Başarılı Bir Şekilde Eklendi");
+            return Ok("Role Başarılı Bir Şekilde Eklendi");
         }
 
         [HttpDelete("{id}")]
@@ -42,7 +42,7 @@ namespace ShopECommerce.Api.Controllers
         {
             var value = _roleService.TGetById(id);
             _roleService.TDelete(value);
-            return Ok("Hakkımda Alanı Silindi");
+            return Ok("Role Silindi");
         }
 
         [HttpGet("{id}")]
@@ -61,7 +61,7 @@ namespace ShopECommerce.Api.Controllers
                 Name = updateRoleDto.Name
             });
 
-            return Ok("Hakkımda Alanı Güncellendi");
+            return Ok("Role Güncellendi");
         }
 
         [HttpGet("ToggleStatus/{id}")]

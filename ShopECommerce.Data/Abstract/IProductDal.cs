@@ -5,7 +5,6 @@ namespace ShopECommerce.Data.Abstract
 {
     public interface IProductDal : IGenericDal<Product>
     {
-        //List<Product> GetProductsWithSubCategories();
         List<ResultProductWithSubCategory> GetProductsWithSubCategories();
         int ProductCount();
         int ProductCountBySubCategoryNameApple();

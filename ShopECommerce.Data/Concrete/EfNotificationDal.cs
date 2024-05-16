@@ -13,9 +13,9 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public List<Notification> GetAllNotificationsByFalse()
+        public List<Notification> GetAllNotificationsByTrue()
         {
-            return _context.Notifications.Where(x => x.Status == false).ToList();
+            return _context.Notifications.Where(x => x.Status == true).ToList();
         }
 
         public void NotificationStatusChangeToFalse(int id)
@@ -32,9 +32,9 @@ namespace ShopECommerce.Data.Concrete
             _context.SaveChanges();
         }
 
-        public int NotificationCountByStatusFalse()
+        public int NotificationCountByStatusTrue()
         {
-            return _context.Notifications.Where(x => x.Status == false).Count();
-        }
+            return _context.Notifications.Where(x => x.Status == true).Count();
+        }     
     }
 }

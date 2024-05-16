@@ -15,12 +15,6 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        //public List<Product> GetProductsWithSubCategories()
-        //{
-        //    var values = _context.Products.Include(x => x.SubCategory).ToList();
-        //    return values;
-        //}
-
         public int ProductCount()
         {
             return _context.Products.Count();

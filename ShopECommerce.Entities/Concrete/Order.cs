@@ -11,7 +11,6 @@ namespace ShopECommerce.Entities.Concrete
 
         [Column(TypeName = "Date")]
         public DateTime OrderDate { get; set; }
-
         public decimal TotalPrice { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
     }

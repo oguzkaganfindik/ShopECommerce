@@ -20,8 +20,6 @@ builder.Services.AddCors(opt =>
     });
 });
 
-
-// Add services to the container.
 builder.Services.AddServicesRegistration();
 
 builder.Services.AddMappingRegistration();
@@ -36,22 +34,11 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext<ShopECommerceContext>(options => options.UseSqlServer(connectionString));
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var contentrootPath = builder.Environment.ContentRootPath;
-var keysDirectory = new DirectoryInfo(Path.Combine(contentrootPath, "App_Data", "Keys"));
-
-builder.Services.AddDataProtection()
-    .SetApplicationName("ShopECommerce")
-    .SetDefaultKeyLifetime(new TimeSpan(99999, 0, 0))
-    .PersistKeysToFileSystem(keysDirectory);
-
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

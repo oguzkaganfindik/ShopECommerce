@@ -182,15 +182,52 @@ namespace ShopECommerce.Data.Context
                 new User()
                 {
                     Id = 1,
-                    FirstName = "Şebnem",
-                    LastName = "Ferah",
+                    FirstName = "Sezen",
+                    LastName = "Aksu",
                     Email = "admin@test.com",
-                    Username = "Admin",
+                    Username = "SezenAksu",
                     Phone = "0850",
                     Address = "Ankara",
                     Password = dataProtector.Protect("123"),
-                    Description = "x",
+                    Description = "User Onaylandı.",
                     RoleId = 1,
+                    EmailConfirmed = true,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+
+                new User()
+                {
+                    Id = 2,
+                    FirstName = "Sertap",
+                    LastName = "Erener",
+                    Email = "user@test.com",
+                    Username = "SertapErener",
+                    Phone = "0850",
+                    Address = "Ankara",
+                    Password = dataProtector.Protect("123"),
+                    Description = "User Onaylandı.",
+                    RoleId = 2,
+                    EmailConfirmed = true,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+
+                new User()
+                {
+                    Id = 3,
+                    FirstName = "Levent",
+                    LastName = "Yüksel",
+                    Email = "customer@test.com",
+                    Username = "LeventYuksel",
+                    Phone = "0850",
+                    Address = "Ankara",
+                    Password = dataProtector.Protect("123"),
+                    Description = "User Onaylandı.",
+                    RoleId = 3,
+                    EmailConfirmed = true,
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
@@ -205,7 +242,7 @@ namespace ShopECommerce.Data.Context
                     Name = "Şebnem Ferah",
                     Title = "Şef Aşçı",
                     Comment = "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,",
-                    ImagePath = "/WebT/img/testimonial-1.jpg",
+                    ImagePath = "/WebT/img/client1.jpg",
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
@@ -217,7 +254,7 @@ namespace ShopECommerce.Data.Context
                     Name = "Teoman Yakupoğlu",
                     Title = "Şef Aşçı",
                     Comment = "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,",
-                    ImagePath = "/WebT/img/testimonial-1.jpg",
+                    ImagePath = "/WebT/img/client2.jpg",
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
@@ -746,6 +783,32 @@ namespace ShopECommerce.Data.Context
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
                 }
+            });
+
+            modelBuilder.Entity<Notification>().HasData(new List<Notification>()
+            {
+                new Notification()
+                {
+                    Id = 1,
+                    Type = "notif-icon notif-primary",
+                    Icon = "la la-user-plus",
+                    Description = "Yeni Siparişiniz Var",
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+
+                new Notification()
+                {
+                    Id = 2,
+                    Type = "notif-icon notif-success",
+                    Icon = "la la-comment",
+                    Description = "Yeni Mesajınız Var",
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+
             });
         }
     }

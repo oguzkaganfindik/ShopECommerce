@@ -52,19 +52,18 @@ namespace ShopECommerce.Data.Concrete
 
         public void UpdateQuantity(int basketId, int newQuantity)
         {
-            // Sepet öğesini belirli Id'ye göre bul
             var basketItem = _context.Baskets.FirstOrDefault(x => x.Id == basketId);
             if (basketItem != null)
             {
                 basketItem.Count = newQuantity;
                 _context.Update(basketItem);
-                _context.SaveChanges(); // Değişikliği kaydetmeyi unutmayın
+                _context.SaveChanges(); 
             }
         }
 
         public async Task<int> GetBasketItemCount()
         {
-            return await _context.Baskets.CountAsync(); // Veritabanında Baskets tablosundaki satır sayısını döndürür
+            return await _context.Baskets.CountAsync();
         }
     }
 }

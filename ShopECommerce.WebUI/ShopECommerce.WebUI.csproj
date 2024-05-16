@@ -3305,9 +3305,4 @@
     <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\MyAccount\vendors\devbridge-autocomplete\src\jquery.autocomplete.d.ts" />
-    <TypeScriptCompile Include="wwwroot\MyAccount\vendors\moment\moment.d.ts" />
-  </ItemGroup>
-
 </Project>
