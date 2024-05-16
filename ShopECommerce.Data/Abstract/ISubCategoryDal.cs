@@ -8,7 +8,6 @@ namespace ShopECommerce.Data.Abstract
         int SubCategoryCount();
         int ActiveSubCategoryCount();
         int PassiveSubCategoryCount();
-
         List<ResultSubCategoryWithCategory> GetSubCategoriesWithCategories();
     }
 }

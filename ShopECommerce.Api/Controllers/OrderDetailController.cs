@@ -38,7 +38,7 @@ namespace ShopECommerce.Api.Controllers
                 UnitPrice = createOrderDetailDto.UnitPrice
             });
 
-            return Ok("Hakkımda Kısmı Başarılı Bir Şekilde Eklendi");
+            return Ok("OrderDetail Başarılı Bir Şekilde Eklendi");
         }
 
         [HttpDelete("{id}")]
@@ -46,7 +46,7 @@ namespace ShopECommerce.Api.Controllers
         {
             var value = _orderDetailService.TGetById(id);
             _orderDetailService.TDelete(value);
-            return Ok("Hakkımda Alanı Silindi");
+            return Ok("OrderDetail Silindi");
         }
 
         [HttpGet("{id}")]
@@ -69,7 +69,7 @@ namespace ShopECommerce.Api.Controllers
                 UnitPrice = updateOrderDetailDto.UnitPrice
             });
 
-            return Ok("Hakkımda Alanı Güncellendi");
+            return Ok("OrderDetail Güncellendi");
         }
 
         [HttpGet("ToggleStatus/{id}")]

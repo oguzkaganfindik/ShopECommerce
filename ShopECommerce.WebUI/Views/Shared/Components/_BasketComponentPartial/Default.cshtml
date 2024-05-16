@@ -38,7 +38,7 @@
                         var groupedItems = Model.GroupBy(x => x.ProductId).ToList();
                         foreach (var group in groupedItems)
                         {
-                            var item = group.First(); // Grubun ilk öğesini alıyoruz
+                            var item = group.First(); 
                             count++;
                             <tr>
                                 <th scope="row">
@@ -86,7 +86,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            // Her bir ürün için toplam fiyat ve vergi hesaplaması yap
+                            
                             basketTotalPrice += (item.Price * group.Count());
                         }
                         tax = basketTotalPrice * taxRate;
@@ -155,7 +155,7 @@
                 url: "/Basket/UpdateBasketQuantity",
                 data: { productId: productId, newQuantity: newQuantity },
                 success: function () {
-                    // Sayfayı yenilemeden miktarı güncelle
+                    
                     $("#quantity_" + productId).val(newQuantity);
                     var totalPrice = parseFloat($("#totalPrice_" + productId).text());
                     var updatedTotalPrice = totalPrice / (newQuantity - 1) * newQuantity;

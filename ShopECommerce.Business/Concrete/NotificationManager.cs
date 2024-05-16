@@ -25,7 +25,7 @@ namespace ShopECommerce.Business.Concrete
 
         public List<Notification> TGetAllNotificationsByFalse()
         {
-            return _notificationDal.GetAllNotificationsByFalse();
+            return _notificationDal.GetAllNotificationsByTrue();
         }
 
         public Notification TGetById(int id)
@@ -50,7 +50,7 @@ namespace ShopECommerce.Business.Concrete
 
         public int TNotificationCountByStatusFalse()
         {
-            return _notificationDal.NotificationCountByStatusFalse();
+            return _notificationDal.NotificationCountByStatusTrue();
         }
 
         public void TUpdate(Notification entity)

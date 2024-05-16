@@ -98,7 +98,5 @@ namespace ShopECommerce.Api.Controllers
         {
             return Ok(_categoryService.TGetListByStatusTrue());
         }
-
-        
     }
 }

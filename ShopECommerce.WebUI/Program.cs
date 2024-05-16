@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using ShopECommerce.Business;
 using ShopECommerce.Data.Context;
@@ -76,9 +77,17 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("CustomerPolicy", policy => policy.RequireClaim(ClaimTypes.Role, "Admin", "User", "Customer"));
 });
 
+
 // Add services to the container.
 builder.Services.AddHttpClient();
 
+var contentrootPath = builder.Environment.ContentRootPath;
+var keysDirectory = new DirectoryInfo(Path.Combine(contentrootPath, "App_Data", "Keys"));
+
+builder.Services.AddDataProtection()
+    .SetApplicationName("ShopECommerce")
+    .SetDefaultKeyLifetime(new TimeSpan(99999, 0, 0))
+    .PersistKeysToFileSystem(keysDirectory);
 
 var app = builder.Build();
 
@@ -98,7 +107,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "areas",
-    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+    pattern: "{area:exists}/{controller=Statistic}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

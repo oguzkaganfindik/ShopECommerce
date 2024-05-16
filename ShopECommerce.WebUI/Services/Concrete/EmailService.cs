@@ -109,10 +109,10 @@ namespace ShopECommerce.WebUI.Services.Concrete
             mimeMessage.From.Add(new MailboxAddress("ShopECommerce", "shopecommerceapp@gmail.com"));
             mimeMessage.To.Add(new MailboxAddress("User", receiverEmail));
             mimeMessage.Subject = subject;
-            mimeMessage.Body = new TextPart("plain")
-            {
-                Text = body
-            };
+
+            var bodybuilder = new BodyBuilder();
+            bodybuilder.HtmlBody = body; 
+            mimeMessage.Body = bodybuilder.ToMessageBody();
 
             using (var client = new SmtpClient())
             {

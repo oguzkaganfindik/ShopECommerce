@@ -87,7 +87,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             string filePath = "";
             string errorMessage;
 
-            newFileName = _ImageManager.Image(createProductDto.File, filePath, out errorMessage, "images", "products");
+            newFileName = _ImageManager.Image(createProductDto.File, filePath, out errorMessage, "images", "products", 500, 375);
 
             if (!string.IsNullOrEmpty(newFileName))
             {
@@ -149,23 +149,20 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
         {
-            // Eski resim yolu için mevcut ürünü al
+
             var existingProduct = await GetProductById(updateProductDto.Id);
 
-            // Eğer resim dosyası gönderilmediyse veya güncellenmediyse
             if (updateProductDto.File == null || updateProductDto.File.Length == 0)
             {
-                // Mevcut resim yolunu kullan
                 updateProductDto.ImagePath = existingProduct.ImagePath;
             }
             else
             {
-                // Yeni bir resim yüklenmişse, bu yeni resmin yolu olacak
                 string newFileName = "";
                 string filePath = "/images/products/";
                 string errorMessage;
 
-                newFileName = _ImageManager.Image(updateProductDto.File, filePath, out errorMessage, "images", "products");
+                newFileName = _ImageManager.Image(updateProductDto.File, filePath, out errorMessage, "images", "products", 500, 375);
 
                 if (!string.IsNullOrEmpty(newFileName))
                 {
@@ -173,12 +170,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
                 }
                 else
                 {
-                    // Hata durumunda eski resim yolu kullanılacak
                     updateProductDto.ImagePath = existingProduct.ImagePath;
                 }
             }
 
-            // Diğer alanları güncelle
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateProductDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -190,7 +185,6 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             return View();
         }
 
-        // Ürünü Id'ye göre alacak yardımcı metot
         private async Task<UpdateProductDto> GetProductById(int id)
         {
             var client = _httpClientFactory.CreateClient();
@@ -201,7 +195,6 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
                 var product = JsonConvert.DeserializeObject<UpdateProductDto>(jsonData);
                 return product;
             }
-            // Eğer ürün bulunamazsa null döndür
             return null;
         }
 

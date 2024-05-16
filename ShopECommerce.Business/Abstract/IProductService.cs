@@ -5,7 +5,6 @@ namespace ShopECommerce.Business.Abstract
 {
     public interface IProductService : IGenericService<Product>
     {
-        //List<Product> TGetProductsWithCategories();
         List<ResultProductWithSubCategory> TGetProductsWithSubCategories();
         int TProductCount();
         int TProductCountBySubCategoryNameApple();

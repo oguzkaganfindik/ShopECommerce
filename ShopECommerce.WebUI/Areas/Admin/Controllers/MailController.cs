@@ -26,7 +26,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         {
             await _emailService.SendEmail(createMailDto.ReceiverMail, createMailDto.Subject, createMailDto.Body);
 
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("Index", "Statistic");
         }
     }
 }

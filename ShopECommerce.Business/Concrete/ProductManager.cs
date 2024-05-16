@@ -136,11 +136,6 @@ namespace ShopECommerce.Business.Concrete
             return _productDal.GetProductShowcaseDetailId(id);
         }
 
-        //public void THardDelete(Product entity)
-        //{
-        //    _productDal.HardDelete(entity);
-        //}
-
         public void THardDelete(int id)
         {
             _productDal.HardDelete(id);

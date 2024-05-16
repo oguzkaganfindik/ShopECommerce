@@ -20,12 +20,12 @@
 
     .message-wrapper {
         display: flex;
-        justify-content: space-between; /* Mesajları ve anlık kişi sayısını yatayda eşit aralıklı olarak hizala */
-        align-items: flex-start; /* Dikeyde üste hizala */
+        justify-content: space-between; 
+        align-items: flex-start; 
     }
 
     .client-count {
-        margin-top: 6px; /* Anlık kişi sayısını mesajlara dikeyde ortala */
+        margin-top: 6px;
     }
 </style>
 
@@ -119,13 +119,13 @@
 
         li.appendChild(spanUser);
         li.appendChild(spanMessage);
-        li.appendChild(document.createElement("br")); // Line break
-        li.appendChild(spanTimestamp); // Timestamp
+        li.appendChild(document.createElement("br")); 
+        li.appendChild(spanTimestamp); 
 
         var container = document.getElementById("messageContainer");
-        container.appendChild(li); // Yeni mesajları en alta ekle
+        container.appendChild(li); 
 
-        // Yeni mesaj geldiğinde en alta göstermek için scroll'u en aşağıya çek
+       
         container.scrollTop = container.scrollHeight;
     });
 
@@ -139,25 +139,25 @@
         document.getElementById("sendbutton").addEventListener("click", function (event) {
             var user = document.getElementById("userinput").value;
             var message = document.getElementById("messageinput").value;
-            var timestamp = new Date().toLocaleString(); // Mesajın gönderildiği zamanı al
+            var timestamp = new Date().toLocaleString(); 
             connection.invoke("SendMessage", user, message, timestamp).catch(function (err) {
                 return console.error(err.toString());
             });
-            // Mesaj gönderildikten sonra alanı temizle
+            
             document.getElementById("messageinput").value = "";
             event.preventDefault();
         });
 
         $("#connstatus").text(connection.state);
 
-        // Anlık saat güncelleme
+       
         setInterval(function () {
             var currentTime = new Date();
             var hours = currentTime.getHours();
             var minutes = currentTime.getMinutes();
             var seconds = currentTime.getSeconds();
 
-            // Tek haneli rakamlar için önüne 0 ekleme
+            
             if (hours < 10) {
                 hours = "0" + hours;
             }
@@ -170,9 +170,9 @@
 
             var formattedTime = hours + ":" + minutes + ":" + seconds;
             document.getElementById("currentTime").textContent = formattedTime;
-        }, 1000); // Her saniye güncelle
+        }, 1000); 
 
-        // Anlık client sayısı güncelleme
+        
         connection.on("ReceiveClientCount", function (clientCount) {
             $("#clientCountValue").text(clientCount);
         });
