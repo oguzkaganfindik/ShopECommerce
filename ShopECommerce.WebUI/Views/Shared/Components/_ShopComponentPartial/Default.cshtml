@@ -1,4 +1,4 @@
-﻿@model List<ResultProductWithCategory>
+﻿@model List<ResultProductWithSubCategory>
 
 <!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
@@ -42,8 +42,7 @@
                     <div class="row g-4">
                         <div class="col-lg-12">
                             <div class="row g-4">
-                                @await Component.InvokeAsync("_DefaultFruitesOurComponentPartial")
-                                @await Component.InvokeAsync("_DefaultVesitableOurComponentPartial")
+                                @await Component.InvokeAsync("_DefaultAllProductsComponentPartial")
                             </div>
                         </div>
                     </div>

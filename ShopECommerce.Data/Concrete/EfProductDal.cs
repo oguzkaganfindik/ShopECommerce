@@ -22,7 +22,7 @@ namespace ShopECommerce.Data.Concrete
 
         public int ProductCountBySubCategoryNameTomato()
         {
-            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "tomato").Select(z => z.Id).FirstOrDefault()).Count();
+            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "Tomato").Select(z => z.Id).FirstOrDefault()).Count();
         }
 
         public int ProductCountBySubCategoryNameApple()
@@ -89,11 +89,11 @@ namespace ShopECommerce.Data.Concrete
             return values;
         }
 
-        public List<ResultProductWithCategory> GetProductListByVegetable()
+        public List<ResultProductWithSubCategory> GetProductListByVegetable()
         {
             var values = _context.Products
                             .Where(x => x.SubCategory.Category.CategoryName == "Vesitables")
-                            .Select(y => new ResultProductWithCategory
+                            .Select(y => new ResultProductWithSubCategory
                             {
                                 Id = y.Id,
                                 ProductName = y.ProductName,
@@ -110,11 +110,11 @@ namespace ShopECommerce.Data.Concrete
             return values;
         }
 
-        public List<ResultProductWithCategory> GetProductListByFruites()
+        public List<ResultProductWithSubCategory> GetProductListByFruites()
         {
             var values = _context.Products
                             .Where(x => x.SubCategory.Category.CategoryName == "Fruites")
-                            .Select(y => new ResultProductWithCategory
+                            .Select(y => new ResultProductWithSubCategory
                             {
                                 Id = y.Id,
                                 ProductName = y.ProductName,

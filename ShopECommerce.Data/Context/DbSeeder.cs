@@ -11,7 +11,7 @@ namespace ShopECommerce.Data.Context
             modelBuilder.Entity<Role>().HasData(new Role
             {
                 Id = 1,
-                Name = "Admin",
+                Name = "SuperAdmin",
                 Status = true,
                 IsDeleted = false,
                 CreatedDate = DateTime.Now
@@ -20,7 +20,7 @@ namespace ShopECommerce.Data.Context
             modelBuilder.Entity<Role>().HasData(new Role
             {
                 Id = 2,
-                Name = "User",
+                Name = "Admin",
                 Status = true,
                 IsDeleted = false,
                 CreatedDate = DateTime.Now
@@ -29,6 +29,15 @@ namespace ShopECommerce.Data.Context
             modelBuilder.Entity<Role>().HasData(new Role
             {
                 Id = 3,
+                Name = "User",
+                Status = true,
+                IsDeleted = false,
+                CreatedDate = DateTime.Now
+            });
+
+            modelBuilder.Entity<Role>().HasData(new Role
+            {
+                Id = 4,
                 Name = "Customer",
                 Status = true,
                 IsDeleted = false,
@@ -182,14 +191,14 @@ namespace ShopECommerce.Data.Context
                 new User()
                 {
                     Id = 1,
-                    FirstName = "Sezen",
-                    LastName = "Aksu",
-                    Email = "admin@test.com",
-                    Username = "SezenAksu",
+                    FirstName = "Adile",
+                    LastName = "Naşit",
+                    Email = "superadmin@test.com",
+                    Username = "AdileNasit",
                     Phone = "0850",
                     Address = "Ankara",
                     Password = dataProtector.Protect("123"),
-                    Description = "User Onaylandı.",
+                    Description = "SuperAdmin Onaylandı.",
                     RoleId = 1,
                     EmailConfirmed = true,
                     Status = true,
@@ -200,14 +209,14 @@ namespace ShopECommerce.Data.Context
                 new User()
                 {
                     Id = 2,
-                    FirstName = "Sertap",
-                    LastName = "Erener",
-                    Email = "user@test.com",
-                    Username = "SertapErener",
+                    FirstName = "Kemal",
+                    LastName = "Sunal",
+                    Email = "admin@test.com",
+                    Username = "KemalSunal",
                     Phone = "0850",
                     Address = "Ankara",
                     Password = dataProtector.Protect("123"),
-                    Description = "User Onaylandı.",
+                    Description = "Admin Onaylandı.",
                     RoleId = 2,
                     EmailConfirmed = true,
                     Status = true,
@@ -218,15 +227,33 @@ namespace ShopECommerce.Data.Context
                 new User()
                 {
                     Id = 3,
-                    FirstName = "Levent",
-                    LastName = "Yüksel",
-                    Email = "customer@test.com",
-                    Username = "LeventYuksel",
+                    FirstName = "Şener",
+                    LastName = "Şen",
+                    Email = "user@test.com",
+                    Username = "SenerSen",
                     Phone = "0850",
                     Address = "Ankara",
                     Password = dataProtector.Protect("123"),
                     Description = "User Onaylandı.",
                     RoleId = 3,
+                    EmailConfirmed = true,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+
+                new User()
+                {
+                    Id = 4,
+                    FirstName = "Hulisi",
+                    LastName = "Kentmen",
+                    Email = "customer@test.com",
+                    Username = "HulusiKentmen",
+                    Phone = "0850",
+                    Address = "Ankara",
+                    Password = dataProtector.Protect("123"),
+                    Description = "Customer Onaylandı.",
+                    RoleId = 4,
                     EmailConfirmed = true,
                     Status = true,
                     IsDeleted = false,
@@ -239,8 +266,20 @@ namespace ShopECommerce.Data.Context
                 new Testimonial()
                 {
                     Id = 1,
-                    Name = "Şebnem Ferah",
+                    Name = "Zeki Alasya",
                     Title = "Şef Aşçı",
+                    Comment = "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,",
+                    ImagePath = "/WebT/img/client2.jpg",
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+
+                new Testimonial()
+                {
+                    Id = 2,
+                    Name = "Emel Sayın",
+                    Title = "Pastane Şefi",
                     Comment = "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,",
                     ImagePath = "/WebT/img/client1.jpg",
                     Status = true,
@@ -250,11 +289,11 @@ namespace ShopECommerce.Data.Context
 
                 new Testimonial()
                 {
-                    Id = 2,
-                    Name = "Teoman Yakupoğlu",
-                    Title = "Şef Aşçı",
+                    Id = 3,
+                    Name = "Perran Kutman",
+                    Title = "Meze Ustası",
                     Comment = "Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,",
-                    ImagePath = "/WebT/img/client2.jpg",
+                    ImagePath = "/WebT/img/testimonial-1.jpg",
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
@@ -374,8 +413,17 @@ namespace ShopECommerce.Data.Context
                 new ShopTable()
                 {
                     Id = 1,
-                    Name = "Musteri",
+                    Name = "customer@test.com",
                     OrderId = 1,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+                new ShopTable()
+                {
+                    Id = 2,
+                    Name = "user@test.com",
+                    OrderId = 2,
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
@@ -387,11 +435,47 @@ namespace ShopECommerce.Data.Context
                 new Basket()
                 {
                     Id = 1,
-                    Price = 5,
+                    Price = 4.95M,
                     Count = 1,
-                    TotalPrice = 5,
+                    TotalPrice = 4.95M,
                     ProductId = 1,
                     ShopTableId = 1,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+                new Basket()
+                {
+                    Id = 2,
+                    Price = 4.95M,
+                    Count = 1,
+                    TotalPrice = 4.95M,
+                    ProductId = 2,
+                    ShopTableId = 1,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+                new Basket()
+                {
+                    Id = 3,
+                    Price = 4.95M,
+                    Count = 1,
+                    TotalPrice = 4.95M,
+                    ProductId = 3,
+                    ShopTableId = 1,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+                new Basket()
+                {
+                    Id = 4,
+                    Price = 4.95M,
+                    Count = 1,
+                    TotalPrice = 4.95M,
+                    ProductId = 4,
+                    ShopTableId = 2,
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
@@ -404,10 +488,21 @@ namespace ShopECommerce.Data.Context
                 new Order()
                 {
                     Id = 1,
-                    Description = "Siparis",
+                    Description = "Sipariş",
                     ShopTableId = 1,
                     OrderDate = DateTime.Now,
-                    TotalPrice = 200,
+                    TotalPrice = 20,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+                new Order()
+                {
+                    Id = 2,
+                    Description = "Sipariş",
+                    ShopTableId = 2,
+                    OrderDate = DateTime.Now,
+                    TotalPrice = 5,
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
@@ -421,9 +516,45 @@ namespace ShopECommerce.Data.Context
                     Id = 1,
                     ProductId = 1,
                     Count = 1,
-                    UnitPrice = 50,
-                    TotalPrice = 200,
+                    UnitPrice = 5,
+                    TotalPrice = 5,
                     OrderId = 1,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+                new OrderDetail()
+                {
+                    Id = 2,
+                    ProductId = 2,
+                    Count = 1,
+                    UnitPrice = 5,
+                    TotalPrice = 5,
+                    OrderId = 1,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+                new OrderDetail()
+                {
+                    Id = 3,
+                    ProductId = 3,
+                    Count = 1,
+                    UnitPrice = 5,
+                    TotalPrice = 5,
+                    OrderId = 1,
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                },
+                new OrderDetail()
+                {
+                    Id = 4,
+                    ProductId = 4,
+                    Count = 1,
+                    UnitPrice = 5,
+                    TotalPrice = 5,
+                    OrderId = 2,
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
@@ -770,15 +901,15 @@ namespace ShopECommerce.Data.Context
                 new Contact()
                 {
                     Id = 1,
-                    Location = "1429 Netus Rd, NY 48247",
-                    Phone = "+0123 4567 8910",
-                    Mail = "Example@gmail.com",
+                    Location = "Siteler Mh. 14. Cadde Marmaris / Muğla",
+                    Phone = "+90 123 456 78 90",
+                    Mail = "oguzkaganfindikwork@gmail.com",
                     FooterTitle = "Why People Like us!",
                     FooterDescription = "typesetting, remaining essentially unchanged. It was popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.",
                     SiteName = "Fruitables",
                     SiteTitle = "Fresh products",
                     SiteUrl = "www.fruitables.com",
-                    GoogleMapsApi = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.33750346623!2d-73.97968099999999!3d40.6974881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1694259649153!5m2!1sen!2sbd",
+                    GoogleMapsApi = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3178.377713261835!2d28.254894376351184!3d36.8497697731265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c8c1a6d11a2d3d%3A0x3c8f04cf4de3624!2s14.%20Cd.%2C%20Siteler%2C%2048700%20Marmaris%2FMu%C4%9Fla!5e0!3m2!1str!2str!4v1694259649153!5m2!1str!2str",
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
@@ -793,7 +924,7 @@ namespace ShopECommerce.Data.Context
                     Type = "notif-icon notif-primary",
                     Icon = "la la-user-plus",
                     Description = "Yeni Siparişiniz Var",
-                    Status = true,
+                    Status = false,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
                 },
@@ -807,8 +938,25 @@ namespace ShopECommerce.Data.Context
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
-                },
+                }
+            });
 
+            modelBuilder.Entity<Message>().HasData(new List<Message>()
+            {
+                new Message()
+                {
+                    Id = 1,
+                    NameSurname = "Hulusi Kentmen",
+                    Mail = "customer@test.com",
+                    Phone = "+90 123 456 78 90",
+                    Subject = "Sipariş Süresi Hakkında",
+                    MessageContent = "Merhaba. Acil ürüne ihtiyacım var. Hemen sipariş versem, ne kadar sürede ulaşır?",
+                    MessageSendDate = DateTime.Now,
+                    Description = "Mesaj Alındı",
+                    Status = true,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now
+                }
             });
         }
     }

@@ -16,8 +16,8 @@ namespace ShopECommerce.Data.Abstract
         decimal ProductPriceByNativeOranges();
         decimal TotalPriceByTomatoSubCategory();
         decimal TotalPriceByStrawberrySubCategory();
-        List<ResultProductWithCategory> GetProductListByVegetable();
-        List<ResultProductWithCategory> GetProductListByFruites();
+        List<ResultProductWithSubCategory> GetProductListByVegetable();
+        List<ResultProductWithSubCategory> GetProductListByFruites();
         GetProductShowcaseDetailDto GetProductShowcaseDetailId(int id);
     }
 }

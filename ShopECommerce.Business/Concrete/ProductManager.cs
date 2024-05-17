@@ -121,12 +121,12 @@ namespace ShopECommerce.Business.Concrete
             return _productDal.GetListByStatusTrue(predicate);
         }
 
-        public List<ResultProductWithCategory> TGetProductListByVegetable()
+        public List<ResultProductWithSubCategory> TGetProductListByVegetable()
         {
             return _productDal.GetProductListByVegetable();
         }      
 
-        public List<ResultProductWithCategory> TGetProductListByFruites()
+        public List<ResultProductWithSubCategory> TGetProductListByFruites()
         {
             return _productDal.GetProductListByFruites();
         }

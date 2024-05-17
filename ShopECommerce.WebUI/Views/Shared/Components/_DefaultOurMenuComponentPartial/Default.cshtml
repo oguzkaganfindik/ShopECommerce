@@ -1,4 +1,6 @@
-﻿<div class="container-fluid fruite py-5">
+﻿@model List<ResultProductWithSubCategory>
+
+<div class="container-fluid fruite py-5">
     <div class="container py-5">
         <div class="tab-class text-center">
             <div class="row g-4">
@@ -9,12 +11,17 @@
                     <ul class="nav nav-pills d-inline-flex text-center mb-5">
                         <li class="nav-item">
                             <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-1">
-                                <span class="text-dark" style="width: 130px;">Fruits</span>
+                                <span class="text-dark" style="width: 130px;">All Products</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
+                            <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
                                 <span class="text-dark" style="width: 130px;">Vegetables</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
+                                <span class="text-dark" style="width: 130px;">Fruits</span>
                             </a>
                         </li>
                     </ul>
@@ -25,7 +32,7 @@
                     <div class="row g-4">
                         <div class="col-lg-12">
                             <div class="row g-4">
-                                @await Component.InvokeAsync("_DefaultFruitesOurComponentPartial")
+                                @await Component.InvokeAsync("_DefaultAllProductsComponentPartial")
                             </div>
                         </div>
                     </div>
@@ -35,6 +42,15 @@
                         <div class="col-lg-12">
                             <div class="row g-4">
                                 @await Component.InvokeAsync("_DefaultVesitableOurComponentPartial")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-3" class="tab-pane fade show p-0">
+                    <div class="row g-4">
+                        <div class="col-lg-12">
+                            <div class="row g-4">
+                                @await Component.InvokeAsync("_DefaultFruitesOurComponentPartial")
                             </div>
                         </div>
                     </div>

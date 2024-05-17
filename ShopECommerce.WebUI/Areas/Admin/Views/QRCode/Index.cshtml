@@ -1,5 +1,8 @@
-﻿@{
+﻿@model List<GetUserWithRoleDto>
+
+@{
     ViewData["Title"] = "Index";
+    int count = 0;
 }
 
 <div class="content">
@@ -7,24 +10,88 @@
         <h4 class="page-title">QR Kod İşlemleri</h4>
         <div class="row">
             <div class="col-md-12">
-                <form method="post" asp-action="Index" asp-controller="QRCode">
-                    <input type="text" name="value" />
-                    <input type="submit" value="QR Kod Oluştur" class="btn btn-warning" />
-                    <br /><br />
-                </form>
-
-
-                @if (ViewBag.QrCodeImage != null)
-                {
-                    <img src="@ViewBag.QrCodeImage" alt="" style="width:400px;height:400px" />
-                }
-
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Müşteri Bilgisi QR Kod Görüntüleme</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            QR Kod Görüntüle Butonundan Müşteri Bilgilerini QR Kod Olarak Görüntüleyebilirsiniz.
+                        </div>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <th scope="col">Adı</th>
+                                    <th scope="col">Soyadı</th>
+                                    <th scope="col">Kullanıcı Adı</th>
+                                    <th scope="col">Notlar</th>
+                                    <th scope="col">Yetki Türü</th>
+                                    <th scope="col">Kullanıcı Detayları</th>
+                                    <th scope="col">QR Kodu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <td>@count</td>
+                                        <td>@item.FirstName</td>
+                                        <td>@item.LastName</td>
+                                        <td>@item.Username</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.RoleName</td>
+                                        <td><a href="/Admin/User/Detail/@item.Id" class="btn btn-outline-primary btn-round">Detay</a></td>
+                                        <td><button class="btn btn-outline-primary btn-round" onclick="showQRCode('@item.Id')">QR Kodu Görüntüle</button></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-
-
     </div>
 </div>
 
+<div class="modal fade" id="qrCodeModal" tabindex="-1" role="dialog" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="qrCodeModalLabel"><center>Müşteri Bilgisi QR Kod Görüntüleme</center></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="qrCodeImage" src="#" alt="QR Kodu" style="width: 450px; height: 450px" />
+            </div>
+        </div>
+    </div>
+</div>
 
-
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function showQRCode(userId) {
+            $.ajax({
+                type: "POST",
+                url: "/Admin/QRCode/GenerateQRCodeForUser",
+                data: { userId: userId },
+                success: function (response) {
+                    if (response.success) {
+                        $('#qrCodeImage').attr('src', 'data:image/png;base64,' + response.qrCodeBase64String);
+                        $('#qrCodeModal').modal('show');
+                    } else {
+                        alert('QR Kodu oluşturulamadı. Lütfen tekrar deneyin.');
+                    }
+                },
+                error: function () {
+                    alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+                }
+            });
+        }
+    </script>
+}

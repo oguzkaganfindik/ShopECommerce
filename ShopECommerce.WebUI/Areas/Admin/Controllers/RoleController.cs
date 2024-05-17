@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
 {
-    [Area("Admin"), Authorize(Policy = "AdminPolicy")]
+    [Area("Admin"), Authorize(Policy = "SuperAdminPolicy")]
     public class RoleController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

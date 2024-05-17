@@ -3289,16 +3289,11 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.4" />
+    <PackageReference Include="ZXing.Net" Version="0.16.9" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ShopECommerce.Business\ShopECommerce.Business.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="QRCoder">
-      <HintPath>wwwroot\DLL\QRCoder.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>

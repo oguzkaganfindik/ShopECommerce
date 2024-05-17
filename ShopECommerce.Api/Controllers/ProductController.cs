@@ -178,7 +178,7 @@ namespace ShopECommerce.Api.Controllers
         public IActionResult GetProductListByVegetable()
         {
             var values = _productService.TGetProductListByVegetable();
-            var result = _mapper.Map<List<ResultProductWithCategory>>(values);
+            var result = _mapper.Map<List<ResultProductWithSubCategory>>(values);
             return Ok(result);
         }
 
@@ -186,7 +186,7 @@ namespace ShopECommerce.Api.Controllers
         public IActionResult GetProductListByFruites()
         {
             var values = _productService.TGetProductListByFruites();
-            var result = _mapper.Map<List<ResultProductWithCategory>>(values);
+            var result = _mapper.Map<List<ResultProductWithSubCategory>>(values);
             return Ok(result);
         }
     }

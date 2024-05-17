@@ -1,10 +1,10 @@
 ﻿@{
-    ViewData["Title"] = "Messenger";
+    ViewData["Title"] = "Admin Messenger";
 }
 
 <style>
     .message-container {
-        height: 100px;
+        height: 350px;
         overflow-y: auto;
     }
 
@@ -19,12 +19,12 @@
 
     .message-wrapper {
         display: flex;
-        justify-content: space-between; 
-        align-items: flex-start; 
+        justify-content: space-between;
+        align-items: flex-start;
     }
 
     .client-count {
-        margin-top: 6px; 
+        margin-top: 6px;
     }
 </style>
 
@@ -41,56 +41,30 @@
 <section class="food_section layout_padding">
     <div class="container">
         <div class="container mt-5">
-            <div class="row">
-                <div class="col-6">
-                    <h2 class="text-center mb-4">Anlık Mesajlaşma</h2>
-                </div>
-            </div>
+            <h2 class="text-center">Anlık Mesajlaşma</h2>
             <div class="row p-1">
-                <div class="col-6">
-                    <div id="messageContainer" class="message-container">
-                        
-                    </div>
-                </div>
+                <div class="col-3"></div>
+                <div style="word-wrap: break-word;" class="col-6"><div id="messageContainer" class="message-container"></div></div>
+                <div class="col-3"></div>
             </div>
-            <div class="row p-1">
-                <div class="col-6">
-                    <div class="message-wrapper">
-                        @* <h6 class="client-count">Anlık Kişi Sayısı: <strong id="clientCountValue">0</strong></h6> *@
-                        <span id="currentTime"></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row p-1">
-                <div class="col-2">Kullanıcı Adınız:</div>
-                <div class="col-5">
-                    <input type="text" id="userinput" class="form-control" />
-                </div>
-            </div>
-
-            <div class="row p-1">
-                <div class="col-2">Mesajınız:</div>
-                <div class="col-5">
-                    <textarea type="text" class="form-control" id="messageinput" rows="10"></textarea>
-                </div>
-            </div>
-
-            <div class="row p-1">
-                <div class="col-2"></div>
-                <div class="col-3">
-                    <input type="button" id="sendbutton" value="Mesaj Gönder" class="btn btn-warning" />
-                </div>
-            </div>
-
-            <div class="row p-1">
-                <div class="col-12">
-                    <hr />
-                </div>
-            </div>
-
+        </div> <!-- Ek satır -->
+        <div class="row p-1">
+            <div class="col-3"></div>
+            <div class="col-6">Kullanıcı Adınız:<input type="text" id="userinput" class="form-control" /> </div>
+            <div class="col-3"></div>
+        </div>
+        <div class="row p-1">
+            <div class="col-3"></div>
+            <div class="col-6">Mesajınız:<textarea type="text" class="form-control" id="messageinput" rows="3"></textarea></div>
+            <div class="col-3"></div>
 
         </div>
+        <div class="row p-1">
+            <div class="col-3"></div>
+            <div class="col-6"><input type="button" id="sendbutton" value="Mesaj Gönder" class="btn btn-warning" /></div>
+            <div class="col-3"></div>
+        </div>
+    </div>
     </div>
 </section>
 
@@ -118,13 +92,13 @@
 
         li.appendChild(spanUser);
         li.appendChild(spanMessage);
-        li.appendChild(document.createElement("br")); 
-        li.appendChild(spanTimestamp); 
+        li.appendChild(document.createElement("br"));
+        li.appendChild(spanTimestamp);
 
         var container = document.getElementById("messageContainer");
-        container.appendChild(li); 
+        container.appendChild(li);
 
-       
+
         container.scrollTop = container.scrollHeight;
     });
 
@@ -138,25 +112,25 @@
         document.getElementById("sendbutton").addEventListener("click", function (event) {
             var user = document.getElementById("userinput").value;
             var message = document.getElementById("messageinput").value;
-            var timestamp = new Date().toLocaleString(); 
+            var timestamp = new Date().toLocaleString();
             connection.invoke("SendMessage", user, message, timestamp).catch(function (err) {
                 return console.error(err.toString());
             });
-            
+
             document.getElementById("messageinput").value = "";
             event.preventDefault();
         });
 
         $("#connstatus").text(connection.state);
 
-       
+
         setInterval(function () {
             var currentTime = new Date();
             var hours = currentTime.getHours();
             var minutes = currentTime.getMinutes();
             var seconds = currentTime.getSeconds();
 
-            
+
             if (hours < 10) {
                 hours = "0" + hours;
             }
@@ -169,9 +143,9 @@
 
             var formattedTime = hours + ":" + minutes + ":" + seconds;
             document.getElementById("currentTime").textContent = formattedTime;
-        }, 1000); 
+        }, 1000);
 
-       
+
         connection.on("ReceiveClientCount", function (clientCount) {
             $("#clientCountValue").text(clientCount);
         });

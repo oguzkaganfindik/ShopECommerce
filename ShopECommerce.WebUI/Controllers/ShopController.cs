@@ -21,7 +21,7 @@ namespace ShopECommerce.WebUI.Controllers
             var responseMessage = await client.GetAsync("https://localhost:7046/api/Product");
 
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultProductWithCategory>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultProductWithSubCategory>>(jsonData);
             return View(values);
         }
 
