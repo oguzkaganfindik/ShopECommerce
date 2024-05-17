@@ -124,7 +124,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-//app.UseStatusCodePagesWithRedirects("AccessDenied");
+app.UseStatusCodePagesWithRedirects("AccessDenied");
 
 app.UseRouting();
 app.UseAuthentication();
