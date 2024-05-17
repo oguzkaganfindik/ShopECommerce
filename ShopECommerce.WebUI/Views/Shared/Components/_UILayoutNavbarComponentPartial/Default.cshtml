@@ -73,7 +73,11 @@
                         @if (Context.User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                @if (Context.User.IsInRole("Admin"))
+                                @if (Context.User.IsInRole("SuperAdmin"))
+                                {
+                                    <a href="/Admin/Statistic/Index/" class="nav-link login-button">Control Panel</a>
+                                }
+                                else if (Context.User.IsInRole("Admin"))
                                 {
                                     <a href="/Admin/Statistic/Index/" class="nav-link login-button">Control Panel</a>
                                 }

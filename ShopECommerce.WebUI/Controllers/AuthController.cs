@@ -165,7 +165,12 @@ namespace ShopECommerce.WebUI.Controllers
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
                 await HttpContext.SignInAsync(principal);
 
-                if (rol.Name == "Admin")
+
+                if (rol.Name == "SuperAdmin")
+                {
+                    return RedirectToAction("Index", "Statistic", new { area = "Admin" });
+                }
+                else if (rol.Name == "Admin")
                 {
                     return RedirectToAction("Index", "Statistic", new { area = "Admin" });
                 }
@@ -209,7 +214,6 @@ namespace ShopECommerce.WebUI.Controllers
                 return View();
             }
 
-            // Şifre sıfırlama kodu oluşturma
             byte[] randomNumber = new byte[32];
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
             {

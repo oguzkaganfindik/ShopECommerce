@@ -11,7 +11,7 @@ namespace ShopECommerce.Data.Context
 
         public ShopECommerceContext(DbContextOptions<ShopECommerceContext> options, IDataProtectionProvider dataProtectionProvider) : base(options)
         {
-            _dataProtector = dataProtectionProvider.CreateProtector("security");
+            _dataProtector = dataProtectionProvider.CreateProtector("security");   
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,11 +22,7 @@ namespace ShopECommerce.Data.Context
             modelBuilder.ApplyConfiguration(new SubCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
-
-            modelBuilder.Entity<ShopTable>()
-                .HasOne(st => st.Order)
-                .WithOne(o => o.ShopTable)
-                .HasForeignKey<Order>(o => o.ShopTableId);
+            modelBuilder.ApplyConfiguration(new ShopTableConfiguration());
 
             modelBuilder.SeedData(_dataProtector);
 

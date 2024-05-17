@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using ShopECommerce.Api.Hubs;
 using ShopECommerce.Business;

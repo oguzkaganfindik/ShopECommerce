@@ -10,21 +10,25 @@ using System.Security.Claims;
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
+
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile("appsettings.EmailSettings.json", optional: true, reloadOnChange: true);
 
 builder.Services.AddControllersWithViews();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ShopECommerceContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddMappingRegistration();
 
 builder.Services.AddServicesRegistration();
-builder.Services.AddMappingRegistration();
 
 builder.Services.AddScoped<IImageProcessingService, ImageProcessingManager>();
 builder.Services.AddScoped<IImageService, ImageManager>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ShopECommerceContext>(options => options.UseSqlServer(connectionString));
+
+var serviceProvider = builder.Services.BuildServiceProvider();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -39,6 +43,15 @@ builder.Services.AddAuthentication(options =>
         options.AccessDeniedPath = "/AccessDenied/";
         options.LogoutPath = "/Auth/LogOut/";
         options.Cookie.Name = "ShopECommerce";
+        options.Cookie.MaxAge = TimeSpan.FromDays(1);
+        options.Cookie.IsEssential = true;
+    })
+    .AddCookie("SuperAdmin", options =>
+    {
+        options.LoginPath = "/Auth/Login/";
+        options.AccessDeniedPath = "/AccessDenied/";
+        options.LogoutPath = "/Auth/LogOut/";
+        options.Cookie.Name = "SuperAdmin";
         options.Cookie.MaxAge = TimeSpan.FromDays(1);
         options.Cookie.IsEssential = true;
     })
@@ -72,9 +85,10 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AdminPolicy", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
-    options.AddPolicy("UserPolicy", policy => policy.RequireClaim(ClaimTypes.Role, "Admin", "User"));
-    options.AddPolicy("CustomerPolicy", policy => policy.RequireClaim(ClaimTypes.Role, "Admin", "User", "Customer"));
+    options.AddPolicy("SuperAdminPolicy", policy => policy.RequireClaim(ClaimTypes.Role, "SuperAdmin"));
+    options.AddPolicy("AdminPolicy", policy => policy.RequireClaim(ClaimTypes.Role, "SuperAdmin", "Admin"));
+    options.AddPolicy("UserPolicy", policy => policy.RequireClaim(ClaimTypes.Role, "SuperAdmin", "Admin", "User"));
+    options.AddPolicy("CustomerPolicy", policy => policy.RequireClaim(ClaimTypes.Role, "SuperAdmin", "Admin", "User", "Customer"));
 });
 
 
@@ -91,6 +105,15 @@ builder.Services.AddDataProtection()
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var dbContext = services.GetRequiredService<ShopECommerceContext>();
+
+    dbContext.Database.EnsureCreated();
+    dbContext.Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -100,6 +123,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+//app.UseStatusCodePagesWithRedirects("AccessDenied");
 
 app.UseRouting();
 app.UseAuthentication();
