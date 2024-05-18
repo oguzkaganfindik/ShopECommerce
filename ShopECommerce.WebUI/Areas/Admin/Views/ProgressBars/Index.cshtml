@@ -40,10 +40,10 @@
                     $("#totalShopTableCountProgress").empty();
                     $("#totalShopTableCountProgress").append(`
 
-                    <div class="d-flex justify-content-between mb-1">
-                        <span class="text-muted">Toplam ShopTable Sayısı</span>
-                        <span class="text-muted fw-bold">${value4}</span>
-                    </div>
+                    // <div class="d-flex justify-content-between mb-1">
+                    //     <span class="text-muted">Toplam ShopTable Sayısı</span>
+                    //     <span class="text-muted fw-bold">${value4}</span>
+                    // </div>
                     <div class="progress mb-2" style="height: 7px;">
                         <div class="progress-bar bg-success" role="progressbar" style="width: ${value4}%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="${value4}%"></div>
                     </div>
@@ -160,32 +160,66 @@
         </script>
 
 
-        <h4 class="page-title">Admin İstatistikler & Durumlar</h4>
+        <h4 class="page-title"><center>İstatistikler & Durumlar</center></h4>
         <div class="row">
             <div class="col-md-12">
-
                 <div class="row row-card-no-pd">
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-body">
-                                <p class="fw-bold mt-1">Kasadaki Toplam Tutar</p>
-                                <h4 id="totalmoneycaseamount"><b></b></h4>
-                                <a href="/Admin/Order/CreateOrder/" class="btn btn-primary btn-full text-left mt-3 mb-3"><i class="la la-plus"></i> Yeni Sipariş</a>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <div class="card card-stats card-warning">
+                                        <div class="card-body ">
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <div class="icon-big text-center">
+                                                        <i class="la la-users"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-7 d-flex align-items-center">
+                                                    <div class="numbers">
+                                                        <p class="card-category">Visitors</p>
+                                                        <h4 class="card-title">325</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card card-stats card-danger">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <div class="icon-big text-center">
+                                                        <i class="la la-newspaper-o"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-7 d-flex align-items-center">
+                                                    <div class="numbers">
+                                                        <p class="card-category">Subscribers</p>
+                                                        <h4 class="card-title">12</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                            
                             </div>
                             <hr />
                             <div class="card-body">
-                                <p class="fw-bold mt-1">Günlük Satış Tutarı</p>
-                                <h4 id="">9999 TL<b></b></h4>
+                                <p class="fw-bold mt-1"><center><b>Günlük Satış Tutarı</b></center></p>
+                                <h4 id=""><center>1234 TL</center><b></b></h4>
                             </div>
                             <hr />
                             <div class="card-body">
-                                <p class="fw-bold mt-1">Aylık Satış Tutarı</p>
-                                <h4 id="">9999 TL<b></b></h4>
+                                <p class="fw-bold mt-1"><center><b>Aylık Satış Tutarı</center></b></p>
+                                <h4 id=""><center>1234 TL</center><b></b></h4>
                             </div>
                             <hr />
                             <div class="card-body">
-                                <p class="fw-bold mt-1">Aylık Satış Tutarı</p>
-                                <h4 id="">9999 TL<b></b></h4>
+                                <p class="fw-bold mt-1"><center><b>Kasadaki Toplam Tutar</center></b></p>
+                                <h4 id=""><center>1234 TL</center><b></b></h4>
                             </div>
                             <div class="card-footer">
                                 <ul class="nav">
@@ -198,8 +232,50 @@
                     <div class="col-md-5">
                         <div class="card">
                             <div class="card-body">
-                                <div class="progress-card" id="totalShopTableCountProgress"></div>
-
+                                @* <div class="progress-card" id="totalShopTableCountProgress"></div> *@
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card card-stats card-success">
+                                            <div class="card-body ">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="icon-big text-center">
+                                                            <i class="la la-bar-chart"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7 d-flex align-items-center">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Sales</p>
+                                                            <h4 class="card-title">1234 TL</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card card-stats card-primary">
+                                            <div class="card-body ">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="icon-big text-center">
+                                                            <i class="la la-check-circle"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7 d-flex align-items-center">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Order</p>
+                                                            <h4 class="card-title">2</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <br />
+                                <hr />
                                 <div class="progress-card" id="ReceiveProductPriceAvgProgress"></div>
                                 
                                 <div class="progress-card" id="ReceiveAvgPriceByAppleProgress"></div>
@@ -220,7 +296,6 @@
                     <div class="col-md-3">
                         <div class="card card-stats">
                             <div class="card-body">
-                                <p class="fw-bold mt-1">Anlık İstatistikler</p>
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="icon-big text-center icon-warning">
@@ -237,56 +312,70 @@
                                 <hr />
                                 <div class="row">
                                     <div class="col-5">
-                                        <div class="icon-big text-center">
-                                            <i class="la la-heart-o text-primary"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-7 d-flex align-items-center">
-                                        <div class="numbers">
-                                            <p class="card-SubCategory">ShopTable Sayısı</p>
-                                            <h4 class="card-title" id="shoptablecount"></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="icon-big text-center">
-                                            <i class="la la-car text-success"></i>
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="la la-angle-double-up text-primary"></i>
                                         </div>
                                     </div>
                                     <div class="col-7 d-flex align-items-center">
                                         <div class="numbers">
                                             <p class="card-SubCategory">Kategori Sayısı</p>
-                                            <h4 class="card-title" id="30"></h4>
+                                            <h4 class="card-title" id="2"></h4>
                                         </div>
                                     </div>
                                 </div>
                                 <hr />
                                 <div class="row">
                                     <div class="col-5">
-                                        <div class="icon-big text-center">
-                                            <i class="la la-dribbble text-danger"></i>
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="la la-angle-up text-success"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 d-flex align-items-center">
+                                        <div class="numbers">
+                                            <p class="card-SubCategory">Alt Kategori Sayısı</p>
+                                            <h4 class="card-title" id="12"></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="la la-bar-chart text-danger"></i>
                                         </div>
                                     </div>
                                     <div class="col-7 d-flex align-items-center">
                                         <div class="numbers">
                                             <p class="card-SubCategory">Ürün Sayısı</p>
-                                            <h4 class="card-title" id="">48</h4>
+                                            <h4 class="card-title" id="">12</h4>
                                         </div>
                                     </div>
                                 </div>
                                 <hr />
                                 <div class="row">
                                     <div class="col-5">
-                                        <div class="icon-big text-center">
-                                            <i class="la la-glass text-dark"></i>
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="la la-user-plus text-dark"></i>
                                         </div>
                                     </div>
                                     <div class="col-7 d-flex align-items-center">
                                         <div class="numbers">
                                             <p class="card-SubCategory">User Sayısı</p>
-                                            <h4 class="card-title" id="">51</h4>
+                                            <h4 class="card-title" id="">4</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="la la-twitch text-danger"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 d-flex align-items-center">
+                                        <div class="numbers">
+                                            <p class="card-SubCategory">Gelen Mesajlar</p>
+                                            <h4 class="card-title" id="">1</h4>
                                         </div>
                                     </div>
                                 </div>

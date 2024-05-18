@@ -5,7 +5,7 @@
 
 <style>
     .message-container {
-        height: 200px;
+        height: 300px;
         overflow-y: auto;
     }
 
@@ -66,7 +66,6 @@
             <div class="col-3"></div>
         </div>
     </div>
-    </div>
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.8/signalr.min.js"></script>
@@ -80,11 +79,14 @@
         li.classList.add("message-item");
 
         var spanUser = document.createElement("span");
-        spanUser.style.fontWeight = "bold";
         spanUser.textContent = user + ": ";
+        spanUser.style.fontWeight = "bold";
+        spanUser.style.fontSize = "1.5em";
 
         var spanMessage = document.createElement("span");
         spanMessage.textContent = message;
+        spanMessage.style.fontWeight = "bold";
+        spanMessage.style.fontSize = "1.5em";
 
         var spanTimestamp = document.createElement("span");
         spanTimestamp.style.fontSize = "small";
@@ -99,6 +101,29 @@
         var container = document.getElementById("messageContainer");
         container.appendChild(li);
 
+        // Kullanıcı adının ilk harfine göre renk belirleme
+        var firstChar = user.charAt(0).toLowerCase();
+        var color;
+        switch (firstChar) {
+            case 'a': case 'b': case 'c': case 'd': case 'e': case 'f':
+                color = "darkred";
+                break;
+            case 'g': case 'h': case 'i': case 'j': case 'k': case 'l':
+                color = "darkblue";
+                break;
+            case 'm': case 'n': case 'o': case 'p': case 'q': case 'r':
+                color = "darkgreen";
+                break;
+            case 's': case 't': case 'u': case 'v': case 'w': case 'x': case 'y': case 'z':
+                color = "darkorange";
+                break;
+            default:
+                color = "black";
+                break;
+        }
+
+        spanUser.style.color = color;
+        spanMessage.style.color = color;
 
         container.scrollTop = container.scrollHeight;
     });
@@ -124,13 +149,11 @@
 
         $("#connstatus").text(connection.state);
 
-
         setInterval(function () {
             var currentTime = new Date();
             var hours = currentTime.getHours();
             var minutes = currentTime.getMinutes();
             var seconds = currentTime.getSeconds();
-
 
             if (hours < 10) {
                 hours = "0" + hours;
@@ -145,7 +168,6 @@
             var formattedTime = hours + ":" + minutes + ":" + seconds;
             document.getElementById("currentTime").textContent = formattedTime;
         }, 1000);
-
 
         connection.on("ReceiveClientCount", function (clientCount) {
             $("#clientCountValue").text(clientCount);
