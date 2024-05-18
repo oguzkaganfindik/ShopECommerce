@@ -1,0 +1,77 @@
+// WebUI Katmaný -->> ConnectionStrings -->> appsettings.json içerisindeki --> appsettings.Development.json -->> Lütfen Kendi ConnectionString'inizi appsettings.Development.json'a giriniz.
+//  Api Katmaný -->> ConnectionStrings -->> appsettings.json içerisindeki --> appsettings.Development.json -->> Lütfen Kendi ConnectionString'inizi appsettings.Development.json'a giriniz.
+// WebUI Katmaný -->> EmailSettings -->> appsettings.json içerisindeki --> appsettings.EmailSettings.json-->> Lütfen Kendi EmailSettings'inizi appsettings.EmailSettings.json'a giriniz.
+
+// Projede Database.EnsureCreated() ve Database.Migrate() kullanýldýðýndan dolayý sadece connection string'inizi ekleyerek, add-migration ve update-database'e gerek kalmadan, Configure Startup Project'ten Api ve WebUI katmanýný birlikte seçerek "Multiple Startup Project" olarak çalýþtýrabilirsiniz. 
+
+/*
+
+  Bu Proje, BilgeAdam Akademi'de almýþ olduðum Full Stack .Net Development eðitiminin bitirme projesidir. 
+  Proje, meyve ve sebze ürünleri satan bir ticari iþletmenin e-ticaret maðazasý olmak üzere planlandý.
+  Proje planlanýrken hedeflenen, servis ve geliþtirme amacýyla web developerýn ikincil planda uygulamaya destek vermesinin yanýnda,
+  proje canlýya alýndýðýnda, web developera mümkün olduðunca ihtiyacýn az olmasý, web site yöneticiliði görevinde olan kiþinin, 
+  tamamen dinamik bir yapý kullanýlarak geliþtirilmiþ olan bu uygulamayý e-ticaret yapýsýna kolayca adapte edebilmesi, 
+  zaman içerisinde þirket politikasý ve uygulamalar dahilinde oluþabilecek deðiþiklik ve geliþimlere uyum saðlayabilecek olan dinamik yapý sayesinde
+  web developera baðýmlý kalýnmamasý ve bu sayede, web developer'ýn ise projeyi geliþtirmeye devam edebilecek zamanlamayý bulmasý ve geliþtirmeleri de planlý bir þekilde projeye uygulamasý amaçlanmýþtýr.
+
+  - Projede kullanýlan dinamik yapý, bir þirketin iletiþim adresinden, market adýna kadar, bütün verilerin deðiþtirilebilmesini develeopera ihtiyaç duymadan saðlayabilmesini amaçlar. 
+  - Contact ekraný, signalR teknolojisi sayesinde müþterinin iletiþim için iletmiþ olduðu mesajý yöneticiye anlýk olarak ulaþtýrmaktadýr.
+  - Messenger ekraný, contact ile oluþturulan mesajlaþma yapýsýnýn yanýnda, SignalR teknolojisi sayesinde, müþteri ve yönetici arasýnda anlýk senkronize chat iletiþimi saðlamaktadýr.
+  - Shop ekranýnda, müþteri tüm ürünleri ve kategorilerine göre ürünleri görüntüleyebilmektedir.
+  - Sliderlar kullanýlarak kullanýcý etkileþimi artýrýlmýþtýr.
+  - SignalR ile gelen mesajlarýn bildirimleri yöneticiye anlýk olarak iletilmiþtir.
+  - SignalR ile istatistikler ve anlýk durum deðiþimleri yöneticiye anlýk olarak iletilmiþtir.
+  - Mail gönderme ekraný sayesinde, istenilen kullanýcýya mail gönderilebilmekte ve text editörü eklentisi ile gönderilen mailin metin biçimsel özelliklerini deðiþtirilebilmektedir.
+  - Role ekraný sayesinde, database'e müdahale etmeden yönetici paneli üzerinden SuperAdmin, Admin, User, Customer rollerinin yanýnda, istenilen kadar rol eklenip, istenilen kadar kullanýcý yetkilendirilebilmekdir. Rol ekranýna güvenlik gereksinimleri nedeniyle sadece SuperAdmin yetkisi ulaþabilmektedir.
+  - Kategori ekraný ile istenilen kadar kategori oluþturulabilmekte.
+  - Alt Kategori ekraný kullanýlarak, kategori ekranýnda oluþturulmuþ olan kategorilere istenilen kadar alt kategori eklenebilmektedir.
+  - Ürünler ekranýnda bulunan resim ekleme özelliði ile eklenilen resimlerin format tipleri, resim tipleri, uzantýlarý kontrol edilmekte ve eðer belirlenen güvenlik ve format yapýsýna uygunsa resimler eklenebilmektedir.
+  - ImageProcessin servisi ile eklenen resimlerin piksel boyutlarý backend tarafýnda resim yüklenirken belirlenebilmektedir. Hangi piksel boyutunda resim eklenirse eklensin, resmin piksel boyutlarý parametrede belirtilen piksel boyutuna getirilip projenin içerisinde iþlenmiþ olarak alýnmaktadýr. Böylece frontend tarafýnda olasý uyumsuzluklar ya da resim boyutlarýnda normalizasyon saðlanmaktadýr.
+  - QR Kod Oluþturma Fonksiyonu sayesinde, Listelenmiþ olan müþterilerin bilgilerinin bulunduðu QR Kodlar, otomasyon olarak hangi müþteri istenirse o müþteri seçilerek tek týkla müþteriye özel olarak oluþturulabilmektedir. Böylece QR Kod otomasyonu kullanýcýya özel olarak uygulanabilmiþtir.
+  - Sitede Yönetici Paneli, Müþteri Paneli, Maðaza Paneli olmak üzere 3 farklý panel kullanýlmýþ, ayný zamanda Login-Register-Þifremi Unuttum-Mail Deðiþtir ekranlarýndaki layout ile toplamda 4 farklý layout uygulanmýþtýr.
+  - Kullanýcý kaydý, kayýt ardýndan mail adresine gönderilen kodun doðrulanmasý ile saðlanmýþtýr.
+  - Þifremi unuttum özelliði, mail adresine gönderilen kodun doðrulanmasý ile þifre sýfýrlanmasýna imkan vermektedir.
+  - Mail deðiþtir özelliði, sistemde kayýtlý olan mail adresine gönderilmiþ olan kodun doðrulanmasý ile þifre sýfýrlanmasýna imkan vermektedir.
+  - Projede senaryonun uygunluðuna göre hem Soft Delete hem de Hard Delete kullanýlmýþtýr. Örneðin, sepetteki ürünün silinmesi ve signalR mesaj sinyali bildirimi hard delete ile saðlanýrken, diðer bütün kullanýmlarda Soft Delete kullanýlmýþtýr.
+  - Bütün crud iþlemlerinde Oluþturma Tarihi, Güncelleme Tarihi, Silinme Tarihi bilgileri de tutulmuþ olduðundan, tarihsel veri de izlenebilecektir.
+  - Bütün crud iþlemlerinde Soft Delete dýþýnda, farklý bir özellik olarak Status özelliði ile True = Aktif, False = Pasif olarak belirtilen verinin aktif durumu anlýk olarak belirlenebilmekte, ayný zamanda bu özelliðin bir getirisi olarak User ya da Müþterinin de soft delete ile hesabýnýn silinmesi dýþýnda, status fonksiyonu sayesinde tek bir butona týklanarak hesabýnýn pasif hale getirilip siteye giriþi engellenebilmektedir.
+  - Sepete ürün ekleme sadece Shop maðazasýndan deðil, sitenin ana ekranýnda bütün ürünlerde bulunan sepetlere týklanýlarak da istenilen ürün eklenebilmektedir. Böylece müþteri sitede zaman geçirirken anlýk olarak sepetini efektif kullanma saðlanmýþtýr.
+  - Sitede bulunan ana sayfa ya da shop maðazasýnda olup olmamasý fark etmeksizin, müþteri herhangi bir ürünün resmine týkladýðýnda, ürünün detaylý bilgilerinin bulunduðu ürün detay sayfasýna ulaþmaktadýr.
+  - Müþterinin sepetine eklemiþ olduðu ürünler, ana sayfada sepet simgesi üzerinde anlýk olarak SignalR ile bildirimle sepetteki ürün sayýsýný göstermektedir.
+  - Müþteri, kendi panelinden þifresini, mailini güvenlik önemleri dahilinde deðiþtirebilmekle beraber, kendi kiþisel bilgilerini de düzenleyebilmektedir.
+  - Proje geliþtirilmeye devam edilecektir. Projenin GitHub reposu:  https://github.com/oguzkaganfindik/ShopECommerce 
+
+  Projede Kullanýlan Teknolojiler:
+
+  - Asp Net Core 8.0
+  - Asp.Net Core Api
+  - SignalR
+  - Swagger
+  - Dto
+  - N Tier Architecture
+  - MSSQL
+  - Ýliþkili Tablolar
+  - Html Css Bootstrap
+  - JavaScript
+  - Ajax
+  - Entity Framework - Linq
+  - Alert
+  - QR Kod Ýle Müþteri Verisi Ýþleme
+  - Basket
+  - Anlýk Bildirimler
+  - Anlýk Messenger Chat
+  - Anlýk Ýstatistikler
+  - Gerçek Zamanlý Uygulamalar
+  - Mail Gönderme Ýþlemleri ve Mail Servisi
+  - Image Processing
+
+  SeedData Login Bilgileri:
+  mail: superadmin@test.com password: 123456Aa
+  mail: admin@test.com password: 123456Aa
+  mail: user@test.com password: 123456Aa
+  mail: customer@test.com password: 123456Aa
+
+
+  Oðuzkaðan Fýndýk 
+  https://www.linkedin.com/in/oguzfindik/
+*/
