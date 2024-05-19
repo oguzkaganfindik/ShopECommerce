@@ -59,6 +59,7 @@
                         <a href="/Shop/Index" class="nav-item nav-link active">Shop</a>                       
                         <a href="/Default/Contact/" class="nav-item nav-link active">Contact</a>
                         <a href="/Default/Messenger/" class="nav-item nav-link active">Messenger</a>
+                        <a href="/Default/About/" class="nav-item nav-link active">About Us</a>
                     </div>
 
                     <ul class="navbar-nav text-primary display-6">
@@ -112,9 +113,17 @@
                             <i class="fa fa-shopping-bag fa-2x"></i>
                             <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;" id="notificationcount"></span>
                         </a>
-                        <a href="/MyAccount/Index/" class="my-auto">
-                            <i class="fas fa-user fa-2x"></i>
-                        </a>
+                        @if (Context.User.Identity.IsAuthenticated)
+                        {
+                            <a href="/MyAccount/Index/" class="my-auto">
+                                <i class="fas fa-user fa-2x"></i>
+                            </a>
+                        }
+                        else
+                        {                          
+                        }
+
+                        
                     </div>
                 </div>
             </nav>

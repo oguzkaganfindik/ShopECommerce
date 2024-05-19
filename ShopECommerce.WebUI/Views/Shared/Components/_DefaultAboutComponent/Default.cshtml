@@ -1,0 +1,16 @@
+﻿@model List<ResultAboutDto>
+
+<div class="container my-5">
+    <div class="container py-5">
+        <br />
+        <br />
+        <br />
+        <br />
+        @foreach (var item in Model)
+        {
+            <div class="row g-4 align-items-center">
+                @Html.Raw(item.Description)
+            </div>
+        }
+    </div>
+</div>

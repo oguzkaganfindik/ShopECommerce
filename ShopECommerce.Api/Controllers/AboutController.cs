@@ -31,9 +31,8 @@ namespace ShopECommerce.Api.Controllers
         {
             _aboutService.TAdd(new About()
             {
-                Title = createAboutDto.Title,
                 Description = createAboutDto.Description,
-                ImagePath = createAboutDto.ImagePath
+                Status = createAboutDto.Status
             });
 
             return Ok("Hakkımda Kısmı Başarılı Bir Şekilde Eklendi");
@@ -60,9 +59,8 @@ namespace ShopECommerce.Api.Controllers
             _aboutService.TUpdate(new About()
             {
                 Id = updateAboutDto.Id,
-                Title = updateAboutDto.Title,
                 Description = updateAboutDto.Description,
-                ImagePath = updateAboutDto.ImagePath
+                Status = updateAboutDto.Status
             });
 
             return Ok("Hakkımda Alanı Güncellendi");

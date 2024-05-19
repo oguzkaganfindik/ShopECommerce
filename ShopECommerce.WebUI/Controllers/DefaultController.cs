@@ -65,6 +65,11 @@ namespace ShopECommerce.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
         public IActionResult PrivacyPolicy()
         {
             return View();
