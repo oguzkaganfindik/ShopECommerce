@@ -14,23 +14,10 @@
                         <div class="card-header">
                             <div class="card-title">Yeni Hakkımızda Yazı Girişi</div>
                         </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="Title">Başlığı Giriniz</label>
-                                <input type="text" class="form-control" asp-for="Title" id="Title">
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="ImagePath">Görselin Url'ini Giriniz</label>
-                                <input type="text" class="form-control" asp-for="ImagePath" id="ImagePath">
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="Description">Açıklamayı Giriniz</label>
-                                <textarea rows="5" class="form-control" asp-for="Description" id="Description"></textarea>
-                            </div>
+                        <div class="form-group">
+                            <label for="Description">Açıklamayı Giriniz</label>
+                            <div id="editor" style="height: 300px;"></div>
+                            <input type="hidden" id="Description" name="Description" asp-for="Description">
                         </div>
                         <div class="card-action">
                             <button class="btn btn-outline-primary btn-round">Hakkımda Yazısını Ekle</button>
@@ -41,3 +28,26 @@
         </div>
     </div>
 </div>
+
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<script>
+    var quill = new Quill('#editor', {
+        theme: 'snow',
+        modules: {
+            toolbar: [
+                [{ header: [1, 2, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                ['blockquote', 'code-block'],
+                [{ color: [] }],
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                ['clean']
+            ],
+        },
+    });
+
+    quill.on('text-change', function () {
+        document.getElementById('Description').value = quill.root.innerHTML;
+    });
+</script>
