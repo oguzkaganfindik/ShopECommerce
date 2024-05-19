@@ -4,11 +4,11 @@ using ShopECommerce.WebUI.Dtos.AboutDtos;
 
 namespace ShopECommerce.WebUI.ViewComponents.DefaultComponents
 {
-    public class _DefaultAboutComponent : ViewComponent
+    public class _DefaultAboutComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public _DefaultAboutComponent(IHttpClientFactory httpClientFactory)
+        public _DefaultAboutComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
