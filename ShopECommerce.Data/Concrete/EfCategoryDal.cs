@@ -1,4 +1,5 @@
-﻿using ShopECommerce.Data.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using ShopECommerce.Data.Abstract;
 using ShopECommerce.Data.Context;
 using ShopECommerce.Data.Repositories;
 using ShopECommerce.Entities.Concrete;
@@ -13,19 +14,19 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public int ActiveCategoryCount()
+        public async Task<int> ActiveCategoryCountAsync()
         {
-            return _context.Categories.Where(x => x.Status == true).Count();
+            return await _context.Categories.Where(x => x.Status).CountAsync();
         }
 
-        public int CategoryCount()
+        public async Task<int> CategoryCountAsync()
         {
-            return _context.Categories.Count();
+            return await _context.Categories.CountAsync();
         }
 
-        public int PassiveCategoryCount()
+        public async Task<int> PassiveCategoryCountAsync()
         {
-            return _context.Categories.Where(x => x.Status == false).Count();
+            return await _context.Categories.Where(x => !x.Status).CountAsync();
         }
     }
 }

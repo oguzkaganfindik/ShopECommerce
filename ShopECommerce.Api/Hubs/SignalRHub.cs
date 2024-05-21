@@ -33,16 +33,16 @@ namespace ShopECommerce.Api.Hubs
 
         public async Task SendStatistic()
         {
-            var value = _subCategoryService.TSubCategoryCount();
+            var value = await _subCategoryService.TSubCategoryCountAsync();
             await Clients.All.SendAsync("ReceiveSubCategoryCount", value);
 
             var value2 = _productService.TProductCount();
             await Clients.All.SendAsync("ReceiveProductCount", value2);
 
-            var value3 = _subCategoryService.TActiveSubCategoryCount();
+            var value3 = await _subCategoryService.TActiveSubCategoryCountAsync();
             await Clients.All.SendAsync("ReceiveActiveSubCategoryCount", value3);
 
-            var value4 = _subCategoryService.TPassiveSubCategoryCount();
+            var value4 = await _subCategoryService.TPassiveSubCategoryCountAsync();
             await Clients.All.SendAsync("ReceivePassiveSubCategoryCount", value4);
 
             var value5 = _productService.TProductCountBySubCategoryNameApple();

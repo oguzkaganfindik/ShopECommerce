@@ -16,9 +16,9 @@ namespace ShopECommerce.Business.Concrete
             _subCategoryDal = SubCategoryDal;
         }
 
-        public int TActiveSubCategoryCount()
+        public async Task<int> TActiveSubCategoryCountAsync()
         {
-            return _subCategoryDal.ActiveSubCategoryCount();
+            return await _subCategoryDal.ActiveSubCategoryCountAsync();
         }
 
         public void TAdd(SubCategory entity)
@@ -26,9 +26,9 @@ namespace ShopECommerce.Business.Concrete
             _subCategoryDal.Add(entity);
         }
 
-        public int TSubCategoryCount()
+        public async Task<int> TSubCategoryCountAsync()
         {
-            return _subCategoryDal.SubCategoryCount();
+            return await _subCategoryDal.SubCategoryCountAsync();
         }
 
         public void TDelete(SubCategory entity)
@@ -66,9 +66,9 @@ namespace ShopECommerce.Business.Concrete
             return _subCategoryDal.GetListByStatusTrue(predicate);
         }
 
-        public int TPassiveSubCategoryCount()
+        public async Task<int> TPassiveSubCategoryCountAsync()
         {
-            return _subCategoryDal.PassiveSubCategoryCount();
+            return await _subCategoryDal.PassiveSubCategoryCountAsync();
         }
 
         public void TToggleStatus(int id)
@@ -81,9 +81,9 @@ namespace ShopECommerce.Business.Concrete
             _subCategoryDal.Update(entity);
         }
 
-        public List<ResultSubCategoryWithCategory> TGetSubCategoriesWithCategories()
+        public async Task<List<ResultSubCategoryWithCategory>> TGetSubCategoriesWithCategoriesAsync()
         {
-            return _subCategoryDal.GetSubCategoriesWithCategories();
+            return await _subCategoryDal.GetSubCategoriesWithCategoriesAsync();
         }
 
         public void THardDelete(int id)

@@ -4,8 +4,8 @@ namespace ShopECommerce.Business.Abstract
 {
     public interface ICategoryService : IGenericService<Category>
     {
-        int TCategoryCount();
-        int TActiveCategoryCount();
-        int TPassiveCategoryCount();
+        Task<int> TCategoryCountAsync();
+        Task<int> TActiveCategoryCountAsync();
+        Task<int> TPassiveCategoryCountAsync();
     }
 }

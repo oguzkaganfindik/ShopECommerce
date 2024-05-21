@@ -27,31 +27,34 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("GetSubCategoriesWithCategories")]
-        public IActionResult GetSubCategoriesWithCategories()
+        public async Task<IActionResult> GetSubCategoriesWithCategoriesAsync()
         {
-            var values = _subCategoryService.TGetSubCategoriesWithCategories();
+            var values = await _subCategoryService.TGetSubCategoriesWithCategoriesAsync();
             var result = _mapper.Map<List<ResultSubCategoryWithCategory>>(values);
             return Ok(result);
         }
 
         [HttpGet("SubCategoryCount")]
-        public IActionResult SubCategoryCount()
+        public async Task<IActionResult> SubCategoryCountAsync()
         {
-            return Ok(_subCategoryService.TSubCategoryCount());
+            var count = await _subCategoryService.TSubCategoryCountAsync();
+            return Ok(count);
         }
 
 
         [HttpGet("ActiveSubCategoryCount")]
-        public IActionResult ActiveSubCategoryCount()
+        public async Task<IActionResult> ActiveSubCategoryCountAsync()
         {
-            return Ok(_subCategoryService.TActiveSubCategoryCount());
+            var count = await _subCategoryService.TActiveSubCategoryCountAsync();
+            return Ok(count);
         }
 
 
         [HttpGet("PassiveSubCategoryCount")]
-        public IActionResult PassiveSubCategoryCount()
+        public async Task<IActionResult> PassiveSubCategoryCountAsync()
         {
-            return Ok(_subCategoryService.TPassiveSubCategoryCount());
+            var count = await _subCategoryService.TPassiveSubCategoryCountAsync();
+            return Ok(count);
         }
 
         [HttpPost]

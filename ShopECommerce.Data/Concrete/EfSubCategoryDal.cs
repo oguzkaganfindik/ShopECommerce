@@ -15,30 +15,33 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public int ActiveSubCategoryCount()
+        public async Task<int> ActiveSubCategoryCountAsync()
         {
-            return _context.SubCategories.Where(x => x.Status == true).Count();
+            return await _context.SubCategories.Where(x => x.Status == true).CountAsync();
         }
 
-        public int SubCategoryCount()
+        public async Task<int> SubCategoryCountAsync()
         {
-            return _context.SubCategories.Count();
+            return await _context.SubCategories.CountAsync();
         }
 
-        public int PassiveSubCategoryCount()
+        public async Task<int> PassiveSubCategoryCountAsync()
         {
-            return _context.SubCategories.Where(x => x.Status == false).Count();
+            return await _context.SubCategories.Where(x => x.Status == false).CountAsync();
         }
 
-        public List<ResultSubCategoryWithCategory> GetSubCategoriesWithCategories()
+        public async Task<List<ResultSubCategoryWithCategory>> GetSubCategoriesWithCategoriesAsync()
         {
-            var values = _context.SubCategories.Include(x => x.Category).Select(y => new ResultSubCategoryWithCategory
-            {
-                CategoryName = y.Category.CategoryName,
-                SubCategoryName = y.SubCategoryName,
-                Status = y.Status,
-                Id = y.Id              
-            }).ToList();
+            var values = await _context.SubCategories
+                                        .Include(x => x.Category)
+                                        .Select(y => new ResultSubCategoryWithCategory
+                                        {
+                                            CategoryName = y.Category.CategoryName,
+                                            SubCategoryName = y.SubCategoryName,
+                                            Status = y.Status,
+                                            Id = y.Id
+                                        })
+                                        .ToListAsync();
 
             return values;
         }

@@ -4,8 +4,8 @@ namespace ShopECommerce.Data.Abstract
 {
     public interface ICategoryDal : IGenericDal<Category>
     {
-        int CategoryCount();
-        int ActiveCategoryCount();
-        int PassiveCategoryCount();
+        Task<int> CategoryCountAsync();
+        Task<int> ActiveCategoryCountAsync();
+        Task<int> PassiveCategoryCountAsync();
     }
 }

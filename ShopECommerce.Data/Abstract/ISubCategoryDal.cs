@@ -5,9 +5,9 @@ namespace ShopECommerce.Data.Abstract
 {
     public interface ISubCategoryDal : IGenericDal<SubCategory>
     {
-        int SubCategoryCount();
-        int ActiveSubCategoryCount();
-        int PassiveSubCategoryCount();
-        List<ResultSubCategoryWithCategory> GetSubCategoriesWithCategories();
+        Task<int> SubCategoryCountAsync();
+        Task<int> ActiveSubCategoryCountAsync();
+        Task<int> PassiveSubCategoryCountAsync();
+        Task<List<ResultSubCategoryWithCategory>> GetSubCategoriesWithCategoriesAsync();
     }
 }
