@@ -19,9 +19,9 @@ namespace ShopECommerce.Business.Concrete
             _categoryDal.HardDelete(id);
         }
 
-        public int TActiveCategoryCount()
+        public async Task<int> TActiveCategoryCountAsync()
         {
-            return _categoryDal.ActiveCategoryCount();
+            return await _categoryDal.ActiveCategoryCountAsync();
         }
 
         public void TAdd(Category entity)
@@ -29,9 +29,9 @@ namespace ShopECommerce.Business.Concrete
             _categoryDal.Add(entity);
         }
 
-        public int TCategoryCount()
+        public async Task<int> TCategoryCountAsync()
         {
-            return _categoryDal.CategoryCount();
+            return await _categoryDal.CategoryCountAsync();
         }
 
         public void TDelete(Category entity)
@@ -69,9 +69,9 @@ namespace ShopECommerce.Business.Concrete
             return _categoryDal.GetListByStatusTrue(predicate);
         }
 
-        public int TPassiveCategoryCount()
+        public async Task<int> TPassiveCategoryCountAsync()
         {
-            return _categoryDal.PassiveCategoryCount();
+            return await _categoryDal.PassiveCategoryCountAsync();
         }
 
         public void TToggleStatus(int id)

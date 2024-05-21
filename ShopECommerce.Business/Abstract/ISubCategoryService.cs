@@ -5,10 +5,10 @@ namespace ShopECommerce.Business.Abstract
 {
     public interface ISubCategoryService : IGenericService<SubCategory>
     {
-        int TSubCategoryCount();
-        int TActiveSubCategoryCount();
-        int TPassiveSubCategoryCount();
+        Task<int> TSubCategoryCountAsync();
+        Task<int> TActiveSubCategoryCountAsync();
+        Task<int> TPassiveSubCategoryCountAsync();
 
-        List<ResultSubCategoryWithCategory> TGetSubCategoriesWithCategories();
+        Task<List<ResultSubCategoryWithCategory>> TGetSubCategoriesWithCategoriesAsync();
     }
 }
