@@ -87,16 +87,16 @@ namespace ShopECommerce.Api.Controllers
 
 
         [HttpGet("MessageStatusApproved/{id}")]
-        public IActionResult MessageStatusApproved(int id)
+        public async Task<IActionResult> MessageStatusApprovedAsync(int id)
         {
-            _messageService.TMessageStatusApproved(id);
+            await _messageService.TMessageStatusApprovedAsync(id);
             return Ok("Message Açıklaması Değiştirildi");
         }
 
         [HttpGet("MessageStatusCancelled/{id}")]
-        public IActionResult MessageStatusCancelled(int id)
+        public async Task<IActionResult> MessageStatusCancelledAsync(int id)
         {
-            _messageService.TMessageStatusCancelled(id);
+            await _messageService.TMessageStatusCancelledAsync(id);
             return Ok("Message Açıklaması Değiştirildi");
         }
 

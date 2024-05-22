@@ -64,9 +64,9 @@ namespace ShopECommerce.Business.Concrete
             _moneyCaseDal.ToggleStatus(id);
         }
 
-        public decimal TTotalMoneyCaseAmount()
+        public async Task<decimal> TTotalMoneyCaseAmountAsync()
         {
-            return _moneyCaseDal.TotalMoneyCaseAmount();
+            return await _moneyCaseDal.TotalMoneyCaseAmountAsync();
         }
 
         public void TUpdate(MoneyCase entity)

@@ -4,6 +4,6 @@ namespace ShopECommerce.Data.Abstract
 {
     public interface IMoneyCaseDal : IGenericDal<MoneyCase>
     {
-        decimal TotalMoneyCaseAmount();
+        Task<decimal> TotalMoneyCaseAmountAsync();
     }
 }

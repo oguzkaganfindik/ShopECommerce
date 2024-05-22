@@ -15,9 +15,10 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult TotalMoneyCaseAmount()
+        public async Task<IActionResult> TotalMoneyCaseAmount()
         {
-            return Ok(_moneyCaseService.TTotalMoneyCaseAmount());
+            var amount = await _moneyCaseService.TTotalMoneyCaseAmountAsync();
+            return Ok(amount);
         }
 
         [HttpGet("ToggleStatus/{id}")]

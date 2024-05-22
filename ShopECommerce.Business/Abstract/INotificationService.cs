@@ -4,10 +4,9 @@ namespace ShopECommerce.Business.Abstract
 {
     public interface INotificationService : IGenericService<Notification>
     {
-        int TNotificationCountByStatusFalse();
-
-        List<Notification> TGetAllNotificationsByFalse();
-        void TNotificationStatusChangeToTrue(int id);
-        void TNotificationStatusChangeToFalse(int id);
+        Task<int> TNotificationCountByStatusFalseAsync();
+        Task<List<Notification>> TGetAllNotificationsByTrueAsync();
+        Task TNotificationStatusChangeToTrueAsync(int id);
+        Task TNotificationStatusChangeToFalseAsync(int id);
     }
 }

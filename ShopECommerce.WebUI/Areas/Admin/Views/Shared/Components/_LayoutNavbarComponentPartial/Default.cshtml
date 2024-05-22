@@ -25,7 +25,7 @@
 				$("#notificationcount").text(value);
 			});
 
-			connection.on("ReceiveNotificationListByFalse", (value) => {
+			connection.on("ReceiveNotificationListByTrue", (value) => {
 				console.log(value);
 				$("#notilist").empty();
 				for (var i = 0; i < value.length; i++) {
@@ -35,7 +35,7 @@
 						<span class="block" >
 						${value[i].description}
 						</span>
-						<span class="time">${value[i].date}</span>
+						<span class="time">${value[i].createdDate}</span>
 						</div>
 						</a>
 						`)

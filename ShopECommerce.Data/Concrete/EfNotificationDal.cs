@@ -1,4 +1,5 @@
-﻿using ShopECommerce.Data.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using ShopECommerce.Data.Abstract;
 using ShopECommerce.Data.Context;
 using ShopECommerce.Data.Repositories;
 using ShopECommerce.Entities.Concrete;
@@ -13,28 +14,28 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public List<Notification> GetAllNotificationsByTrue()
+        public async Task<List<Notification>> GetAllNotificationsByTrueAsync()
         {
-            return _context.Notifications.Where(x => x.Status == true).ToList();
+            return await _context.Notifications.Where(x => x.Status == true).ToListAsync();
         }
 
-        public void NotificationStatusChangeToFalse(int id)
+        public async Task NotificationStatusChangeToFalseAsync(int id)
         {
-            var value = _context.Notifications.Find(id);
+            var value = await _context.Notifications.FindAsync(id);
             value.Status = false;
             _context.SaveChanges();
         }
 
-        public void NotificationStatusChangeToTrue(int id)
+        public async Task NotificationStatusChangeToTrueAsync(int id)
         {
-            var value = _context.Notifications.Find(id);
+            var value = await _context.Notifications.FindAsync(id);
             value.Status = true;
             _context.SaveChanges();
         }
 
-        public int NotificationCountByStatusTrue()
+        public async Task<int> NotificationCountByStatusTrueAsync()
         {
-            return _context.Notifications.Where(x => x.Status == true).Count();
+            return await _context.Notifications.Where(x => x.Status == true).CountAsync();
         }     
     }
 }

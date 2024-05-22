@@ -23,15 +23,15 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("NotificationCountByStatusTrue/{id}")]
-        public ActionResult NotificationCountByStatusTrue()
+        public async Task<ActionResult> NotificationCountByStatusTrueAsync()
         {
-            return Ok(_notificationService.TNotificationCountByStatusFalse());
+            return Ok(await _notificationService.TNotificationCountByStatusFalseAsync());
         }
 
         [HttpGet("GetAllNotificationsByTrue/{id}")]
-        public ActionResult GetAllNotificationsByTrue()
+        public async Task<ActionResult> GetAllNotificationsByTrueAsync()
         {
-            return Ok(_notificationService.TGetAllNotificationsByFalse());
+            return Ok(await _notificationService.TGetAllNotificationsByTrueAsync());
         }
 
         [HttpPost]
@@ -84,16 +84,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("NotificationStatusChangeToFalse/{id}")]
-        public IActionResult NotificationStatusChangeToFalse(int id)
+        public async Task<IActionResult> NotificationStatusChangeToFalseAsync(int id)
         {
-            _notificationService.TNotificationStatusChangeToFalse(id);
+            await _notificationService.TNotificationStatusChangeToFalseAsync(id);
             return Ok("Güncelleme yapıldı");
         }
 
         [HttpGet("NotificationStatusChangeToTrue/{id}")]
-        public IActionResult NotificationStatusChangeToTrue(int id)
+        public async Task<IActionResult> NotificationStatusChangeToTrueAsync(int id)
         {
-            _notificationService.TNotificationStatusChangeToTrue(id);
+            await _notificationService.TNotificationStatusChangeToTrueAsync(id);
             return Ok("Güncelleme Yapıldı");
         }
 

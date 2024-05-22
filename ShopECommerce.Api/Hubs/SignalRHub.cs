@@ -72,7 +72,7 @@ namespace ShopECommerce.Api.Hubs
             var value13 = _orderService.TLastOrderPrice();
             await Clients.All.SendAsync("ReceiveLastOrderPrice", value13.ToString("0.00") + " TL");
 
-            var value14 = _moneyCaseService.TTotalMoneyCaseAmount();
+            var value14 = await _moneyCaseService.TTotalMoneyCaseAmountAsync();
             await Clients.All.SendAsync("ReceiveTotalMoneyCaseAmount", value14.ToString("0.00") + " TL");
 
             var value16 = _shopTableService.TShopTableCount();
@@ -81,7 +81,7 @@ namespace ShopECommerce.Api.Hubs
 
         public async Task SendProgress()
         {
-            var value = _moneyCaseService.TTotalMoneyCaseAmount();
+            var value = await _moneyCaseService.TTotalMoneyCaseAmountAsync();
             await Clients.All.SendAsync("ReceiveTotalMoneyCaseAmount", value.ToString("0.00") + " TL");
 
             var value2 = _orderService.TActiveOrderCount();
@@ -125,11 +125,11 @@ namespace ShopECommerce.Api.Hubs
 
         public async Task SendNotification()
         {
-            var value = _notificationService.TNotificationCountByStatusFalse();
+            var value = await _notificationService.TNotificationCountByStatusFalseAsync();
             await Clients.All.SendAsync("ReceiveNotificationCountByFalse", value);
 
-            var notificationListByFalse = _notificationService.TGetAllNotificationsByFalse();
-            await Clients.All.SendAsync("ReceiveNotificationListByFalse", notificationListByFalse);
+            var notificationListByTrue = await _notificationService.TGetAllNotificationsByTrueAsync();
+            await Clients.All.SendAsync("ReceiveNotificationListByTrue", notificationListByTrue);
 
             var basketItemCount = await _basketService.TGetBasketItemCount();
             if (basketItemCount > 0) 

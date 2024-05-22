@@ -14,14 +14,14 @@ namespace ShopECommerce.Business.Concrete
             _messageDal = messageDal;
         }
 
-        public void TMessageStatusApproved(int id)
+        public async Task TMessageStatusApprovedAsync(int id)
         {
-            _messageDal.MessageStatusApproved(id);
+            await _messageDal.MessageStatusApprovedAsync(id);
         }
 
-        public void TMessageStatusCancelled(int id)
+        public async Task TMessageStatusCancelledAsync(int id)
         {
-            _messageDal.MessageStatusCancelled(id);
+            await _messageDal.MessageStatusCancelledAsync(id);
         }
 
         public void TAdd(Message entity)
