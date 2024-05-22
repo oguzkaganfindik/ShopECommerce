@@ -4,9 +4,9 @@ namespace ShopECommerce.Data.Abstract
 {
     public interface INotificationDal : IGenericDal<Notification>
     {
-        int NotificationCountByStatusTrue();
-        List<Notification> GetAllNotificationsByTrue();
-        void NotificationStatusChangeToTrue(int id);
-        void NotificationStatusChangeToFalse(int id);
+        Task<int> NotificationCountByStatusTrueAsync();
+        Task<List<Notification>> GetAllNotificationsByTrueAsync();
+        Task NotificationStatusChangeToTrueAsync(int id);
+        Task NotificationStatusChangeToFalseAsync(int id);
     }
 }

@@ -1,4 +1,5 @@
-﻿using ShopECommerce.Data.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using ShopECommerce.Data.Abstract;
 using ShopECommerce.Data.Context;
 using ShopECommerce.Data.Repositories;
 using ShopECommerce.Entities.Concrete;
@@ -13,9 +14,9 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public decimal TotalMoneyCaseAmount()
+        public async Task<decimal> TotalMoneyCaseAmountAsync()
         {
-            return _context.MoneyCases.Select(x => x.TotalAmount).FirstOrDefault();
+            return await _context.MoneyCases.Select(x => x.TotalAmount).FirstOrDefaultAsync();
         }
     }
 }

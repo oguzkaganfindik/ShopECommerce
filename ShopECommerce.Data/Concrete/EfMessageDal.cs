@@ -13,18 +13,18 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public void MessageStatusApproved(int id)
+        public async Task MessageStatusApprovedAsync(int id)
         {
-            var values = _context.Messages.Find(id);
+            var values = await _context.Messages.FindAsync(id);
             values.Description = "Mesaj Okundu";
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void MessageStatusCancelled(int id)
+        public async Task MessageStatusCancelledAsync(int id)
         {
-            var values = _context.Messages.Find(id);
+            var values = await _context.Messages.FindAsync(id);
             values.Description = "Mesaj Kapatıldı";
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

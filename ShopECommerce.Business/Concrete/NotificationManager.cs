@@ -23,9 +23,9 @@ namespace ShopECommerce.Business.Concrete
             _notificationDal.Delete(entity);
         }
 
-        public List<Notification> TGetAllNotificationsByFalse()
+        async Task<List<Notification>> INotificationService.TGetAllNotificationsByTrueAsync()
         {
-            return _notificationDal.GetAllNotificationsByTrue();
+            return await _notificationDal.GetAllNotificationsByTrueAsync();
         }
 
         public Notification TGetById(int id)
@@ -38,19 +38,19 @@ namespace ShopECommerce.Business.Concrete
             return _notificationDal.GetListAll();
         }
 
-        public void TNotificationStatusChangeToFalse(int id)
+        public async Task TNotificationStatusChangeToFalseAsync(int id)
         {
-            _notificationDal.NotificationStatusChangeToFalse(id);
+            await _notificationDal.NotificationStatusChangeToFalseAsync(id);
         }
 
-        public void TNotificationStatusChangeToTrue(int id)
+        public async Task TNotificationStatusChangeToTrueAsync(int id)
         {
-            _notificationDal.NotificationStatusChangeToTrue(id);
+            await _notificationDal.NotificationStatusChangeToTrueAsync(id);
         }
 
-        public int TNotificationCountByStatusFalse()
+        public async Task<int> TNotificationCountByStatusFalseAsync()
         {
-            return _notificationDal.NotificationCountByStatusTrue();
+            return await _notificationDal.NotificationCountByStatusTrueAsync();
         }
 
         public void TUpdate(Notification entity)
