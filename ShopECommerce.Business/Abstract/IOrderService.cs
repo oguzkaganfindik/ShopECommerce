@@ -4,9 +4,9 @@ namespace ShopECommerce.Business.Abstract
 {
     public interface IOrderService : IGenericService<Order>
     {
-        int TTotalOrderCount();
-        int TActiveOrderCount();
-        decimal TLastOrderPrice();
-        decimal TTodayTotalPrice();
+        Task<int> TTotalOrderCountAsync();
+        Task<int> TActiveOrderCountAsync();
+        Task<decimal> TLastOrderPriceAsync();
+        Task<decimal> TTodayTotalPriceAsync();
     }
 }

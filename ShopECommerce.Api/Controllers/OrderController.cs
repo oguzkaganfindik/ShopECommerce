@@ -85,27 +85,27 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("TotalOrderCount")]
-        public IActionResult TotalOrderCount()
+        public async Task<IActionResult> TotalOrderCountAsync()
         {
-            return Ok(_orderService.TTotalOrderCount());
+            return Ok(await _orderService.TTotalOrderCountAsync());
         }
 
         [HttpGet("ActiveOrderCount")]
-        public IActionResult ActiveOrderCount()
+        public async Task<IActionResult> ActiveOrderCountAsync()
         {
-            return Ok(_orderService.TActiveOrderCount());
+            return Ok(await _orderService.TActiveOrderCountAsync());
         }
 
         [HttpGet("LastOrderPrice")]
-        public IActionResult LastOrderPrice()
+        public async Task<IActionResult> LastOrderPriceAsync()
         {
-            return Ok(_orderService.TLastOrderPrice());
+            return Ok(await _orderService.TLastOrderPriceAsync());
         }
 
         [HttpGet("TodayTotalPrice")]
-        public IActionResult TodayTotalPrice()
+        public async Task<IActionResult> TodayTotalPriceAsync()
         {
-            return Ok(_orderService.TTodayTotalPrice());
+            return Ok(await _orderService.TTodayTotalPriceAsync());
         }
     }
 }

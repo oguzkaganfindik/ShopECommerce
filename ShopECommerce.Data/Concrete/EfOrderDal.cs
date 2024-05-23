@@ -1,4 +1,5 @@
-﻿using ShopECommerce.Data.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using ShopECommerce.Data.Abstract;
 using ShopECommerce.Data.Context;
 using ShopECommerce.Data.Repositories;
 using ShopECommerce.Entities.Concrete;
@@ -13,25 +14,25 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public int ActiveOrderCount()
+        public async Task<int> ActiveOrderCountAsync()
         {
-            return _context.Orders.Where(x => x.Description == "Müşteri Masada").Count();
+            return await _context.Orders.Where(x => x.Description == "Sipariş Verildi").CountAsync();
         }
 
-        public decimal LastOrderPrice()
+        public async Task<decimal> LastOrderPriceAsync()
         {
-            return _context.Orders.OrderByDescending(x => x.Id).Take(1).Select(y => y.TotalPrice).FirstOrDefault();
+            return await _context.Orders.OrderByDescending(x => x.Id).Take(1).Select(y => y.TotalPrice).FirstOrDefaultAsync();
         }
 
-        public decimal TodayTotalPrice()
+        public async Task<decimal> TodayTotalPriceAsync()
         {
-            //return _context.Orders.Where(x => x.Date == DateTime.Parse(DateTime.Now.ToShortDateString())).Sum(y => y.TotalPrice);
-            return 0;
+            var today = DateTime.Now.Date;
+            return await _context.Orders.Where(x => x.CreatedDate == today).SumAsync(y => y.TotalPrice);
         }
 
-        public int TotalOrderCount()
+        public async Task<int> TotalOrderCountAsync()
         {
-            return _context.Orders.Count();
+            return await _context.Orders.CountAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ShopECommerce.Data.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using ShopECommerce.Data.Abstract;
 using ShopECommerce.Data.Context;
 using ShopECommerce.Data.Repositories;
 using ShopECommerce.Entities.Concrete;
@@ -13,24 +14,29 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        //public void ChangeStatusToFalse(int id)
-        //{
-        //    var value = _context.Discounts.Find(id);
-        //    value.Status = false;
-        //    _context.SaveChanges();
-        //}
+        public async Task ChangeStatusToFalseAsync(int id)
+        {
+            var value = await _context.Discounts.FindAsync(id);
+            if (value != null)
+            {
+                value.Status = false;
+                await _context.SaveChangesAsync();
+            }
+        }
 
-        //public void ChangeStatusToTrue(int id)
-        //{
-        //    var value = _context.Discounts.Find(id);
-        //    value.Status = true;
-        //    _context.SaveChanges();
-        //}
+        public async Task ChangeStatusToTrueAsync(int id)
+        {
+            var value = await _context.Discounts.FindAsync(id);
+            if (value != null)
+            {
+                value.Status = true;
+                await _context.SaveChangesAsync();
+            }
+        }
 
-        //public List<Discount> GetListByStatusTrue()
-        //{
-        //    var value = _context.Discounts.Where(x => x.Status == true).ToList();
-        //    return value;
-        //}
+        public async Task<List<Discount>> GetListByStatusTrueAsync()
+        {
+            return await _context.Discounts.Where(x => x.Status == true).ToListAsync();
+        }
     }
 }

@@ -19,9 +19,9 @@ namespace ShopECommerce.Business.Concrete
             _orderDal.HardDelete(id);
         }
 
-        public int TActiveOrderCount()
+        public Task<int> TActiveOrderCountAsync()
         {
-            return _orderDal.ActiveOrderCount();
+            return _orderDal.ActiveOrderCountAsync();
         }
 
         public void TAdd(Order entity)
@@ -64,14 +64,14 @@ namespace ShopECommerce.Business.Concrete
             return _orderDal.GetListByStatusTrue(predicate);
         }
 
-        public decimal TLastOrderPrice()
+        public async Task<decimal> TLastOrderPriceAsync()
         {
-            return _orderDal.LastOrderPrice();
+            return await _orderDal.LastOrderPriceAsync();
         }
 
-        public decimal TTodayTotalPrice()
+        public Task<decimal> TTodayTotalPriceAsync()
         {
-            return _orderDal.TodayTotalPrice();
+            return _orderDal.TodayTotalPriceAsync();
         }
 
         public void TToggleStatus(int id)
@@ -79,9 +79,9 @@ namespace ShopECommerce.Business.Concrete
             _orderDal.ToggleStatus(id);
         }
 
-        public int TTotalOrderCount()
+        public async Task<int> TTotalOrderCountAsync()
         {
-            return _orderDal.TotalOrderCount();
+            return await _orderDal.TotalOrderCountAsync();
         }
 
         public void TUpdate(Order entity)

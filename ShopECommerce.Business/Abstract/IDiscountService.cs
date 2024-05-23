@@ -4,8 +4,8 @@ namespace ShopECommerce.Business.Abstract
 {
     public interface IDiscountService : IGenericService<Discount>
     {
-        //void TChangeStatusToTrue(int id);
-        //void TChangeStatusToFalse(int id);
-        //List<Discount> TGetListByStatusTrue();
+        Task TChangeStatusToTrueAsync(int id);
+        Task TChangeStatusToFalseAsync(int id);
+        Task<List<Discount>> TGetListByStatusTrueAsync();
     }
 }

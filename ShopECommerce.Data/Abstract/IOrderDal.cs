@@ -4,9 +4,9 @@ namespace ShopECommerce.Data.Abstract
 {
     public interface IOrderDal : IGenericDal<Order>
     {
-        int TotalOrderCount();
-        int ActiveOrderCount();
-        decimal LastOrderPrice();
-        decimal TodayTotalPrice();
+        Task<int> TotalOrderCountAsync();
+        Task<int> ActiveOrderCountAsync();
+        Task<decimal> LastOrderPriceAsync();
+        Task<decimal> TodayTotalPriceAsync();
     }
 }
