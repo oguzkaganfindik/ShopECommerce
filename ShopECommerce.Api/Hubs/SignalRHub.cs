@@ -63,13 +63,13 @@ namespace ShopECommerce.Api.Hubs
             var value10 = _productService.TProductAvgPriceByApple();
             await Clients.All.SendAsync("ReceiveProductAvgPriceByApple", value10.ToString("0.00") + " TL");
 
-            var value11 = _orderService.TTotalOrderCount();
+            var value11 = await _orderService.TTotalOrderCountAsync();
             await Clients.All.SendAsync("ReceiveTotalOrderCount", value11);
 
-            var value12 = _orderService.TActiveOrderCount();
+            var value12 = await _orderService.TActiveOrderCountAsync();
             await Clients.All.SendAsync("ReceiveActiveOrderCount", value12);
 
-            var value13 = _orderService.TLastOrderPrice();
+            var value13 = await _orderService.TLastOrderPriceAsync();
             await Clients.All.SendAsync("ReceiveLastOrderPrice", value13.ToString("0.00") + " TL");
 
             var value14 = await _moneyCaseService.TTotalMoneyCaseAmountAsync();
@@ -84,7 +84,7 @@ namespace ShopECommerce.Api.Hubs
             var value = await _moneyCaseService.TTotalMoneyCaseAmountAsync();
             await Clients.All.SendAsync("ReceiveTotalMoneyCaseAmount", value.ToString("0.00") + " TL");
 
-            var value2 = _orderService.TActiveOrderCount();
+            var value2 = await _orderService.TActiveOrderCountAsync();
             await Clients.All.SendAsync("ReceiveActiveOrderCount", value2);
 
             var value3 = _shopTableService.TShopTableCount();
@@ -99,7 +99,7 @@ namespace ShopECommerce.Api.Hubs
             var value7 = _productService.TProductCountBySubCategoryNameTomato();
             await Clients.All.SendAsync("ReceiveProductCountBySubCategoryNameTomato", value7);
 
-            var value8 = _orderService.TTotalOrderCount();
+            var value8 = await _orderService.TTotalOrderCountAsync();
             await Clients.All.SendAsync("ReceiveTotalOrderCount", value8);
 
             var value9 = _productService.TProductPriceByNativeOranges();

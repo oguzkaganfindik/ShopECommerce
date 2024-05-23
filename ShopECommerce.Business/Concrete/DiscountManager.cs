@@ -24,15 +24,15 @@ namespace ShopECommerce.Business.Concrete
             _discountDal.Add(entity);
         }
 
-        //public void TChangeStatusToFalse(int id)
-        //{
-        //    _discountDal.ChangeStatusToFalse(id);
-        //}
+        public async Task TChangeStatusToFalseAsync(int id)
+        {
+            await _discountDal.ChangeStatusToFalseAsync(id);
+        }
 
-        //public void TChangeStatusToTrue(int id)
-        //{
-        //    _discountDal.ChangeStatusToTrue(id);
-        //}
+        public async Task TChangeStatusToTrueAsync(int id)
+        {
+            await _discountDal.ChangeStatusToTrueAsync(id);
+        }
 
         public void TDelete(Discount entity)
         {
@@ -69,10 +69,10 @@ namespace ShopECommerce.Business.Concrete
             return _discountDal.GetListByStatusTrue(predicate);
         }
 
-        //public List<Discount> TGetListByStatusTrue()
-        //{
-        //    return _discountDal.GetListByStatusTrue();
-        //}
+        public async Task<List<Discount>> TGetListByStatusTrueAsync()
+        {
+            return await _discountDal.GetListByStatusTrueAsync();
+        }
 
         public void TToggleStatus(int id)
         {
