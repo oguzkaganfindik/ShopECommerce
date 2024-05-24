@@ -15,26 +15,32 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public void UserStatusApproved(int id)
+        public async Task UserStatusApprovedAsync(int id)
         {
-            var values = _context.Users.Find(id);
-            values.Status = true;
-            values.EmailConfirmed = true;
-            values.Description = "User Onaylandı";
-            _context.SaveChanges();
+            var values = await _context.Users.FindAsync(id);
+            if (values != null)
+            {
+                values.Status = true;
+                values.EmailConfirmed = true;
+                values.Description = "User Onaylandı";
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public void UserStatusCancelled(int id)
+        public async Task UserStatusCancelledAsync(int id)
         {
-            var values = _context.Users.Find(id);
-            values.Status = false;
-            values.Description = "User İptal Edildi";
-            _context.SaveChanges();
+            var values = await _context.Users.FindAsync(id);
+            if (values != null)
+            {
+                values.Status = false;
+                values.Description = "User İptal Edildi";
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public List<GetUserWithRoleDto> GetUserWithRole()
+        public async Task<List<GetUserWithRoleDto>> GetUserWithRoleAsync()
         {
-            var values = _context.Users.Include(x => x.Role).Select(y => new GetUserWithRoleDto
+            var values = await _context.Users.Include(x => x.Role).Select(y => new GetUserWithRoleDto
             {
                 RoleName = y.Role.Name,
                 Id = y.Id,
@@ -48,23 +54,23 @@ namespace ShopECommerce.Data.Concrete
                 Password = y.Password,
                 Phone = y.Phone,
                 Status = y.Status
-            }).ToList();
+            }).ToListAsync();
 
             return values;
         }
 
-        public User GetByEmail(string email)
+        public async Task<User> GetByEmailAsync(string email)
         {
-            return _context.Users.FirstOrDefault(u => u.Email == email);
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
 
 
-        public async Task<User> GetByEmailAndPassword(string email, string hashedPassword)
+        public async Task<User> GetByEmailAndPasswordAsync(string email, string hashedPassword)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == hashedPassword);
         }
 
-        public async Task<User> GetByEmailAndCode(string email, int code)
+        public async Task<User> GetByEmailAndCodeAsync(string email, int code)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.ChangeMailCode == code);
         }

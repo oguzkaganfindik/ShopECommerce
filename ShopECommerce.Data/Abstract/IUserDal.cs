@@ -5,12 +5,12 @@ namespace ShopECommerce.Data.Abstract
 {
     public interface IUserDal : IGenericDal<User>
     {
-        void UserStatusApproved(int id);
-        void UserStatusCancelled(int id);
-        public List<GetUserWithRoleDto> GetUserWithRole();
-        User GetByEmail(string email);
-        Task<User> GetByEmailAndPassword(string email, string hashedPassword);
-        Task<User> GetByEmailAndCode(string email, int code);
+        Task UserStatusApprovedAsync(int id);
+        Task UserStatusCancelledAsync(int id);
+        Task<List<GetUserWithRoleDto>> GetUserWithRoleAsync();
+        Task<User> GetByEmailAsync(string email);
+        Task<User> GetByEmailAndPasswordAsync(string email, string hashedPassword);
+        Task<User> GetByEmailAndCodeAsync(string email, int code);
         Task UpdateAsync(User entity);
     }
 }

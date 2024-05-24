@@ -59,9 +59,9 @@ namespace ShopECommerce.Business.Concrete
             return _shopTableDal.GetListByStatusTrue(predicate);
         }
 
-        public int TShopTableCount()
+        public async Task<int> TShopTableCountAsync()
         {
-            return _shopTableDal.ShopTableCount();
+            return await _shopTableDal.ShopTableCountAsync();
         }
 
         public void TToggleStatus(int id)

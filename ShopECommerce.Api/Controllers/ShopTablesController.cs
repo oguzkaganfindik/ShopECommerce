@@ -16,9 +16,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ShopTableCount")]
-        public IActionResult ShopTableCount()
+        public async Task<IActionResult> ShopTableCountAsync()
         {
-            return Ok(_shopTableService.TShopTableCount());
+            return Ok(await _shopTableService.TShopTableCountAsync());
         }
 
         [HttpGet]

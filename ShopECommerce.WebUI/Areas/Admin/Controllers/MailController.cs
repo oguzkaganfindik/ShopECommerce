@@ -24,7 +24,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(CreateMailDto createMailDto)
         {
-            await _emailService.SendEmail(createMailDto.ReceiverMail, createMailDto.Subject, createMailDto.Body);
+            await _emailService.SendEmailAsync(createMailDto.ReceiverMail, createMailDto.Subject, createMailDto.Body);
 
             return RedirectToAction("Index", "Statistic");
         }

@@ -22,7 +22,7 @@ namespace ShopECommerce.WebUI.Controllers
 
 
         [HttpGet]
-        public IActionResult Detail()
+        public async Task<IActionResult> Detail()
         {
             var userEmailClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
             if (userEmailClaim == null)
@@ -30,7 +30,7 @@ namespace ShopECommerce.WebUI.Controllers
                 return NotFound();
             }
 
-            var user = _userService.TGetByEmail(userEmailClaim);
+            var user = await _userService.TGetByEmailAsync(userEmailClaim);
             if (user == null)
             {
                 return NotFound();
@@ -50,7 +50,7 @@ namespace ShopECommerce.WebUI.Controllers
 
 
         [HttpGet]
-        public IActionResult Update()
+        public async Task<IActionResult> Update()
         {
             var userEmailClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
             if (userEmailClaim == null)
@@ -58,7 +58,7 @@ namespace ShopECommerce.WebUI.Controllers
                 return NotFound();
             }
 
-            var user = _userService.TGetByEmail(userEmailClaim);
+            var user = await _userService.TGetByEmailAsync(userEmailClaim);
             if (user == null)
             {
                 return NotFound();
@@ -78,7 +78,7 @@ namespace ShopECommerce.WebUI.Controllers
 
 
         [HttpPost]
-        public IActionResult Update(UpdateUserViewModel updateUserViewModel)
+        public async Task<IActionResult> Update(UpdateUserViewModel updateUserViewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace ShopECommerce.WebUI.Controllers
                 return NotFound();
             }
 
-            var user = _userService.TGetByEmail(userEmailClaim);
+            var user = await _userService.TGetByEmailAsync(userEmailClaim);
             if (user == null)
             {
                 return NotFound();
@@ -103,9 +103,8 @@ namespace ShopECommerce.WebUI.Controllers
             user.Phone = updateUserViewModel.Phone;
             user.Address = updateUserViewModel.Address;
 
-            _userService.TUpdate(user);
+            await _userService.TUpdateAsync(user);
             return RedirectToAction("Index", "MyAccount");
-
         }
     }
 }

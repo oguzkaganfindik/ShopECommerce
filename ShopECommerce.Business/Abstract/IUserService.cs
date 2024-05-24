@@ -5,12 +5,12 @@ namespace ShopECommerce.Business.Abstract
 {
     public interface IUserService : IGenericService<User>
     {
-        void UserStatusApproved(int id);
-        void UserStatusCancelled(int id);
-        List<GetUserWithRoleDto> TGetUserWithRole();
-        User TGetByEmail(string email);
-        Task<User> TGetByEmailAndPassword(string email, string hashedPassword);
-        Task<User> TGetByEmailAndCode(string email, int code);
+        Task TUserStatusApprovedAsync(int id);
+        Task TUserStatusCancelledAsync(int id);
+        Task<List<GetUserWithRoleDto>> TGetUserWithRoleAsync();
+        Task<User> TGetByEmailAsync(string email);
+        Task<User> TGetByEmailAndPasswordAsync(string email, string hashedPassword);
+        Task<User> TGetByEmailAndCodeAsync(string email, int code);
         Task TUpdateAsync(User entity);
     }
 }
