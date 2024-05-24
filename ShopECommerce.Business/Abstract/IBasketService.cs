@@ -5,10 +5,10 @@ namespace ShopECommerce.Business.Abstract
 {
     public interface IBasketService : IGenericService<Basket>
     {
-        List<ResultBasketListWithProductsDto> TGetBasketListByBasketItemWithProductName(int id);
-        List<Basket> TGetBasketByBasketItemNumber(int id);
-        decimal TGetProductPrice(int productId);
-        void TUpdateQuantity(int basketId, int newQuantity);
+        Task<List<ResultBasketListWithProductsDto>> TGetBasketListByBasketItemWithProductNameAsync(int id);
+        Task<List<Basket>> TGetBasketByBasketItemNumberAsync(int id);
+        Task<decimal> TGetProductPriceAsync(int productId);
+        Task TUpdateQuantityAsync(int basketId, int newQuantity);
         Task<int> TGetBasketItemCountAsync();
     }
 }

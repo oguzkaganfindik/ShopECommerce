@@ -110,6 +110,9 @@ namespace ShopECommerce.Api.Hubs
 
             var value11 = _productService.TTotalPriceByStrawberrySubCategory();
             await Clients.All.SendAsync("ReceiveTotalPriceByStrawberrySubCategory", value11);
+
+            var notificationListByFalse = await _notificationService.TNotificationCountByStatusFalseAsync();
+            await Clients.All.SendAsync("ReceiveNotificationCountByFalse", notificationListByFalse);
         }
         public async Task GetUserList()
         {

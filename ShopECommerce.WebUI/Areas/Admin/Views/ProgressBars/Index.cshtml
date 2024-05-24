@@ -156,6 +156,10 @@
                        `);
                 });
 
+                connection.on("ReceiveNotificationCountByFalse", (value12) => {
+                    $("#progressnotificationcount").text(value12);
+                });
+
             });
         </script>
 
@@ -375,7 +379,7 @@
                                     <div class="col-7 d-flex align-items-center">
                                         <div class="numbers">
                                             <p class="card-SubCategory">Gelen Mesajlar</p>
-                                            <h4 class="card-title" id="">1</h4>
+                                            <h4 class="card-title" id="progressnotificationcount"></h4>
                                         </div>
                                     </div>
                                 </div>
