@@ -15,16 +15,16 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public List<Basket> GetBasketByShopTableNumber(int id)
+        public List<Basket> GetBasketByBasketItemNumber(int id)
         {
-            var values = _context.Baskets.Where(x => x.ShopTableId == id).Include(y => y.Product).ToList();
+            var values = _context.Baskets.Where(x => x.BasketItemId == id).Include(y => y.Product).ToList();
             return values;
         }
 
-        public List<ResultBasketListWithProductsDto> GetBasketListByShopTableWithProductName(int id)
+        public List<ResultBasketListWithProductsDto> GetBasketListByBasketItemWithProductName(int id)
         {
             var values = _context.Baskets                            
-                                  .Where(y => y.ShopTableId == id)
+                                  .Where(y => y.BasketItemId == id)
                                   .Include(x => x.Product)
                                   .Select(z => new ResultBasketListWithProductsDto
                                   {
@@ -33,7 +33,7 @@ namespace ShopECommerce.Data.Concrete
                                       Count = z.Count,
                                       TotalPrice = z.TotalPrice,
                                       ProductId = z.Product.Id,
-                                      ShopTableId = z.ShopTable.Id,
+                                      BasketItemId = z.BasketItem.Id,
                                       ProductName = z.Product.ProductName,
                                       ImagePath = z.Product.ImagePath
                                   })
@@ -61,7 +61,7 @@ namespace ShopECommerce.Data.Concrete
             }
         }
 
-        public async Task<int> GetBasketItemCount()
+        public async Task<int> GetBasketItemCountAsync()
         {
             return await _context.Baskets.CountAsync();
         }

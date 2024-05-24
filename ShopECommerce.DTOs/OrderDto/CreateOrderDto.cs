@@ -4,7 +4,7 @@ namespace ShopECommerce.DTOs.OrderDto
 {
     public class CreateOrderDto
     {
-        public int ShopTableId { get; set; }
+        public int BasketItemId { get; set; }
         public string Description { get; set; }
 
         [Column(TypeName = "Date")]

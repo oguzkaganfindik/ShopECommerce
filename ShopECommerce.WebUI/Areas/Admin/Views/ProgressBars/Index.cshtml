@@ -32,16 +32,16 @@
                     $("#activeordercount").text(value2);
                 });
 
-                connection.on("ReceiveShopTableCount", (value3) => {
-                    $("#shoptablecount").text(value3);
+                connection.on("ReceiveBasketItemCount", (value3) => {
+                    $("#basketItemCount").text(value3);
                 });
 
-                connection.on("ReceiveShopTableCount", (value4) => {
-                    $("#totalShopTableCountProgress").empty();
-                    $("#totalShopTableCountProgress").append(`
+                connection.on("ReceiveBasketItemCount", (value4) => {
+                    $("#totalBasketItemCountProgress").empty();
+                    $("#totalBasketItemCountProgress").append(`
 
                     // <div class="d-flex justify-content-between mb-1">
-                    //     <span class="text-muted">Toplam ShopTable Sayısı</span>
+                    //     <span class="text-muted">Toplam BasketItem Sayısı</span>
                     //     <span class="text-muted fw-bold">${value4}</span>
                     // </div>
                     <div class="progress mb-2" style="height: 7px;">
@@ -232,7 +232,7 @@
                     <div class="col-md-5">
                         <div class="card">
                             <div class="card-body">
-                                @* <div class="progress-card" id="totalShopTableCountProgress"></div> *@
+                                @* <div class="progress-card" id="totalBasketItemCountProgress"></div> *@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="card card-stats card-success">

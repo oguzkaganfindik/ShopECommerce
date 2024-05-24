@@ -31,7 +31,7 @@ namespace ShopECommerce.Api.Controllers
         {
             _orderService.TAdd(new Order()
             {
-                ShopTableId = createOrderDto.ShopTableId,
+                BasketItemId = createOrderDto.BasketItemId,
                 Description = createOrderDto.Description,
                 OrderDate = createOrderDto.OrderDate,
                 TotalPrice = createOrderDto.TotalPrice
@@ -61,7 +61,7 @@ namespace ShopECommerce.Api.Controllers
             _orderService.TUpdate(new Order()
             {
                 Id = updateOrderDto.Id,
-                ShopTableId = updateOrderDto.ShopTableId,
+                BasketItemId = updateOrderDto.BasketItemId,
                 Description = updateOrderDto.Description,
                 OrderDate = updateOrderDto.OrderDate,
                 TotalPrice = updateOrderDto.TotalPrice

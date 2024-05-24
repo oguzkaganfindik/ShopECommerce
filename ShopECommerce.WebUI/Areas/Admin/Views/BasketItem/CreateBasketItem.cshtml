@@ -1,28 +1,27 @@
-﻿@model UpdateShopTableDto
+﻿@model CreateBasketItemDto
 
 @{
-    ViewData["Title"] = "UpdateShopTable";
+    ViewData["Title"] = "CreateBasketItem";
 }
 
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">ShopTable İşlemleri</h4>
+        <h4 class="page-title">BasketItem işlemleri</h4>
         <div class="row">
             <div class="col-md-12">
                 <form method="post">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">ShopTable Güncelleme</div>
+                            <div class="card-title">Yeni BasketItem Girişi</div>
                         </div>
                         <div class="card-body">
-                            <input type="hidden" asp-for="Id" />
                             <div class="form-group">
-                                <label for="name">ShopTable Adını Giriniz</label>
-                                <input type="text" class="form-control" asp-for="Name" id="name">
+                                <label for="BasketItemCustomerMail">BasketItem Adını Giriniz</label>
+                                <input type="text" class="form-control" asp-for="BasketItemCustomerMail" id="BasketItemCustomerMail">
                             </div>
                         </div>
                         <div class="card-action">
-                            <button class="btn btn-outline-primary btn-round">ShopTable Güncelle</button>
+                            <button class="btn btn-outline-primary btn-round">BasketItem Ekle</button>
                         </div>
                     </div>
                 </form>

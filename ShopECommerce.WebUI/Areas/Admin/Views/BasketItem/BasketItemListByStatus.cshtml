@@ -1,7 +1,7 @@
-﻿@model List<ResultShopTableDto>
+﻿@model List<ResultBasketItemDto>
 
 @{
-    ViewData["Title"] = "TableListByStatus";
+    ViewData["Title"] = "BasketItemListByStatus";
 }
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -21,26 +21,26 @@
                 connection.start().then(() => {
                     $("#connstatus").text(connection.state);
                     setInterval(() => {
-                        connection.invoke("GetShopTableStatus");
+                        connection.invoke("GetBasketItemStatus");
                     }, 1000);
 
                 }).catch((err) => { console.log(err) });
 
-                connection.on("ReceiveShopTableStatus", (value) => {
+                connection.on("ReceiveBasketItemStatus", (value) => {
                     var color = "";
                     var status = "";
                     console.log(value);
-                    let tablehtml = `<div class="row">`;
+                    let basketitemhtml = `<div class="row">`;
                     $.each(value, (index, item) => {
                         if (item.status == true) {
                             color = "card card-stats card-success";
-                            status = "ShopTable İşlemde";
+                            status = "BasketItem İşlemde";
                         }
                         else {
                             color = "card card-stats card-danger";
-                            status = "ShopTable Kapatıldı";
+                            status = "BasketItem Kapatıldı";
                         }
-                        tablehtml += `<div class="col-md-3">
+                        basketitemhtml += `<div class="col-md-3">
                                                         <div class="${color}">
                                                             <div class="card-body ">
                                                                 <div class="row">
@@ -60,13 +60,13 @@
                                                         </div>
                                                     </div>`
                     });
-                    tablehtml += "</div>";
-                    $("#statuslist").html(tablehtml);
+                    basketitemhtml += "</div>";
+                    $("#statuslist").html(basketitemhtml);
                 });
             });
         </script>
 
-        <h4 class="page-title">Anlık ShopTable Durumları Sayfası</h4>       
+        <h4 class="page-title">Anlık BasketItem Durumları Sayfası</h4>       
             <div id="statuslist"></div>       
     </div>
 </div>
