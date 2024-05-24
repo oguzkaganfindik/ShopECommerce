@@ -17,23 +17,23 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("GetBasketByBasketItemId")]
-        public IActionResult GetBasketByBasketItemId(int id)
+        public async Task<IActionResult> GetBasketByBasketItemIdAsync(int id)
         {
-            var values = _basketService.TGetBasketByBasketItemNumber(id);
+            var values = await _basketService.TGetBasketByBasketItemNumberAsync(id);
             return Ok(values);
         }
 
         [HttpGet("BasketListByBasketItemWithProductName")]
-        public IActionResult BasketListByBasketItemWithProductName(int id)
+        public async Task<IActionResult> BasketListByBasketItemWithProductNameAsync(int id)
         {
-            var values = _basketService.TGetBasketListByBasketItemWithProductName(id);
+            var values = await _basketService.TGetBasketListByBasketItemWithProductNameAsync(id);
             return Ok(values);
         }
 
         [HttpPost("CreateBasket")]
-        public IActionResult CreateBasket(CreateBasketDto createBasketDto)
+        public async Task<IActionResult> CreateBasketAsync(CreateBasketDto createBasketDto)
         {
-            var productPrice = _basketService.TGetProductPrice(createBasketDto.ProductId);
+            var productPrice = await _basketService.TGetProductPriceAsync(createBasketDto.ProductId);
 
             _basketService.TAdd(new Basket()
             {
@@ -47,10 +47,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpPost("UpdateBasketQuantity")]
-        public IActionResult UpdateBasketQuantity(int productId, int newQuantity)
+        public async Task<IActionResult> UpdateBasketQuantityAsync(int productId, int newQuantity)
         {
-            // Ürün miktarını güncelle
-            _basketService.TUpdateQuantity(productId, newQuantity);
+            await _basketService.TUpdateQuantityAsync(productId, newQuantity);
             return Ok();
         }
 

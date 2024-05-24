@@ -45,14 +45,14 @@ namespace ShopECommerce.Business.Concrete
             return _basketDal.GetAll(predicate);
         }
 
-        public List<Basket> TGetBasketByBasketItemNumber(int id)
+        public async Task<List<Basket>> TGetBasketByBasketItemNumberAsync(int id)
         {
-            return _basketDal.GetBasketByBasketItemNumber(id);
+            return await _basketDal.GetBasketByBasketItemNumberAsync(id);
         }
 
-        public List<ResultBasketListWithProductsDto> TGetBasketListByBasketItemWithProductName(int id)
+        public async Task<List<ResultBasketListWithProductsDto>> TGetBasketListByBasketItemWithProductNameAsync(int id)
         {
-            return _basketDal.GetBasketListByBasketItemWithProductName(id);
+            return await _basketDal.GetBasketListByBasketItemWithProductNameAsync(id);
         }
 
         public Basket TGetById(int id)
@@ -61,9 +61,9 @@ namespace ShopECommerce.Business.Concrete
         }
 
 
-        public decimal TGetProductPrice(int productId)
+        public async Task<decimal> TGetProductPriceAsync(int productId)
         {
-            return _basketDal.GetProductPrice(productId);
+            return await _basketDal.GetProductPriceAsync(productId);
         }
 
         public void TUpdate(Basket entity)
@@ -86,9 +86,9 @@ namespace ShopECommerce.Business.Concrete
             _basketDal.HardDelete(id);
         }
 
-        public void TUpdateQuantity(int basketId, int newQuantity) 
+        public async Task TUpdateQuantityAsync(int basketId, int newQuantity) 
         {
-            _basketDal.UpdateQuantity(basketId, newQuantity);
+            await _basketDal.UpdateQuantityAsync(basketId, newQuantity);
         }
 
         public async Task<int> TGetBasketItemCountAsync()

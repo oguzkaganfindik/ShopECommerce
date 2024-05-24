@@ -15,44 +15,44 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public List<Basket> GetBasketByBasketItemNumber(int id)
+        public async Task<List<Basket>> GetBasketByBasketItemNumberAsync(int id)
         {
-            var values = _context.Baskets.Where(x => x.BasketItemId == id).Include(y => y.Product).ToList();
+            var values = await _context.Baskets.Where(x => x.BasketItemId == id).Include(y => y.Product).ToListAsync();
             return values;
         }
 
-        public List<ResultBasketListWithProductsDto> GetBasketListByBasketItemWithProductName(int id)
+        public async Task<List<ResultBasketListWithProductsDto>> GetBasketListByBasketItemWithProductNameAsync(int id)
         {
-            var values = _context.Baskets                            
-                                  .Where(y => y.BasketItemId == id)
-                                  .Include(x => x.Product)
-                                  .Select(z => new ResultBasketListWithProductsDto
-                                  {
-                                      Id = z.Id,
-                                      Price = z.Price,
-                                      Count = z.Count,
-                                      TotalPrice = z.TotalPrice,
-                                      ProductId = z.Product.Id,
-                                      BasketItemId = z.BasketItem.Id,
-                                      ProductName = z.Product.ProductName,
-                                      ImagePath = z.Product.ImagePath
-                                  })
-                                  .ToList();
+            var values = await _context.Baskets
+                                        .Where(y => y.BasketItemId == id)
+                                        .Include(x => x.Product)
+                                        .Select(z => new ResultBasketListWithProductsDto
+                                        {
+                                            Id = z.Id,
+                                            Price = z.Price,
+                                            Count = z.Count,
+                                            TotalPrice = z.TotalPrice,
+                                            ProductId = z.Product.Id,
+                                            BasketItemId = z.BasketItem.Id,
+                                            ProductName = z.Product.ProductName,
+                                            ImagePath = z.Product.ImagePath
+                                        })
+                                        .ToListAsync();
 
             return values;
         }
 
-        public decimal GetProductPrice(int productId)
+        public async Task<decimal> GetProductPriceAsync(int productId)
         {
-            return _context.Products
+            return await _context.Products
                            .Where(x => x.Id == productId)
                            .Select(y => y.Price)
-                           .FirstOrDefault();
+                           .FirstOrDefaultAsync();
         }
 
-        public void UpdateQuantity(int basketId, int newQuantity)
+        public async Task UpdateQuantityAsync(int basketId, int newQuantity)
         {
-            var basketItem = _context.Baskets.FirstOrDefault(x => x.Id == basketId);
+            var basketItem = await _context.Baskets.FirstOrDefaultAsync(x => x.Id == basketId);
             if (basketItem != null)
             {
                 basketItem.Count = newQuantity;
