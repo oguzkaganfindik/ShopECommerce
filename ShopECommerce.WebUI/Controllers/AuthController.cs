@@ -51,7 +51,7 @@ namespace ShopECommerce.WebUI.Controllers
                 }
                 int code = new Random(BitConverter.ToInt32(randomNumber, 0)).Next(100000, 1000000);
 
-                var rol = _roleService.TGet(r => r.Name == "Customer");
+                var rol =  _roleService.TGet(r => r.Name == "Customer");
                 if (rol == null)
                 {
                     ModelState.AddModelError("", "Kayıt Başarısız!");
@@ -72,7 +72,7 @@ namespace ShopECommerce.WebUI.Controllers
 
                 _userService.TAdd(newUser);
 
-                await _emailService.SendConfirmationEmail(newUser.Email, code);
+                await _emailService.SendConfirmationEmailAsync(newUser.Email, code);
 
                 TempData["Mail"] = userRegisterDto.Email;
 
@@ -92,23 +92,22 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult ConfirmMail(ConfirmMailViewModel confirmMailViewModel)
+        public async Task<IActionResult> ConfirmMail(ConfirmMailViewModel confirmMailViewModel)
         {
             if (ModelState.IsValid)
             {
-                var user = _userService.TGetByEmail(confirmMailViewModel.Mail);
+                var user = await _userService.TGetByEmailAsync(confirmMailViewModel.Mail);
                 if (user != null && user.ConfirmCode == confirmMailViewModel.ConfirmCode)
                 {
                     user.Description = "Kullanıcı Mail Onayı Yaptı";
                     user.EmailConfirmed = true;
-                    _userService.TUpdate(user);
+                    await _userService.TUpdateAsync(user);
 
                     return RedirectToAction("Login", "Auth");
                 }
 
                 ModelState.AddModelError("ConfirmCode", "Email Kodunu Yanlış Girdiniz. Email Kodu Olmadan Kayıt İşleminiz Tamamlanamaz. Lütfen Yeniden Deneyin ya da Site Yöneticisi İle İletişime Geçiniz.");
             }
-
 
             return View();
         }
@@ -122,7 +121,7 @@ namespace ShopECommerce.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
         {
-            var user = _userService.TGetByEmail(userLoginDto.Email);
+            var user = await _userService.TGetByEmailAsync(userLoginDto.Email);
 
             if (user == null)
             {
@@ -146,25 +145,23 @@ namespace ShopECommerce.WebUI.Controllers
             {
                 var rol = _roleService.TGet(r => r.Id == user.RoleId);
                 var claims = new List<Claim>()
-                    {
-                        new Claim(ClaimTypes.Name, user.Username),
-                        new Claim(ClaimTypes.Email, user.Email),
-                        new Claim(ClaimTypes.UserData, user.UserGuid.ToString())
-                    };
+            {
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.UserData, user.UserGuid.ToString())
+            };
                 if (rol is not null)
                 {
                     claims.Add(new Claim(ClaimTypes.Role, rol.Name));
                 }
 
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())); 
-                claims.Add(new Claim(ClaimTypes.GivenName, user.FirstName)); 
-                claims.Add(new Claim(ClaimTypes.Surname, user.LastName)); 
-
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+                claims.Add(new Claim(ClaimTypes.GivenName, user.FirstName));
+                claims.Add(new Claim(ClaimTypes.Surname, user.LastName));
 
                 var userIdentity = new ClaimsIdentity(claims, "Login");
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
                 await HttpContext.SignInAsync(principal);
-
 
                 if (rol.Name == "SuperAdmin")
                 {
@@ -207,7 +204,7 @@ namespace ShopECommerce.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(string email)
         {
-            var user = _userService.TGetByEmail(email);
+            var user = await _userService.TGetByEmailAsync(email);
             if (user == null)
             {
                 ModelState.AddModelError("Email", "Kullanıcı bulunamadı.");
@@ -222,10 +219,10 @@ namespace ShopECommerce.WebUI.Controllers
             int code = new Random(BitConverter.ToInt32(randomNumber, 0)).Next(100000, 1000000);
 
             string resetLink = Url.Action("ResetPassword", "Auth", new { email = user.Email, code = code }, Request.Scheme);
-            await _emailService.SendPasswordResetEmail(user.Email, resetLink);
+            await _emailService.SendPasswordResetEmailAsync(user.Email, resetLink);
 
             user.ResetCode = code;
-            _userService.TUpdate(user);
+            await _userService.TUpdateAsync(user);
 
             TempData["Message"] = "Şifrenizi sıfırlamak için e-posta hesabınızı kontrol edin.";
 
@@ -239,23 +236,20 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult ResetPassword(ResetPasswordViewModel model)
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            
-            var user = _userService.TGetByEmail(model.Email);
+            var user = await _userService.TGetByEmailAsync(model.Email);
 
-            
             if (user != null && user.ResetCode == model.Code)
             {
-                
                 user.Password = _dataProtector.Protect(model.Password);
-                user.ResetCode = null; 
-                _userService.TUpdate(user);
+                user.ResetCode = null;
+                await _userService.TUpdateAsync(user);
 
                 TempData["Message"] = "Şifreniz başarıyla güncellendi.";
                 return RedirectToAction("Login");
@@ -265,7 +259,6 @@ namespace ShopECommerce.WebUI.Controllers
                 ModelState.AddModelError("", "Geçersiz şifre sıfırlama talebi.");
                 return View(model);
             }
-
         }
 
         [HttpGet]
@@ -277,7 +270,7 @@ namespace ShopECommerce.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> ChangeMail(string email)
         {
-            var user = _userService.TGetByEmail(email);
+            var user = await _userService.TGetByEmailAsync(email);
             if (user == null)
             {
                 ModelState.AddModelError("Email", "Kullanıcı bulunamadı.");
@@ -292,11 +285,11 @@ namespace ShopECommerce.WebUI.Controllers
             int code = new Random(BitConverter.ToInt32(randomNumber, 0)).Next(100000, 1000000);
 
             string changeMailLink = Url.Action("ConfirmChangeMail", "Auth", new { email = email, code = code }, Request.Scheme);
-            await _emailService.SendChangeMailConfirmationEmail(user.Email, changeMailLink);
+            await _emailService.SendChangeMailConfirmationEmailAsync(user.Email, changeMailLink);
 
             user.ChangeMailCode = code;
 
-            _userService.TUpdate(user);
+            await _userService.TUpdateAsync(user);
 
             TempData["Message"] = "Mail sıfırlamak için e-posta hesabınızı kontrol edin.";
 
@@ -311,21 +304,21 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult ConfirmChangeMail(ConfirmChangeMailViewModel model)
+        public async Task<IActionResult> ConfirmChangeMail(ConfirmChangeMailViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var user = _userService.TGetByEmail(model.Email);
+            var user = await _userService.TGetByEmailAsync(model.Email);
 
             if (user != null && user.ChangeMailCode == model.Code)
             {
                 user.Email = model.NewEmail;
-                user.ChangeMailCode = null; 
-                user.NewEmail = null; 
-                _userService.TUpdate(user);
+                user.ChangeMailCode = null;
+                user.NewEmail = null;
+                await _userService.TUpdateAsync(user);
 
                 TempData["Message"] = "E-posta adresiniz başarıyla güncellendi.";
                 return RedirectToAction("Login");

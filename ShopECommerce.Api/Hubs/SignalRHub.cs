@@ -75,7 +75,7 @@ namespace ShopECommerce.Api.Hubs
             var value14 = await _moneyCaseService.TTotalMoneyCaseAmountAsync();
             await Clients.All.SendAsync("ReceiveTotalMoneyCaseAmount", value14.ToString("0.00") + " TL");
 
-            var value16 = _shopTableService.TShopTableCount();
+            var value16 = await _shopTableService.TShopTableCountAsync();
             await Clients.All.SendAsync("ReceiveShopTableCount", value16);
         }
 
@@ -87,7 +87,7 @@ namespace ShopECommerce.Api.Hubs
             var value2 = await _orderService.TActiveOrderCountAsync();
             await Clients.All.SendAsync("ReceiveActiveOrderCount", value2);
 
-            var value3 = _shopTableService.TShopTableCount();
+            var value3 = await _shopTableService.TShopTableCountAsync();
             await Clients.All.SendAsync("ReceiveShopTableCount", value3);
 
             var value5 = _productService.TProductPriceAvg();

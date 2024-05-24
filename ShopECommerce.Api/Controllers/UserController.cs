@@ -30,9 +30,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("GetUserWithRole")]
-        public IActionResult GetUserWithRole()
+        public async Task<IActionResult> GetUserWithRoleAsync()
         {
-            var values = _userService.TGetUserWithRole();
+            var values = await _userService.TGetUserWithRoleAsync();
             var result = _mapper.Map<List<GetUserWithRoleDto>>(values);
             return Ok(result);
         }
@@ -54,9 +54,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateUser(UpdateUserDto updateUserDto)
+        public async Task<IActionResult> UpdateUserAsync(UpdateUserDto updateUserDto)
         {
-            _userService.TUpdate(new User()
+            await _userService.TUpdateAsync(new User()
             {
                 Id = updateUserDto.Id,
                 Email = updateUserDto.Email,
@@ -74,16 +74,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("UserStatusApproved/{id}")]
-        public IActionResult UserStatusApproved(int id)
+        public async Task<IActionResult> UserStatusApproved(int id)
         {
-            _userService.UserStatusApproved(id);
+            await _userService.TUserStatusApprovedAsync(id);
             return Ok("User Açıklaması Değiştirildi");
         }
 
         [HttpGet("UserStatusCancelled/{id}")]
-        public IActionResult UserStatusCancelled(int id)
+        public async Task<IActionResult> UserStatusCancelledAsync(int id)
         {
-            _userService.UserStatusCancelled(id);
+            await _userService.TUserStatusCancelledAsync(id);
             return Ok("User Açıklaması Değiştirildi");
         }
 

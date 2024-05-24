@@ -15,14 +15,14 @@ namespace ShopECommerce.Business.Concrete
             _userDal = userDal;
         }
 
-        public void UserStatusApproved(int id)
+        public async Task TUserStatusApprovedAsync(int id)
         {
-            _userDal.UserStatusApproved(id);
+            await _userDal.UserStatusApprovedAsync(id);
         }
 
-        public void UserStatusCancelled(int id)
+        public async Task TUserStatusCancelledAsync(int id)
         {
-            _userDal.UserStatusCancelled(id);
+            await _userDal.UserStatusCancelledAsync(id);
         }
 
         public List<User> TGetListAll()
@@ -75,9 +75,9 @@ namespace ShopECommerce.Business.Concrete
             return _userDal.GetListByStatusTrue(predicate);
         }
 
-        public List<GetUserWithRoleDto> TGetUserWithRole()
+        public async Task<List<GetUserWithRoleDto>> TGetUserWithRoleAsync()
         {
-            return _userDal.GetUserWithRole();
+            return await _userDal.GetUserWithRoleAsync();
         }
 
         public void THardDelete(int id)
@@ -85,19 +85,19 @@ namespace ShopECommerce.Business.Concrete
             _userDal.HardDelete(id);
         }
 
-        public User TGetByEmail(string email)
+        public async Task<User> TGetByEmailAsync(string email)
         {
-            return _userDal.GetByEmail(email);
+            return await _userDal.GetByEmailAsync(email);
         }
 
-        public Task<User> TGetByEmailAndPassword(string email, string hashedPassword)
+        public async Task<User> TGetByEmailAndPasswordAsync(string email, string hashedPassword)
         {
-            return _userDal.GetByEmailAndPassword(email, hashedPassword);
+            return await _userDal.GetByEmailAndPasswordAsync(email, hashedPassword);
         }
 
-        public Task<User> TGetByEmailAndCode(string email, int code)
+        public async Task<User> TGetByEmailAndCodeAsync(string email, int code)
         {
-            return _userDal.GetByEmailAndCode(email, code);
+            return await _userDal.GetByEmailAndCodeAsync(email, code);
         }
 
         public async Task TUpdateAsync(User entity)

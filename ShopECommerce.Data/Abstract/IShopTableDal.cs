@@ -4,6 +4,6 @@ namespace ShopECommerce.Data.Abstract
 {
     public interface IShopTableDal : IGenericDal<ShopTable>
     {
-        int ShopTableCount();
+        Task<int> ShopTableCountAsync();
     }
 }

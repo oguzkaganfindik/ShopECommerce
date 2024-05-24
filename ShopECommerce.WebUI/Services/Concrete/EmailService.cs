@@ -13,7 +13,7 @@ namespace ShopECommerce.WebUI.Services.Concrete
             _configuration = configuration;
         }
 
-        public async Task SendConfirmationEmail(string emailAddress, int code)
+        public async Task SendConfirmationEmailAsync(string emailAddress, int code)
         {
             var emailSettings = _configuration.GetSection("EmailSettings");
             var smtpServer = emailSettings["SmtpServer"];
@@ -41,7 +41,7 @@ namespace ShopECommerce.WebUI.Services.Concrete
             }
         }
 
-        public async Task SendPasswordResetEmail(string email, string resetLink)
+        public async Task SendPasswordResetEmailAsync(string email, string resetLink)
         {
             var emailSettings = _configuration.GetSection("EmailSettings");
             var smtpServer = emailSettings["SmtpServer"];
@@ -70,7 +70,7 @@ namespace ShopECommerce.WebUI.Services.Concrete
         }
 
 
-        public async Task SendChangeMailConfirmationEmail(string newEmail, string changeMailLink)
+        public async Task SendChangeMailConfirmationEmailAsync(string newEmail, string changeMailLink)
         {
             var emailSettings = _configuration.GetSection("EmailSettings");
             var smtpServer = emailSettings["SmtpServer"];
@@ -97,7 +97,7 @@ namespace ShopECommerce.WebUI.Services.Concrete
             }
         }
 
-        public async Task SendEmail(string receiverEmail, string subject, string body)
+        public async Task SendEmailAsync(string receiverEmail, string subject, string body)
         {
             var emailSettings = _configuration.GetSection("EmailSettings");
             var smtpServer = emailSettings["SmtpServer"];

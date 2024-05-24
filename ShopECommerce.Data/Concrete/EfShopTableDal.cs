@@ -1,4 +1,5 @@
-﻿using ShopECommerce.Data.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using ShopECommerce.Data.Abstract;
 using ShopECommerce.Data.Context;
 using ShopECommerce.Data.Repositories;
 using ShopECommerce.Entities.Concrete;
@@ -13,9 +14,9 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public int ShopTableCount()
+        public async Task<int> ShopTableCountAsync()
         {
-            return _context.ShopTables.Count();
+            return await _context.ShopTables.CountAsync();
         }
     }
 }
