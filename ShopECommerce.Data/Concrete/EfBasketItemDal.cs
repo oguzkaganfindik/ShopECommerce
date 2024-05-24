@@ -6,17 +6,17 @@ using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Data.Concrete
 {
-    public class EfShopTableDal : GenericRepository<ShopTable>, IShopTableDal
+    public class EfBasketItemDal : GenericRepository<BasketItem>, IBasketItemDal
     {
         private readonly ShopECommerceContext _context;
-        public EfShopTableDal(ShopECommerceContext context) : base(context)
+        public EfBasketItemDal(ShopECommerceContext context) : base(context)
         {
             _context = context;
         }
 
-        public async Task<int> ShopTableCountAsync()
+        public async Task<int> BasketItemCountAsync()
         {
-            return await _context.ShopTables.CountAsync();
+            return await _context.BasketItems.CountAsync();
         }
     }
 }

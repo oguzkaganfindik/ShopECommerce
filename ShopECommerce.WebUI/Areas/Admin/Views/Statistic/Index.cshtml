@@ -83,8 +83,8 @@
 
 
 
-                connection.on("ReceiveShopTableCount", (value16) => {
-                    $("#shoptablecount").text(value16);
+                connection.on("ReceiveBasketItemCount", (value16) => {
+                    $("#basketItemCount").text(value16);
                 });
             });
         </script>
@@ -394,7 +394,7 @@
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
                                     <p class="card-subcategory">Aktif Sipariş Sepeti Sayısı</p>
-                                    <h4 class="card-title" id="shoptablecount"></h4>
+                                    <h4 class="card-title" id="basketItemCount"></h4>
                                 </div>
                             </div>
                         </div>

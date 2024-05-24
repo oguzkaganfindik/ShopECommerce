@@ -6,8 +6,8 @@ namespace ShopECommerce.Entities.Concrete
     public class Order : BaseEntity
     {
         public string Description { get; set; }
-        public int ShopTableId { get; set; }
-        public ShopTable ShopTable { get; set; }
+        public int BasketItemId { get; set; }
+        public BasketItem BasketItem { get; set; }
 
         [Column(TypeName = "Date")]
         public DateTime OrderDate { get; set; }

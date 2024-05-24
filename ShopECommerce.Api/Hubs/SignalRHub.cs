@@ -9,20 +9,20 @@ namespace ShopECommerce.Api.Hubs
         private readonly IProductService _productService;
         private readonly IOrderService _orderService;
         private readonly IMoneyCaseService _moneyCaseService;
-        private readonly IShopTableService _shopTableService;
+        private readonly IBasketItemService _basketItemService;
         private readonly IUserService _userService;
         private readonly IMessageService _messageService;
         private readonly INotificationService _notificationService;
         private readonly IBasketService _basketService;
 
 
-        public SignalRHub(ISubCategoryService subCategoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IShopTableService shopTableService, IUserService userService, INotificationService notificationService, IMessageService messageService, IBasketService basketService)
+        public SignalRHub(ISubCategoryService subCategoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IBasketItemService basketItemService, IUserService userService, INotificationService notificationService, IMessageService messageService, IBasketService basketService)
         {
             _subCategoryService = subCategoryService;
             _productService = productService;
             _orderService = orderService;
             _moneyCaseService = moneyCaseService;
-            _shopTableService = shopTableService;
+            _basketItemService = basketItemService;
             _userService = userService;
             _notificationService = notificationService;
             _messageService = messageService;
@@ -75,8 +75,8 @@ namespace ShopECommerce.Api.Hubs
             var value14 = await _moneyCaseService.TTotalMoneyCaseAmountAsync();
             await Clients.All.SendAsync("ReceiveTotalMoneyCaseAmount", value14.ToString("0.00") + " TL");
 
-            var value16 = await _shopTableService.TShopTableCountAsync();
-            await Clients.All.SendAsync("ReceiveShopTableCount", value16);
+            var value16 = await _basketItemService.TBasketItemCountAsync();
+            await Clients.All.SendAsync("ReceiveBasketItemCount", value16);
         }
 
         public async Task SendProgress()
@@ -87,8 +87,8 @@ namespace ShopECommerce.Api.Hubs
             var value2 = await _orderService.TActiveOrderCountAsync();
             await Clients.All.SendAsync("ReceiveActiveOrderCount", value2);
 
-            var value3 = await _shopTableService.TShopTableCountAsync();
-            await Clients.All.SendAsync("ReceiveShopTableCount", value3);
+            var value3 = await _basketItemService.TBasketItemCountAsync();
+            await Clients.All.SendAsync("ReceiveBasketItemCount", value3);
 
             var value5 = _productService.TProductPriceAvg();
             await Clients.All.SendAsync("ReceiveProductPriceAvg", value5);
@@ -131,17 +131,17 @@ namespace ShopECommerce.Api.Hubs
             var notificationListByTrue = await _notificationService.TGetAllNotificationsByTrueAsync();
             await Clients.All.SendAsync("ReceiveNotificationListByTrue", notificationListByTrue);
 
-            var basketItemCount = await _basketService.TGetBasketItemCount();
+            var basketItemCount = await _basketService.TGetBasketItemCountAsync();
             if (basketItemCount > 0) 
             {
                 await Clients.All.SendAsync("ReceiveBasketItemCount", basketItemCount);
             }
         }
 
-        public async Task GetShopTableStatus()
+        public async Task GetBasketItemStatus()
         {
-            var value = _shopTableService.TGetListAll();
-            await Clients.All.SendAsync("ReceiveShopTableStatus", value);
+            var value = _basketItemService.TGetListAll();
+            await Clients.All.SendAsync("ReceiveBasketItemStatus", value);
         }
 
         public async Task SendMessage(string user, string message)

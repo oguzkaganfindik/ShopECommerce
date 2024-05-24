@@ -5,7 +5,7 @@ namespace ShopECommerce.WebUI.Dtos.OrderDtos
     public class UpdateOrderDto
     {
         public int Id { get; set; }
-        public int ShopTableId { get; set; }
+        public int BasketItemId { get; set; }
         public string Description { get; set; }
 
         [Column(TypeName = "Date")]

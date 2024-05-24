@@ -2,9 +2,9 @@
 
 namespace ShopECommerce.Entities.Concrete
 {
-    public class ShopTable : BaseEntity
+    public class BasketItem : BaseEntity
     {
-        public string Name { get; set; }
+        public string BasketItemCustomerMail { get; set; }
         public int OrderId { get; set; }
         public Order Order { get; set; }
         public List<Basket> Baskets { get; set; }

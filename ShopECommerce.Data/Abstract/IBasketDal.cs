@@ -5,10 +5,10 @@ namespace ShopECommerce.Data.Abstract
 {
     public interface IBasketDal : IGenericDal<Basket>
     {
-        List<ResultBasketListWithProductsDto> GetBasketListByShopTableWithProductName(int id);
-        List<Basket> GetBasketByShopTableNumber(int id);
+        List<ResultBasketListWithProductsDto> GetBasketListByBasketItemWithProductName(int id);
+        List<Basket> GetBasketByBasketItemNumber(int id);
         decimal GetProductPrice(int productId);
         void UpdateQuantity(int basketId, int newQuantity);
-        Task<int> GetBasketItemCount();
+        Task<int> GetBasketItemCountAsync();
     }
 }

@@ -408,21 +408,21 @@ namespace ShopECommerce.Data.Context
                 }
             });
 
-            modelBuilder.Entity<ShopTable>().HasData(new List<ShopTable>()
+            modelBuilder.Entity<BasketItem>().HasData(new List<BasketItem>()
             {
-                new ShopTable()
+                new BasketItem()
                 {
                     Id = 1,
-                    Name = "customer@test.com",
+                    BasketItemCustomerMail = "customer@test.com",
                     OrderId = 1,
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
                 },
-                new ShopTable()
+                new BasketItem()
                 {
                     Id = 2,
-                    Name = "user@test.com",
+                    BasketItemCustomerMail = "user@test.com",
                     OrderId = 2,
                     Status = true,
                     IsDeleted = false,
@@ -439,7 +439,7 @@ namespace ShopECommerce.Data.Context
                     Count = 1,
                     TotalPrice = 4.95M,
                     ProductId = 1,
-                    ShopTableId = 1,
+                    BasketItemId = 1,
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
@@ -451,7 +451,7 @@ namespace ShopECommerce.Data.Context
                     Count = 1,
                     TotalPrice = 4.95M,
                     ProductId = 2,
-                    ShopTableId = 1,
+                    BasketItemId = 1,
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
@@ -463,7 +463,7 @@ namespace ShopECommerce.Data.Context
                     Count = 1,
                     TotalPrice = 4.95M,
                     ProductId = 3,
-                    ShopTableId = 1,
+                    BasketItemId = 1,
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
@@ -475,7 +475,7 @@ namespace ShopECommerce.Data.Context
                     Count = 1,
                     TotalPrice = 4.95M,
                     ProductId = 4,
-                    ShopTableId = 1,
+                    BasketItemId = 1,
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
@@ -489,7 +489,7 @@ namespace ShopECommerce.Data.Context
                 {
                     Id = 1,
                     Description = "Sipariş",
-                    ShopTableId = 1,
+                    BasketItemId = 1,
                     OrderDate = DateTime.Now,
                     TotalPrice = 20,
                     Status = true,

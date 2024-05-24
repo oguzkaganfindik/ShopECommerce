@@ -49,8 +49,8 @@ namespace ShopECommerce.Business
             services.AddScoped<IMoneyCaseService, MoneyCaseManager>();
             services.AddScoped<IMoneyCaseDal, EfMoneyCaseDal>();
 
-            services.AddScoped<IShopTableService, ShopTableManager>();
-            services.AddScoped<IShopTableDal, EfShopTableDal>();
+            services.AddScoped<IBasketItemService, BasketItemManager>();
+            services.AddScoped<IBasketItemDal, EfBasketItemDal>();
 
             services.AddScoped<ISliderService, SliderManager>();
             services.AddScoped<ISliderDal, EfSliderDal>();

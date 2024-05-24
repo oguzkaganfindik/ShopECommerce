@@ -9,7 +9,7 @@ namespace ShopECommerce.Entities.Concrete
         public decimal TotalPrice { get; set; }
         public int ProductId { get; set; }
         public Product Product { get; set; }
-        public int ShopTableId { get; set; }
-        public ShopTable ShopTable { get; set; }
+        public int BasketItemId { get; set; }
+        public BasketItem BasketItem { get; set; }
     }
 }

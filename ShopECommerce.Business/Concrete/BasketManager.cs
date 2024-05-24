@@ -45,14 +45,14 @@ namespace ShopECommerce.Business.Concrete
             return _basketDal.GetAll(predicate);
         }
 
-        public List<Basket> TGetBasketByShopTableNumber(int id)
+        public List<Basket> TGetBasketByBasketItemNumber(int id)
         {
-            return _basketDal.GetBasketByShopTableNumber(id);
+            return _basketDal.GetBasketByBasketItemNumber(id);
         }
 
-        public List<ResultBasketListWithProductsDto> TGetBasketListByShopTableWithProductName(int id)
+        public List<ResultBasketListWithProductsDto> TGetBasketListByBasketItemWithProductName(int id)
         {
-            return _basketDal.GetBasketListByShopTableWithProductName(id);
+            return _basketDal.GetBasketListByBasketItemWithProductName(id);
         }
 
         public Basket TGetById(int id)
@@ -91,9 +91,9 @@ namespace ShopECommerce.Business.Concrete
             _basketDal.UpdateQuantity(basketId, newQuantity);
         }
 
-        public async Task<int> TGetBasketItemCount()
+        public async Task<int> TGetBasketItemCountAsync()
         {
-            return await _basketDal.GetBasketItemCount();
+            return await _basketDal.GetBasketItemCountAsync();
         }
     }
 }

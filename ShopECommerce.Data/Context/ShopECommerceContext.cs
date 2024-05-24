@@ -22,7 +22,7 @@ namespace ShopECommerce.Data.Context
             modelBuilder.ApplyConfiguration(new SubCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
-            modelBuilder.ApplyConfiguration(new ShopTableConfiguration());
+            modelBuilder.ApplyConfiguration(new BasketItemConfiguration());
 
             modelBuilder.SeedData(_dataProtector);
 
@@ -38,7 +38,7 @@ namespace ShopECommerce.Data.Context
         public DbSet<Discount> Discounts => Set<Discount>();
         public DbSet<Featur> Featurs => Set<Featur>();
         public DbSet<Fact> Facts => Set<Fact>();
-        public DbSet<ShopTable> ShopTables => Set<ShopTable>();
+        public DbSet<BasketItem> BasketItems => Set<BasketItem>();
         public DbSet<Message> Messages => Set<Message>();
         public DbSet<MoneyCase> MoneyCases => Set<MoneyCase>();
         public DbSet<Notification> Notifications => Set<Notification>();
