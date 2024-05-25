@@ -15,14 +15,14 @@ namespace ShopECommerce.Business.Concrete
             _productDal = productDal;
         }
 
-        public string TProductNameByMaxPrice()
+        public async Task<string> TProductNameByMaxPriceAsync()
         {
-            return _productDal.ProductNameByMaxPrice();
+            return await _productDal.ProductNameByMaxPriceAsync();
         }
 
-        public string TProductNameByMinPrice()
+        public async Task<string> TProductNameByMinPriceAsync()
         {
-            return _productDal.ProductNameByMinPrice();
+            return await _productDal.ProductNameByMinPriceAsync();
         }
 
         public void TAdd(Product entity)
@@ -46,24 +46,24 @@ namespace ShopECommerce.Business.Concrete
             return _productDal.GetListAll();
         }
 
-        public int TProductCount()
+        public async Task<int> TProductCountAsync()
         {
-            return _productDal.ProductCount();
+            return await _productDal.ProductCountAsync();
         }
 
-        public int TProductCountBySubCategoryNameTomato()
+        public async Task<int> TProductCountBySubCategoryNameTomatoAsync()
         {
-            return _productDal.ProductCountBySubCategoryNameTomato();
+            return await _productDal.ProductCountBySubCategoryNameTomatoAsync();
         }
 
-        public int TProductCountBySubCategoryNameApple()
+        public async Task<int> TProductCountBySubCategoryNameAppleAsync()
         {
-            return _productDal.ProductCountBySubCategoryNameApple();
+            return await _productDal.ProductCountBySubCategoryNameAppleAsync();
         }
 
-        public decimal TProductPriceAvg()
+        public async Task<decimal> TProductPriceAvgAsync()
         {
-            return _productDal.ProductPriceAvg();
+            return await _productDal.ProductPriceAvgAsync();
         }
 
         public void TUpdate(Product entity)
@@ -71,29 +71,29 @@ namespace ShopECommerce.Business.Concrete
             _productDal.Update(entity);
         }
 
-        public decimal TProductAvgPriceByApple()
+        public async Task<decimal> TProductAvgPriceByAppleAsync()
         {
-            return _productDal.ProductAvgPriceByApple();
+            return await _productDal.ProductAvgPriceByAppleAsync();
         }
 
-        public decimal TProductPriceByNativeOranges()
+        public async Task<decimal> TProductPriceByNativeOrangesAsync()
         {
-            return _productDal.ProductPriceByNativeOranges();
+            return await _productDal.ProductPriceByNativeOrangesAsync();
         }
 
-        public decimal TTotalPriceByTomatoSubCategory()
+        public async Task<decimal> TTotalPriceByTomatoSubCategoryAsync()
         {
-            return _productDal.TotalPriceByTomatoSubCategory();
+            return await _productDal.TotalPriceByTomatoSubCategoryAsync();
         }
 
-        public decimal TTotalPriceByStrawberrySubCategory()
+        public async Task<decimal> TTotalPriceByStrawberrySubCategoryAsync()
         {
-            return _productDal.TotalPriceByStrawberrySubCategory();
+            return await _productDal.TotalPriceByStrawberrySubCategoryAsync();
         }
 
-        public List<ResultProductWithSubCategory> TGetProductsWithSubCategories()
+        public async Task<List<ResultProductWithSubCategory>> TGetProductsWithSubCategoriesAsync()
         {
-            return _productDal.GetProductsWithSubCategories();
+            return await _productDal.GetProductsWithSubCategoriesAsync();
         }
 
         public void TDelete(int id)
@@ -121,19 +121,19 @@ namespace ShopECommerce.Business.Concrete
             return _productDal.GetListByStatusTrue(predicate);
         }
 
-        public List<ResultProductWithSubCategory> TGetProductListByVegetable()
+        public async Task<List<ResultProductWithSubCategory>> TGetProductListByVegetableAsync()
         {
-            return _productDal.GetProductListByVegetable();
+            return await _productDal.GetProductListByVegetableAsync();
         }      
 
-        public List<ResultProductWithSubCategory> TGetProductListByFruites()
+        public async Task<List<ResultProductWithSubCategory>> TGetProductListByFruitesAsync()
         {
-            return _productDal.GetProductListByFruites();
+            return await _productDal.GetProductListByFruitesAsync();
         }
 
-        public GetProductShowcaseDetailDto TGetProductShowcaseDetailId(int id)
+        public async Task<GetProductShowcaseDetailDto> TGetProductShowcaseDetailIdAsync(int id)
         {
-            return _productDal.GetProductShowcaseDetailId(id);
+            return await _productDal.GetProductShowcaseDetailIdAsync(id);
         }
 
         public void THardDelete(int id)

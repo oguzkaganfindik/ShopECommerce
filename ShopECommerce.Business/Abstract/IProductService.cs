@@ -5,19 +5,19 @@ namespace ShopECommerce.Business.Abstract
 {
     public interface IProductService : IGenericService<Product>
     {
-        List<ResultProductWithSubCategory> TGetProductsWithSubCategories();
-        int TProductCount();
-        int TProductCountBySubCategoryNameApple();
-        int TProductCountBySubCategoryNameTomato();
-        decimal TProductPriceAvg();
-        string TProductNameByMaxPrice();
-        string TProductNameByMinPrice();
-        decimal TProductAvgPriceByApple();
-        decimal TProductPriceByNativeOranges();
-        decimal TTotalPriceByTomatoSubCategory();
-        decimal TTotalPriceByStrawberrySubCategory();
-        List<ResultProductWithSubCategory> TGetProductListByVegetable();
-        List<ResultProductWithSubCategory> TGetProductListByFruites();
-        GetProductShowcaseDetailDto TGetProductShowcaseDetailId(int id);
+        Task<List<ResultProductWithSubCategory>> TGetProductsWithSubCategoriesAsync();
+        Task<int> TProductCountAsync();
+        Task<int> TProductCountBySubCategoryNameAppleAsync();
+        Task<int> TProductCountBySubCategoryNameTomatoAsync();
+        Task<decimal> TProductPriceAvgAsync();
+        Task<string> TProductNameByMaxPriceAsync();
+        Task<string> TProductNameByMinPriceAsync();
+        Task<decimal> TProductAvgPriceByAppleAsync();
+        Task<decimal> TProductPriceByNativeOrangesAsync();
+        Task<decimal> TTotalPriceByTomatoSubCategoryAsync();
+        Task<decimal> TTotalPriceByStrawberrySubCategoryAsync();
+        Task<List<ResultProductWithSubCategory>> TGetProductListByVegetableAsync();
+        Task<List<ResultProductWithSubCategory>> TGetProductListByFruitesAsync();
+        Task<GetProductShowcaseDetailDto> TGetProductShowcaseDetailIdAsync(int id);
     }
 }

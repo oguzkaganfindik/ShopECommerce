@@ -27,12 +27,13 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ProductListWithSubCategory")]
-        public IActionResult ProductListWithSubCategory()
+        public async Task<IActionResult> ProductListWithSubCategory()
         {
-            var values = _productService.TGetProductsWithSubCategories();
+            var values = await _productService.TGetProductsWithSubCategoriesAsync();
             var result = _mapper.Map<List<ResultProductWithSubCategory>>(values);
             return Ok(result);
         }
+
 
         [HttpPost]
         public IActionResult CreateProduct(CreateProductDto createProductDto)
@@ -64,9 +65,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("GetProductShowcaseDetailId/{id}")]
-        public IActionResult GetProductShowcaseDetailId(int id)
+        public async Task<IActionResult> GetProductShowcaseDetailIdAsync(int id)
         {
-            var value = _productService.TGetProductShowcaseDetailId(id);
+            var value = await _productService.TGetProductShowcaseDetailIdAsync(id);
             return Ok(value);
         }
 
@@ -102,63 +103,63 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ProductCount")]
-        public IActionResult ProductCount()
+        public async Task<IActionResult> ProductCountAsync()
         {
-            return Ok(_productService.TProductCount());
+            return Ok(await _productService.TProductCountAsync());
         }
 
         [HttpGet("ProductNameByMaxPrice")]
-        public IActionResult ProductNameByMaxPrice()
+        public async Task<IActionResult> ProductNameByMaxPriceAsync()
         {
-            return Ok(_productService.TProductNameByMaxPrice());
+            return Ok(await _productService.TProductNameByMaxPriceAsync());
         }
 
         [HttpGet("ProductNameByMinPrice")]
-        public IActionResult ProductNameByMinPrice()
+        public async Task<IActionResult> ProductNameByMinPriceAsync()
         {
-            return Ok(_productService.TProductNameByMinPrice());
+            return Ok(await _productService.TProductNameByMinPriceAsync());
         }
 
         [HttpGet("ProductAvgPriceByApple")]
-        public IActionResult ProductAvgPriceByApple()
+        public async Task<IActionResult> ProductAvgPriceByAppleAsync()
         {
-            return Ok(_productService.TProductAvgPriceByApple());
+            return Ok(await _productService.TProductAvgPriceByAppleAsync());
         }
 
         [HttpGet("ProductCountByTomato")]
-        public IActionResult ProductCountByTomato()
+        public async Task<IActionResult> ProductCountByTomatoAsync()
         {
-            return Ok(_productService.TProductCountBySubCategoryNameTomato());
+            return Ok(await _productService.TProductCountBySubCategoryNameTomatoAsync());
         }
 
         [HttpGet("ProductPriceAvg")]
-        public IActionResult ProductPriceAvg()
+        public async Task<IActionResult> ProductPriceAvgAsync()
         {
-            return Ok(_productService.TProductPriceAvg());
+            return Ok(await _productService.TProductPriceAvgAsync());
         }
 
         [HttpGet("ProductCountByApple")]
-        public IActionResult ProductCountByApple()
+        public async Task<IActionResult> ProductCountByAppleAsync()
         {
-            return Ok(_productService.TProductCountBySubCategoryNameApple());
+            return Ok(await _productService.TProductCountBySubCategoryNameAppleAsync());
         }
 
         [HttpGet("ProductPriceByNativeOranges")]
-        public IActionResult ProductPriceByNativeOranges()
+        public async Task<IActionResult> ProductPriceByNativeOrangesAsync()
         {
-            return Ok(_productService.TProductPriceByNativeOranges());
+            return Ok(await _productService.TProductPriceByNativeOrangesAsync());
         }
 
         [HttpGet("TotalPriceByTomatoSubCategory")]
-        public IActionResult TotalPriceByTomatoSubCategory()
+        public async Task<IActionResult> TotalPriceByTomatoSubCategoryAsync()
         {
-            return Ok(_productService.TTotalPriceByTomatoSubCategory());
+            return Ok(await _productService.TTotalPriceByTomatoSubCategoryAsync());
         }
 
         [HttpGet("TotalPriceByStrawberrySubCategory")]
-        public IActionResult TotalPriceByStrawberrySubCategory()
+        public async Task<IActionResult> TotalPriceByStrawberrySubCategoryAsync()
         {
-            return Ok(_productService.TTotalPriceByStrawberrySubCategory());
+            return Ok(await _productService.TTotalPriceByStrawberrySubCategoryAsync());
         }
 
         [HttpGet("ToggleStatus/{id}")]
@@ -175,19 +176,21 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("GetProductListByVegetable")]
-        public IActionResult GetProductListByVegetable()
+        public async Task<IActionResult> GetProductListByVegetable()
         {
-            var values = _productService.TGetProductListByVegetable();
+            var values = await _productService.TGetProductListByVegetableAsync();
             var result = _mapper.Map<List<ResultProductWithSubCategory>>(values);
             return Ok(result);
         }
 
+
         [HttpGet("GetProductListByFruites")]
-        public IActionResult GetProductListByFruites()
+        public async Task<IActionResult> GetProductListByFruites()
         {
-            var values = _productService.TGetProductListByFruites();
+            var values = await _productService.TGetProductListByFruitesAsync();
             var result = _mapper.Map<List<ResultProductWithSubCategory>>(values);
             return Ok(result);
         }
+
     }
 }

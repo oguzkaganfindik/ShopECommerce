@@ -8,7 +8,6 @@ namespace ShopECommerce.Business.Abstract
         Task<int> TSubCategoryCountAsync();
         Task<int> TActiveSubCategoryCountAsync();
         Task<int> TPassiveSubCategoryCountAsync();
-
         Task<List<ResultSubCategoryWithCategory>> TGetSubCategoriesWithCategoriesAsync();
     }
 }

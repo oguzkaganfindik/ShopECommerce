@@ -36,7 +36,7 @@ namespace ShopECommerce.Api.Hubs
             var value = await _subCategoryService.TSubCategoryCountAsync();
             await Clients.All.SendAsync("ReceiveSubCategoryCount", value);
 
-            var value2 = _productService.TProductCount();
+            var value2 = await _productService.TProductCountAsync();
             await Clients.All.SendAsync("ReceiveProductCount", value2);
 
             var value3 = await _subCategoryService.TActiveSubCategoryCountAsync();
@@ -45,22 +45,22 @@ namespace ShopECommerce.Api.Hubs
             var value4 = await _subCategoryService.TPassiveSubCategoryCountAsync();
             await Clients.All.SendAsync("ReceivePassiveSubCategoryCount", value4);
 
-            var value5 = _productService.TProductCountBySubCategoryNameApple();
+            var value5 = await _productService.TProductCountBySubCategoryNameAppleAsync();
             await Clients.All.SendAsync("ReceiveProductCountBySubCategoryNameApple", value5);
 
-            var value6 = _productService.TProductCountBySubCategoryNameTomato();
+            var value6 = await _productService.TProductCountBySubCategoryNameTomatoAsync();
             await Clients.All.SendAsync("ReceiveProductCountBySubCategoryNameTomato", value6);
 
-            var value7 = _productService.TProductPriceAvg();
+            var value7 = await _productService.TProductPriceAvgAsync();
             await Clients.All.SendAsync("ReceiveProductPriceAvg", value7.ToString("0.00") + " TL");
 
-            var value8 = _productService.TProductNameByMaxPrice();
+            var value8 = await _productService.TProductNameByMaxPriceAsync();
             await Clients.All.SendAsync("ReceiveProductNameByMaxPrice", value8);
 
-            var value9 = _productService.TProductNameByMinPrice();
+            var value9 = await _productService.TProductNameByMinPriceAsync();
             await Clients.All.SendAsync("ReceiveProductNameByMinPrice", value9);
 
-            var value10 = _productService.TProductAvgPriceByApple();
+            var value10 = await _productService.TProductAvgPriceByAppleAsync();
             await Clients.All.SendAsync("ReceiveProductAvgPriceByApple", value10.ToString("0.00") + " TL");
 
             var value11 = await _orderService.TTotalOrderCountAsync();
@@ -90,25 +90,25 @@ namespace ShopECommerce.Api.Hubs
             var value3 = await _basketItemService.TBasketItemCountAsync();
             await Clients.All.SendAsync("ReceiveBasketItemCount", value3);
 
-            var value5 = _productService.TProductPriceAvg();
+            var value5 = await _productService.TProductPriceAvgAsync();
             await Clients.All.SendAsync("ReceiveProductPriceAvg", value5);
 
-            var value6 = _productService.TProductAvgPriceByApple();
+            var value6 = await _productService.TProductAvgPriceByAppleAsync();
             await Clients.All.SendAsync("ReceiveAvgPriceByApple", value6);
 
-            var value7 = _productService.TProductCountBySubCategoryNameTomato();
+            var value7 = await _productService.TProductCountBySubCategoryNameTomatoAsync();
             await Clients.All.SendAsync("ReceiveProductCountBySubCategoryNameTomato", value7);
 
             var value8 = await _orderService.TTotalOrderCountAsync();
             await Clients.All.SendAsync("ReceiveTotalOrderCount", value8);
 
-            var value9 = _productService.TProductPriceByNativeOranges();
+            var value9 = await _productService.TProductPriceByNativeOrangesAsync();
             await Clients.All.SendAsync("ReceiveProductPriceByNativeOranges", value9);
 
-            var value10 = _productService.TTotalPriceByTomatoSubCategory();
+            var value10 = await _productService.TTotalPriceByTomatoSubCategoryAsync();
             await Clients.All.SendAsync("ReceiveTotalPriceByTomatoSubCategory", value10);
 
-            var value11 = _productService.TTotalPriceByStrawberrySubCategory();
+            var value11 = await _productService.TTotalPriceByStrawberrySubCategoryAsync();
             await Clients.All.SendAsync("ReceiveTotalPriceByStrawberrySubCategory", value11);
 
             var notificationListByFalse = await _notificationService.TNotificationCountByStatusFalseAsync();

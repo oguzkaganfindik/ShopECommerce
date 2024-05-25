@@ -15,125 +15,175 @@ namespace ShopECommerce.Data.Concrete
             _context = context;
         }
 
-        public int ProductCount()
+        public async Task<int> ProductCountAsync()
         {
-            return _context.Products.Count();
+            return await _context.Products.CountAsync();
         }
 
-        public int ProductCountBySubCategoryNameTomato()
+
+        public async Task<int> ProductCountBySubCategoryNameTomatoAsync()
         {
-            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "Tomato").Select(z => z.Id).FirstOrDefault()).Count();
+            int subCategoryId = await _context.SubCategories
+                                              .Where(y => y.SubCategoryName == "Tomato")
+                                              .Select(z => z.Id)
+                                              .FirstOrDefaultAsync();
+
+            return await _context.Products
+                                 .Where(x => x.SubCategoryId == subCategoryId)
+                                 .CountAsync();
         }
 
-        public int ProductCountBySubCategoryNameApple()
+
+        public async Task<int> ProductCountBySubCategoryNameAppleAsync()
         {
-            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "Apple").Select(z => z.Id).FirstOrDefault()).Count();
+            int subCategoryId = await _context.SubCategories
+                                              .Where(y => y.SubCategoryName == "Apple")
+                                              .Select(z => z.Id)
+                                              .FirstOrDefaultAsync();
+
+            return await _context.Products
+                                 .Where(x => x.SubCategoryId == subCategoryId)
+                                 .CountAsync();
         }
 
-        public string ProductNameByMaxPrice()
+
+        public async Task<string> ProductNameByMaxPriceAsync()
         {
-            return _context.Products.Where(x => x.Price == _context.Products.Max(y => y.Price)).Select(z => z.ProductName).FirstOrDefault();
+            var maxPrice = await _context.Products.MaxAsync(y => y.Price);
+            return await _context.Products
+                                 .Where(x => x.Price == maxPrice)
+                                 .Select(z => z.ProductName)
+                                 .FirstOrDefaultAsync();
         }
 
-        public string ProductNameByMinPrice()
+        public async Task<string> ProductNameByMinPriceAsync()
         {
-            return _context.Products.Where(x => x.Price == _context.Products.Min(y => y.Price)).Select(z => z.ProductName).FirstOrDefault();
+            var minPrice = await _context.Products.MinAsync(y => y.Price);
+            return await _context.Products
+                                 .Where(x => x.Price == minPrice)
+                                 .Select(z => z.ProductName)
+                                 .FirstOrDefaultAsync();
         }
 
-        public decimal ProductPriceAvg()
+
+        public async Task<decimal> ProductPriceAvgAsync()
         {
-
-            return _context.Products.Average(x => x.Price);
-
+            return await _context.Products
+                                 .AverageAsync(x => x.Price);
         }
 
-        public decimal ProductAvgPriceByApple()
+
+        public async Task<decimal> ProductAvgPriceByAppleAsync()
         {
-            return _context.Products.Where(x => x.SubCategoryId == _context.SubCategories.Where(y => y.SubCategoryName == "Apple").Select(z => z.Id).FirstOrDefault()).Average(w => w.Price);
+            int subCategoryId = await _context.SubCategories
+                                              .Where(y => y.SubCategoryName == "Apple")
+                                              .Select(z => z.Id)
+                                              .FirstOrDefaultAsync();
+
+            return await _context.Products
+                                 .Where(x => x.SubCategoryId == subCategoryId)
+                                 .AverageAsync(w => w.Price);
         }
 
-        public decimal ProductPriceByNativeOranges()
+        public async Task<decimal> ProductPriceByNativeOrangesAsync()
         {
-
-            return _context.Products.Where(x => x.ProductName == "Native Oranges").Select(y => y.Price).FirstOrDefault();
-
+            return await _context.Products
+                                 .Where(x => x.ProductName == "Native Oranges")
+                                 .Select(y => y.Price)
+                                 .FirstOrDefaultAsync();
         }
 
-        public decimal TotalPriceByTomatoSubCategory()
+        public async Task<decimal> TotalPriceByTomatoSubCategoryAsync()
         {
-            int id = _context.SubCategories.Where(x => x.SubCategoryName == "Tomato").Select(y => y.Id).FirstOrDefault();
-            return _context.Products.Where(x => x.SubCategoryId == id).Sum(y => y.Price);
+            int id = await _context.SubCategories
+                                   .Where(x => x.SubCategoryName == "Tomato")
+                                   .Select(y => y.Id)
+                                   .FirstOrDefaultAsync();
+
+            return await _context.Products
+                                 .Where(x => x.SubCategoryId == id)
+                                 .SumAsync(y => y.Price);
         }
 
-        public decimal TotalPriceByStrawberrySubCategory()
+        public async Task<decimal> TotalPriceByStrawberrySubCategoryAsync()
         {
-            int id = _context.SubCategories.Where(x => x.SubCategoryName == "Strawberry").Select(y => y.Id).FirstOrDefault();
-            return _context.Products.Where(x => x.SubCategoryId == id).Sum(y => y.Price);
+            int id = await _context.SubCategories
+                                   .Where(x => x.SubCategoryName == "Strawberry")
+                                   .Select(y => y.Id)
+                                   .FirstOrDefaultAsync();
+
+            return await _context.Products
+                                 .Where(x => x.SubCategoryId == id)
+                                 .SumAsync(y => y.Price);
         }
 
-        public List<ResultProductWithSubCategory> GetProductsWithSubCategories()
+        public async Task<List<ResultProductWithSubCategory>> GetProductsWithSubCategoriesAsync()
         {
-            var values = _context.Products.Include(x => x.SubCategory).Include(x => x.SubCategory.Category).Select(y => new ResultProductWithSubCategory
-            {
-                Id = y.Id,
-                ProductName = y.ProductName,
-                Description = y.Description,
-                Price = y.Price,
-                ImagePath = y.ImagePath,
-                SubCategoryName = y.SubCategory.SubCategoryName,
-                CategoryName = y.SubCategory.Category.CategoryName,
-                ProductTitle = y.ProductTitle,
-                Status = y.Status
-            }).ToList();
+            var values = await _context.Products
+                .Include(x => x.SubCategory)
+                .ThenInclude(subCategory => subCategory.Category)
+                .Select(y => new ResultProductWithSubCategory
+                {
+                    Id = y.Id,
+                    ProductName = y.ProductName,
+                    Description = y.Description,
+                    Price = y.Price,
+                    ImagePath = y.ImagePath,
+                    SubCategoryName = y.SubCategory.SubCategoryName,
+                    CategoryName = y.SubCategory.Category.CategoryName,
+                    ProductTitle = y.ProductTitle,
+                    Status = y.Status
+                })
+                .ToListAsync();
 
             return values;
         }
 
-        public List<ResultProductWithSubCategory> GetProductListByVegetable()
+        public async Task<List<ResultProductWithSubCategory>> GetProductListByVegetableAsync()
         {
-            var values = _context.Products
-                            .Where(x => x.SubCategory.Category.CategoryName == "Vesitables")
-                            .Select(y => new ResultProductWithSubCategory
-                            {
-                                Id = y.Id,
-                                ProductName = y.ProductName,
-                                Description = y.Description,
-                                Price = y.Price,
-                                ImagePath = y.ImagePath,
-                                SubCategoryName = y.SubCategory.SubCategoryName,
-                                CategoryName = y.SubCategory.Category.CategoryName,
-                                ProductTitle = y.ProductTitle,
-                                Status = y.Status
-                            })
-                            .ToList();
+            var values = await _context.Products
+                .Where(x => x.SubCategory.Category.CategoryName == "Vesitables")
+                .Select(y => new ResultProductWithSubCategory
+                {
+                    Id = y.Id,
+                    ProductName = y.ProductName,
+                    Description = y.Description,
+                    Price = y.Price,
+                    ImagePath = y.ImagePath,
+                    SubCategoryName = y.SubCategory.SubCategoryName,
+                    CategoryName = y.SubCategory.Category.CategoryName,
+                    ProductTitle = y.ProductTitle,
+                    Status = y.Status
+                })
+                .ToListAsync();
 
             return values;
         }
 
-        public List<ResultProductWithSubCategory> GetProductListByFruites()
+        public async Task<List<ResultProductWithSubCategory>> GetProductListByFruitesAsync()
         {
-            var values = _context.Products
-                            .Where(x => x.SubCategory.Category.CategoryName == "Fruites")
-                            .Select(y => new ResultProductWithSubCategory
-                            {
-                                Id = y.Id,
-                                ProductName = y.ProductName,
-                                Description = y.Description,
-                                Price = y.Price,
-                                ImagePath = y.ImagePath,
-                                SubCategoryName = y.SubCategory.SubCategoryName,
-                                CategoryName = y.SubCategory.Category.CategoryName,
-                                ProductTitle = y.ProductTitle,
-                                Status = y.Status
-                            })
-                            .ToList();
+            var values = await _context.Products
+                .Where(x => x.SubCategory.Category.CategoryName == "Fruites")
+                .Select(y => new ResultProductWithSubCategory
+                {
+                    Id = y.Id,
+                    ProductName = y.ProductName,
+                    Description = y.Description,
+                    Price = y.Price,
+                    ImagePath = y.ImagePath,
+                    SubCategoryName = y.SubCategory.SubCategoryName,
+                    CategoryName = y.SubCategory.Category.CategoryName,
+                    ProductTitle = y.ProductTitle,
+                    Status = y.Status
+                })
+                .ToListAsync();
 
             return values;
         }
 
-        public GetProductShowcaseDetailDto GetProductShowcaseDetailId(int id)
+        public async Task<GetProductShowcaseDetailDto> GetProductShowcaseDetailIdAsync(int id)
         {
-            var value = _context.Products
+            var value = await _context.Products
                 .Where(p => p.Id == id)
                 .Select(p => new GetProductShowcaseDetailDto
                 {
@@ -152,10 +202,9 @@ namespace ShopECommerce.Data.Concrete
                     Сheck = p.Сheck,
                     MinWeight = p.MinWeight
                 })
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             return value;
         }
     }
 }
-

@@ -5,19 +5,19 @@ namespace ShopECommerce.Data.Abstract
 {
     public interface IProductDal : IGenericDal<Product>
     {
-        List<ResultProductWithSubCategory> GetProductsWithSubCategories();
-        int ProductCount();
-        int ProductCountBySubCategoryNameApple();
-        int ProductCountBySubCategoryNameTomato();
-        decimal ProductPriceAvg();
-        string ProductNameByMaxPrice();
-        string ProductNameByMinPrice();
-        decimal ProductAvgPriceByApple();
-        decimal ProductPriceByNativeOranges();
-        decimal TotalPriceByTomatoSubCategory();
-        decimal TotalPriceByStrawberrySubCategory();
-        List<ResultProductWithSubCategory> GetProductListByVegetable();
-        List<ResultProductWithSubCategory> GetProductListByFruites();
-        GetProductShowcaseDetailDto GetProductShowcaseDetailId(int id);
+        Task<List<ResultProductWithSubCategory>> GetProductsWithSubCategoriesAsync();
+        Task<int> ProductCountAsync();
+        Task<int> ProductCountBySubCategoryNameAppleAsync();
+        Task<int> ProductCountBySubCategoryNameTomatoAsync();
+        Task<decimal> ProductPriceAvgAsync();
+        Task<string> ProductNameByMaxPriceAsync();
+        Task<string> ProductNameByMinPriceAsync();
+        Task<decimal> ProductAvgPriceByAppleAsync();
+        Task<decimal> ProductPriceByNativeOrangesAsync();
+        Task<decimal> TotalPriceByTomatoSubCategoryAsync();
+        Task<decimal> TotalPriceByStrawberrySubCategoryAsync();
+        Task<List<ResultProductWithSubCategory>> GetProductListByVegetableAsync();
+        Task<List<ResultProductWithSubCategory>> GetProductListByFruitesAsync();
+        Task<GetProductShowcaseDetailDto> GetProductShowcaseDetailIdAsync(int id);
     }
 }
