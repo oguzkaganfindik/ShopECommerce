@@ -17,9 +17,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult NotificationList()
+        public async Task<ActionResult> NotificationListAsync()
         {
-            return Ok(_notificationService.TGetAll());
+            return Ok(await _notificationService.TGetAllAsync());
         }
 
         [HttpGet("NotificationCountByStatusTrue/{id}")]
@@ -35,7 +35,7 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateNotification(CreateNotificationDto createNotificationDto)
+        public async Task<ActionResult> CreateNotificationAsync(CreateNotificationDto createNotificationDto)
         {
             Notification notification = new Notification()
             {
@@ -46,27 +46,27 @@ namespace ShopECommerce.Api.Controllers
                 CreatedDate = createNotificationDto.CreatedDate
             };
 
-            _notificationService.TAdd(notification);
+            await _notificationService.TAddAsync(notification);
 
             return Ok("Ekleme İşlemi Başarıyla Yapıldı");
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeleteNotification(int id)
+        public async Task<ActionResult> DeleteNotificationAsync(int id)
         {
-            _notificationService.THardDelete(id);
+            await _notificationService.THardDeleteAsync(id);
             return Ok("Bildirim Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetNotification(int id)
+        public async Task<IActionResult> GetNotificationAsync(int id)
         {
-            var value = _notificationService.TGetById(id);
+            var value = await _notificationService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpPut]
-        public ActionResult UpdateNotification(UpdateNotificationDto updateNotificationDto)
+        public async Task<ActionResult> UpdateNotificationAsync(UpdateNotificationDto updateNotificationDto)
         {
             Notification notification = new Notification()
             {
@@ -78,7 +78,7 @@ namespace ShopECommerce.Api.Controllers
                 ModifiedDate = updateNotificationDto.ModifiedDate
             };
 
-            _notificationService.TUpdate(notification);
+            await _notificationService.TUpdateAsync(notification);
 
             return Ok("Güncelleme İşlemi Başarıyla Yapıldı");
         }
@@ -98,16 +98,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _notificationService.TToggleStatus(id);
+            await _notificationService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            return Ok(_notificationService.TGetListByStatusTrue());
+            return Ok(await _notificationService.TGetListByStatusTrueAsync());
         }
     }
 }

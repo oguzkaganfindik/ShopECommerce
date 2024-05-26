@@ -25,25 +25,25 @@ namespace ShopECommerce.Business.Concrete
             return await _productDal.ProductNameByMinPriceAsync();
         }
 
-        public void TAdd(Product entity)
+        public async Task TAddAsync(Product entity)
         {
-            _productDal.Add(entity);
+            await _productDal.AddAsync(entity);
         }
 
-        public void TDelete(Product entity)
+        public async Task TDeleteAsync(Product entity)
         {
-            _productDal.Delete(entity);
+            await _productDal.DeleteAsync(entity);
         }
 
-        public Product TGetById(int id)
+        public async Task<Product> TGetByIdAsync(int id)
         {
-            return _productDal.GetById(id);
+            return await _productDal.GetByIdAsync(id);
         }
 
 
-        public List<Product> TGetListAll()
+        public async Task<List<Product>> TGetListAllAsync()
         {
-            return _productDal.GetListAll();
+            return await _productDal.GetListAllAsync();
         }
 
         public async Task<int> TProductCountAsync()
@@ -66,9 +66,9 @@ namespace ShopECommerce.Business.Concrete
             return await _productDal.ProductPriceAvgAsync();
         }
 
-        public void TUpdate(Product entity)
+        public async Task TUpdateAsync(Product entity)
         {
-            _productDal.Update(entity);
+            await _productDal.UpdateAsync(entity);
         }
 
         public async Task<decimal> TProductAvgPriceByAppleAsync()
@@ -96,29 +96,29 @@ namespace ShopECommerce.Business.Concrete
             return await _productDal.GetProductsWithSubCategoriesAsync();
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _productDal.Delete(id);
+            await _productDal.DeleteAsync(id);
         }
 
-        public Product TGet(Expression<Func<Product, bool>> predicate)
+        public async Task<Product> TGetAsync(Expression<Func<Product, bool>> predicate)
         {
-            return _productDal.Get(predicate);
+            return await _productDal.GetAsync(predicate);
         }
 
-        public IQueryable<Product> TGetAll(Expression<Func<Product, bool>> predicate = null)
+        public async Task<IQueryable<Product>> TGetAllAsync(Expression<Func<Product, bool>> predicate = null)
         {
-            return TGetAll(predicate);
+            return await TGetAllAsync(predicate);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _productDal.ToggleStatus(id);
+            await _productDal.ToggleStatusAsync(id);
         }
 
-        public IQueryable<Product> TGetListByStatusTrue(Expression<Func<Product, bool>> predicate = null)
+        public async Task<IQueryable<Product>> TGetListByStatusTrueAsync(Expression<Func<Product, bool>> predicate = null)
         {
-            return _productDal.GetListByStatusTrue(predicate);
+            return await _productDal.GetListByStatusTrueAsync(predicate);
         }
 
         public async Task<List<ResultProductWithSubCategory>> TGetProductListByVegetableAsync()
@@ -136,9 +136,9 @@ namespace ShopECommerce.Business.Concrete
             return await _productDal.GetProductShowcaseDetailIdAsync(id);
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _productDal.HardDelete(id);
+            await _productDal.HardDeleteAsync(id);
         }
     }
 }

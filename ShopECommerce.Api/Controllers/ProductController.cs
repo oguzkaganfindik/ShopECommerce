@@ -20,14 +20,14 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult ProductList()
+        public async Task<IActionResult> ProductListAsync()
         {
-            var value = _mapper.Map<List<ResultProductDto>>(_productService.TGetListAll());
+            var value = _mapper.Map<List<ResultProductDto>>(await _productService.TGetListAllAsync());
             return Ok(value);
         }
 
         [HttpGet("ProductListWithSubCategory")]
-        public async Task<IActionResult> ProductListWithSubCategory()
+        public async Task<IActionResult> ProductListWithSubCategoryAsync()
         {
             var values = await _productService.TGetProductsWithSubCategoriesAsync();
             var result = _mapper.Map<List<ResultProductWithSubCategory>>(values);
@@ -36,9 +36,9 @@ namespace ShopECommerce.Api.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateProduct(CreateProductDto createProductDto)
+        public async Task<IActionResult> CreateProductAsync(CreateProductDto createProductDto)
         {
-            _productService.TAdd(new Product()
+            await _productService.TAddAsync(new Product()
             {
                 ProductName = createProductDto.ProductName,
                 Description = createProductDto.Description,
@@ -58,9 +58,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetProduct(int id)
+        public async Task<IActionResult> GetProductAsync(int id)
         {
-            var value = _productService.TGetById(id);
+            var value = await _productService.TGetByIdAsync(id);
             return Ok(value);
         }
 
@@ -72,9 +72,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateProduct(UpdateProductDto updateProductDto)
+        public async Task<IActionResult> UpdateProductAsync(UpdateProductDto updateProductDto)
         {
-            _productService.TUpdate(new Product()
+            await _productService.TUpdateAsync(new Product()
             {
                 Id = updateProductDto.Id,
                 ProductName = updateProductDto.ProductName,
@@ -95,10 +95,10 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteProduct(int id)
+        public async Task<IActionResult> DeleteProductAsync(int id)
         {
-            var value = _productService.TGetById(id);
-            _productService.TDelete(value);
+            var value = await _productService.TGetByIdAsync(id);
+            await _productService.TDeleteAsync(value);
             return Ok("Ürün Bilgisi Silindi");
         }
 
@@ -163,20 +163,20 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _productService.TToggleStatus(id);
+            await _productService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            return Ok(_productService.TGetListByStatusTrue());
+            return Ok(await _productService.TGetListByStatusTrueAsync());
         }
 
         [HttpGet("GetProductListByVegetable")]
-        public async Task<IActionResult> GetProductListByVegetable()
+        public async Task<IActionResult> GetProductListByVegetableAsync()
         {
             var values = await _productService.TGetProductListByVegetableAsync();
             var result = _mapper.Map<List<ResultProductWithSubCategory>>(values);
@@ -185,7 +185,7 @@ namespace ShopECommerce.Api.Controllers
 
 
         [HttpGet("GetProductListByFruites")]
-        public async Task<IActionResult> GetProductListByFruites()
+        public async Task<IActionResult> GetProductListByFruitesAsync()
         {
             var values = await _productService.TGetProductListByFruitesAsync();
             var result = _mapper.Map<List<ResultProductWithSubCategory>>(values);

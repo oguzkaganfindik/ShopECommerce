@@ -14,9 +14,9 @@ namespace ShopECommerce.Business.Concrete
             _categoryDal = categoryDal;
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _categoryDal.HardDelete(id);
+            await _categoryDal.HardDeleteAsync(id);
         }
 
         public async Task<int> TActiveCategoryCountAsync()
@@ -24,9 +24,9 @@ namespace ShopECommerce.Business.Concrete
             return await _categoryDal.ActiveCategoryCountAsync();
         }
 
-        public void TAdd(Category entity)
+        public async Task TAddAsync(Category entity)
         {
-            _categoryDal.Add(entity);
+            await _categoryDal.AddAsync(entity);
         }
 
         public async Task<int> TCategoryCountAsync()
@@ -34,39 +34,39 @@ namespace ShopECommerce.Business.Concrete
             return await _categoryDal.CategoryCountAsync();
         }
 
-        public void TDelete(Category entity)
+        public async Task TDeleteAsync(Category entity)
         {
-            _categoryDal.Delete(entity);
+            await _categoryDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _categoryDal.Delete(id);
+            await _categoryDal.DeleteAsync(id);
         }
 
-        public Category TGet(Expression<Func<Category, bool>> predicate)
+        public async Task<Category> TGetAsync(Expression<Func<Category, bool>> predicate)
         {
-            return _categoryDal.Get(predicate);
+            return await _categoryDal.GetAsync(predicate);
         }
 
-        public IQueryable<Category> TGetAll(Expression<Func<Category, bool>> predicate = null)
+        public async Task<IQueryable<Category>> TGetAllAsync(Expression<Func<Category, bool>> predicate = null)
         {
-            return _categoryDal.GetAll(predicate);
+            return await _categoryDal.GetAllAsync(predicate);
         }
 
-        public Category TGetById(int id)
+        public async Task<Category> TGetByIdAsync(int id)
         {
-            return _categoryDal.GetById(id);
+            return await _categoryDal.GetByIdAsync(id);
         }
 
-        public List<Category> TGetListAll()
+        public async Task<List<Category>> TGetListAllAsync()
         {
-            return _categoryDal.GetListAll();
+            return await _categoryDal.GetListAllAsync();
         }
 
-        public IQueryable<Category> TGetListByStatusTrue(Expression<Func<Category, bool>> predicate = null)
+        public async Task<IQueryable<Category>> TGetListByStatusTrueAsync(Expression<Func<Category, bool>> predicate = null)
         {
-            return _categoryDal.GetListByStatusTrue(predicate);
+            return await _categoryDal.GetListByStatusTrueAsync(predicate);
         }
 
         public async Task<int> TPassiveCategoryCountAsync()
@@ -74,14 +74,14 @@ namespace ShopECommerce.Business.Concrete
             return await _categoryDal.PassiveCategoryCountAsync();
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _categoryDal.ToggleStatus(id);
+            await _categoryDal.ToggleStatusAsync(id);
         }
 
-        public void TUpdate(Category entity)
+        public async Task TUpdateAsync(Category entity)
         {
-            _categoryDal.Update(entity);
+            await _categoryDal.UpdateAsync(entity);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(UserRegisterDto userRegisterDto)
+        public async Task<IActionResult> RegisterAsync(UserRegisterDto userRegisterDto)
         {
             if (ModelState.IsValid)
             {
@@ -51,7 +51,7 @@ namespace ShopECommerce.WebUI.Controllers
                 }
                 int code = new Random(BitConverter.ToInt32(randomNumber, 0)).Next(100000, 1000000);
 
-                var rol =  _roleService.TGet(r => r.Name == "Customer");
+                var rol = await _roleService.TGetAsync(r => r.Name == "Customer");
                 if (rol == null)
                 {
                     ModelState.AddModelError("", "Kayıt Başarısız!");
@@ -70,7 +70,7 @@ namespace ShopECommerce.WebUI.Controllers
                     ConfirmCode = code
                 };
 
-                _userService.TAdd(newUser);
+                await _userService.TAddAsync(newUser);
 
                 await _emailService.SendConfirmationEmailAsync(newUser.Email, code);
 
@@ -92,7 +92,7 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ConfirmMail(ConfirmMailViewModel confirmMailViewModel)
+        public async Task<IActionResult> ConfirmMailAsync(ConfirmMailViewModel confirmMailViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -119,7 +119,7 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(UserLoginDto userLoginDto)
+        public async Task<IActionResult> LoginAsync(UserLoginDto userLoginDto)
         {
             var user = await _userService.TGetByEmailAsync(userLoginDto.Email);
 
@@ -143,7 +143,7 @@ namespace ShopECommerce.WebUI.Controllers
 
             if (user != null && _dataProtector.Unprotect(user.Password) == userLoginDto.Password)
             {
-                var rol = _roleService.TGet(r => r.Id == user.RoleId);
+                var rol = await _roleService.TGetAsync(r => r.Id == user.RoleId);
                 var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name, user.Username),
@@ -188,7 +188,7 @@ namespace ShopECommerce.WebUI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> LogOut()
+        public async Task<IActionResult> LogOutAsync()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Default");
@@ -202,7 +202,7 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ForgotPassword(string email)
+        public async Task<IActionResult> ForgotPasswordAsync(string email)
         {
             var user = await _userService.TGetByEmailAsync(email);
             if (user == null)
@@ -236,7 +236,7 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        public async Task<IActionResult> ResetPasswordAsync(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -268,7 +268,7 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChangeMail(string email)
+        public async Task<IActionResult> ChangeMailAsync(string email)
         {
             var user = await _userService.TGetByEmailAsync(email);
             if (user == null)
@@ -304,7 +304,7 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ConfirmChangeMail(ConfirmChangeMailViewModel model)
+        public async Task<IActionResult> ConfirmChangeMailAsync(ConfirmChangeMailViewModel model)
         {
             if (!ModelState.IsValid)
             {

@@ -20,16 +20,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult RoleList()
+        public async Task<IActionResult> RoleListAsync()
         {
-            var value = _mapper.Map<List<ResultRoleDto>>(_roleService.TGetAll());
+            var value = _mapper.Map<List<ResultRoleDto>>(await _roleService.TGetAllAsync());
             return Ok(value);
         }
 
         [HttpPost]
-        public IActionResult CreateRole(CreateRoleDto createRoleDto)
+        public async Task<IActionResult> CreateRoleAsync(CreateRoleDto createRoleDto)
         {
-            _roleService.TAdd(new Role()
+            await _roleService.TAddAsync(new Role()
             {
                 Name = createRoleDto.Name
             });
@@ -38,24 +38,24 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteRole(int id)
+        public async Task<IActionResult> DeleteRoleAsync(int id)
         {
-            var value = _roleService.TGetById(id);
-            _roleService.TDelete(value);
+            var value = await _roleService.TGetByIdAsync(id);
+            await _roleService.TDeleteAsync(value);
             return Ok("Role Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetRole(int id)
+        public async Task<IActionResult> GetRoleAsync(int id)
         {
-            var value = _roleService.TGetById(id);
+            var value = await _roleService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpPut]
-        public IActionResult UpdateRole(UpdateRoleDto updateRoleDto)
+        public async Task<IActionResult> UpdateRoleAsync(UpdateRoleDto updateRoleDto)
         {
-            _roleService.TUpdate(new Role()
+            await _roleService.TUpdateAsync(new Role()
             {
                 Id = updateRoleDto.Id,
                 Name = updateRoleDto.Name
@@ -65,16 +65,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _roleService.TToggleStatus(id);
+            await _roleService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            var value = _mapper.Map<List<ResultRoleDto>>(_roleService.TGetListByStatusTrue());
+            var value = _mapper.Map<List<ResultRoleDto>>(await _roleService.TGetListByStatusTrueAsync());
             return Ok(value);
         }
     }

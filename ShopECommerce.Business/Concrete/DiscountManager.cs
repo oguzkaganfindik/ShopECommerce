@@ -14,14 +14,14 @@ namespace ShopECommerce.Business.Concrete
             _discountDal = discountDal;
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _discountDal.HardDelete(id);
+            await _discountDal.HardDeleteAsync(id);
         }
 
-        public void TAdd(Discount entity)
+        public async Task TAddAsync(Discount entity)
         {
-            _discountDal.Add(entity);
+            await _discountDal.AddAsync(entity);
         }
 
         public async Task TChangeStatusToFalseAsync(int id)
@@ -34,39 +34,39 @@ namespace ShopECommerce.Business.Concrete
             await _discountDal.ChangeStatusToTrueAsync(id);
         }
 
-        public void TDelete(Discount entity)
+        public async Task TDeleteAsync(Discount entity)
         {
-            _discountDal.Delete(entity);
+            await _discountDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _discountDal.Delete(id);
+            await _discountDal.DeleteAsync(id);
         }
 
-        public Discount TGet(Expression<Func<Discount, bool>> predicate)
+        public async Task<Discount> TGetAsync(Expression<Func<Discount, bool>> predicate)
         {
-            return _discountDal.Get(predicate);
+            return await _discountDal.GetAsync(predicate);
         }
 
-        public IQueryable<Discount> TGetAll(Expression<Func<Discount, bool>> predicate = null)
+        public async Task<IQueryable<Discount>> TGetAllAsync(Expression<Func<Discount, bool>> predicate = null)
         {
-            return _discountDal.GetAll(predicate);
+            return await _discountDal.GetAllAsync(predicate);
         }
 
-        public Discount TGetById(int id)
+        public async Task<Discount> TGetByIdAsync(int id)
         {
-            return _discountDal.GetById(id);
+            return await _discountDal.GetByIdAsync(id);
         }
 
-        public List<Discount> TGetListAll()
+        public async Task<List<Discount>> TGetListAllAsync()
         {
-            return _discountDal.GetListAll();
+            return await _discountDal.GetListAllAsync();
         }
 
-        public IQueryable<Discount> TGetListByStatusTrue(Expression<Func<Discount, bool>> predicate = null)
+        public async Task<IQueryable<Discount>> TGetListByStatusTrueAsync(Expression<Func<Discount, bool>> predicate = null)
         {
-            return _discountDal.GetListByStatusTrue(predicate);
+            return await _discountDal.GetListByStatusTrueAsync(predicate);
         }
 
         public async Task<List<Discount>> TGetListByStatusTrueAsync()
@@ -74,14 +74,14 @@ namespace ShopECommerce.Business.Concrete
             return await _discountDal.GetListByStatusTrueAsync();
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _discountDal.ToggleStatus(id);
+            await _discountDal.ToggleStatusAsync(id);
         }
 
-        public void TUpdate(Discount entity)
+        public async Task TUpdateAsync(Discount entity)
         {
-            _discountDal.Update(entity);
+            await _discountDal.UpdateAsync(entity);
         }
     }
 }

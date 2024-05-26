@@ -19,23 +19,23 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult SliderList()
+        public async Task<IActionResult> SliderListAsync()
         {
-            var value = _mapper.Map<List<ResultSliderDto>>(_sliderService.TGetAll());
+            var value = _mapper.Map<List<ResultSliderDto>>(await _sliderService.TGetAllAsync());
             return Ok(value);
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            var value = _mapper.Map<List<ResultSliderDto>>(_sliderService.TGetListByStatusTrue());
+            var value = _mapper.Map<List<ResultSliderDto>>(await _sliderService.TGetListByStatusTrueAsync());
             return Ok(value);
         }
 
         [HttpPost]
-        public IActionResult CreateSlider(CreateSliderDto createSliderDto)
+        public async Task<IActionResult> CreateSliderAsync(CreateSliderDto createSliderDto)
         {
-            _sliderService.TAdd(new Slider()
+            await _sliderService.TAddAsync(new Slider()
             {
                 Title = createSliderDto.Title,
                 Description = createSliderDto.Description,
@@ -51,24 +51,24 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteSlider(int id)
+        public async Task<IActionResult> DeleteSliderAsync(int id)
         {
-            var value = _sliderService.TGetById(id);
-            _sliderService.TDelete(value);
+            var value = await _sliderService.TGetByIdAsync(id);
+            await _sliderService.TDeleteAsync(value);
             return Ok("Slider Bilgisi Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetSlider(int id)
+        public async Task<IActionResult> GetSliderAsync(int id)
         {
-            var value = _sliderService.TGetById(id);
+            var value = await _sliderService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpPut]
-        public IActionResult UpdateSlider(UpdateSliderDto updateSliderDto)
+        public async Task<IActionResult> UpdateSliderAsync(UpdateSliderDto updateSliderDto)
         {
-            _sliderService.TUpdate(new Slider()
+            await _sliderService.TUpdateAsync(new Slider()
             {
                 Title = updateSliderDto.Title,
                 Description = updateSliderDto.Description,
@@ -84,9 +84,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _sliderService.TToggleStatus(id);
+            await _sliderService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }    
     }

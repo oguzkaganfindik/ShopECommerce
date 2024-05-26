@@ -4,16 +4,16 @@ namespace ShopECommerce.Business.Abstract
 {
     public interface IGenericService<T> where T : class
     {
-        void TAdd(T entity);
-        void TDelete(T entity);
-        void TDelete(int id);
-        void THardDelete(int id);
-        void TUpdate(T entity);
-        T TGetById(int id);
-        List<T> TGetListAll();
-        T TGet(Expression<Func<T, bool>> predicate);
-        IQueryable<T> TGetAll(Expression<Func<T, bool>> predicate = null);
-        void TToggleStatus(int id);
-        IQueryable<T> TGetListByStatusTrue(Expression<Func<T, bool>> predicate = null);
+        Task TAddAsync(T entity);
+        Task TDeleteAsync(T entity);
+        Task TDeleteAsync(int id);
+        Task THardDeleteAsync(int id);
+        Task TUpdateAsync(T entity);
+        Task<T> TGetByIdAsync(int id);
+        Task<List<T>> TGetListAllAsync();
+        Task<T> TGetAsync(Expression<Func<T, bool>> predicate);
+        Task<IQueryable<T>> TGetAllAsync(Expression<Func<T, bool>> predicate = null);
+        Task TToggleStatusAsync(int id);
+        Task<IQueryable<T>> TGetListByStatusTrueAsync(Expression<Func<T, bool>> predicate = null);
     }
 }

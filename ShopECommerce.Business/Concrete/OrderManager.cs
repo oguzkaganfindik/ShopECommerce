@@ -14,9 +14,9 @@ namespace ShopECommerce.Business.Concrete
             _orderDal = orderDal;
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _orderDal.HardDelete(id);
+            await _orderDal.HardDeleteAsync(id);
         }
 
         public Task<int> TActiveOrderCountAsync()
@@ -24,44 +24,44 @@ namespace ShopECommerce.Business.Concrete
             return _orderDal.ActiveOrderCountAsync();
         }
 
-        public void TAdd(Order entity)
+        public async Task TAddAsync(Order entity)
         {
-            _orderDal.Add(entity);
+            await _orderDal.AddAsync(entity);
         }
 
-        public void TDelete(Order entity)
+        public async Task TDeleteAsync(Order entity)
         {
-            _orderDal.Delete(entity);
+            await _orderDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _orderDal.Delete(id);
+            await _orderDal.DeleteAsync(id);
         }
 
-        public Order TGet(Expression<Func<Order, bool>> predicate)
+        public async Task<Order> TGetAsync(Expression<Func<Order, bool>> predicate)
         {
-            return _orderDal.Get(predicate);
+            return await _orderDal.GetAsync(predicate);
         }
 
-        public IQueryable<Order> TGetAll(Expression<Func<Order, bool>> predicate = null)
+        public async Task<IQueryable<Order>> TGetAllAsync(Expression<Func<Order, bool>> predicate = null)
         {
-            return _orderDal.GetAll(predicate);
+            return await _orderDal.GetAllAsync(predicate);
         }
 
-        public Order TGetById(int id)
+        public async Task<Order> TGetByIdAsync(int id)
         {
-            return _orderDal.GetById(id);
+            return await _orderDal.GetByIdAsync(id);
         }
 
-        public List<Order> TGetListAll()
+        public async Task<List<Order>> TGetListAllAsync()
         {
-            return _orderDal.GetListAll();
+            return await _orderDal.GetListAllAsync();
         }
 
-        public IQueryable<Order> TGetListByStatusTrue(Expression<Func<Order, bool>> predicate = null)
+        public async Task<IQueryable<Order>> TGetListByStatusTrueAsync(Expression<Func<Order, bool>> predicate = null)
         {
-            return _orderDal.GetListByStatusTrue(predicate);
+            return await _orderDal.GetListByStatusTrueAsync(predicate);
         }
 
         public async Task<decimal> TLastOrderPriceAsync()
@@ -74,9 +74,9 @@ namespace ShopECommerce.Business.Concrete
             return _orderDal.TodayTotalPriceAsync();
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _orderDal.ToggleStatus(id);
+            await _orderDal.ToggleStatusAsync(id);
         }
 
         public async Task<int> TTotalOrderCountAsync()
@@ -84,9 +84,9 @@ namespace ShopECommerce.Business.Concrete
             return await _orderDal.TotalOrderCountAsync();
         }
 
-        public void TUpdate(Order entity)
+        public async Task TUpdateAsync(Order entity)
         {
-            _orderDal.Update(entity);
+            await _orderDal.UpdateAsync(entity);
         }
     }
 }

@@ -14,59 +14,59 @@ namespace ShopECommerce.Business.Concrete
             _testimonialDal = testimonialDal;
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _testimonialDal.HardDelete(id);
+            await _testimonialDal.HardDeleteAsync(id);
         }
 
-        public void TAdd(Testimonial entity)
+        public async Task TAddAsync(Testimonial entity)
         {
-            _testimonialDal.Add(entity);
+            await _testimonialDal.AddAsync(entity);
         }
 
-        public void TDelete(Testimonial entity)
+        public async Task TDeleteAsync(Testimonial entity)
         {
-            _testimonialDal.Delete(entity);
+            await _testimonialDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _testimonialDal.Delete(id);
+            await _testimonialDal.DeleteAsync(id);
         }
 
-        public Testimonial TGet(Expression<Func<Testimonial, bool>> predicate)
+        public async Task<Testimonial> TGetAsync(Expression<Func<Testimonial, bool>> predicate)
         {
-            return _testimonialDal.Get(predicate);
+            return await _testimonialDal.GetAsync(predicate);
         }
 
-        public IQueryable<Testimonial> TGetAll(Expression<Func<Testimonial, bool>> predicate = null)
+        public async Task<IQueryable<Testimonial>> TGetAllAsync(Expression<Func<Testimonial, bool>> predicate = null)
         {
-            return _testimonialDal.GetAll(predicate);
+            return await _testimonialDal.GetAllAsync(predicate);
         }
 
-        public Testimonial TGetById(int id)
+        public async Task<Testimonial> TGetByIdAsync(int id)
         {
-            return _testimonialDal.GetById(id);
+            return await _testimonialDal.GetByIdAsync(id);
         }
 
-        public List<Testimonial> TGetListAll()
+        public async Task<List<Testimonial>> TGetListAllAsync()
         {
-            return _testimonialDal.GetListAll();
+            return await _testimonialDal.GetListAllAsync();
         }
 
-        public IQueryable<Testimonial> TGetListByStatusTrue(Expression<Func<Testimonial, bool>> predicate = null)
+        public async Task<IQueryable<Testimonial>> TGetListByStatusTrueAsync(Expression<Func<Testimonial, bool>> predicate = null)
         {
-            return _testimonialDal.GetListByStatusTrue(predicate);
+            return await _testimonialDal.GetListByStatusTrueAsync(predicate);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _testimonialDal.ToggleStatus(id);
+            await _testimonialDal.ToggleStatusAsync(id);
         }
 
-        public void TUpdate(Testimonial entity)
+        public async Task TUpdateAsync(Testimonial entity)
         {
-            _testimonialDal.Update(entity);
+            await _testimonialDal.UpdateAsync(entity);
         }
     }
 }

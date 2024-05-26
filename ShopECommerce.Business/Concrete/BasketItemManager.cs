@@ -14,49 +14,49 @@ namespace ShopECommerce.Business.Concrete
             _basketItemDal = basketItemDal;
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _basketItemDal.HardDelete(id);
+            await _basketItemDal.HardDeleteAsync(id);
         }
 
-        public void TAdd(BasketItem entity)
+        public async Task TAddAsync(BasketItem entity)
         {
-            _basketItemDal.Add(entity);
+            await _basketItemDal.AddAsync(entity);
         }
 
-        public void TDelete(BasketItem entity)
+        public async Task TDeleteAsync(BasketItem entity)
         {
-            _basketItemDal.Delete(entity);
+            await _basketItemDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _basketItemDal.Delete(id);
+            await _basketItemDal.DeleteAsync(id);
         }
 
-        public BasketItem TGet(Expression<Func<BasketItem, bool>> predicate)
+        public async Task<BasketItem> TGetAsync(Expression<Func<BasketItem, bool>> predicate)
         {
-            return _basketItemDal.Get(predicate);
+            return await _basketItemDal.GetAsync(predicate);
         }
 
-        public IQueryable<BasketItem> TGetAll(Expression<Func<BasketItem, bool>> predicate = null)
+        public async Task<IQueryable<BasketItem>> TGetAllAsync(Expression<Func<BasketItem, bool>> predicate = null)
         {
-            return _basketItemDal.GetAll(predicate);
+            return await _basketItemDal.GetAllAsync(predicate);
         }
 
-        public BasketItem TGetById(int id)
+        public async Task<BasketItem> TGetByIdAsync(int id)
         {
-            return _basketItemDal.GetById(id);
+            return await _basketItemDal.GetByIdAsync(id);
         }
 
-        public List<BasketItem> TGetListAll()
+        public async Task<List<BasketItem>> TGetListAllAsync()
         {
-            return _basketItemDal.GetListAll();
+            return await _basketItemDal.GetListAllAsync();
         }
 
-        public IQueryable<BasketItem> TGetListByStatusTrue(Expression<Func<BasketItem, bool>> predicate = null)
+        public async Task<IQueryable<BasketItem>> TGetListByStatusTrueAsync(Expression<Func<BasketItem, bool>> predicate = null)
         {
-            return _basketItemDal.GetListByStatusTrue(predicate);
+            return await _basketItemDal.GetListByStatusTrueAsync(predicate);
         }
 
         public async Task<int> TBasketItemCountAsync()
@@ -64,14 +64,14 @@ namespace ShopECommerce.Business.Concrete
             return await _basketItemDal.BasketItemCountAsync();
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _basketItemDal.ToggleStatus(id);
+            await _basketItemDal.ToggleStatusAsync(id);
         }
 
-        public void TUpdate(BasketItem entity)
+        public async Task TUpdateAsync(BasketItem entity)
         {
-            _basketItemDal.Update(entity);
+            await _basketItemDal.UpdateAsync(entity);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace ShopECommerce.Api.Controllers
         {
             var productPrice = await _basketService.TGetProductPriceAsync(createBasketDto.ProductId);
 
-            _basketService.TAdd(new Basket()
+            await _basketService.TAddAsync(new Basket()
             {
                 ProductId = createBasketDto.ProductId,
                 Count = 1,
@@ -54,23 +54,23 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteBasket(int id)
+        public async Task<IActionResult> DeleteBasketAsync(int id)
         {
-            _basketService.THardDelete(id);
+            await _basketService.THardDeleteAsync(id);
             return Ok("Basketteki Ürün Kalıcı Olarak Silindi");
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _basketService.TToggleStatus(id);
+            await _basketService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            return Ok(_basketService.TGetListByStatusTrue());
+            return Ok(await _basketService.TGetListByStatusTrueAsync());
         }
     }
 }

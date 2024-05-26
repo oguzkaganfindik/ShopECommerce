@@ -20,14 +20,14 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult CategoryList()
+        public async Task<IActionResult> CategoryListAsync()
         {
-            var value = _mapper.Map<List<ResultCategoryDto>>(_categoryService.TGetAll());
+            var value = _mapper.Map<List<ResultCategoryDto>>(await _categoryService.TGetAllAsync());
             return Ok(value);
         }
 
         [HttpGet("SubCategoryCount")]
-        public async Task<IActionResult> CategoryCount()
+        public async Task<IActionResult> CategoryCountAsync()
         {
             int count = await _categoryService.TCategoryCountAsync();
             return Ok(count);
@@ -35,7 +35,7 @@ namespace ShopECommerce.Api.Controllers
 
 
         [HttpGet("ActiveSubCategoryCount")]
-        public async Task<IActionResult> ActiveCategoryCount()
+        public async Task<IActionResult> ActiveCategoryCountAsync()
         {
             int count = await _categoryService.TActiveCategoryCountAsync();
             return Ok(count);
@@ -43,16 +43,16 @@ namespace ShopECommerce.Api.Controllers
 
 
         [HttpGet("PassiveSubCategoryCount")]
-        public async Task<IActionResult> PassiveCategoryCount()
+        public async Task<IActionResult> PassiveCategoryCountAsync()
         {
             int count = await _categoryService.TPassiveCategoryCountAsync();
             return Ok(count);
         }
 
         [HttpPost]
-        public IActionResult CreateCategory(CreateCategoryDto createCategoryDto)
+        public async Task<IActionResult> CreateCategoryAsync(CreateCategoryDto createCategoryDto)
         {
-            _categoryService.TAdd(new Category()
+            await _categoryService.TAddAsync(new Category()
             {
                 CategoryName = createCategoryDto.CategoryName,
                 Status = true
@@ -62,24 +62,24 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteCategory(int id)
+        public async Task<IActionResult> DeleteCategoryAsync(int id)
         {
-            var value = _categoryService.TGetById(id);
-            _categoryService.TDelete(value);
+            var value = await _categoryService.TGetByIdAsync(id);
+            await _categoryService.TDeleteAsync(value);
             return Ok("Kategori Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCategory(int id)
+        public async Task<IActionResult> GetCategoryAsync(int id)
         {
-            var value = _categoryService.TGetById(id);
+            var value = await _categoryService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpPut]
-        public IActionResult UpdateCategory(UpdateCategoryDto updateCategoryDto)
+        public async Task<IActionResult> UpdateCategoryAsync(UpdateCategoryDto updateCategoryDto)
         {
-            _categoryService.TUpdate(new Category()
+            await _categoryService.TUpdateAsync(new Category()
             {
                 CategoryName = updateCategoryDto.CategoryName,
                 Id = updateCategoryDto.Id,
@@ -90,16 +90,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _categoryService.TToggleStatus(id);
+            await _categoryService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            return Ok(_categoryService.TGetListByStatusTrue());
+            return Ok(await _categoryService.TGetListByStatusTrueAsync());
         }
     }
 }

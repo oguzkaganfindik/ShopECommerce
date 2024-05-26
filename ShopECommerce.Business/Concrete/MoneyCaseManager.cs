@@ -14,54 +14,54 @@ namespace ShopECommerce.Business.Concrete
             _moneyCaseDal = moneyCaseDal;
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _moneyCaseDal.HardDelete(id);
+            await _moneyCaseDal.HardDeleteAsync(id);
         }
 
-        public void TAdd(MoneyCase entity)
+        public async Task TAddAsync(MoneyCase entity)
         {
-            _moneyCaseDal.Add(entity);
+            await _moneyCaseDal.AddAsync(entity);
         }
 
-        public void TDelete(MoneyCase entity)
+        public async Task TDeleteAsync(MoneyCase entity)
         {
-            _moneyCaseDal.Delete(entity);
+            await _moneyCaseDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _moneyCaseDal.Delete(id);
+            await _moneyCaseDal.DeleteAsync(id);
         }
 
-        public MoneyCase TGet(Expression<Func<MoneyCase, bool>> predicate)
+        public async Task<MoneyCase> TGetAsync(Expression<Func<MoneyCase, bool>> predicate)
         {
-            return _moneyCaseDal.Get(predicate);
+            return await _moneyCaseDal.GetAsync(predicate);
         }
 
-        public IQueryable<MoneyCase> TGetAll(Expression<Func<MoneyCase, bool>> predicate = null)
+        public async Task<IQueryable<MoneyCase>> TGetAllAsync(Expression<Func<MoneyCase, bool>> predicate = null)
         {
-            return _moneyCaseDal.GetAll(predicate);
+            return await _moneyCaseDal.GetAllAsync(predicate);
         }
 
-        public MoneyCase TGetById(int id)
+        public async Task<MoneyCase> TGetByIdAsync(int id)
         {
-            return _moneyCaseDal.GetById(id);
+            return await _moneyCaseDal.GetByIdAsync(id);
         }
 
-        public List<MoneyCase> TGetListAll()
+        public async Task<List<MoneyCase>> TGetListAllAsync()
         {
-            return _moneyCaseDal.GetListAll();
+            return await _moneyCaseDal.GetListAllAsync();
         }
 
-        public IQueryable<MoneyCase> TGetListByStatusTrue(Expression<Func<MoneyCase, bool>> predicate = null)
+        public async Task<IQueryable<MoneyCase>> TGetListByStatusTrueAsync(Expression<Func<MoneyCase, bool>> predicate = null)
         {
-            return _moneyCaseDal.GetListByStatusTrue(predicate);
+            return await _moneyCaseDal.GetListByStatusTrueAsync(predicate);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _moneyCaseDal.ToggleStatus(id);
+            await _moneyCaseDal.ToggleStatusAsync(id);
         }
 
         public async Task<decimal> TTotalMoneyCaseAmountAsync()
@@ -69,9 +69,9 @@ namespace ShopECommerce.Business.Concrete
             return await _moneyCaseDal.TotalMoneyCaseAmountAsync();
         }
 
-        public void TUpdate(MoneyCase entity)
+        public async Task TUpdateAsync(MoneyCase entity)
         {
-            _moneyCaseDal.Update(entity);
+            await _moneyCaseDal.UpdateAsync(entity);
         }
     }
 }

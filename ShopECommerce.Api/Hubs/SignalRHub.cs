@@ -116,13 +116,13 @@ namespace ShopECommerce.Api.Hubs
         }
         public async Task GetUserList()
         {
-            var values = _userService.TGetListAll();
+            var values = await _userService.TGetListAllAsync();
             await Clients.All.SendAsync("ReceiveUserList", values);
         }
 
         public async Task GetMessageList()
         {
-            var values = _messageService.TGetListAll();
+            var values = await _messageService.TGetListAllAsync();
             await Clients.All.SendAsync("ReceiveMessageList", values);
         }
 
@@ -143,7 +143,7 @@ namespace ShopECommerce.Api.Hubs
 
         public async Task GetBasketItemStatus()
         {
-            var value = _basketItemService.TGetListAll();
+            var value = await _basketItemService.TGetListAllAsync();
             await Clients.All.SendAsync("ReceiveBasketItemStatus", value);
         }
 

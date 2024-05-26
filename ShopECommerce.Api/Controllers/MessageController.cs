@@ -20,23 +20,23 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult MessageList()
+        public async Task<IActionResult> MessageListAsync()
         {
-            var value = _mapper.Map<List<ResultMessageDto>>(_messageService.TGetAll());
+            var value = _mapper.Map<List<ResultMessageDto>>(await _messageService.TGetAllAsync());
             return Ok(value);
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            var value = _mapper.Map<List<ResultMessageDto>>(_messageService.TGetListByStatusTrue());
+            var value = _mapper.Map<List<ResultMessageDto>>(await _messageService.TGetListByStatusTrueAsync());
             return Ok(value);
         }
 
         [HttpPost]
-        public IActionResult CreateMessage(CreateMessageDto createMessageDto)
+        public async Task<IActionResult> CreateMessageAsync(CreateMessageDto createMessageDto)
         {
-            _messageService.TAdd(new Message()
+            await _messageService.TAddAsync(new Message()
             {
                 Mail = createMessageDto.Mail,
                 MessageContent = createMessageDto.MessageContent,
@@ -52,17 +52,17 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteMessage(int id)
+        public async Task<IActionResult> DeleteMessageAsync(int id)
         {
-            var value = _messageService.TGetById(id);
-            _messageService.TDelete(value);
+            var value = await _messageService.TGetByIdAsync(id);
+            await _messageService.TDeleteAsync(value);
             return Ok("Mesaj Silindi");
         }
 
         [HttpPut]
-        public IActionResult UpdateMessage(UpdateMessageDto updateMessageDto)
+        public async Task<IActionResult> UpdateMessageAsync(UpdateMessageDto updateMessageDto)
         {
-            _messageService.TUpdate(new Message()
+            await _messageService.TUpdateAsync(new Message()
             {
                 Mail = updateMessageDto.Mail,
                 MessageContent = updateMessageDto.MessageContent,
@@ -79,9 +79,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetMessage(int id)
+        public async Task<IActionResult> GetMessageAsync(int id)
         {
-            var value = _messageService.TGetById(id);
+            var value = await _messageService.TGetByIdAsync(id);
             return Ok(value);
         }
 
@@ -101,9 +101,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _messageService.TToggleStatus(id);
+            await _messageService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
     }

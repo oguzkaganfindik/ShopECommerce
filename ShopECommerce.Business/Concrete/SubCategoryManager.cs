@@ -1,6 +1,5 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
-using ShopECommerce.Data.Concrete;
 using ShopECommerce.DTOs.SubCategoryDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
@@ -21,9 +20,9 @@ namespace ShopECommerce.Business.Concrete
             return await _subCategoryDal.ActiveSubCategoryCountAsync();
         }
 
-        public void TAdd(SubCategory entity)
+        public async Task TAddAsync(SubCategory entity)
         {
-            _subCategoryDal.Add(entity);
+            await _subCategoryDal.AddAsync(entity);
         }
 
         public async Task<int> TSubCategoryCountAsync()
@@ -31,39 +30,39 @@ namespace ShopECommerce.Business.Concrete
             return await _subCategoryDal.SubCategoryCountAsync();
         }
 
-        public void TDelete(SubCategory entity)
+        public async Task TDeleteAsync(SubCategory entity)
         {
-            _subCategoryDal.Delete(entity);
+            await _subCategoryDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _subCategoryDal.Delete(id);
+            await _subCategoryDal.DeleteAsync(id);
         }
 
-        public SubCategory TGet(Expression<Func<SubCategory, bool>> predicate)
+        public async Task<SubCategory> TGetAsync(Expression<Func<SubCategory, bool>> predicate)
         {
-            return _subCategoryDal.Get(predicate);
+            return await _subCategoryDal.GetAsync(predicate);
         }
 
-        public IQueryable<SubCategory> TGetAll(Expression<Func<SubCategory, bool>> predicate = null)
+        public async Task<IQueryable<SubCategory>> TGetAllAsync(Expression<Func<SubCategory, bool>> predicate = null)
         {
-            return _subCategoryDal.GetAll(predicate);
+            return await _subCategoryDal.GetAllAsync(predicate);
         }
 
-        public SubCategory TGetById(int id)
+        public async Task<SubCategory> TGetByIdAsync(int id)
         {
-            return _subCategoryDal.GetById(id);
+            return await _subCategoryDal.GetByIdAsync(id);
         }
 
-        public List<SubCategory> TGetListAll()
+        public async Task<List<SubCategory>> TGetListAllAsync()
         {
-            return _subCategoryDal.GetListAll();
+            return await _subCategoryDal.GetListAllAsync();
         }
 
-        public IQueryable<SubCategory> TGetListByStatusTrue(Expression<Func<SubCategory, bool>> predicate = null)
+        public async Task<IQueryable<SubCategory>> TGetListByStatusTrueAsync(Expression<Func<SubCategory, bool>> predicate = null)
         {
-            return _subCategoryDal.GetListByStatusTrue(predicate);
+            return await _subCategoryDal.GetListByStatusTrueAsync(predicate);
         }
 
         public async Task<int> TPassiveSubCategoryCountAsync()
@@ -71,14 +70,14 @@ namespace ShopECommerce.Business.Concrete
             return await _subCategoryDal.PassiveSubCategoryCountAsync();
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _subCategoryDal.ToggleStatus(id);
+            await _subCategoryDal.ToggleStatusAsync(id);
         }
 
-        public void TUpdate(SubCategory entity)
+        public async Task TUpdateAsync(SubCategory entity)
         {
-            _subCategoryDal.Update(entity);
+            await _subCategoryDal.UpdateAsync(entity);
         }
 
         public async Task<List<ResultSubCategoryWithCategory>> TGetSubCategoriesWithCategoriesAsync()
@@ -86,9 +85,9 @@ namespace ShopECommerce.Business.Concrete
             return await _subCategoryDal.GetSubCategoriesWithCategoriesAsync();
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _subCategoryDal.HardDelete(id);
+            await _subCategoryDal.HardDeleteAsync(id);
         }
     }
 }

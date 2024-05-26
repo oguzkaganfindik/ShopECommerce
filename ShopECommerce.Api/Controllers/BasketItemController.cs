@@ -22,14 +22,14 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult BasketItemList()
+        public async Task<IActionResult> BasketItemListAsync()
         {
-            var values = _basketItemService.TGetAll();
+            var values = await _basketItemService.TGetAllAsync();
             return Ok(values);
         }
 
         [HttpPost]
-        public IActionResult CreateBasketItem(CreateBasketItemDto createBasketItemDto)
+        public async Task<IActionResult> CreateBasketItemAsync(CreateBasketItemDto createBasketItemDto)
         {
             BasketItem BasketItem = new BasketItem()
             {
@@ -37,20 +37,20 @@ namespace ShopECommerce.Api.Controllers
                 Status = false
             };
 
-            _basketItemService.TAdd(BasketItem);
+            await _basketItemService.TAddAsync(BasketItem);
             return Ok("Başarılı Bir Şekilde Eklendi");
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteBasketItem(int id)
+        public async Task<IActionResult> DeleteBasketItemAsync(int id)
         {
-            var value = _basketItemService.TGetById(id);
-            _basketItemService.TDelete(value);
+            var value = await _basketItemService.TGetByIdAsync(id);
+            await _basketItemService.TDeleteAsync(value);
             return Ok("Silindi");
         }
 
         [HttpPut]
-        public IActionResult UpdateBasketItem(UpdateBasketItemDto updateBasketItemDto)
+        public async Task<IActionResult> UpdateBasketItemAsync(UpdateBasketItemDto updateBasketItemDto)
         {
             BasketItem BasketItem = new BasketItem()
             {
@@ -59,28 +59,28 @@ namespace ShopECommerce.Api.Controllers
                 Id = updateBasketItemDto.Id
             };
 
-            _basketItemService.TUpdate(BasketItem);
+            await _basketItemService.TUpdateAsync(BasketItem);
             return Ok("Güncellendi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetBasketItem(int id)
+        public async Task<IActionResult> GetBasketItemAsync(int id)
         {
-            var value = _basketItemService.TGetById(id);
+            var value = await _basketItemService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _basketItemService.TToggleStatus(id);
+            await _basketItemService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            return Ok(_basketItemService.TGetListByStatusTrue());
+            return Ok(await _basketItemService.TGetListByStatusTrueAsync());
         }
     }
 }

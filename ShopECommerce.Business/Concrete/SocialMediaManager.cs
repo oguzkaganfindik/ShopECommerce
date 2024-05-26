@@ -13,59 +13,59 @@ namespace ShopECommerce.Business.Concrete
         {
             _socialMediaDal = socialMediaDal;
         }
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _socialMediaDal.HardDelete(id);
+            await _socialMediaDal.HardDeleteAsync(id);
         }
 
-        public void TAdd(SocialMedia entity)
+        public async Task TAddAsync(SocialMedia entity)
         {
-            _socialMediaDal.Add(entity);
+            await _socialMediaDal.AddAsync(entity);
         }
 
-        public void TDelete(SocialMedia entity)
+        public async Task TDeleteAsync(SocialMedia entity)
         {
-            _socialMediaDal.Delete(entity);
+            await _socialMediaDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _socialMediaDal.Delete(id);
+            await _socialMediaDal.DeleteAsync(id);
         }
 
-        public SocialMedia TGet(Expression<Func<SocialMedia, bool>> predicate)
+        public async Task<SocialMedia> TGetAsync(Expression<Func<SocialMedia, bool>> predicate)
         {
-            return _socialMediaDal.Get(predicate);
+            return await _socialMediaDal.GetAsync(predicate);
         }
 
-        public IQueryable<SocialMedia> TGetAll(Expression<Func<SocialMedia, bool>> predicate = null)
+        public async Task<IQueryable<SocialMedia>> TGetAllAsync(Expression<Func<SocialMedia, bool>> predicate = null)
         {
-            return _socialMediaDal.GetAll(predicate);
+            return await _socialMediaDal.GetAllAsync(predicate);
         }
 
-        public SocialMedia TGetById(int id)
+        public async Task<SocialMedia> TGetByIdAsync(int id)
         {
-            return _socialMediaDal.GetById(id);
+            return await _socialMediaDal.GetByIdAsync(id);
         }
 
-        public List<SocialMedia> TGetListAll()
+        public async Task<List<SocialMedia>> TGetListAllAsync()
         {
-            return _socialMediaDal.GetListAll();
+            return await _socialMediaDal.GetListAllAsync();
         }
 
-        public IQueryable<SocialMedia> TGetListByStatusTrue(Expression<Func<SocialMedia, bool>> predicate = null)
+        public async Task<IQueryable<SocialMedia>> TGetListByStatusTrueAsync(Expression<Func<SocialMedia, bool>> predicate = null)
         {
-            return _socialMediaDal.GetListByStatusTrue(predicate);
+            return await _socialMediaDal.GetListByStatusTrueAsync(predicate);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _socialMediaDal.ToggleStatus(id);
+            await _socialMediaDal.ToggleStatusAsync(id);
         }
 
-        public void TUpdate(SocialMedia entity)
+        public async Task TUpdateAsync(SocialMedia entity)
         {
-            _socialMediaDal.Update(entity);
+            await _socialMediaDal.UpdateAsync(entity);
         }
     }
 }

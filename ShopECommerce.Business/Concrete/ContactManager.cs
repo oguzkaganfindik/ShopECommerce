@@ -14,64 +14,64 @@ namespace ShopECommerce.Business.Concrete
             _contactDal = contactDal;
         }
 
-        public List<Contact> GetListAll()
+        public async Task<List<Contact>> GetListAllAsync()
         {
-            return _contactDal.GetListAll();
+            return await _contactDal.GetListAllAsync();
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _contactDal.HardDelete(id);
+            await _contactDal.HardDeleteAsync(id);
         }
 
-        public void TAdd(Contact entity)
+        public async Task TAddAsync(Contact entity)
         {
-            _contactDal.Add(entity);
+            await _contactDal.AddAsync(entity);
         }
 
-        public void TDelete(Contact entity)
+        public async Task TDeleteAsync(Contact entity)
         {
-            _contactDal.Delete(entity);
+            await _contactDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _contactDal.Delete(id);
+            await _contactDal.DeleteAsync(id);
         }
 
-        public Contact TGet(Expression<Func<Contact, bool>> predicate)
+        public async Task<Contact> TGetAsync(Expression<Func<Contact, bool>> predicate)
         {
-            return _contactDal.Get(predicate);
+            return await _contactDal.GetAsync(predicate);
         }
 
-        public IQueryable<Contact> TGetAll(Expression<Func<Contact, bool>> predicate = null)
+        public async Task<IQueryable<Contact>> TGetAllAsync(Expression<Func<Contact, bool>> predicate = null)
         {
-            return _contactDal.GetAll(predicate);
+            return await _contactDal.GetAllAsync(predicate);
         }
 
-        public Contact TGetById(int id)
+        public async Task<Contact> TGetByIdAsync(int id)
         {
-            return _contactDal.GetById(id);
+            return await _contactDal.GetByIdAsync(id);
         }
 
-        public List<Contact> TGetListAll()
+        public async Task<List<Contact>> TGetListAllAsync()
         {
-            return _contactDal.GetListAll();
+            return await _contactDal.GetListAllAsync();
         }
 
-        public IQueryable<Contact> TGetListByStatusTrue(Expression<Func<Contact, bool>> predicate = null)
+        public async Task<IQueryable<Contact>> TGetListByStatusTrueAsync(Expression<Func<Contact, bool>> predicate = null)
         {
-            return _contactDal.GetListByStatusTrue(predicate);
+            return await _contactDal.GetListByStatusTrueAsync(predicate);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _contactDal.ToggleStatus(id);
+            await _contactDal.ToggleStatusAsync(id);
         }
 
-        public void TUpdate(Contact entity)
+        public async Task TUpdateAsync(Contact entity)
         {
-            _contactDal.Update(entity);
+            await _contactDal.UpdateAsync(entity);
         }
     }
 }

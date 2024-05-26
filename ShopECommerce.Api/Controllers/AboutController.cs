@@ -20,16 +20,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult AboutList()
+        public async Task<IActionResult> AboutListAsync()
         {
-            var value = _mapper.Map<List<ResultAboutDto>>(_aboutService.TGetAll());
+            var value = _mapper.Map<List<ResultAboutDto>>(await _aboutService.TGetAllAsync());
             return Ok(value);
         }
 
         [HttpPost]
-        public IActionResult CreateAbout(CreateAboutDto createAboutDto)
+        public async Task<IActionResult> CreateAboutAsync(CreateAboutDto createAboutDto)
         {
-            _aboutService.TAdd(new About()
+            await _aboutService.TAddAsync(new About()
             {
                 Description = createAboutDto.Description,
                 Status = createAboutDto.Status
@@ -39,24 +39,24 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteAbout(int id)
+        public async Task<IActionResult> DeleteAboutAsync(int id)
         {
-            var value = _aboutService.TGetById(id);
-            _aboutService.TDelete(value);
+            var value = await _aboutService.TGetByIdAsync(id);
+            await _aboutService.TDeleteAsync(value);
             return Ok("Hakkımda Alanı Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetAbout(int id)
+        public async Task<IActionResult> GetAboutAsync(int id)
         {
-            var value = _aboutService.TGetById(id);
+            var value = await _aboutService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpPut]
-        public IActionResult UpdateAbout(UpdateAboutDto updateAboutDto)
+        public async Task<IActionResult> UpdateAboutAsync(UpdateAboutDto updateAboutDto)
         {
-            _aboutService.TUpdate(new About()
+            await _aboutService.TUpdateAsync(new About()
             {
                 Id = updateAboutDto.Id,
                 Description = updateAboutDto.Description,
@@ -67,16 +67,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _aboutService.TToggleStatus(id);
+            await _aboutService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            var value = _mapper.Map<List<ResultAboutDto>>(_aboutService.TGetListByStatusTrue());
+            var value = _mapper.Map<List<ResultAboutDto>>(await _aboutService.TGetListByStatusTrueAsync());
             return Ok(value);
         }
     }

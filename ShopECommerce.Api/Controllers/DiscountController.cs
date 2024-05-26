@@ -20,16 +20,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult DiscountList()
+        public async Task<IActionResult> DiscountListAsync()
         {
-            var value = _mapper.Map<List<ResultDiscountDto>>(_discountService.TGetAll());
+            var value = _mapper.Map<List<ResultDiscountDto>>(await _discountService.TGetAllAsync());
             return Ok(value);
         }
 
         [HttpPost]
-        public IActionResult CreateDiscount(CreateDiscountDto createDiscountDto)
+        public async Task<IActionResult> CreateDiscountAsync(CreateDiscountDto createDiscountDto)
         {
-            _discountService.TAdd(new Discount()
+            await _discountService.TAddAsync(new Discount()
             {
                 Amount = createDiscountDto.Amount,
                 Description = createDiscountDto.Description,
@@ -42,24 +42,24 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteDiscount(int id)
+        public async Task<IActionResult> DeleteDiscountAsync(int id)
         {
-            var value = _discountService.TGetById(id);
-            _discountService.TDelete(value);
+            var value = await _discountService.TGetByIdAsync(id);
+            await _discountService.TDeleteAsync(value);
             return Ok("İndirim Bilgisi Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetDiscount(int id)
+        public async Task<IActionResult> GetDiscountAsync(int id)
         {
-            var value = _discountService.TGetById(id);
+            var value = await _discountService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpPut]
-        public IActionResult UpdateDiscount(UpdateDiscountDto updateDiscountDto)
+        public async Task<IActionResult> UpdateDiscountAsync(UpdateDiscountDto updateDiscountDto)
         {
-            _discountService.TUpdate(new Discount()
+            await _discountService.TUpdateAsync(new Discount()
             {
                 Id = updateDiscountDto.Id,
                 Amount = updateDiscountDto.Amount,
@@ -73,16 +73,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _discountService.TToggleStatus(id);
+            await _discountService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            return Ok(_discountService.TGetListByStatusTrue());
+            return Ok(await _discountService.TGetListByStatusTrueAsync());
         }
 
     }
