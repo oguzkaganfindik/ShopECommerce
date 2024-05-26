@@ -20,23 +20,23 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult BannerList()
+        public async Task<IActionResult> BannerListAsync()
         {
-            var value = _mapper.Map<List<ResultBannerDto>>(_bannerService.TGetAll());
+            var value = _mapper.Map<List<ResultBannerDto>>(await _bannerService.TGetAllAsync());
             return Ok(value);
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            var value = _mapper.Map<List<ResultBannerDto>>(_bannerService.TGetListByStatusTrue());
+            var value = _mapper.Map<List<ResultBannerDto>>(await _bannerService.TGetListByStatusTrueAsync());
             return Ok(value);
         }
 
         [HttpPost]
-        public IActionResult CreateBanner(CreateBannerDto createBannerDto)
+        public async Task<IActionResult> CreateBannerAsync(CreateBannerDto createBannerDto)
         {
-            _bannerService.TAdd(new Banner()
+            await _bannerService.TAddAsync(new Banner()
             {
                 Title = createBannerDto.Title,
                 SubTitle = createBannerDto.SubTitle,
@@ -52,24 +52,24 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteBanner(int id)
+        public async Task<IActionResult> DeleteBannerAsync(int id)
         {
-            var value = _bannerService.TGetById(id);
-            _bannerService.TDelete(value);
+            var value = await _bannerService.TGetByIdAsync(id);
+            await _bannerService.TDeleteAsync(value);
             return Ok("Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetBanner(int id)
+        public async Task<IActionResult> GetBannerAsync(int id)
         {
-            var value = _bannerService.TGetById(id);
+            var value = await _bannerService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpPut]
-        public IActionResult UpdateBanner(UpdateBannerDto updateBannerDto)
+        public async Task<IActionResult> UpdateBannerAsync(UpdateBannerDto updateBannerDto)
         {
-            _bannerService.TUpdate(new Banner()
+            await _bannerService.TUpdateAsync(new Banner()
             {
                 Id = updateBannerDto.Id,
                 Title = updateBannerDto.Title,
@@ -86,12 +86,10 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _bannerService.TToggleStatus(id);
+            await _bannerService.TToggleStatusAsync(id);
             return Ok("Değiştirildi");
         }
-
-
     }
 }

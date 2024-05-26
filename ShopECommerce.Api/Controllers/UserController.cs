@@ -23,9 +23,10 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult UserList()
+        public async Task<IActionResult> UserListAsync()
         {
-            var value = _mapper.Map<List<ResultUserDto>>(_userService.TGetAll());
+            var users = await _userService.TGetAllAsync();
+            var value = _mapper.Map<List<ResultUserDto>>(users);
             return Ok(value);
         }
 
@@ -39,17 +40,21 @@ namespace ShopECommerce.Api.Controllers
 
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
+        public async Task<IActionResult> DeleteUserAsync(int id)
         {
-            var value = _userService.TGetById(id);
-            _userService.TDelete(value);
+            var value = await _userService.TGetByIdAsync(id);
+            if (value == null)
+            {
+                return NotFound("User not found");
+            }
+            await _userService.TDeleteAsync(value);
             return Ok("User Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetUser(int id)
+        public async Task<IActionResult> GetUserAsync(int id)
         {
-            var value = _userService.TGetById(id);
+            var value = await _userService.TGetByIdAsync(id);
             return Ok(value);
         }
 
@@ -74,7 +79,7 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("UserStatusApproved/{id}")]
-        public async Task<IActionResult> UserStatusApproved(int id)
+        public async Task<IActionResult> UserStatusApprovedAsync(int id)
         {
             await _userService.TUserStatusApprovedAsync(id);
             return Ok("User Açıklaması Değiştirildi");
@@ -88,16 +93,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _userService.TToggleStatus(id);
+            await _userService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            return Ok(_userService.TGetListByStatusTrue());
+            return Ok(await _userService.TGetListByStatusTrueAsync());
         }
     }
 }

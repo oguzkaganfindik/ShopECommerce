@@ -20,23 +20,23 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult SocialMediaList()
+        public async Task<IActionResult> SocialMediaListAsync()
         {
-            var value = _mapper.Map<List<ResultSocialMediaDto>>(_socialMediaService.TGetAll());
+            var value = _mapper.Map<List<ResultSocialMediaDto>>(await _socialMediaService.TGetAllAsync());
             return Ok(value);
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            var value = _mapper.Map<List<ResultSocialMediaDto>>(_socialMediaService.TGetListByStatusTrue());
+            var value = _mapper.Map<List<ResultSocialMediaDto>>(await _socialMediaService.TGetListByStatusTrueAsync());
             return Ok(value);
         }
 
         [HttpPost]
-        public IActionResult CreateSocialMedia(CreateSocialMediaDto createSocialMediaDto)
+        public async Task<IActionResult> CreateSocialMediaAsync(CreateSocialMediaDto createSocialMediaDto)
         {
-            _socialMediaService.TAdd(new SocialMedia()
+            await _socialMediaService.TAddAsync(new SocialMedia()
             {
                 Title = createSocialMediaDto.Title,
                 Cls = createSocialMediaDto.Cls,
@@ -48,24 +48,24 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteSocialMedia(int id)
+        public async Task<IActionResult> DeleteSocialMediaAsync(int id)
         {
-            var value = _socialMediaService.TGetById(id);
-            _socialMediaService.TDelete(value);
+            var value = await _socialMediaService.TGetByIdAsync(id);
+            await _socialMediaService.TDeleteAsync(value);
             return Ok("Sosyal Medya Bilgisi Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetSocialMedia(int id)
+        public async Task<IActionResult> GetSocialMediaAsync(int id)
         {
-            var value = _socialMediaService.TGetById(id);
+            var value = await _socialMediaService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpPut]
-        public IActionResult UpdateSocialMedia(UpdateSocialMediaDto updateSocialMediaDto)
+        public async Task<IActionResult> UpdateSocialMediaAsync(UpdateSocialMediaDto updateSocialMediaDto)
         {
-            _socialMediaService.TUpdate(new SocialMedia()
+            await _socialMediaService.TUpdateAsync(new SocialMedia()
             {
                 Id = updateSocialMediaDto.Id,
                 Title = updateSocialMediaDto.Title,
@@ -78,9 +78,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _socialMediaService.TToggleStatus(id);
+            await _socialMediaService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }    
     }

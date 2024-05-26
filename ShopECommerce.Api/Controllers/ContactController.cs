@@ -20,23 +20,23 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult ContactList()
+        public async Task<IActionResult> ContactListAsync()
         {
-            var value = _mapper.Map<List<ResultContactDto>>(_contactService.TGetAll());
+            var value = _mapper.Map<List<ResultContactDto>>(await _contactService.TGetAllAsync());
             return Ok(value);
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            var value = _mapper.Map<List<ResultContactDto>>(_contactService.TGetListByStatusTrue());
+            var value = _mapper.Map<List<ResultContactDto>>(await _contactService.TGetListByStatusTrueAsync());
             return Ok(value);
         }
 
         [HttpPost]
-        public IActionResult CreateContact(CreateContactDto createContactDto)
+        public async Task<IActionResult> CreateContactAsync(CreateContactDto createContactDto)
         {
-            _contactService.TAdd(new Contact()
+            await _contactService.TAddAsync(new Contact()
             {
                 Location = createContactDto.Location,
                 Phone = createContactDto.Phone,
@@ -53,24 +53,24 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteContact(int id)
+        public async Task<IActionResult> DeleteContactAsync(int id)
         {
-            var value = _contactService.TGetById(id);
-            _contactService.TDelete(value);
+            var value = await _contactService.TGetByIdAsync(id);
+            await _contactService.TDeleteAsync(value);
             return Ok("İletişim Bilgisi Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetContact(int id)
+        public async Task<IActionResult> GetContactAsync(int id)
         {
-            var value = _contactService.TGetById(id);
+            var value = await _contactService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpPut]
-        public IActionResult UpdateContact(UpdateContactDto updateContactDto)
+        public async Task<IActionResult> UpdateContactAsync(UpdateContactDto updateContactDto)
         {
-            _contactService.TUpdate(new Contact()
+            await _contactService.TUpdateAsync(new Contact()
             {
                 Id = updateContactDto.Id,
                 Location = updateContactDto.Location,
@@ -87,9 +87,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _contactService.TToggleStatus(id);
+            await _contactService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }      
     }

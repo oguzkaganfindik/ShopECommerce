@@ -20,16 +20,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult OrderDetailList()
+        public async Task<IActionResult> OrderDetailListAsync()
         {
-            var value = _mapper.Map<List<ResultOrderDetailDto>>(_orderDetailService.TGetAll());
+            var value = _mapper.Map<List<ResultOrderDetailDto>>(await _orderDetailService.TGetAllAsync());
             return Ok(value);
         }
 
         [HttpPost]
-        public IActionResult CreateOrderDetail(CreateOrderDetailDto createOrderDetailDto)
+        public async Task<IActionResult> CreateOrderDetailAsync(CreateOrderDetailDto createOrderDetailDto)
         {
-            _orderDetailService.TAdd(new OrderDetail()
+            await _orderDetailService.TAddAsync(new OrderDetail()
             {
                 OrderId = createOrderDetailDto.OrderId,
                 ProductId = createOrderDetailDto.ProductId,
@@ -42,24 +42,24 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteOrderDetail(int id)
+        public async Task<IActionResult> DeleteOrderDetailAsync(int id)
         {
-            var value = _orderDetailService.TGetById(id);
-            _orderDetailService.TDelete(value);
+            var value = await _orderDetailService.TGetByIdAsync(id);
+            await _orderDetailService.TDeleteAsync(value);
             return Ok("OrderDetail Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetOrderDetail(int id)
+        public async Task<IActionResult> GetOrderDetailAsync(int id)
         {
-            var value = _orderDetailService.TGetById(id);
+            var value = await _orderDetailService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpPut]
-        public IActionResult UpdateOrderDetail(UpdateOrderDetailDto updateOrderDetailDto)
+        public async Task<IActionResult> UpdateOrderDetailAsync(UpdateOrderDetailDto updateOrderDetailDto)
         {
-            _orderDetailService.TUpdate(new OrderDetail()
+            await _orderDetailService.TUpdateAsync(new OrderDetail()
             {
                 Id = updateOrderDetailDto.OrderId,
                 OrderId = updateOrderDetailDto.OrderId,
@@ -73,16 +73,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _orderDetailService.TToggleStatus(id);
+            await _orderDetailService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            var value = _mapper.Map<List<ResultOrderDetailDto>>(_orderDetailService.TGetListByStatusTrue());
+            var value = _mapper.Map<List<ResultOrderDetailDto>>(await _orderDetailService.TGetListByStatusTrueAsync());
             return Ok(value);
         }
     }

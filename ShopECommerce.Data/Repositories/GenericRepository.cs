@@ -17,82 +17,90 @@ namespace ShopECommerce.Data.Repositories
             _dbSet = _db.Set<T>();
         }
 
-        public void Add(T entity)
+        public async Task AddAsync(T entity)
         {
             entity.CreatedDate = DateTime.Now;
             entity.IsDeleted = false;
             entity.Status = true;
-            _dbSet.Add(entity);
-            _db.SaveChanges();
+            await _dbSet.AddAsync(entity);
+            await _db.SaveChangesAsync();
         }
-        public void Update(T entity)
+        public async Task UpdateAsync(T entity)
         {
             entity.ModifiedDate = DateTime.Now;
-            entity.CreatedDate = _dbSet.AsNoTracking().FirstOrDefault(e => e.Id == entity.Id)?.CreatedDate ?? DateTime.Now;
-            entity.Status = _dbSet.AsNoTracking().FirstOrDefault(e => e.Id == entity.Id)?.Status ?? true;
+            entity.CreatedDate = await _dbSet.AsNoTracking()
+                .Where(e => e.Id == entity.Id)
+                .Select(e => (DateTime?)e.CreatedDate)
+                .FirstOrDefaultAsync() ?? DateTime.Now;
+
+            entity.Status = await _dbSet.AsNoTracking()
+                .Where(e => e.Id == entity.Id)
+                .Select(e => (bool?)e.Status)
+                .FirstOrDefaultAsync() ?? true;
+
             _dbSet.Update(entity);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
 
-        public void Delete(T entity)
+        public async Task DeleteAsync(T entity)
         {
             entity.IsDeleted = true;
             entity.Status = false;
             entity.ModifiedDate = DateTime.Now;
             entity.DeletedDate = DateTime.Now;
             _dbSet.Update(entity);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            var entity = _dbSet.Find(id);
-            Delete(entity);
+            var entity = await _dbSet.FindAsync(id);
+            await DeleteAsync(entity);
         }
-        public void HardDelete(int id)
+        public async Task HardDeleteAsync(int id)
         {
-            var entity = _dbSet.Find(id);
+            var entity = await _dbSet.FindAsync(id);
             if (entity != null)
             {
                 _dbSet.Remove(entity);
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
             }
         }
 
-        public T Get(Expression<Func<T, bool>> predicate)
+        public async Task<T> GetAsync(Expression<Func<T, bool>> predicate)
         {
-            return _dbSet.FirstOrDefault(predicate);
+            return await _dbSet.FirstOrDefaultAsync(predicate);
         }
 
-        public IQueryable<T> GetAll(Expression<Func<T, bool>> predicate = null)
+        public async Task<IQueryable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null)
         {
             return predicate is null ? _dbSet.Where(e => !e.IsDeleted) : _dbSet.Where(e => !e.IsDeleted).Where(predicate);
         }
 
-        public T GetById(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            return _dbSet.Find(id);
+            return await _dbSet.FindAsync(id);
         }
 
-        public List<T> GetListAll()
+        public async Task<List<T>> GetListAllAsync()
         {
-            return _db.Set<T>().Where(e => !e.IsDeleted).ToList();
+            return await _db.Set<T>().Where(e => !e.IsDeleted).ToListAsync();
         }
 
-        public void ToggleStatus(T entity)
+        public async Task ToggleStatusAsync(T entity)
         {
             entity.Status = !entity.Status;
             _dbSet.Update(entity);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
 
-        public void ToggleStatus(int id)
+        public async Task ToggleStatusAsync(int id)
         {
-            var entity = _dbSet.Find(id);
-            ToggleStatus(entity);
+            var entity = await _dbSet.FindAsync(id);
+            await ToggleStatusAsync(entity);
         }
 
-        public IQueryable<T> GetListByStatusTrue(Expression<Func<T, bool>> predicate = null)
+        public async Task<IQueryable<T>> GetListByStatusTrueAsync(Expression<Func<T, bool>> predicate = null)
         {
             return predicate is null ? _dbSet.Where(e => !e.IsDeleted && e.Status) : _dbSet.Where(e => !e.IsDeleted && e.Status).Where(predicate);
         }

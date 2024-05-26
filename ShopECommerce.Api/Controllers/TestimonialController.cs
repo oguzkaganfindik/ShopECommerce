@@ -20,23 +20,23 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult TestimonialList()
+        public async Task<IActionResult> TestimonialListAsync()
         {
-            var value = _mapper.Map<List<ResultTestimonialDto>>(_testimonialService.TGetAll());
+            var value = _mapper.Map<List<ResultTestimonialDto>>(await _testimonialService.TGetAllAsync());
             return Ok(value);
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            var value = _mapper.Map<List<ResultTestimonialDto>>(_testimonialService.TGetListByStatusTrue());
+            var value = _mapper.Map<List<ResultTestimonialDto>>(await _testimonialService.TGetListByStatusTrueAsync());
             return Ok(value);
         }
 
         [HttpPost]
-        public IActionResult CreateTestimonial(CreateTestimonialDto createTestimonialDto)
+        public async Task<IActionResult> CreateTestimonialAsync(CreateTestimonialDto createTestimonialDto)
         {
-            _testimonialService.TAdd(new Testimonial()
+            await _testimonialService.TAddAsync(new Testimonial()
             {
                 Name = createTestimonialDto.Name,
                 Title = createTestimonialDto.Title,
@@ -48,24 +48,24 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteTestimonial(int id)
+        public async Task<IActionResult> DeleteTestimonialAsync(int id)
         {
-            var value = _testimonialService.TGetById(id);
-            _testimonialService.TDelete(value);
+            var value = await _testimonialService.TGetByIdAsync(id);
+            await _testimonialService.TDeleteAsync(value);
             return Ok("Müşteri Yorum Bilgisi Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetTestimonial(int id)
+        public async Task<IActionResult> GetTestimonialAsync(int id)
         {
-            var value = _testimonialService.TGetById(id);
+            var value = await _testimonialService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpPut]
-        public IActionResult UpdateTestimonial(UpdateTestimonialDto updateTestimonialDto)
+        public async Task<IActionResult> UpdateTestimonialAsync(UpdateTestimonialDto updateTestimonialDto)
         {
-            _testimonialService.TUpdate(new Testimonial()
+            await _testimonialService.TUpdateAsync(new Testimonial()
             {
                 Id = updateTestimonialDto.Id,
                 Name = updateTestimonialDto.Name,
@@ -78,9 +78,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _testimonialService.TToggleStatus(id);
+            await _testimonialService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
     }

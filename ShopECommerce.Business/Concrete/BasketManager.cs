@@ -15,34 +15,34 @@ namespace ShopECommerce.Business.Concrete
             _basketDal = basketDal;
         }
 
-        public List<Basket> TGetListAll()
+        public async Task<List<Basket>> TGetListAllAsync()
         {
-            return _basketDal.GetListAll();
+            return await _basketDal.GetListAllAsync();
         }
 
-        public void TAdd(Basket entity)
+        public async Task TAddAsync(Basket entity)
         {
-            _basketDal.Add(entity);
+            await _basketDal.AddAsync(entity);
         }
 
-        public void TDelete(Basket entity)
+        public async Task TDeleteAsync(Basket entity)
         {
-            _basketDal.Delete(entity);
+            await _basketDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _basketDal.Delete(id);
+            await _basketDal.DeleteAsync(id);
         }
 
-        public Basket TGet(Expression<Func<Basket, bool>> predicate)
+        public async Task<Basket> TGetAsync(Expression<Func<Basket, bool>> predicate)
         {
-            return _basketDal.Get(predicate);
+            return await _basketDal.GetAsync(predicate);
         }
 
-        public IQueryable<Basket> TGetAll(Expression<Func<Basket, bool>> predicate = null)
+        public async Task<IQueryable<Basket>> TGetAllAsync(Expression<Func<Basket, bool>> predicate = null)
         {
-            return _basketDal.GetAll(predicate);
+            return await _basketDal.GetAllAsync(predicate);
         }
 
         public async Task<List<Basket>> TGetBasketByBasketItemNumberAsync(int id)
@@ -55,9 +55,9 @@ namespace ShopECommerce.Business.Concrete
             return await _basketDal.GetBasketListByBasketItemWithProductNameAsync(id);
         }
 
-        public Basket TGetById(int id)
+        public async Task<Basket> TGetByIdAsync(int id)
         {
-            return _basketDal.GetById(id);
+            return await _basketDal.GetByIdAsync(id);
         }
 
 
@@ -66,24 +66,24 @@ namespace ShopECommerce.Business.Concrete
             return await _basketDal.GetProductPriceAsync(productId);
         }
 
-        public void TUpdate(Basket entity)
+        public async Task TUpdateAsync(Basket entity)
         {
-            _basketDal.Update(entity);
+            await _basketDal.UpdateAsync(entity);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _basketDal.ToggleStatus(id);
+            await _basketDal.ToggleStatusAsync(id);
         }
 
-        public IQueryable<Basket> TGetListByStatusTrue(Expression<Func<Basket, bool>> predicate = null)
+        public async Task<IQueryable<Basket>> TGetListByStatusTrueAsync(Expression<Func<Basket, bool>> predicate = null)
         {
-            return _basketDal.GetListByStatusTrue(predicate);
+            return await _basketDal.GetListByStatusTrueAsync(predicate);
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _basketDal.HardDelete(id);
+            await _basketDal.HardDeleteAsync(id);
         }
 
         public async Task TUpdateQuantityAsync(int basketId, int newQuantity) 

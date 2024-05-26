@@ -14,59 +14,59 @@ namespace ShopECommerce.Business.Concrete
             _bannerDal = bannerDal;
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _bannerDal.HardDelete(id);
+           await _bannerDal.HardDeleteAsync(id);
         }
 
-        public void TAdd(Banner entity)
+        public async Task TAddAsync(Banner entity)
         {
-            _bannerDal.Add(entity);
+            await _bannerDal.AddAsync(entity);
         }
 
-        public void TDelete(Banner entity)
+        public async Task TDeleteAsync(Banner entity)
         {
-            _bannerDal.Delete(entity);
+            await _bannerDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _bannerDal.Delete(id);
+            await _bannerDal.DeleteAsync(id);
         }
 
-        public Banner TGet(Expression<Func<Banner, bool>> predicate)
+        public async Task<Banner> TGetAsync(Expression<Func<Banner, bool>> predicate)
         {
-            return _bannerDal.Get(predicate);
+            return await _bannerDal.GetAsync(predicate);
         }
 
-        public IQueryable<Banner> TGetAll(Expression<Func<Banner, bool>> predicate = null)
+        public async Task<IQueryable<Banner>> TGetAllAsync(Expression<Func<Banner, bool>> predicate = null)
         {
-            return _bannerDal.GetAll(predicate);
+            return await _bannerDal.GetAllAsync(predicate);
         }
 
-        public Banner TGetById(int id)
+        public async Task<Banner> TGetByIdAsync(int id)
         {
-            return _bannerDal.GetById(id);
+            return await _bannerDal.GetByIdAsync(id);
         }
 
-        public List<Banner> TGetListAll()
+        public async Task<List<Banner>> TGetListAllAsync()
         {
-            return _bannerDal.GetListAll();
+            return await _bannerDal.GetListAllAsync();
         }
 
-        public IQueryable<Banner> TGetListByStatusTrue(Expression<Func<Banner, bool>> predicate = null)
+        public async Task<IQueryable<Banner>> TGetListByStatusTrueAsync(Expression<Func<Banner, bool>> predicate = null)
         {
-            return _bannerDal.GetListByStatusTrue(predicate);
+            return await _bannerDal.GetListByStatusTrueAsync(predicate);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _bannerDal.ToggleStatus(id);
+            await _bannerDal.ToggleStatusAsync(id);
         }
 
-        public void TUpdate(Banner entity)
+        public async Task TUpdateAsync(Banner entity)
         {
-            _bannerDal.Update(entity);
+            await _bannerDal.UpdateAsync(entity);
         }
     }
 }

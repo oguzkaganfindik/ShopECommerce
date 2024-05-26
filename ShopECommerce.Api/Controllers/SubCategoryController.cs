@@ -20,9 +20,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult SubCategoryList()
+        public async Task<IActionResult> SubCategoryListAsync()
         {
-            var value = _mapper.Map<List<ResultSubCategoryDto>>(_subCategoryService.TGetAll());
+            var value = _mapper.Map<List<ResultSubCategoryDto>>(await _subCategoryService.TGetAllAsync());
             return Ok(value);
         }
 
@@ -58,36 +58,36 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateSubCategory(CreateSubCategoryDto createSubCategoryDto)
+        public async Task<IActionResult> CreateSubCategoryAsync(CreateSubCategoryDto createSubCategoryDto)
         {
-            _subCategoryService.TAdd(new SubCategory()
+            await _subCategoryService.TAddAsync(new SubCategory()
             {
                 SubCategoryName = createSubCategoryDto.SubCategoryName,
-                CategoryId = createSubCategoryDto.CategoryId,               
+                CategoryId = createSubCategoryDto.CategoryId,
             });
 
             return Ok("SubCategory Eklendi");
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteSubCategory(int id)
+        public async Task<IActionResult> DeleteSubCategoryAsync(int id)
         {
-            var value = _subCategoryService.TGetById(id);
-            _subCategoryService.TDelete(value);
+            var value = await _subCategoryService.TGetByIdAsync(id);
+            await _subCategoryService.TDeleteAsync(value);
             return Ok("SubCategory Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetSubCategory(int id)
+        public async Task<IActionResult> GetSubCategoryAsync(int id)
         {
-            var value = _subCategoryService.TGetById(id);
+            var value = await _subCategoryService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpPut]
-        public IActionResult UpdateSubCategory(UpdateSubCategoryDto updateSubCategoryDto)
+        public async Task<IActionResult> UpdateSubCategoryAsync(UpdateSubCategoryDto updateSubCategoryDto)
         {
-            _subCategoryService.TUpdate(new SubCategory()
+            await _subCategoryService.TUpdateAsync(new SubCategory()
             {
                 SubCategoryName = updateSubCategoryDto.SubCategoryName,
                 Id = updateSubCategoryDto.Id,
@@ -98,16 +98,16 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _subCategoryService.TToggleStatus(id);
+            await _subCategoryService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            return Ok(_subCategoryService.TGetListByStatusTrue());
+            return Ok(await _subCategoryService.TGetListByStatusTrueAsync());
         }       
     }
 }

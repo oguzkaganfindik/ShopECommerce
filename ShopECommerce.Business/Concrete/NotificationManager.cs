@@ -13,14 +13,14 @@ namespace ShopECommerce.Business.Concrete
             _notificationDal = notificationDal;
         }
 
-        public void TAdd(Notification entity)
+        public async Task TAddAsync(Notification entity)
         {
-            _notificationDal.Add(entity);
+            await _notificationDal.AddAsync(entity);
         }
 
-        public void TDelete(Notification entity)
+        public async Task TDeleteAsync(Notification entity)
         {
-            _notificationDal.Delete(entity);
+            await _notificationDal.DeleteAsync(entity);
         }
 
         async Task<List<Notification>> INotificationService.TGetAllNotificationsByTrueAsync()
@@ -28,14 +28,14 @@ namespace ShopECommerce.Business.Concrete
             return await _notificationDal.GetAllNotificationsByTrueAsync();
         }
 
-        public Notification TGetById(int id)
+        public async Task<Notification> TGetByIdAsync(int id)
         {
-            return _notificationDal.GetById(id);
+            return await _notificationDal.GetByIdAsync(id);
         }
 
-        public List<Notification> TGetListAll()
+        public async Task<List<Notification>> TGetListAllAsync()
         {
-            return _notificationDal.GetListAll();
+            return await _notificationDal.GetListAllAsync();
         }
 
         public async Task TNotificationStatusChangeToFalseAsync(int id)
@@ -53,39 +53,39 @@ namespace ShopECommerce.Business.Concrete
             return await _notificationDal.NotificationCountByStatusTrueAsync();
         }
 
-        public void TUpdate(Notification entity)
+        public async Task TUpdateAsync(Notification entity)
         {
-            _notificationDal.Update(entity);
+            await _notificationDal.UpdateAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _notificationDal.Delete(id);
+            await _notificationDal.DeleteAsync(id);
         }
 
-        public Notification TGet(Expression<Func<Notification, bool>> predicate)
+        public async Task<Notification> TGetAsync(Expression<Func<Notification, bool>> predicate)
         {
-            return _notificationDal.Get(predicate);
+            return await _notificationDal.GetAsync(predicate);
         }
 
-        public IQueryable<Notification> TGetAll(Expression<Func<Notification, bool>> predicate = null)
+        public async Task<IQueryable<Notification>> TGetAllAsync(Expression<Func<Notification, bool>> predicate = null)
         {
-            return _notificationDal.GetAll(predicate);
+            return await _notificationDal.GetAllAsync(predicate);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _notificationDal.ToggleStatus(id);
+            await _notificationDal.ToggleStatusAsync(id);
         }
 
-        public IQueryable<Notification> TGetListByStatusTrue(Expression<Func<Notification, bool>> predicate = null)
+        public async Task<IQueryable<Notification>> TGetListByStatusTrueAsync(Expression<Func<Notification, bool>> predicate = null)
         {
-            return _notificationDal.GetListByStatusTrue(predicate);
+            return await _notificationDal.GetListByStatusTrueAsync(predicate);
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _notificationDal.HardDelete(id);
+            await _notificationDal.HardDeleteAsync(id);
         }
     }
 }

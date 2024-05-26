@@ -14,59 +14,59 @@ namespace ShopECommerce.Business.Concrete
             _factDal = factDal;
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _factDal.HardDelete(id);
+            await _factDal.HardDeleteAsync(id);
         }
 
-        public void TAdd(Fact entity)
+        public async Task TAddAsync(Fact entity)
         {
-            _factDal.Add(entity);
+            await _factDal.AddAsync(entity);
         }
 
-        public void TDelete(Fact entity)
+        public async Task TDeleteAsync(Fact entity)
         {
-            _factDal.Delete(entity);
+            await _factDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _factDal.Delete(id);
+            await _factDal.DeleteAsync(id);
         }
 
-        public Fact TGet(Expression<Func<Fact, bool>> predicate)
+        public async Task<Fact> TGetAsync(Expression<Func<Fact, bool>> predicate)
         {
-            return _factDal.Get(predicate);
+            return await _factDal.GetAsync(predicate);
         }
 
-        public IQueryable<Fact> TGetAll(Expression<Func<Fact, bool>> predicate = null)
+        public async Task<IQueryable<Fact>> TGetAllAsync(Expression<Func<Fact, bool>> predicate = null)
         {
-            return _factDal.GetAll(predicate);
+            return await _factDal.GetAllAsync(predicate);
         }
 
-        public Fact TGetById(int id)
+        public async Task<Fact> TGetByIdAsync(int id)
         {
-            return _factDal.GetById(id);
+            return await _factDal.GetByIdAsync(id);
         }
 
-        public List<Fact> TGetListAll()
+        public async Task<List<Fact>> TGetListAllAsync()
         {
-            return _factDal.GetListAll();
+            return await _factDal.GetListAllAsync();
         }
 
-        public IQueryable<Fact> TGetListByStatusTrue(Expression<Func<Fact, bool>> predicate = null)
+        public async Task<IQueryable<Fact>> TGetListByStatusTrueAsync(Expression<Func<Fact, bool>> predicate = null)
         {
-            return _factDal.GetListByStatusTrue(predicate);
+            return await _factDal.GetListByStatusTrueAsync(predicate);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _factDal.ToggleStatus(id);
+            await _factDal.ToggleStatusAsync(id);
         }
 
-        public void TUpdate(Fact entity)
+        public async Task TUpdateAsync(Fact entity)
         {
-            _factDal.Update(entity);
+            await _factDal.UpdateAsync(entity);
         }
     }
 }

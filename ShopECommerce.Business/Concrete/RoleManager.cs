@@ -14,59 +14,59 @@ namespace ShopECommerce.Business.Concrete
             _roleDal = roleDal;
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _roleDal.HardDelete(id);
+            await _roleDal.HardDeleteAsync(id);
         }
 
-        public void TAdd(Role entity)
+        public async Task TAddAsync(Role entity)
         {
-            _roleDal.Add(entity);
+            await _roleDal.AddAsync(entity);
         }
 
-        public void TDelete(Role entity)
+        public async Task TDeleteAsync(Role entity)
         {
-            _roleDal.Delete(entity);
+            await _roleDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _roleDal.Delete(id);
+            await _roleDal.DeleteAsync(id);
         }
 
-        public Role TGet(Expression<Func<Role, bool>> predicate)
+        public async Task<Role> TGetAsync(Expression<Func<Role, bool>> predicate)
         {
-            return _roleDal.Get(predicate);
+            return await _roleDal.GetAsync(predicate);
         }
 
-        public IQueryable<Role> TGetAll(Expression<Func<Role, bool>> predicate = null)
+        public async Task<IQueryable<Role>> TGetAllAsync(Expression<Func<Role, bool>> predicate = null)
         {
-            return _roleDal.GetAll(predicate);
+            return await _roleDal.GetAllAsync(predicate);
         }
 
-        public Role TGetById(int id)
+        public async Task<Role> TGetByIdAsync(int id)
         {
-            return _roleDal.GetById(id);
+            return await _roleDal.GetByIdAsync(id);
         }
 
-        public List<Role> TGetListAll()
+        public async Task<List<Role>> TGetListAllAsync()
         {
-            return _roleDal.GetListAll();
+            return await _roleDal.GetListAllAsync();
         }
 
-        public IQueryable<Role> TGetListByStatusTrue(Expression<Func<Role, bool>> predicate = null)
+        public async Task<IQueryable<Role>> TGetListByStatusTrueAsync(Expression<Func<Role, bool>> predicate = null)
         {
-            return _roleDal.GetListByStatusTrue(predicate);
+            return await _roleDal.GetListByStatusTrueAsync(predicate);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _roleDal.ToggleStatus(id);
+            await _roleDal.ToggleStatusAsync(id);
         }
 
-        public void TUpdate(Role entity)
+        public async Task TUpdateAsync(Role entity)
         {
-            _roleDal.Update(entity);
+            await _roleDal.UpdateAsync(entity);
         }
     }
 }

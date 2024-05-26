@@ -15,23 +15,23 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> TotalMoneyCaseAmount()
+        public async Task<IActionResult> TotalMoneyCaseAmountAsync()
         {
             var amount = await _moneyCaseService.TTotalMoneyCaseAmountAsync();
             return Ok(amount);
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _moneyCaseService.TToggleStatus(id);
+            await _moneyCaseService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            return Ok(_moneyCaseService.TGetListByStatusTrue());
+            return Ok(await _moneyCaseService.TGetListByStatusTrueAsync());
         }
     }
 }

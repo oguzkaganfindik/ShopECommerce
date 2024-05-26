@@ -14,59 +14,59 @@ namespace ShopECommerce.Business.Concrete
             _featurDal = featurDal;
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _featurDal.HardDelete(id);
+            await _featurDal.HardDeleteAsync(id);
         }
 
-        public void TAdd(Featur entity)
+        public async Task TAddAsync(Featur entity)
         {
-            _featurDal.Add(entity);
+            await _featurDal.AddAsync(entity);
         }
 
-        public void TDelete(Featur entity)
+        public async Task TDeleteAsync(Featur entity)
         {
-            _featurDal.Delete(entity);
+           await _featurDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _featurDal.Delete(id);
+            await _featurDal.DeleteAsync(id);
         }
 
-        public Featur TGet(Expression<Func<Featur, bool>> predicate)
+        public async Task<Featur> TGetAsync(Expression<Func<Featur, bool>> predicate)
         {
-            return _featurDal.Get(predicate);
+            return await _featurDal.GetAsync(predicate);
         }
 
-        public IQueryable<Featur> TGetAll(Expression<Func<Featur, bool>> predicate = null)
+        public async Task<IQueryable<Featur>> TGetAllAsync(Expression<Func<Featur, bool>> predicate = null)
         {
-            return _featurDal.GetAll(predicate);
+            return await _featurDal.GetAllAsync(predicate);
         }
 
-        public Featur TGetById(int id)
+        public async Task<Featur> TGetByIdAsync(int id)
         {
-            return _featurDal.GetById(id);
+            return await _featurDal.GetByIdAsync(id);
         }
 
-        public List<Featur> TGetListAll()
+        public async Task<List<Featur>> TGetListAllAsync()
         {
-            return _featurDal.GetListAll();
+            return await _featurDal.GetListAllAsync();
         }
 
-        public IQueryable<Featur> TGetListByStatusTrue(Expression<Func<Featur, bool>> predicate = null)
+        public async Task<IQueryable<Featur>> TGetListByStatusTrueAsync(Expression<Func<Featur, bool>> predicate = null)
         {
-            return _featurDal.GetListByStatusTrue(predicate);
+            return await _featurDal.GetListByStatusTrueAsync(predicate);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _featurDal.ToggleStatus(id);
+            await _featurDal.ToggleStatusAsync(id);
         }
 
-        public void TUpdate(Featur entity)
+        public async Task TUpdateAsync(Featur entity)
         {
-            _featurDal.Update(entity);
+            await _featurDal.UpdateAsync(entity);
         }
     }
 }

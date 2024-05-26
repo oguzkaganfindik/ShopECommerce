@@ -25,54 +25,49 @@ namespace ShopECommerce.Business.Concrete
             await _userDal.UserStatusCancelledAsync(id);
         }
 
-        public List<User> TGetListAll()
+        public async Task<List<User>> TGetListAllAsync()
         {
-            return _userDal.GetListAll();
+            return await _userDal.GetListAllAsync();
         }
 
-        public void TAdd(User entity)
+        public async Task TAddAsync(User entity)
         {
-            _userDal.Add(entity);
+            await _userDal.AddAsync(entity);
         }
 
-        public void TDelete(User entity)
+        public async Task TDeleteAsync(User entity)
         {
-            _userDal.Delete(entity);
+            await _userDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _userDal.Delete(id);
+            await _userDal.DeleteAsync(id);
         }
 
-        public User TGet(Expression<Func<User, bool>> predicate)
+        public async Task<User> TGetAsync(Expression<Func<User, bool>> predicate)
         {
-            return _userDal.Get(predicate);
+            return await _userDal.GetAsync(predicate);
         }
 
-        public IQueryable<User> TGetAll(Expression<Func<User, bool>> predicate = null)
+        public async Task<IQueryable<User>> TGetAllAsync(Expression<Func<User, bool>> predicate = null)
         {
-            return _userDal.GetAll(predicate);
+            return await _userDal.GetAllAsync(predicate);
         }
 
-        public User TGetById(int id)
+        public async Task<User> TGetByIdAsync(int id)
         {
-            return _userDal.GetById(id);
-        }
-        
-        public void TUpdate(User entity)
-        {
-            _userDal.Update(entity);
+            return await _userDal.GetByIdAsync(id);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _userDal.ToggleStatus(id);
+            await _userDal.ToggleStatusAsync(id);
         }
 
-        public IQueryable<User> TGetListByStatusTrue(Expression<Func<User, bool>> predicate = null)
+        public async Task<IQueryable<User>> TGetListByStatusTrueAsync(Expression<Func<User, bool>> predicate = null)
         {
-            return _userDal.GetListByStatusTrue(predicate);
+            return await _userDal.GetListByStatusTrueAsync(predicate);
         }
 
         public async Task<List<GetUserWithRoleDto>> TGetUserWithRoleAsync()
@@ -80,9 +75,9 @@ namespace ShopECommerce.Business.Concrete
             return await _userDal.GetUserWithRoleAsync();
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _userDal.HardDelete(id);
+            await _userDal.HardDeleteAsync(id);
         }
 
         public async Task<User> TGetByEmailAsync(string email)

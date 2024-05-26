@@ -24,59 +24,59 @@ namespace ShopECommerce.Business.Concrete
             await _messageDal.MessageStatusCancelledAsync(id);
         }
 
-        public void TAdd(Message entity)
+        public async Task TAddAsync(Message entity)
         {
-            _messageDal.Add(entity);
+            await _messageDal.AddAsync(entity);
         }
 
-        public void TDelete(Message entity)
+        public async Task TDeleteAsync(Message entity)
         {
-            _messageDal.Delete(entity);
+            await _messageDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _messageDal.Delete(id);
+            await _messageDal.DeleteAsync(id);
         }
 
-        public Message TGet(Expression<Func<Message, bool>> predicate)
+        public async Task<Message> TGetAsync(Expression<Func<Message, bool>> predicate)
         {
-            return _messageDal.Get(predicate);
+            return await _messageDal.GetAsync(predicate);
         }
 
-        public IQueryable<Message> TGetAll(Expression<Func<Message, bool>> predicate = null)
+        public async Task<IQueryable<Message>> TGetAllAsync(Expression<Func<Message, bool>> predicate = null)
         {
-            return _messageDal.GetAll(predicate);
+            return await _messageDal.GetAllAsync(predicate);
         }
 
-        public Message TGetById(int id)
+        public async Task<Message> TGetByIdAsync(int id)
         {
-            return _messageDal.GetById(id);
+            return await _messageDal.GetByIdAsync(id);
         }
 
-        public List<Message> TGetListAll()
+        public async Task<List<Message>> TGetListAllAsync()
         {
-            return _messageDal.GetListAll();
+            return await _messageDal.GetListAllAsync();
         }
 
-        public IQueryable<Message> TGetListByStatusTrue(Expression<Func<Message, bool>> predicate = null)
+        public async Task<IQueryable<Message>> TGetListByStatusTrueAsync(Expression<Func<Message, bool>> predicate = null)
         {
-            return _messageDal.GetListByStatusTrue(predicate);
+            return await _messageDal.GetListByStatusTrueAsync(predicate);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _messageDal.ToggleStatus(id);
+            await _messageDal.ToggleStatusAsync(id);
         }
 
-        public void TUpdate(Message entity)
+        public async Task TUpdateAsync(Message entity)
         {
-            _messageDal.Update(entity);
+            await _messageDal.UpdateAsync(entity);
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _messageDal.HardDelete(id);
+            await _messageDal.HardDeleteAsync(id);
         }
     }
 }

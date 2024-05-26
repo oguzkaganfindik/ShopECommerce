@@ -14,59 +14,59 @@ namespace ShopECommerce.Business.Concrete
             _sliderDal = sliderDal;
         }
 
-        public void THardDelete(int id)
+        public async Task THardDeleteAsync(int id)
         {
-            _sliderDal.HardDelete(id);
+            await _sliderDal.HardDeleteAsync(id);
         }
 
-        public void TAdd(Slider entity)
+        public async Task TAddAsync(Slider entity)
         {
-            _sliderDal.Add(entity);
+            await _sliderDal.AddAsync(entity);
         }
 
-        public void TDelete(Slider entity)
+        public async Task TDeleteAsync(Slider entity)
         {
-            _sliderDal.Delete(entity);
+            await _sliderDal.DeleteAsync(entity);
         }
 
-        public void TDelete(int id)
+        public async Task TDeleteAsync(int id)
         {
-            _sliderDal.Delete(id);
+            await _sliderDal.DeleteAsync(id);
         }
 
-        public Slider TGet(Expression<Func<Slider, bool>> predicate)
+        public async Task<Slider> TGetAsync(Expression<Func<Slider, bool>> predicate)
         {
-            return _sliderDal.Get(predicate);
+            return await _sliderDal.GetAsync(predicate);
         }
 
-        public IQueryable<Slider> TGetAll(Expression<Func<Slider, bool>> predicate = null)
+        public async Task<IQueryable<Slider>> TGetAllAsync(Expression<Func<Slider, bool>> predicate = null)
         {
-            return _sliderDal.GetAll(predicate);
+            return await _sliderDal.GetAllAsync(predicate);
         }
 
-        public Slider TGetById(int id)
+        public async Task<Slider> TGetByIdAsync(int id)
         {
-            return _sliderDal.GetById(id);
+            return await _sliderDal.GetByIdAsync(id);
         }
 
-        public List<Slider> TGetListAll()
+        public async Task<List<Slider>> TGetListAllAsync()
         {
-            return _sliderDal.GetListAll();
+            return await _sliderDal.GetListAllAsync();
         }
 
-        public IQueryable<Slider> TGetListByStatusTrue(Expression<Func<Slider, bool>> predicate = null)
+        public async Task<IQueryable<Slider>> TGetListByStatusTrueAsync(Expression<Func<Slider, bool>> predicate = null)
         {
-            return _sliderDal.GetListByStatusTrue(predicate);
+            return await _sliderDal.GetListByStatusTrueAsync(predicate);
         }
 
-        public void TToggleStatus(int id)
+        public async Task TToggleStatusAsync(int id)
         {
-            _sliderDal.ToggleStatus(id);
+            await _sliderDal.ToggleStatusAsync(id);
         }
 
-        public void TUpdate(Slider entity)
+        public async Task TUpdateAsync(Slider entity)
         {
-            _sliderDal.Update(entity);
+            await _sliderDal.UpdateAsync(entity);
         }
     }
 }

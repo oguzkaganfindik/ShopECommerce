@@ -20,23 +20,23 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult FactList()
+        public async Task<IActionResult> FactListAsync()
         {
-            var value = _mapper.Map<List<ResultFactDto>>(_factService.TGetAll());
+            var value = _mapper.Map<List<ResultFactDto>>(await _factService.TGetAllAsync());
             return Ok(value);
         }
 
         [HttpGet("GetListByStatusTrue")]
-        public IActionResult GetListByStatusTrue()
+        public async Task<IActionResult> GetListByStatusTrueAsync()
         {
-            var value = _mapper.Map<List<ResultFactDto>>(_factService.TGetListByStatusTrue());
+            var value = _mapper.Map<List<ResultFactDto>>(await _factService.TGetListByStatusTrueAsync());
             return Ok(value);
         }
 
         [HttpPost]
-        public IActionResult CreateFact(CreateFactDto createFactDto)
+        public async Task<IActionResult> CreateFactAsync(CreateFactDto createFactDto)
         {
-            _factService.TAdd(new Fact()
+            await _factService.TAddAsync(new Fact()
             {
                 Title = createFactDto.Title,
                 Description = createFactDto.Description,
@@ -47,24 +47,24 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteFact(int id)
+        public async Task<IActionResult> DeleteFactAsync(int id)
         {
-            var value = _factService.TGetById(id);
-            _factService.TDelete(value);
+            var value = await _factService.TGetByIdAsync(id);
+            await _factService.TDeleteAsync(value);
             return Ok("Silindi");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetFact(int id)
+        public async Task<IActionResult> GetFactAsync(int id)
         {
-            var value = _factService.TGetById(id);
+            var value = await _factService.TGetByIdAsync(id);
             return Ok(value);
         }
 
         [HttpPut]
-        public IActionResult UpdateFact(UpdateFactDto updateFactDto)
+        public async Task<IActionResult> UpdateFactAsync(UpdateFactDto updateFactDto)
         {
-            _factService.TUpdate(new Fact()
+            await _factService.TUpdateAsync(new Fact()
             {
                 Id = updateFactDto.Id,
                 Title = updateFactDto.Title,
@@ -76,9 +76,9 @@ namespace ShopECommerce.Api.Controllers
         }
 
         [HttpGet("ToggleStatus/{id}")]
-        public IActionResult ToggleStatus(int id)
+        public async Task<IActionResult> ToggleStatusAsync(int id)
         {
-            _factService.TToggleStatus(id);
+            await _factService.TToggleStatusAsync(id);
             return Ok("Değiştirildi");
         }
 
