@@ -36,7 +36,7 @@ namespace ShopECommerce.WebUI.Controllers
                 return NotFound();
             }
 
-            var detailUserViewModel = new DetailUserViewModel
+            var detailUserViewModel = new CustomerDetailUserViewModel
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
@@ -64,7 +64,7 @@ namespace ShopECommerce.WebUI.Controllers
                 return NotFound();
             }
 
-            UpdateUserViewModel updateUserViewModel = new UpdateUserViewModel
+            CustomerUpdateUserViewModel updateUserViewModel = new CustomerUpdateUserViewModel
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
@@ -78,7 +78,7 @@ namespace ShopECommerce.WebUI.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Update(UpdateUserViewModel updateUserViewModel)
+        public async Task<IActionResult> Update(CustomerUpdateUserViewModel updateUserViewModel)
         {
             if (!ModelState.IsValid)
             {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.SliderDtos;
+using ShopECommerce.WebUI.ViewModels.SliderViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
@@ -22,7 +22,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultSliderDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultSliderViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -36,7 +36,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSlider(CreateSliderDto createSliderDto)
+        public async Task<IActionResult> CreateSlider(CreateSliderViewModel createSliderDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createSliderDto);
@@ -68,14 +68,14 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateSliderDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateSliderViewModel>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateSlider(UpdateSliderDto updateSliderDto)
+        public async Task<IActionResult> UpdateSlider(UpdateSliderViewModel updateSliderDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateSliderDto);

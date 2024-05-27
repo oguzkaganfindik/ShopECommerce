@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.SocialMediaDtos;
+using ShopECommerce.WebUI.ViewModels.SocialMediaViewModels;
 
 namespace ShopECommerce.WebUI.ViewComponents.UILayoutComponents
 {
@@ -21,7 +21,7 @@ namespace ShopECommerce.WebUI.ViewComponents.UILayoutComponents
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultSocialMediaDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultSocialMediaViewModel>>(jsonData);
                 return View(values);
             }
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.DiscountDtos;
+using ShopECommerce.WebUI.ViewModels.DiscountViewModels;
 
 namespace ShopECommerce.WebUI.ViewComponents.DefaultComponents
 {
@@ -19,7 +19,7 @@ namespace ShopECommerce.WebUI.ViewComponents.DefaultComponents
             var responseMessage = await client.GetAsync("https://localhost:7046/api/Discount/GetListByStatusTrue");
 
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultDiscountDto>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultDiscountViewModel>>(jsonData);
             return View(values);
 
 

@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.RoleDtos;
-using ShopECommerce.WebUI.Dtos.UserDtos;
+using ShopECommerce.WebUI.ViewModels.RoleViewModels;
+using ShopECommerce.WebUI.ViewModels.UserViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
@@ -25,7 +25,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<GetUserWithRoleDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<GetUserWithRoleViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -42,7 +42,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 if (!string.IsNullOrEmpty(jsonData))
                 {
-                    var value = JsonConvert.DeserializeObject<ResultUserDto>(jsonData);
+                    var value = JsonConvert.DeserializeObject<ResultUserViewModel>(jsonData);
                     if (value != null)
                     {
                         return View(value);
@@ -58,7 +58,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7046/api/Role");
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultRoleDto>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultRoleViewModel>>(jsonData);
             List<SelectListItem> values2 = (from x in values
                                             select new SelectListItem
                                             {
@@ -75,7 +75,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             var client1 = _httpClientFactory.CreateClient();
             var responseMessage1 = await client1.GetAsync("https://localhost:7046/api/Role");
             var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
-            var values1 = JsonConvert.DeserializeObject<List<ResultRoleDto>>(jsonData1);
+            var values1 = JsonConvert.DeserializeObject<List<ResultRoleViewModel>>(jsonData1);
             List<SelectListItem> values3 = (from x in values1
                                             select new SelectListItem
                                             {
@@ -89,7 +89,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateUserDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateUserViewModel>(jsonData);
                 return View(values);
             }
             return View();
@@ -97,7 +97,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateUser(UpdateUserDto updateUserDto)
+        public async Task<IActionResult> UpdateUser(UpdateUserViewModel updateUserDto)
         {
             var existingUser = await GetUserById(updateUserDto.Id);
             updateUserDto.Password = string.IsNullOrEmpty(updateUserDto.Password) ? existingUser.Password : updateUserDto.Password;
@@ -113,14 +113,14 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             return View();
         }
 
-        private async Task<UpdateUserDto> GetUserById(int id)
+        private async Task<UpdateUserViewModel> GetUserById(int id)
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync($"https://localhost:7046/api/User/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var user = JsonConvert.DeserializeObject<UpdateUserDto>(jsonData);
+                var user = JsonConvert.DeserializeObject<UpdateUserViewModel>(jsonData);
                 return user;
             }
 

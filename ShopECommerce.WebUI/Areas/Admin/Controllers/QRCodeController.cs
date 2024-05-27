@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.RoleDtos;
-using ShopECommerce.WebUI.Dtos.UserDtos;
+using ShopECommerce.WebUI.ViewModels.RoleViewModels;
+using ShopECommerce.WebUI.ViewModels.UserViewModels;
 using System.Drawing;
 using System.Drawing.Imaging;
 using ZXing;
@@ -28,7 +28,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<GetUserWithRoleDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<GetUserWithRoleViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -54,7 +54,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultRoleDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultRoleViewModel>>(jsonData);
                 ViewBag.vc = values.Select(x => new SelectListItem
                 {
                     Text = x.Name,
@@ -85,14 +85,14 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             return Json(new { success = false });
         }
 
-        private async Task<UpdateUserDto> GetUserById(int id)
+        private async Task<UpdateUserViewModel> GetUserById(int id)
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync($"https://localhost:7046/api/User/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<UpdateUserDto>(jsonData);
+                return JsonConvert.DeserializeObject<UpdateUserViewModel>(jsonData);
             }
 
             return null;

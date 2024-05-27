@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.MessageDtos;
+using ShopECommerce.WebUI.ViewModels.MessageViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
@@ -23,7 +23,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultMessageDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultMessageViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -40,7 +40,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 if (!string.IsNullOrEmpty(jsonData))
                 {
-                    var value = JsonConvert.DeserializeObject<ResultMessageDto>(jsonData);
+                    var value = JsonConvert.DeserializeObject<ResultMessageViewModel>(jsonData);
                     if (value != null)
                     {
                         return View(value);
@@ -57,7 +57,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> CreateMessage(CreateMessageDto createMessageDto)
+        public async Task<IActionResult> CreateMessage(CreateMessageViewModel createMessageDto)
         {
             createMessageDto.Description = "Mesaj Alındı";
             var client = _httpClientFactory.CreateClient();
@@ -90,13 +90,13 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateMessageDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateMessageViewModel>(jsonData);
                 return View(values);
             }
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateMessage(UpdateMessageDto updateMessageDto)
+        public async Task<IActionResult> UpdateMessage(UpdateMessageViewModel updateMessageDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateMessageDto);

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.MessageDtos;
-using ShopECommerce.WebUI.Dtos.NotificationDtos;
+using ShopECommerce.WebUI.ViewModels.MessageViewModels;
+using ShopECommerce.WebUI.ViewModels.NotificationViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Controllers
@@ -30,7 +30,7 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendMessage(CreateMessageDto createMessageDto)
+        public async Task<IActionResult> SendMessage(CreateMessageViewModel createMessageDto)
         {
             createMessageDto.Description = "Mesaj Alındı";
             var client = _httpClientFactory.CreateClient();
@@ -47,7 +47,7 @@ namespace ShopECommerce.WebUI.Controllers
 
         private async Task<IActionResult> CreateNotification(string description)
         {
-            CreateNotificationDto createNotificationDto = new CreateNotificationDto()
+            CreateNotificationViewModel createNotificationDto = new CreateNotificationViewModel()
             {
                 Description = description,
                 Status = false,

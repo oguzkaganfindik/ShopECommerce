@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.FactDtos;
+using ShopECommerce.WebUI.ViewModels.FactViewModels;
 
 namespace ShopECommerce.WebUI.ViewComponents.DefaultComponents
 {
@@ -19,7 +19,7 @@ namespace ShopECommerce.WebUI.ViewComponents.DefaultComponents
             var responseMessage = await client.GetAsync("https://localhost:7046/api/Fact/GetListByStatusTrue");
 
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultFactDto>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultFactViewModel>>(jsonData);
             return View(values);
 
 
