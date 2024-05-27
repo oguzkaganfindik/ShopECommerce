@@ -1,7 +1,7 @@
 ﻿using ShopECommerce.WebUI.Services.Abstract;
-using ShopECommerce.WebUI.Dtos.MailDtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ShopECommerce.WebUI.ViewModels.MailViewModels;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
 {
@@ -22,7 +22,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(CreateMailDto createMailDto)
+        public async Task<IActionResult> Index(CreateMailViewModel createMailDto)
         {
             await _emailService.SendEmailAsync(createMailDto.ReceiverMail, createMailDto.Subject, createMailDto.Body);
 

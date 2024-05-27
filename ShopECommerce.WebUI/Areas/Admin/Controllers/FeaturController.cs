@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.FeaturDtos;
+using ShopECommerce.WebUI.ViewModels.FeaturViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
@@ -23,7 +23,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultFeaturDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultFeaturViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -37,7 +37,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateFeatur(CreateFeaturDto createFeaturDto)
+        public async Task<IActionResult> CreateFeatur(CreateFeaturViewModel createFeaturDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createFeaturDto);
@@ -69,14 +69,14 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateFeaturDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateFeaturViewModel>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateFeatur(UpdateFeaturDto updateFeaturDto)
+        public async Task<IActionResult> UpdateFeatur(UpdateFeaturViewModel updateFeaturDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateFeaturDto);

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.OrderDtos;
+using ShopECommerce.WebUI.ViewModels.OrderViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Controllers
@@ -23,7 +23,7 @@ namespace ShopECommerce.WebUI.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultOrderDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultOrderViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -37,7 +37,7 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrder(CreateOrderDto createOrderDto)
+        public async Task<IActionResult> CreateOrder(CreateOrderViewModel createOrderDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createOrderDto);
@@ -69,14 +69,14 @@ namespace ShopECommerce.WebUI.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateOrderDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateOrderViewModel>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateOrder(UpdateOrderDto updateOrderDto)
+        public async Task<IActionResult> UpdateOrder(UpdateOrderViewModel updateOrderDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateOrderDto);

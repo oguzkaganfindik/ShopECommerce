@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.OrderDetailDtos;
+using ShopECommerce.WebUI.ViewModels.OrderDetailViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Controllers
@@ -23,7 +23,7 @@ namespace ShopECommerce.WebUI.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultOrderDetailDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultOrderDetailViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -37,7 +37,7 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrderDetail(CreateOrderDetailDto createOrderDetailDto)
+        public async Task<IActionResult> CreateOrderDetail(CreateOrderDetailViewModel createOrderDetailDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createOrderDetailDto);
@@ -69,14 +69,14 @@ namespace ShopECommerce.WebUI.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateOrderDetailDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateOrderDetailViewModel>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateOrderDetail(UpdateOrderDetailDto updateOrderDetailDto)
+        public async Task<IActionResult> UpdateOrderDetail(UpdateOrderDetailViewModel updateOrderDetailDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateOrderDetailDto);

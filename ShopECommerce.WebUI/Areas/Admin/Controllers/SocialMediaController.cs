@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.SocialMediaDtos;
+using ShopECommerce.WebUI.ViewModels.SocialMediaViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
@@ -23,7 +23,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultSocialMediaDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultSocialMediaViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -37,7 +37,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSocialMedia(CreateSocialMediaDto createSocialMediaDto)
+        public async Task<IActionResult> CreateSocialMedia(CreateSocialMediaViewModel createSocialMediaDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createSocialMediaDto);
@@ -69,14 +69,14 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateSocialMediaDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateSocialMediaViewModel>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateSocialMedia(UpdateSocialMediaDto updateSocialMediaDto)
+        public async Task<IActionResult> UpdateSocialMedia(UpdateSocialMediaViewModel updateSocialMediaDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateSocialMediaDto);

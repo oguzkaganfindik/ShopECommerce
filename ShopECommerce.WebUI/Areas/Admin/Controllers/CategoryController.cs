@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.CategoryDtos;
+using ShopECommerce.WebUI.ViewModels.CategoryViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
@@ -22,7 +22,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultCategoryViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -37,7 +37,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
+        public async Task<IActionResult> CreateCategory(CreateCategoryViewModel createCategoryDto)
         {
             createCategoryDto.Status = true;
             var client = _httpClientFactory.CreateClient();
@@ -70,14 +70,14 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateCategoryDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateCategoryViewModel>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateCategory(UpdateCategoryDto updateCategoryDto)
+        public async Task<IActionResult> UpdateCategory(UpdateCategoryViewModel updateCategoryDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateCategoryDto);

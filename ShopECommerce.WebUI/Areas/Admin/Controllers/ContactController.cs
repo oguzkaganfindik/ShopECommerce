@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.ContactDtos;
+using ShopECommerce.WebUI.ViewModels.ContactViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
@@ -23,7 +23,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultContactDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultContactViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -37,7 +37,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateContact(CreateContactDto createContactDto)
+        public async Task<IActionResult> CreateContact(CreateContactViewModel createContactDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createContactDto);
@@ -69,13 +69,13 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateContactDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateContactViewModel>(jsonData);
                 return View(values);
             }
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateContact(UpdateContactDto updateContactDto)
+        public async Task<IActionResult> UpdateContact(UpdateContactViewModel updateContactDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateContactDto);

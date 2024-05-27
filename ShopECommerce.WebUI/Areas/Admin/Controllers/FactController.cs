@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.FactDtos;
+using ShopECommerce.WebUI.ViewModels.FactViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
@@ -23,7 +23,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultFactDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultFactViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -37,7 +37,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateFact(CreateFactDto createFactDto)
+        public async Task<IActionResult> CreateFact(CreateFactViewModel createFactDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createFactDto);
@@ -69,14 +69,14 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateFactDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateFactViewModel>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateFact(UpdateFactDto updateFactDto)
+        public async Task<IActionResult> UpdateFact(UpdateFactViewModel updateFactDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateFactDto);

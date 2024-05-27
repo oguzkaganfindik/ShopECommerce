@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.Entities.Concrete;
-using ShopECommerce.WebUI.Dtos.UserDtos;
 using ShopECommerce.WebUI.Models;
 using ShopECommerce.WebUI.Services.Abstract;
+using ShopECommerce.WebUI.ViewModels.UserViewModels;
 using System.Security.Claims;
 using System.Security.Cryptography;
 
@@ -34,7 +34,7 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterAsync(UserRegisterDto userRegisterDto)
+        public async Task<IActionResult> RegisterAsync(UserRegisterViewModel userRegisterDto)
         {
             if (ModelState.IsValid)
             {
@@ -119,7 +119,7 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoginAsync(UserLoginDto userLoginDto)
+        public async Task<IActionResult> LoginAsync(UserLoginViewModel userLoginDto)
         {
             var user = await _userService.TGetByEmailAsync(userLoginDto.Email);
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.BasketItemDtos;
+using ShopECommerce.WebUI.ViewModels.BasketItemViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
@@ -23,7 +23,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultBasketItemDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultBasketItemViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -37,7 +37,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBasketItem(CreateBasketItemDto createBasketItemDto)
+        public async Task<IActionResult> CreateBasketItem(CreateBasketItemViewModel createBasketItemDto)
         {
             createBasketItemDto.Status = false;
             var client = _httpClientFactory.CreateClient();
@@ -70,14 +70,14 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateBasketItemDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateBasketItemViewModel>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateBasketItem(UpdateBasketItemDto updateBasketItemDto)
+        public async Task<IActionResult> UpdateBasketItem(UpdateBasketItemViewModel updateBasketItemDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateBasketItemDto);
@@ -98,7 +98,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultBasketItemDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultBasketItemViewModel>>(jsonData);
                 return View(values);
             }
 

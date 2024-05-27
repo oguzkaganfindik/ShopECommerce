@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.BasketDtos;
-using ShopECommerce.WebUI.Dtos.ProductDtos;
+using ShopECommerce.WebUI.ViewModels.BasketViewModels;
+using ShopECommerce.WebUI.ViewModels.ProductViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Controllers
@@ -21,7 +21,7 @@ namespace ShopECommerce.WebUI.Controllers
             var responseMessage = await client.GetAsync("https://localhost:7046/api/Product");
 
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultProductWithSubCategory>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultProductWithSubCategoryViewModel>>(jsonData);
             return View(values);
         }
 
@@ -30,7 +30,7 @@ namespace ShopECommerce.WebUI.Controllers
         {
             var client = _httpClientFactory.CreateClient();
 
-            var jsonData = JsonConvert.SerializeObject(new CreateBasketDto { ProductId = id });
+            var jsonData = JsonConvert.SerializeObject(new CreateBasketViewModel { ProductId = id });
             var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Basket/CreateBasket", stringContent);
@@ -63,7 +63,7 @@ namespace ShopECommerce.WebUI.Controllers
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 if (!string.IsNullOrEmpty(jsonData))
                 {
-                    var value = JsonConvert.DeserializeObject<GetProductShowcaseDetailDto>(jsonData);
+                    var value = JsonConvert.DeserializeObject<GetProductShowcaseDetailViewModel>(jsonData);
                     if (value != null)
                     {
                         return View(value);

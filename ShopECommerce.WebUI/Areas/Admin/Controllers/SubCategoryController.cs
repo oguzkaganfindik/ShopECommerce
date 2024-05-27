@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.CategoryDtos;
-using ShopECommerce.WebUI.Dtos.SubCategoryDtos;
+using ShopECommerce.WebUI.ViewModels.CategoryViewModels;
+using ShopECommerce.WebUI.ViewModels.SubCategoryViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
@@ -24,7 +24,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultSubCategoryWithCategory>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultSubCategoryWithCategoryViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -37,7 +37,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7046/api/Category");
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultCategoryViewModel>>(jsonData);
             List<SelectListItem> values2 = (from x in values
                                             select new SelectListItem
                                             {
@@ -49,7 +49,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSubCategory(CreateSubCategoryDto createSubCategoryDto)
+        public async Task<IActionResult> CreateSubCategory(CreateSubCategoryViewModel createSubCategoryDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createSubCategoryDto);
@@ -68,7 +68,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             var client1 = _httpClientFactory.CreateClient();
             var responseMessage1 = await client1.GetAsync("https://localhost:7046/api/Category");
             var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
-            var values1 = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData1);
+            var values1 = JsonConvert.DeserializeObject<List<ResultCategoryViewModel>>(jsonData1);
             List<SelectListItem> values3 = (from x in values1
                                             select new SelectListItem
                                             {
@@ -82,7 +82,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateSubCategoryDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateSubCategoryViewModel>(jsonData);
                 return View(values);
             }
             return View();
@@ -90,7 +90,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateSubCategory(UpdateSubCategoryDto updateSubCategoryDto)
+        public async Task<IActionResult> UpdateSubCategory(UpdateSubCategoryViewModel updateSubCategoryDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateSubCategoryDto);

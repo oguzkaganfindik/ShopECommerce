@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.BasketDtos;
+using ShopECommerce.WebUI.ViewModels.BasketViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Controllers
@@ -21,7 +21,7 @@ namespace ShopECommerce.WebUI.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultBasketDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultBasketViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -33,7 +33,7 @@ namespace ShopECommerce.WebUI.Controllers
         {
             var client = _httpClientFactory.CreateClient();
 
-            var jsonData = JsonConvert.SerializeObject(new CreateBasketDto { ProductId = id });
+            var jsonData = JsonConvert.SerializeObject(new CreateBasketViewModel { ProductId = id });
             var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Basket/CreateBasket", stringContent);

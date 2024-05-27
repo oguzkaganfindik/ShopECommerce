@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ShopECommerce.WebUI.Dtos.TestimonialDtos;
+using ShopECommerce.WebUI.ViewModels.TestimonialViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
@@ -23,7 +23,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultTestimonialDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultTestimonialViewModel>>(jsonData);
                 return View(values);
             }
 
@@ -37,7 +37,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTestimonial(CreateTestimonialDto createTestimonialDto)
+        public async Task<IActionResult> CreateTestimonial(CreateTestimonialViewModel createTestimonialDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createTestimonialDto);
@@ -69,14 +69,14 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateTestimonialDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateTestimonialViewModel>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateTestimonial(UpdateTestimonialDto updateTestimonialDto)
+        public async Task<IActionResult> UpdateTestimonial(UpdateTestimonialViewModel updateTestimonialDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateTestimonialDto);
