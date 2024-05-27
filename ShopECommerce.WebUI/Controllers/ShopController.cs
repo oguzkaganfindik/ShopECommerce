@@ -18,7 +18,7 @@ namespace ShopECommerce.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/Product");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Products");
 
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<List<ResultProductWithSubCategoryViewModel>>(jsonData);
@@ -33,7 +33,7 @@ namespace ShopECommerce.WebUI.Controllers
             var jsonData = JsonConvert.SerializeObject(new CreateBasketViewModel { ProductId = id });
             var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-            var responseMessage = await client.PostAsync("https://localhost:7046/api/Basket/CreateBasket", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7046/api/Baskets/CreateBasket", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Shop");
@@ -46,18 +46,11 @@ namespace ShopECommerce.WebUI.Controllers
             }
         }
 
-        public async Task<IActionResult> ToggleStatus(int id)
-        {
-            var client = _httpClientFactory.CreateClient();
-            await client.GetAsync($"https://localhost:7046/api/Shop/ToggleStatus/{id}");
-            return RedirectToAction("Index");
-        }
-
         [HttpGet]
         public async Task<IActionResult> Detail(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Product/GetProductShowcaseDetailId/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Products/GetProductShowcaseDetailId/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

@@ -17,7 +17,7 @@ namespace ShopECommerce.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/Basket/BasketListByBasketItemWithProductName?id=1");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Baskets/BasketListByBasketItemWithProductName?id=1");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -36,7 +36,7 @@ namespace ShopECommerce.WebUI.Controllers
             var jsonData = JsonConvert.SerializeObject(new CreateBasketViewModel { ProductId = id });
             var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-            var responseMessage = await client.PostAsync("https://localhost:7046/api/Basket/CreateBasket", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7046/api/Baskets/CreateBasket", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Shop");
@@ -52,7 +52,7 @@ namespace ShopECommerce.WebUI.Controllers
         public async Task<IActionResult> DeleteBasket(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7046/api/Basket/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7046/api/Baskets/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -63,7 +63,7 @@ namespace ShopECommerce.WebUI.Controllers
         public async Task<IActionResult> ToggleStatus(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            await client.GetAsync($"https://localhost:7046/api/Basket/ToggleStatus/{id}");
+            await client.GetAsync($"https://localhost:7046/api/Baskets/ToggleStatus/{id}");
             return RedirectToAction("Index");
         }
 
@@ -73,7 +73,7 @@ namespace ShopECommerce.WebUI.Controllers
             var jsonData = JsonConvert.SerializeObject(new { productId, newQuantity });
             var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-            var responseMessage = await client.PostAsync("https://localhost:7046/api/Basket/UpdateBasketQuantity", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7046/api/Baskets/UpdateBasketQuantity", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

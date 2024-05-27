@@ -8,12 +8,12 @@ namespace ShopECommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderDetailController : ControllerBase
+    public class OrderDetailsController : ControllerBase
     {
         private readonly IOrderDetailService _orderDetailService;
         private readonly IMapper _mapper;
 
-        public OrderDetailController(IOrderDetailService OrderDetailService, IMapper mapper)
+        public OrderDetailsController(IOrderDetailService OrderDetailService, IMapper mapper)
         {
             _orderDetailService = OrderDetailService;
             _mapper = mapper;

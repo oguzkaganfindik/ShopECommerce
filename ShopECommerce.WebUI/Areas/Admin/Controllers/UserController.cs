@@ -21,7 +21,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/User/GetUserWithRole");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Users/GetUserWithRole");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -36,7 +36,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Detail(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7046/api/User/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Users/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -56,7 +56,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> CreateUser()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/Role");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Roles");
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<List<ResultRoleViewModel>>(jsonData);
             List<SelectListItem> values2 = (from x in values
@@ -73,7 +73,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateUser(int id)
         {
             var client1 = _httpClientFactory.CreateClient();
-            var responseMessage1 = await client1.GetAsync("https://localhost:7046/api/Role");
+            var responseMessage1 = await client1.GetAsync("https://localhost:7046/api/Roles");
             var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
             var values1 = JsonConvert.DeserializeObject<List<ResultRoleViewModel>>(jsonData1);
             List<SelectListItem> values3 = (from x in values1
@@ -85,7 +85,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             ViewBag.vc = values3;
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7046/api/User/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Users/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -105,7 +105,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateUserDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7046/api/User/", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7046/api/Users/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -116,7 +116,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         private async Task<UpdateUserViewModel> GetUserById(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7046/api/User/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Users/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -131,7 +131,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteUser(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7046/api/User/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7046/api/Users/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -143,7 +143,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UserStatusApproved(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            await client.GetAsync($"https://localhost:7046/api/User/UserStatusApproved/{id}");
+            await client.GetAsync($"https://localhost:7046/api/Users/UserStatusApproved/{id}");
 
             return RedirectToAction("Index");
         }
@@ -151,7 +151,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UserStatusCancelled(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            await client.GetAsync($"https://localhost:7046/api/User/UserStatusCancelled/{id}");
+            await client.GetAsync($"https://localhost:7046/api/Users/UserStatusCancelled/{id}");
 
             return RedirectToAction("Index");
         }
@@ -159,7 +159,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> ToggleStatus(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            await client.GetAsync($"https://localhost:7046/api/User/ToggleStatus/{id}");
+            await client.GetAsync($"https://localhost:7046/api/Users/ToggleStatus/{id}");
             return RedirectToAction("Index");
         }
     }

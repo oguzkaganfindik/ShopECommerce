@@ -36,7 +36,7 @@ namespace ShopECommerce.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createMessageDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7046/api/Message", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7046/api/Messages", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 await CreateNotification("Yeni Mesajınız Var");
@@ -60,7 +60,7 @@ namespace ShopECommerce.WebUI.Controllers
             var jsonData = JsonConvert.SerializeObject(createNotificationDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-            var responseMessage = await client.PostAsync("https://localhost:7046/api/Notification", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7046/api/Notifications", stringContent);
 
             return RedirectToAction("Index");
         }

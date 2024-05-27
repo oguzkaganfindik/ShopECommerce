@@ -8,12 +8,12 @@ namespace ShopECommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DiscountController : ControllerBase
+    public class DiscountsController : ControllerBase
     {
         private readonly IDiscountService _discountService;
         private readonly IMapper _mapper;
 
-        public DiscountController(IDiscountService discountService, IMapper mapper)
+        public DiscountsController(IDiscountService discountService, IMapper mapper)
         {
             _discountService = discountService;
             _mapper = mapper;

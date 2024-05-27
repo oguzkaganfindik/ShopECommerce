@@ -7,11 +7,11 @@ namespace ShopECommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BasketController : ControllerBase
+    public class BasketsController : ControllerBase
     {
         private readonly IBasketService _basketService;
 
-        public BasketController(IBasketService basketService)
+        public BasketsController(IBasketService basketService)
         {
             _basketService = basketService;
         }
