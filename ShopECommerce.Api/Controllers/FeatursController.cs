@@ -8,12 +8,12 @@ namespace ShopECommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FeaturController : ControllerBase
+    public class FeatursController : ControllerBase
     {
         private readonly IFeaturService _featurService;
         private readonly IMapper _mapper;
 
-        public FeaturController(IFeaturService featurService, IMapper mapper)
+        public FeatursController(IFeaturService featurService, IMapper mapper)
         {
             _featurService = featurService;
             _mapper = mapper;

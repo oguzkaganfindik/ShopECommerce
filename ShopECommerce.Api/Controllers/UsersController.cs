@@ -9,13 +9,13 @@ namespace ShopECommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
         private readonly IDataProtector _dataProtector;
         private readonly IMapper _mapper;
 
-        public UserController(IUserService userService, IMapper mapper, IDataProtectionProvider dataProtectionProvider)
+        public UsersController(IUserService userService, IMapper mapper, IDataProtectionProvider dataProtectionProvider)
         {
             _userService = userService;
             _mapper = mapper;

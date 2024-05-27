@@ -8,12 +8,12 @@ namespace ShopECommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FactController : ControllerBase
+    public class FactsController : ControllerBase
     {
         private readonly IFactService _factService;
         private readonly IMapper _mapper;
 
-        public FactController(IFactService factService, IMapper mapper)
+        public FactsController(IFactService factService, IMapper mapper)
         {
             _factService = factService;
             _mapper = mapper;

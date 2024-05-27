@@ -19,7 +19,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/Banner");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Banners");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -42,7 +42,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createFactDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7046/api/Banner", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7046/api/Banners", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -53,7 +53,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteBanner(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7046/api/Banner/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7046/api/Banners/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -65,7 +65,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateBanner(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Banner/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Banners/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -81,7 +81,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateFactDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7046/api/Banner/", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7046/api/Banners/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -91,7 +91,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> ToggleStatus(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            await client.GetAsync($"https://localhost:7046/api/Banner/ToggleStatus/{id}");
+            await client.GetAsync($"https://localhost:7046/api/Banners/ToggleStatus/{id}");
             return RedirectToAction("Index");
         }
     }

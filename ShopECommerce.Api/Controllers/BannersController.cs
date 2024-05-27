@@ -8,12 +8,12 @@ namespace ShopECommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BannerController : ControllerBase
+    public class BannersController : ControllerBase
     {
         private readonly IBannerService _bannerService;
         private readonly IMapper _mapper;
 
-        public BannerController(IBannerService bannerService, IMapper mapper)
+        public BannersController(IBannerService bannerService, IMapper mapper)
         {
             _bannerService = bannerService;
             _mapper = mapper;

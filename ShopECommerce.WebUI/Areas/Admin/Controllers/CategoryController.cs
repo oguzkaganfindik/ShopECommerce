@@ -18,7 +18,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/Category");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Categories");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -43,7 +43,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createCategoryDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7046/api/Category", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7046/api/Categories", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -54,7 +54,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteCategory(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7046/api/Category/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7046/api/Categories/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -66,7 +66,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateCategory(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Category/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Categories/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -82,7 +82,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateCategoryDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7046/api/Category/", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7046/api/Categories/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -93,7 +93,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> ToggleStatus(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            await client.GetAsync($"https://localhost:7046/api/Category/ToggleStatus/{id}");
+            await client.GetAsync($"https://localhost:7046/api/Categories/ToggleStatus/{id}");
             return RedirectToAction("Index");
         }
     }

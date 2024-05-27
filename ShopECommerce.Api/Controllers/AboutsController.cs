@@ -8,12 +8,12 @@ namespace ShopECommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AboutController : ControllerBase
+    public class AboutsController : ControllerBase
     {
         private readonly IAboutService _aboutService;
         private readonly IMapper _mapper;
 
-        public AboutController(IAboutService aboutService, IMapper mapper)
+        public AboutsController(IAboutService aboutService, IMapper mapper)
         {
             _aboutService = aboutService;
             _mapper = mapper;

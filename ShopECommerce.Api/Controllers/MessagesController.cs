@@ -8,12 +8,12 @@ namespace ShopECommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MessageController : ControllerBase
+    public class MessagesController : ControllerBase
     {
         private readonly IMessageService _messageService;
         private readonly IMapper _mapper;
 
-        public MessageController(IMessageService messageService, IMapper mapper)
+        public MessagesController(IMessageService messageService, IMapper mapper)
         {
             _messageService = messageService;
             _mapper = mapper;

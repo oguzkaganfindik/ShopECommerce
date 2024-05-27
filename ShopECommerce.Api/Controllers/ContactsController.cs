@@ -8,12 +8,12 @@ namespace ShopECommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContactController : ControllerBase
+    public class ContactsController : ControllerBase
     {
         private readonly IContactService _contactService;
         private readonly IMapper _mapper;
 
-        public ContactController(IContactService contactService, IMapper mapper)
+        public ContactsController(IContactService contactService, IMapper mapper)
         {
             _contactService = contactService;
             _mapper = mapper;

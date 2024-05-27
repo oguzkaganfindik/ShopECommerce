@@ -24,7 +24,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/User/GetUserWithRole");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Users/GetUserWithRole");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -50,7 +50,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> CreateUser()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/Role");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Roles");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -88,7 +88,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         private async Task<UpdateUserViewModel> GetUserById(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7046/api/User/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Users/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

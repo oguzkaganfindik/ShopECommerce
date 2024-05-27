@@ -19,7 +19,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/Testimonial");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Testimonials");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -42,7 +42,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createTestimonialDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7046/api/Testimonial", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7046/api/Testimonials", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -53,7 +53,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteTestimonial(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7046/api/Testimonial/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7046/api/Testimonials/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -65,7 +65,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateTestimonial(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Testimonial/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Testimonials/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -81,7 +81,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateTestimonialDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7046/api/Testimonial/", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7046/api/Testimonials/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -92,7 +92,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> ToggleStatus(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            await client.GetAsync($"https://localhost:7046/api/Testimonial/ToggleStatus/{id}");
+            await client.GetAsync($"https://localhost:7046/api/Testimonials/ToggleStatus/{id}");
             return RedirectToAction("Index");
         }
     }

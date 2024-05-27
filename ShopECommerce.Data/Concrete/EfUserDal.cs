@@ -22,7 +22,7 @@ namespace ShopECommerce.Data.Concrete
             {
                 values.Status = true;
                 values.EmailConfirmed = true;
-                values.Description = "User Onaylandı";
+                values.Description = "Onaylandı";
                 await _context.SaveChangesAsync();
             }
         }
@@ -33,7 +33,7 @@ namespace ShopECommerce.Data.Concrete
             if (values != null)
             {
                 values.Status = false;
-                values.Description = "User İptal Edildi";
+                values.Description = "İptal Edildi";
                 await _context.SaveChangesAsync();
             }
         }

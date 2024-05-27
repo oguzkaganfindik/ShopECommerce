@@ -16,7 +16,7 @@ namespace ShopECommerce.WebUI.ViewComponents.DefaultComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7046/api/Message/CreateMessage");
+            var responseMessage = await client.GetAsync("https://localhost:7046/api/Messages/CreateMessage");
 
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<CreateMessageViewModel>(jsonData);

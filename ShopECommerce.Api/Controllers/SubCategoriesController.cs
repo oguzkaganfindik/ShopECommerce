@@ -8,12 +8,12 @@ namespace ShopECommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SubCategoryController : ControllerBase
+    public class SubCategoriesController : ControllerBase
     {
         private readonly ISubCategoryService _subCategoryService;
         private readonly IMapper _mapper;
 
-        public SubCategoryController(ISubCategoryService SubCategoryService, IMapper mapper)
+        public SubCategoriesController(ISubCategoryService SubCategoryService, IMapper mapper)
         {
             _subCategoryService = SubCategoryService;
             _mapper = mapper;
