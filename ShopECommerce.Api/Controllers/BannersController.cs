@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.BannerDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -36,19 +35,8 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBannerAsync(CreateBannerDto createBannerDto)
         {
-            await _bannerService.TAddAsync(new Banner()
-            {
-                Title = createBannerDto.Title,
-                SubTitle = createBannerDto.SubTitle,
-                Description = createBannerDto.Description,
-                Url = createBannerDto.Url,
-                UrlLabel = createBannerDto.UrlLabel,
-                ImagePath = createBannerDto.ImagePath,
-                Price1 = createBannerDto.Price1,
-                Price2 = createBannerDto.Price2
-            });
-
-            return Ok("Başarılı Bir Şekilde Eklendi");
+            await _bannerService.TAddAsync(createBannerDto);
+            return Ok("Banner Başarılı Bir Şekilde Eklendi");
         }
 
         [HttpDelete("{id}")]
@@ -56,7 +44,7 @@ namespace ShopECommerce.Api.Controllers
         {
             var value = await _bannerService.TGetByIdAsync(id);
             await _bannerService.TDeleteAsync(value);
-            return Ok("Silindi");
+            return Ok("Banner Başarılı Bir Şekilde Silindi");
         }
 
         [HttpGet("{id}")]
@@ -69,27 +57,15 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateBannerAsync(UpdateBannerDto updateBannerDto)
         {
-            await _bannerService.TUpdateAsync(new Banner()
-            {
-                Id = updateBannerDto.Id,
-                Title = updateBannerDto.Title,
-                SubTitle = updateBannerDto.SubTitle,
-                Description = updateBannerDto.Description,
-                Url = updateBannerDto.Url,
-                UrlLabel = updateBannerDto.UrlLabel,
-                ImagePath = updateBannerDto.ImagePath,
-                Price1 = updateBannerDto.Price1,
-                Price2 = updateBannerDto.Price2
-            });
-
-            return Ok("Güncellendi");
+            await _bannerService.TUpdateAsync(updateBannerDto);
+            return Ok("Banner Başarılı Bir Şekilde Güncellendi");
         }
 
         [HttpGet("ToggleStatus/{id}")]
         public async Task<IActionResult> ToggleStatusAsync(int id)
         {
             await _bannerService.TToggleStatusAsync(id);
-            return Ok("Değiştirildi");
+            return Ok("Status Değiştirildi");
         }
     }
 }

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.ContactDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -36,19 +35,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateContactAsync(CreateContactDto createContactDto)
         {
-            await _contactService.TAddAsync(new Contact()
-            {
-                Location = createContactDto.Location,
-                Phone = createContactDto.Phone,
-                Mail = createContactDto.Mail,
-                FooterTitle = createContactDto.FooterTitle,
-                FooterDescription = createContactDto.FooterDescription,
-                SiteName = createContactDto.SiteName,
-                SiteTitle = createContactDto.SiteTitle,
-                SiteUrl = createContactDto.SiteUrl,
-                GoogleMapsApi = createContactDto.GoogleMapsApi
-            });
-
+            await _contactService.TAddAsync(createContactDto);
             return Ok("İletişim Bilgisi Eklendi");
         }
 
@@ -70,19 +57,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateContactAsync(UpdateContactDto updateContactDto)
         {
-            await _contactService.TUpdateAsync(new Contact()
-            {
-                Id = updateContactDto.Id,
-                Location = updateContactDto.Location,
-                Phone = updateContactDto.Phone,
-                Mail = updateContactDto.Mail,
-                FooterTitle = updateContactDto.FooterTitle,
-                FooterDescription = updateContactDto.FooterDescription,
-                SiteName = updateContactDto.SiteName,
-                SiteTitle = updateContactDto.SiteTitle,
-                SiteUrl = updateContactDto.SiteUrl,
-                GoogleMapsApi= updateContactDto.GoogleMapsApi
-            });
+            await _contactService.TUpdateAsync(updateContactDto);
             return Ok("İletişim Bilgisi Güncellendi");
         }
 

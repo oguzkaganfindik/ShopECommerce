@@ -32,7 +32,8 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult CreateAbout()
         {
-            return View();
+            var model = new CreateAboutViewModel();
+            return View(model);
         }
 
         [HttpPost]

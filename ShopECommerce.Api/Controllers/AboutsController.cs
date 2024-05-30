@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.AboutDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -29,13 +28,8 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAboutAsync(CreateAboutDto createAboutDto)
         {
-            await _aboutService.TAddAsync(new About()
-            {
-                Description = createAboutDto.Description,
-                Status = createAboutDto.Status
-            });
-
-            return Ok("Hakkımda Kısmı Başarılı Bir Şekilde Eklendi");
+            await _aboutService.TAddAsync(createAboutDto);
+            return Ok("Hakkımda Alanı Eklendi");
         }
 
         [HttpDelete("{id}")]
@@ -56,13 +50,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateAboutAsync(UpdateAboutDto updateAboutDto)
         {
-            await _aboutService.TUpdateAsync(new About()
-            {
-                Id = updateAboutDto.Id,
-                Description = updateAboutDto.Description,
-                Status = updateAboutDto.Status
-            });
-
+            await _aboutService.TUpdateAsync(updateAboutDto);
             return Ok("Hakkımda Alanı Güncellendi");
         }
 

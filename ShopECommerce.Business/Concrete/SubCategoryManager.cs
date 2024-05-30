@@ -1,5 +1,7 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.Data.Concrete;
+using ShopECommerce.DTOs.CategoryDto;
 using ShopECommerce.DTOs.SubCategoryDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
@@ -89,5 +91,28 @@ namespace ShopECommerce.Business.Concrete
         {
             await _subCategoryDal.HardDeleteAsync(id);
         }
+
+        public async Task TAddAsync(CreateSubCategoryDto createSubCategoryDto)
+        {
+            await _subCategoryDal.AddAsync(new SubCategory()
+            {
+                SubCategoryName = createSubCategoryDto.SubCategoryName,
+                CategoryId = createSubCategoryDto.CategoryId
+            });
+        }
+
+        public async Task TUpdateAsync(UpdateSubCategoryDto updateSubCategoryDto)
+        {
+            var subCategory = await _subCategoryDal.GetByIdAsync(updateSubCategoryDto.Id);
+            if (subCategory == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            subCategory.SubCategoryName = updateSubCategoryDto.SubCategoryName;
+            subCategory.CategoryId = updateSubCategoryDto.CategoryId;
+
+            await _subCategoryDal.UpdateAsync(subCategory);
+        }       
     }
 }

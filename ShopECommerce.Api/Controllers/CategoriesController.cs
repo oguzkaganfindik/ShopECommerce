@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.CategoryDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -52,12 +51,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCategoryAsync(CreateCategoryDto createCategoryDto)
         {
-            await _categoryService.TAddAsync(new Category()
-            {
-                CategoryName = createCategoryDto.CategoryName,
-                Status = true
-            });
-
+            await _categoryService.TAddAsync(createCategoryDto);
             return Ok("Kategori Eklendi");
         }
 
@@ -79,13 +73,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateCategoryAsync(UpdateCategoryDto updateCategoryDto)
         {
-            await _categoryService.TUpdateAsync(new Category()
-            {
-                CategoryName = updateCategoryDto.CategoryName,
-                Id = updateCategoryDto.Id,
-                Status = updateCategoryDto.Status,
-            });
-
+            await _categoryService.TUpdateAsync(updateCategoryDto);
             return Ok("Kategori Güncellendi");
         }
 
