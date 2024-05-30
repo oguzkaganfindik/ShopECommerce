@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.AboutDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -12,11 +13,6 @@ namespace ShopECommerce.Business.Concrete
         public AboutManager(IAboutDal aboutDal)
         {
             _aboutDal = aboutDal;
-        }
-
-        public async Task THardDeleteAsync(int id)
-        {
-            await _aboutDal.HardDeleteAsync(id);
         }
 
         public async Task TAddAsync(About entity)
@@ -67,6 +63,34 @@ namespace ShopECommerce.Business.Concrete
         public async Task TUpdateAsync(About entity)
         {
             await _aboutDal.UpdateAsync(entity);
+        }
+
+        public async Task TUpdateAsync(UpdateAboutDto updateAboutDto)
+        {
+            var about = await _aboutDal.GetByIdAsync(updateAboutDto.Id);
+            if (about == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            about.Description = updateAboutDto.Description;
+            about.Status = updateAboutDto.Status;
+
+            await _aboutDal.UpdateAsync(about);
+        }
+
+        public async Task TAddAsync(CreateAboutDto createAboutDto)
+        {
+            await _aboutDal.AddAsync(new About()
+            {
+                Description = createAboutDto.Description,
+                Status = createAboutDto.Status
+            });
+        }
+
+        public async Task THardDeleteAsync(int id)
+        {
+            await _aboutDal.HardDeleteAsync(id);
         }
     }
 }

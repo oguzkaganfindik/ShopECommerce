@@ -1,5 +1,8 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.Data.Concrete;
+using ShopECommerce.DTOs.BannerDto;
+using ShopECommerce.DTOs.CategoryDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -27,6 +30,11 @@ namespace ShopECommerce.Business.Concrete
         public async Task TAddAsync(Category entity)
         {
             await _categoryDal.AddAsync(entity);
+        }
+
+        public async Task TUpdateAsync(Category entity)
+        {
+            await _categoryDal.UpdateAsync(entity);
         }
 
         public async Task<int> TCategoryCountAsync()
@@ -79,9 +87,25 @@ namespace ShopECommerce.Business.Concrete
             await _categoryDal.ToggleStatusAsync(id);
         }
 
-        public async Task TUpdateAsync(Category entity)
+        public async Task TUpdateAsync(UpdateCategoryDto updateCategoryDto)
         {
-            await _categoryDal.UpdateAsync(entity);
+            var category = await _categoryDal.GetByIdAsync(updateCategoryDto.Id);
+            if (category == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            category.CategoryName = updateCategoryDto.CategoryName;
+
+            await _categoryDal.UpdateAsync(category);
+        }
+
+        public async Task TAddAsync(CreateCategoryDto createCategoryDto)
+        {
+            await _categoryDal.AddAsync(new Category()
+            {
+                CategoryName = createCategoryDto.CategoryName
+            });
         }
     }
 }

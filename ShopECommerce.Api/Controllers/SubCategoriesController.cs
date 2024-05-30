@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.SubCategoryDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -60,12 +59,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSubCategoryAsync(CreateSubCategoryDto createSubCategoryDto)
         {
-            await _subCategoryService.TAddAsync(new SubCategory()
-            {
-                SubCategoryName = createSubCategoryDto.SubCategoryName,
-                CategoryId = createSubCategoryDto.CategoryId,
-            });
-
+            await _subCategoryService.TAddAsync(createSubCategoryDto);
             return Ok("SubCategory Eklendi");
         }
 
@@ -87,13 +81,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateSubCategoryAsync(UpdateSubCategoryDto updateSubCategoryDto)
         {
-            await _subCategoryService.TUpdateAsync(new SubCategory()
-            {
-                SubCategoryName = updateSubCategoryDto.SubCategoryName,
-                Id = updateSubCategoryDto.Id,
-                CategoryId = updateSubCategoryDto.CategoryId,
-            });
-
+            await _subCategoryService.TUpdateAsync(updateSubCategoryDto);
             return Ok("SubCategory Güncellendi");
         }
 
