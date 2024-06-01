@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.FactDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -23,7 +24,10 @@ namespace ShopECommerce.Business.Concrete
         {
             await _factDal.AddAsync(entity);
         }
-
+        public async Task TUpdateAsync(Fact entity)
+        {
+            await _factDal.UpdateAsync(entity);
+        }
         public async Task TDeleteAsync(Fact entity)
         {
             await _factDal.DeleteAsync(entity);
@@ -63,10 +67,31 @@ namespace ShopECommerce.Business.Concrete
         {
             await _factDal.ToggleStatusAsync(id);
         }
-
-        public async Task TUpdateAsync(Fact entity)
+        public async Task TUpdateAsync(UpdateFactDto updateFactDto)
         {
-            await _factDal.UpdateAsync(entity);
+            var fact = await _factDal.GetByIdAsync(updateFactDto.Id);
+            if (fact == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            fact.Title = updateFactDto.Title;
+            fact.Description = updateFactDto.Description;
+            fact.Icon = updateFactDto.Icon;
+            fact.Status = updateFactDto.Status;
+
+            await _factDal.UpdateAsync(fact);
+        }
+
+        public async Task TAddAsync(CreateFactDto createFactDto)
+        {
+            await _factDal.AddAsync(new Fact()
+            {
+                Title = createFactDto.Title,
+                Description = createFactDto.Description,
+                Icon = createFactDto.Icon,
+                Status = createFactDto.Status
+            });
         }
     }
 }

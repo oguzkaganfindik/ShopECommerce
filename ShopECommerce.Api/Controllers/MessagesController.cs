@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.MessageDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -36,46 +35,15 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateMessageAsync(CreateMessageDto createMessageDto)
         {
-            await _messageService.TAddAsync(new Message()
-            {
-                Mail = createMessageDto.Mail,
-                MessageContent = createMessageDto.MessageContent,
-                MessageSendDate = DateTime.Now,
-                NameSurname = createMessageDto.NameSurname,
-                Phone = createMessageDto.Phone,
-                Status = false,
-                Subject = createMessageDto.Subject,
-                Description = createMessageDto.Description
-            });
-
+            await _messageService.TAddAsync(createMessageDto);
             return Ok("Mesaj Başarılı Bir Şekilde Gönderildi");
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMessageAsync(int id)
         {
-            var value = await _messageService.TGetByIdAsync(id);
-            await _messageService.TDeleteAsync(value);
+            await _messageService.TDeleteMessageAndNotificationAsync(id);
             return Ok("Mesaj Silindi");
-        }
-
-        [HttpPut]
-        public async Task<IActionResult> UpdateMessageAsync(UpdateMessageDto updateMessageDto)
-        {
-            await _messageService.TUpdateAsync(new Message()
-            {
-                Mail = updateMessageDto.Mail,
-                MessageContent = updateMessageDto.MessageContent,
-                MessageSendDate = updateMessageDto.MessageSendDate,
-                NameSurname = updateMessageDto.NameSurname,
-                Phone = updateMessageDto.Phone,
-                Status = false,
-                Subject = updateMessageDto.Subject,
-                Description = updateMessageDto.Description,
-                Id = updateMessageDto.Id
-            });
-
-            return Ok("Mesaj Bilgisi Güncellendi");
         }
 
         [HttpGet("{id}")]
@@ -90,14 +58,14 @@ namespace ShopECommerce.Api.Controllers
         public async Task<IActionResult> MessageStatusApprovedAsync(int id)
         {
             await _messageService.TMessageStatusApprovedAsync(id);
-            return Ok("Message Açıklaması Değiştirildi");
+            return Ok("Mesaj Okundu");
         }
 
         [HttpGet("MessageStatusCancelled/{id}")]
         public async Task<IActionResult> MessageStatusCancelledAsync(int id)
         {
             await _messageService.TMessageStatusCancelledAsync(id);
-            return Ok("Message Açıklaması Değiştirildi");
+            return Ok("Mesaj Kapatıldı");
         }
 
         [HttpGet("ToggleStatus/{id}")]

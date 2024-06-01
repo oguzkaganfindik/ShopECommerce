@@ -918,21 +918,10 @@ namespace ShopECommerce.Data.Context
             });
 
             modelBuilder.Entity<Notification>().HasData(new List<Notification>()
-            {
+            {              
                 new Notification()
                 {
                     Id = 1,
-                    Type = "notif-icon notif-primary",
-                    Icon = "la la-user-plus",
-                    Description = "Yeni Siparişiniz Var",
-                    Status = false,
-                    IsDeleted = false,
-                    CreatedDate = DateTime.Now
-                },
-
-                new Notification()
-                {
-                    Id = 2,
                     Type = "notif-icon notif-success",
                     Icon = "la la-comment",
                     Description = "Yeni Mesajınız Var",
@@ -940,6 +929,17 @@ namespace ShopECommerce.Data.Context
                     IsDeleted = false,
                     CreatedDate = DateTime.Now
                 }
+
+                //new Notification()
+                //{
+                //    Id = 2,
+                //    Type = "notif-icon notif-primary",
+                //    Icon = "la la-user-plus",
+                //    Description = "Yeni Siparişiniz Var",
+                //    Status = false,
+                //    IsDeleted = false,
+                //    CreatedDate = DateTime.Now
+                //}
             });
 
             modelBuilder.Entity<Message>().HasData(new List<Message>()
@@ -952,8 +952,8 @@ namespace ShopECommerce.Data.Context
                     Phone = "+90 123 456 78 90",
                     Subject = "Sipariş Süresi Hakkında",
                     MessageContent = "Merhaba. Acil ürüne ihtiyacım var. Hemen sipariş versem, ne kadar sürede ulaşır?",
-                    MessageSendDate = DateTime.Now,
                     Description = "Mesaj Alındı",
+                    NotificationId = 1,
                     Status = true,
                     IsDeleted = false,
                     CreatedDate = DateTime.Now

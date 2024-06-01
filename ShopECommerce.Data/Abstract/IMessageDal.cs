@@ -6,5 +6,6 @@ namespace ShopECommerce.Data.Abstract
     {
         Task MessageStatusApprovedAsync(int id);
         Task MessageStatusCancelledAsync(int id);
+        Task DeleteMessageAndNotificationAsync(int id);
     }
 }

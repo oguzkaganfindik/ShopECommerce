@@ -10,7 +10,6 @@ namespace ShopECommerce.Business.Mapping
         {
             CreateMap<Message, ResultMessageDto>().ReverseMap();
             CreateMap<Message, CreateMessageDto>().ReverseMap();
-            CreateMap<Message, UpdateMessageDto>().ReverseMap();
         }
     }
 }

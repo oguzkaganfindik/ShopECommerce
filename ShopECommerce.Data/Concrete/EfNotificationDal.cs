@@ -22,20 +22,26 @@ namespace ShopECommerce.Data.Concrete
         public async Task NotificationStatusChangeToFalseAsync(int id)
         {
             var value = await _context.Notifications.FindAsync(id);
-            value.Status = false;
-            _context.SaveChanges();
+            if (value != null)
+            {
+                value.Status = false;
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task NotificationStatusChangeToTrueAsync(int id)
         {
             var value = await _context.Notifications.FindAsync(id);
-            value.Status = true;
-            _context.SaveChanges();
+            if (value != null)
+            {
+                value.Status = true;
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<int> NotificationCountByStatusTrueAsync()
         {
             return await _context.Notifications.Where(x => x.Status == true).CountAsync();
-        }     
+        }
     }
 }

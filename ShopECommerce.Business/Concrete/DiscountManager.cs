@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.DiscountDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -24,6 +25,10 @@ namespace ShopECommerce.Business.Concrete
             await _discountDal.AddAsync(entity);
         }
 
+        public async Task TUpdateAsync(Discount entity)
+        {
+            await _discountDal.UpdateAsync(entity);
+        }
         public async Task TChangeStatusToFalseAsync(int id)
         {
             await _discountDal.ChangeStatusToFalseAsync(id);
@@ -78,10 +83,33 @@ namespace ShopECommerce.Business.Concrete
         {
             await _discountDal.ToggleStatusAsync(id);
         }
-
-        public async Task TUpdateAsync(Discount entity)
+        public async Task TUpdateAsync(UpdateDiscountDto updateDiscountDto)
         {
-            await _discountDal.UpdateAsync(entity);
+            var discount = await _discountDal.GetByIdAsync(updateDiscountDto.Id);
+            if (discount == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            discount.Amount = updateDiscountDto.Amount;
+            discount.Description = updateDiscountDto.Description;
+            discount.ImagePath = updateDiscountDto.ImagePath;
+            discount.Title = updateDiscountDto.Title;
+            discount.Status = updateDiscountDto.Status;
+
+            await _discountDal.UpdateAsync(discount);
+        }
+
+        public async Task TAddAsync(CreateDiscountDto createDiscountDto)
+        {
+            await _discountDal.AddAsync(new Discount()
+            {
+                Amount = createDiscountDto.Amount,
+                Description = createDiscountDto.Description,
+                ImagePath = createDiscountDto.ImagePath,
+                Title = createDiscountDto.Title,
+                Status = createDiscountDto.Status,
+            });
         }
     }
 }

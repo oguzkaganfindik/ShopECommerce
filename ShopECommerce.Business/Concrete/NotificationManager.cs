@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.NotificationDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -86,6 +87,32 @@ namespace ShopECommerce.Business.Concrete
         public async Task THardDeleteAsync(int id)
         {
             await _notificationDal.HardDeleteAsync(id);
+        }
+        public async Task TUpdateAsync(UpdateNotificationDto updateNotificationDto)
+        {
+            var notification = await _notificationDal.GetByIdAsync(updateNotificationDto.Id);
+            if (notification == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            notification.Description = updateNotificationDto.Description;
+            notification.Icon = updateNotificationDto.Icon;
+            notification.Status = updateNotificationDto.Status;
+            notification.Type = updateNotificationDto.Type;
+
+            await _notificationDal.UpdateAsync(notification);
+        }
+
+        public async Task TAddAsync(CreateNotificationDto createNotificationDto)
+        {
+            await _notificationDal.AddAsync(new Notification()
+            {
+                Description = createNotificationDto.Description,
+                Icon = createNotificationDto.Icon,
+                Status = createNotificationDto.Status,
+                Type = createNotificationDto.Type
+            });
         }
     }
 }

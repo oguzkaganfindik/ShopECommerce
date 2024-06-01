@@ -9,7 +9,8 @@ namespace ShopECommerce.Entities.Concrete
         public string Phone { get; set; }
         public string Subject { get; set; }
         public string MessageContent { get; set; }
-		public DateTime MessageSendDate { get; set; }
         public string Description { get; set; }
+        public int? NotificationId { get; set; }
+        public Notification Notification { get; set; }
     }
 }
