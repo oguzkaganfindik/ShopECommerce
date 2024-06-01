@@ -23,6 +23,7 @@ namespace ShopECommerce.Data.Context
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new BasketItemConfiguration());
+            modelBuilder.ApplyConfiguration(new MessageConfiguration());
 
             modelBuilder.SeedData(_dataProtector);
 

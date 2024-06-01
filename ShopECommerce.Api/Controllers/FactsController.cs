@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.FactDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -36,13 +35,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateFactAsync(CreateFactDto createFactDto)
         {
-            await _factService.TAddAsync(new Fact()
-            {
-                Title = createFactDto.Title,
-                Description = createFactDto.Description,
-                Icon = createFactDto.Icon
-            });
-
+            await _factService.TAddAsync(createFactDto);
             return Ok("Başarılı Bir Şekilde Eklendi");
         }
 
@@ -64,14 +57,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateFactAsync(UpdateFactDto updateFactDto)
         {
-            await _factService.TUpdateAsync(new Fact()
-            {
-                Id = updateFactDto.Id,
-                Title = updateFactDto.Title,
-                Description = updateFactDto.Description,
-                Icon = updateFactDto.Icon
-            });
-
+            await _factService.TUpdateAsync(updateFactDto);
             return Ok("Güncellendi");
         }
 
@@ -81,7 +67,5 @@ namespace ShopECommerce.Api.Controllers
             await _factService.TToggleStatusAsync(id);
             return Ok("Değiştirildi");
         }
-
-        
     }
 }

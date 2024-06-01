@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.DiscountDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -29,15 +28,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateDiscountAsync(CreateDiscountDto createDiscountDto)
         {
-            await _discountService.TAddAsync(new Discount()
-            {
-                Amount = createDiscountDto.Amount,
-                Description = createDiscountDto.Description,
-                ImagePath = createDiscountDto.ImagePath,
-                Title = createDiscountDto.Title,
-                Status = false,
-            });
-
+            await _discountService.TAddAsync(createDiscountDto);
             return Ok("İndirim Bilgisi Eklendi");
         }
 
@@ -59,16 +50,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateDiscountAsync(UpdateDiscountDto updateDiscountDto)
         {
-            await _discountService.TUpdateAsync(new Discount()
-            {
-                Id = updateDiscountDto.Id,
-                Amount = updateDiscountDto.Amount,
-                ImagePath = updateDiscountDto.ImagePath,
-                Title = updateDiscountDto.Title,
-                Description = updateDiscountDto.Description,
-                Status = false
-            });
-
+            await _discountService.TUpdateAsync(updateDiscountDto);
             return Ok("İndirim Bilgisi Güncellendi");
         }
 
@@ -84,6 +66,5 @@ namespace ShopECommerce.Api.Controllers
         {
             return Ok(await _discountService.TGetListByStatusTrueAsync());
         }
-
     }
 }

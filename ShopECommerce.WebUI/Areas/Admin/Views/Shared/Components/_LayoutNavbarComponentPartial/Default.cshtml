@@ -29,16 +29,19 @@
 				console.log(value);
 				$("#notilist").empty();
 				for (var i = 0; i < value.length; i++) {
-					$("#notilist").append(`<a href="#">
-						<div class="${value[i].type}"><i class="${value[i].icon}"></i></div>
-					    <div class="notif-content" >
-						<span class="block" >
-						${value[i].description}
+					let notificationDate = new Date(value[i].createdDate);
+					let formattedDate = notificationDate.toLocaleDateString();
+					let formattedTime = notificationDate.toLocaleTimeString();
+
+					$("#notilist").append(`<a href="/Admin/Message/Index/">
+					<div class="${value[i].type}"><i class="${value[i].icon}"></i></div>
+					<div class="notif-content">
+						<span class="block">
+							${value[i].description}
 						</span>
-						<span class="time">${value[i].createdDate}</span>
-						</div>
-						</a>
-						`)
+						<span class="time">${formattedDate} ${formattedTime}</span>
+					</div>
+				</a>`);
 				};
 			});
 		});

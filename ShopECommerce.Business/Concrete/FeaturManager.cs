@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.FeaturDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -23,10 +24,13 @@ namespace ShopECommerce.Business.Concrete
         {
             await _featurDal.AddAsync(entity);
         }
-
+        public async Task TUpdateAsync(Featur entity)
+        {
+            await _featurDal.UpdateAsync(entity);
+        }
         public async Task TDeleteAsync(Featur entity)
         {
-           await _featurDal.DeleteAsync(entity);
+            await _featurDal.DeleteAsync(entity);
         }
 
         public async Task TDeleteAsync(int id)
@@ -63,10 +67,31 @@ namespace ShopECommerce.Business.Concrete
         {
             await _featurDal.ToggleStatusAsync(id);
         }
-
-        public async Task TUpdateAsync(Featur entity)
+        public async Task TUpdateAsync(UpdateFeaturDto updateFeaturDto)
         {
-            await _featurDal.UpdateAsync(entity);
+            var featur = await _featurDal.GetByIdAsync(updateFeaturDto.Id);
+            if (featur == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            featur.Title = updateFeaturDto.Title;
+            featur.Description = updateFeaturDto.Description;
+            featur.Icon = updateFeaturDto.Icon;
+            featur.Status = updateFeaturDto.Status;
+
+            await _featurDal.UpdateAsync(featur);
+        }
+
+        public async Task TAddAsync(CreateFeaturDto createFeaturDto)
+        {
+            await _featurDal.AddAsync(new Featur()
+            {
+                Title = createFeaturDto.Title,
+                Description = createFeaturDto.Description,
+                Icon = createFeaturDto.Icon,
+                Status = createFeaturDto.Status
+            });
         }
     }
 }

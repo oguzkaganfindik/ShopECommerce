@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.FeaturDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -36,13 +35,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateFeaturAsync(CreateFeaturDto createFeaturDto)
         {
-            await _featurService.TAddAsync(new Featur()
-            {
-                Title = createFeaturDto.Title,
-                Description = createFeaturDto.Description,
-                Icon = createFeaturDto.Icon
-            });
-
+            await _featurService.TAddAsync(createFeaturDto);
             return Ok("Başarılı Bir Şekilde Eklendi");
         }
 
@@ -64,14 +57,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateFeaturAsync(UpdateFeaturDto updateFeaturDto)
         {
-            await _featurService.TUpdateAsync(new Featur()
-            {
-                Id = updateFeaturDto.Id,
-                Title = updateFeaturDto.Title,
-                Description = updateFeaturDto.Description,
-                Icon = updateFeaturDto.Icon
-            });
-
+            await _featurService.TUpdateAsync(updateFeaturDto);
             return Ok("Güncellendi");
         }
 

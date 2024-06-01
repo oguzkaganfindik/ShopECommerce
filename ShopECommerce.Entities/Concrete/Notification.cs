@@ -7,5 +7,6 @@ namespace ShopECommerce.Entities.Concrete
         public string Type { get; set; }
         public string Icon { get; set; }
         public string Description { get; set; }
+        public List<Message> Messages { get; set; }
     }
 }

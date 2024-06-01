@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.MessageDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -8,10 +9,12 @@ namespace ShopECommerce.Business.Concrete
     public class MessageManager : IMessageService
     {
         private readonly IMessageDal _messageDal;
+        private readonly INotificationDal _notificationDal;
 
-        public MessageManager(IMessageDal messageDal)
+        public MessageManager(IMessageDal messageDal, INotificationDal notificationDal)
         {
             _messageDal = messageDal;
+            _notificationDal = notificationDal;
         }
 
         public async Task TMessageStatusApprovedAsync(int id)
@@ -27,6 +30,10 @@ namespace ShopECommerce.Business.Concrete
         public async Task TAddAsync(Message entity)
         {
             await _messageDal.AddAsync(entity);
+        }
+        public async Task TUpdateAsync(Message entity)
+        {
+            await _messageDal.UpdateAsync(entity);
         }
 
         public async Task TDeleteAsync(Message entity)
@@ -69,14 +76,51 @@ namespace ShopECommerce.Business.Concrete
             await _messageDal.ToggleStatusAsync(id);
         }
 
-        public async Task TUpdateAsync(Message entity)
-        {
-            await _messageDal.UpdateAsync(entity);
-        }
-
         public async Task THardDeleteAsync(int id)
         {
             await _messageDal.HardDeleteAsync(id);
+        }
+
+        public async Task TAddAsync(CreateMessageDto createMessageDto)
+        {
+            try
+            {
+                var message = new Message()
+                {
+                    Mail = createMessageDto.Mail,
+                    MessageContent = createMessageDto.MessageContent,
+                    NameSurname = createMessageDto.NameSurname,
+                    Phone = createMessageDto.Phone,
+                    Subject = createMessageDto.Subject,
+                    CreatedDate = createMessageDto.CreatedDate,
+                    Description = "Mesaj Alındı",
+                    Status = createMessageDto.Status
+                };
+
+                await _messageDal.AddAsync(message);
+
+                var notification = new Notification()
+                {
+                    Description = "Yeni Mesajınız Var",
+                    Icon = "la la-comment",
+                    Type = "notif-icon notif-success",
+                    Status = false
+                };
+
+                await _notificationDal.AddAsync(notification);
+
+                message.NotificationId = notification.Id;
+                await _messageDal.UpdateAsync(message); 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Mesaj veya bildirim oluşturulurken hata oluştu: {ex.Message}");
+            }
+        }
+
+        public async Task TDeleteMessageAndNotificationAsync(int id)
+        {
+            await _messageDal.DeleteMessageAndNotificationAsync(id);
         }
     }
 }

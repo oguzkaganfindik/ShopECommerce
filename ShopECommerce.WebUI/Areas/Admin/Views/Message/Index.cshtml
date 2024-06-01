@@ -35,7 +35,7 @@
                                                 <th scope="col">Ad Soyad</th>
                                                 <th scope="col">Mail</th>
                                                 <th scope="col">Konu</th>
-                                                <th scope="col">Mesaj İçeriği</th>
+                                                <th scope="col">Mesaj Tarihi</th>
                                                 <th scope="col">Durum</th>
                                                 <th scope="col">Mesaj Detayı</th>
                                                 <th scope="col">Sil</th>
@@ -48,13 +48,17 @@
                         let shortenednameSurname = item.nameSurname.length > 15 ? item.nameSurname.substring(0, 15) + "..." : item.nameSurname;
                         let shortenedmail = item.mail.length > 10 ? item.mail.substring(0, 10) + "..." : item.mail;
                         let shortenedsubject = item.subject.length > 15 ? item.subject.substring(0, 15) + "..." : item.subject;
-                        let shortenedMessageContent = item.messageContent.length > 10 ? item.messageContent.substring(0, 10) + "..." : item.messageContent;
+
+                        let messageDate = new Date(item.createdDate);
+                        let formattedDate = messageDate.toLocaleDateString();
+                        let formattedTime = messageDate.toLocaleTimeString();
+
                         tablehtml += `<tr>
                                         <th>${index + 1}</th>
                                         <td>${shortenednameSurname}</td>
                                         <td>${shortenedmail}</td>
                                         <td>${shortenedsubject}</td>
-                                        <td>${shortenedMessageContent}</td>
+                                        <td>${formattedDate} ${formattedTime}</td>
                                         <td>${item.description}</td>
                                         <td><a href="/Admin/Message/Detail/${item.id}" class="btn btn-outline-primary btn-round" >Detay</a></td>
                                         <td><a href="/Admin/Message/DeleteMessage/${item.id}" class="btn btn-outline-danger btn-round" >Sil</a></td>

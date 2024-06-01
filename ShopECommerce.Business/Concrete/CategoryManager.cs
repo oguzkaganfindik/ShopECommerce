@@ -1,7 +1,5 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
-using ShopECommerce.Data.Concrete;
-using ShopECommerce.DTOs.BannerDto;
 using ShopECommerce.DTOs.CategoryDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
