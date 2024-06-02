@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.OrderDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -23,12 +24,14 @@ namespace ShopECommerce.Business.Concrete
         {
             return _orderDal.ActiveOrderCountAsync();
         }
-
         public async Task TAddAsync(Order entity)
         {
             await _orderDal.AddAsync(entity);
         }
-
+        public async Task TUpdateAsync(Order entity)
+        {
+            await _orderDal.UpdateAsync(entity);
+        }
         public async Task TDeleteAsync(Order entity)
         {
             await _orderDal.DeleteAsync(entity);
@@ -83,10 +86,33 @@ namespace ShopECommerce.Business.Concrete
         {
             return await _orderDal.TotalOrderCountAsync();
         }
-
-        public async Task TUpdateAsync(Order entity)
+        public async Task TUpdateAsync(UpdateOrderDto updateOrderDto)
         {
-            await _orderDal.UpdateAsync(entity);
+            var order = await _orderDal.GetByIdAsync(updateOrderDto.Id);
+            if (order == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            order.BasketItemId = updateOrderDto.BasketItemId;
+            order.Description = updateOrderDto.Description;
+            order.OrderDate = updateOrderDto.OrderDate;
+            order.TotalPrice = updateOrderDto.TotalPrice;
+            order.Status = updateOrderDto.Status;
+
+            await _orderDal.UpdateAsync(order);
+        }
+
+        public async Task TAddAsync(CreateOrderDto createOrderDto)
+        {
+            await _orderDal.AddAsync(new Order()
+            {
+                BasketItemId = createOrderDto.BasketItemId,
+                Description = createOrderDto.Description,
+                OrderDate = createOrderDto.OrderDate,
+                TotalPrice = createOrderDto.TotalPrice,
+                Status = createOrderDto.Status
+            });
         }
     }
 }

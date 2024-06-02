@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.ProductDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -38,22 +37,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProductAsync(CreateProductDto createProductDto)
         {
-            await _productService.TAddAsync(new Product()
-            {
-                ProductName = createProductDto.ProductName,
-                Description = createProductDto.Description,
-                Price = createProductDto.Price,
-                ImagePath = createProductDto.ImagePath,
-                SubCategoryId = createProductDto.SubCategoryId,
-                ProductTitle = createProductDto.ProductTitle,
-                Weight = createProductDto.Weight,
-                CountryOfOrigin = createProductDto.CountryOfOrigin,
-                Quality = createProductDto.Quality,
-                Сheck = createProductDto.Сheck,
-                MinWeight = createProductDto.MinWeight,
-                Status = createProductDto.Status
-            });
-
+            await _productService.TAddAsync(createProductDto);
             return Ok("Ürün Bilgisi Eklendi");
         }
 
@@ -74,23 +58,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateProductAsync(UpdateProductDto updateProductDto)
         {
-            await _productService.TUpdateAsync(new Product()
-            {
-                Id = updateProductDto.Id,
-                ProductName = updateProductDto.ProductName,
-                Description = updateProductDto.Description,
-                ImagePath = updateProductDto.ImagePath,
-                Price = updateProductDto.Price,
-                SubCategoryId = updateProductDto.SubCategoryId,
-                Status = updateProductDto.Status,
-                ProductTitle = updateProductDto.ProductTitle,
-                Weight = updateProductDto.Weight,
-                CountryOfOrigin = updateProductDto.CountryOfOrigin,
-                Quality = updateProductDto.Quality,
-                Сheck = updateProductDto.Сheck,
-                MinWeight = updateProductDto.MinWeight,
-            });
-
+            await _productService.TUpdateAsync(updateProductDto);
             return Ok("Ürün Bilgisi Güncellendi");
         }
 

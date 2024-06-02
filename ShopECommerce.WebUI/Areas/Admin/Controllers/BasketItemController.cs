@@ -37,11 +37,11 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBasketItem(CreateBasketItemViewModel createBasketItemDto)
+        public async Task<IActionResult> CreateBasketItem(CreateBasketItemViewModel createBasketItemViewModel)
         {
-            createBasketItemDto.Status = false;
+            createBasketItemViewModel.Status = false;
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createBasketItemDto);
+            var jsonData = JsonConvert.SerializeObject(createBasketItemViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/BasketItems", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -77,10 +77,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateBasketItem(UpdateBasketItemViewModel updateBasketItemDto)
+        public async Task<IActionResult> UpdateBasketItem(UpdateBasketItemViewModel updateBasketItemViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateBasketItemDto);
+            var jsonData = JsonConvert.SerializeObject(updateBasketItemViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/BasketItems/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.OrderDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -29,14 +28,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrderAsync(CreateOrderDto createOrderDto)
         {
-            await _orderService.TAddAsync(new Order()
-            {
-                BasketItemId = createOrderDto.BasketItemId,
-                Description = createOrderDto.Description,
-                OrderDate = createOrderDto.OrderDate,
-                TotalPrice = createOrderDto.TotalPrice
-            });
-
+            await _orderService.TAddAsync(createOrderDto);
             return Ok("Order Kısmı Başarılı Bir Şekilde Eklendi");
         }
 
@@ -58,15 +50,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateOrderAsync(UpdateOrderDto updateOrderDto)
         {
-            await _orderService.TUpdateAsync(new Order()
-            {
-                Id = updateOrderDto.Id,
-                BasketItemId = updateOrderDto.BasketItemId,
-                Description = updateOrderDto.Description,
-                OrderDate = updateOrderDto.OrderDate,
-                TotalPrice = updateOrderDto.TotalPrice
-            });
-
+            await _orderService.TUpdateAsync(updateOrderDto);
             return Ok("Order Alanı Güncellendi");
         }
 

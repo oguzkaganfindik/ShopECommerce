@@ -1,5 +1,8 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.Data.Concrete;
+using ShopECommerce.DTOs.AboutDto;
+using ShopECommerce.DTOs.OrderDetailDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -23,7 +26,10 @@ namespace ShopECommerce.Business.Concrete
         {
             await _orderDetailDal.AddAsync(entity);
         }
-
+        public async Task TUpdateAsync(OrderDetail entity)
+        {
+            await _orderDetailDal.UpdateAsync(entity);
+        }
         public async Task TDeleteAsync(OrderDetail entity)
         {
             await _orderDetailDal.DeleteAsync(entity);
@@ -64,9 +70,35 @@ namespace ShopECommerce.Business.Concrete
             await _orderDetailDal.ToggleStatusAsync(id);
         }
 
-        public async Task TUpdateAsync(OrderDetail entity)
+        public async Task TUpdateAsync(UpdateOrderDetailDto updateOrderDetailDto)
         {
-            await _orderDetailDal.UpdateAsync(entity);
+            var orderDetail = await _orderDetailDal.GetByIdAsync(updateOrderDetailDto.Id);
+            if (orderDetail == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            orderDetail.OrderId = updateOrderDetailDto.OrderId;
+            orderDetail.ProductId = updateOrderDetailDto.ProductId;
+            orderDetail.Count = updateOrderDetailDto.Count;
+            orderDetail.TotalPrice = updateOrderDetailDto.TotalPrice;
+            orderDetail.UnitPrice = updateOrderDetailDto.UnitPrice;
+            orderDetail.Status = updateOrderDetailDto.Status;
+
+            await _orderDetailDal.UpdateAsync(orderDetail);
+        }
+
+        public async Task TAddAsync(CreateOrderDetailDto createOrderDetailDto)
+        {
+            await _orderDetailDal.AddAsync(new OrderDetail()
+            {
+                OrderId = createOrderDetailDto.OrderId,
+                ProductId = createOrderDetailDto.ProductId,
+                Count = createOrderDetailDto.Count,
+                TotalPrice = createOrderDetailDto.TotalPrice,
+                UnitPrice = createOrderDetailDto.UnitPrice,
+                Status = createOrderDetailDto.Status
+            });
         }
     }
 }

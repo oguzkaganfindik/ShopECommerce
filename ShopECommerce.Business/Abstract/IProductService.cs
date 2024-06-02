@@ -5,6 +5,8 @@ namespace ShopECommerce.Business.Abstract
 {
     public interface IProductService : IGenericService<Product>
     {
+        Task TUpdateAsync(UpdateProductDto updateProductDto);
+        Task TAddAsync(CreateProductDto createProductDto);
         Task<List<ResultProductWithSubCategory>> TGetProductsWithSubCategoriesAsync();
         Task<int> TProductCountAsync();
         Task<int> TProductCountBySubCategoryNameAppleAsync();

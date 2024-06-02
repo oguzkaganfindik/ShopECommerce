@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.RoleDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -29,11 +28,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateRoleAsync(CreateRoleDto createRoleDto)
         {
-            await _roleService.TAddAsync(new Role()
-            {
-                Name = createRoleDto.Name
-            });
-
+            await _roleService.TAddAsync(createRoleDto);
             return Ok("Role Başarılı Bir Şekilde Eklendi");
         }
 
@@ -55,12 +50,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateRoleAsync(UpdateRoleDto updateRoleDto)
         {
-            await _roleService.TUpdateAsync(new Role()
-            {
-                Id = updateRoleDto.Id,
-                Name = updateRoleDto.Name
-            });
-
+            await _roleService.TUpdateAsync(updateRoleDto);
             return Ok("Role Güncellendi");
         }
 

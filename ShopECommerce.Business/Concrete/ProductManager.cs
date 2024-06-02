@@ -124,7 +124,7 @@ namespace ShopECommerce.Business.Concrete
         public async Task<List<ResultProductWithSubCategory>> TGetProductListByVegetableAsync()
         {
             return await _productDal.GetProductListByVegetableAsync();
-        }      
+        }
 
         public async Task<List<ResultProductWithSubCategory>> TGetProductListByFruitesAsync()
         {
@@ -139,6 +139,48 @@ namespace ShopECommerce.Business.Concrete
         public async Task THardDeleteAsync(int id)
         {
             await _productDal.HardDeleteAsync(id);
+        }
+        public async Task TUpdateAsync(UpdateProductDto updateProductDto)
+        {
+            var product = await _productDal.GetByIdAsync(updateProductDto.Id);
+            if (product == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            product.ProductName = updateProductDto.ProductName;
+            product.Description = updateProductDto.Description;
+            product.Price = updateProductDto.Price;
+            product.ImagePath = updateProductDto.ImagePath;
+            product.SubCategoryId = updateProductDto.SubCategoryId;
+            product.ProductTitle = updateProductDto.ProductTitle;
+            product.Weight = updateProductDto.Weight;
+            product.CountryOfOrigin = updateProductDto.CountryOfOrigin;
+            product.Quality = updateProductDto.Quality;
+            product.Сheck = updateProductDto.Сheck;
+            product.MinWeight = updateProductDto.MinWeight;
+            product.Status = updateProductDto.Status;
+
+            await _productDal.UpdateAsync(product);
+        }
+
+        public async Task TAddAsync(CreateProductDto createProductDto)
+        {
+            await _productDal.AddAsync(new Product()
+            {
+                ProductName = createProductDto.ProductName,
+                Description = createProductDto.Description,
+                Price = createProductDto.Price,
+                ImagePath = createProductDto.ImagePath,
+                SubCategoryId = createProductDto.SubCategoryId,
+                ProductTitle = createProductDto.ProductTitle,
+                Weight = createProductDto.Weight,
+                CountryOfOrigin = createProductDto.CountryOfOrigin,
+                Quality = createProductDto.Quality,
+                Сheck = createProductDto.Сheck,
+                MinWeight = createProductDto.MinWeight,
+                Status = createProductDto.Status
+            });
         }
     }
 }

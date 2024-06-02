@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.SliderDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -23,7 +24,10 @@ namespace ShopECommerce.Business.Concrete
         {
             await _sliderDal.AddAsync(entity);
         }
-
+        public async Task TUpdateAsync(Slider entity)
+        {
+            await _sliderDal.UpdateAsync(entity);
+        }
         public async Task TDeleteAsync(Slider entity)
         {
             await _sliderDal.DeleteAsync(entity);
@@ -64,9 +68,41 @@ namespace ShopECommerce.Business.Concrete
             await _sliderDal.ToggleStatusAsync(id);
         }
 
-        public async Task TUpdateAsync(Slider entity)
+        public async Task TUpdateAsync(UpdateSliderDto updateSliderDto)
         {
-            await _sliderDal.UpdateAsync(entity);
+            var slider = await _sliderDal.GetByIdAsync(updateSliderDto.Id);
+            if (slider == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            slider.Title = updateSliderDto.Title;
+            slider.Description = updateSliderDto.Description;
+            slider.Label1 = updateSliderDto.Label1;
+            slider.ImagePath1 = updateSliderDto.ImagePath1;
+            slider.Url1 = updateSliderDto.Url1;
+            slider.Label2 = updateSliderDto.Label2;
+            slider.ImagePath2 = updateSliderDto.ImagePath2;
+            slider.Url2 = updateSliderDto.Url2;
+            slider.Status = updateSliderDto.Status;
+
+            await _sliderDal.UpdateAsync(slider);
+        }
+
+        public async Task TAddAsync(CreateSliderDto createSliderDto)
+        {
+            await _sliderDal.AddAsync(new Slider()
+            {
+                Title = createSliderDto.Title,
+                Description = createSliderDto.Description,
+                Label1 = createSliderDto.Label1,
+                ImagePath1 = createSliderDto.ImagePath1,
+                Url1 = createSliderDto.Url1,
+                Label2 = createSliderDto.Label2,
+                ImagePath2 = createSliderDto.ImagePath2,
+                Url2 = createSliderDto.Url2,
+                Status = createSliderDto.Status
+            });
         }
     }
 }

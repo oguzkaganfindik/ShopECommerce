@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.OrderDetailDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -29,15 +28,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrderDetailAsync(CreateOrderDetailDto createOrderDetailDto)
         {
-            await _orderDetailService.TAddAsync(new OrderDetail()
-            {
-                OrderId = createOrderDetailDto.OrderId,
-                ProductId = createOrderDetailDto.ProductId,
-                Count = createOrderDetailDto.Count,
-                TotalPrice = createOrderDetailDto.TotalPrice,
-                UnitPrice = createOrderDetailDto.UnitPrice
-            });
-
+            await _orderDetailService.TAddAsync(createOrderDetailDto);
             return Ok("OrderDetail Başarılı Bir Şekilde Eklendi");
         }
 
@@ -59,16 +50,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateOrderDetailAsync(UpdateOrderDetailDto updateOrderDetailDto)
         {
-            await _orderDetailService.TUpdateAsync(new OrderDetail()
-            {
-                Id = updateOrderDetailDto.OrderId,
-                OrderId = updateOrderDetailDto.OrderId,
-                ProductId = updateOrderDetailDto.ProductId,
-                Count = updateOrderDetailDto.Count,
-                TotalPrice = updateOrderDetailDto.TotalPrice,
-                UnitPrice = updateOrderDetailDto.UnitPrice
-            });
-
+            await _orderDetailService.TUpdateAsync(updateOrderDetailDto);
             return Ok("OrderDetail Güncellendi");
         }
 
