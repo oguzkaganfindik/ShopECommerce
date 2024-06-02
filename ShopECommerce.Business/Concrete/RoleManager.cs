@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.RoleDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -23,7 +24,10 @@ namespace ShopECommerce.Business.Concrete
         {
             await _roleDal.AddAsync(entity);
         }
-
+        public async Task TUpdateAsync(Role entity)
+        {
+            await _roleDal.UpdateAsync(entity);
+        }
         public async Task TDeleteAsync(Role entity)
         {
             await _roleDal.DeleteAsync(entity);
@@ -63,10 +67,28 @@ namespace ShopECommerce.Business.Concrete
         {
             await _roleDal.ToggleStatusAsync(id);
         }
-
-        public async Task TUpdateAsync(Role entity)
+      
+        public async Task TUpdateAsync(UpdateRoleDto updateRoleDto)
         {
-            await _roleDal.UpdateAsync(entity);
+            var role = await _roleDal.GetByIdAsync(updateRoleDto.Id);
+            if (role == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            role.Name = updateRoleDto.Name;
+            role.Status = updateRoleDto.Status;
+
+            await _roleDal.UpdateAsync(role);
+        }
+
+        public async Task TAddAsync(CreateRoleDto createRoleDto)
+        {
+            await _roleDal.AddAsync(new Role()
+            {
+                Name = createRoleDto.Name,
+                Status = createRoleDto.Status
+            });
         }
     }
 }

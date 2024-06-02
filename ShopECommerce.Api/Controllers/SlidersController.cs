@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.SliderDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -35,18 +34,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSliderAsync(CreateSliderDto createSliderDto)
         {
-            await _sliderService.TAddAsync(new Slider()
-            {
-                Title = createSliderDto.Title,
-                Description = createSliderDto.Description,
-                Label1 = createSliderDto.Label1,
-                ImagePath1 = createSliderDto.ImagePath1,
-                Url1 = createSliderDto.Url1,
-                Label2 = createSliderDto.Label2,
-                ImagePath2 = createSliderDto.ImagePath2,
-                Url2 = createSliderDto.Url2
-            });
-
+            await _sliderService.TAddAsync(createSliderDto);
             return Ok("Slider Bilgisi Eklendi");
         }
 
@@ -68,18 +56,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateSliderAsync(UpdateSliderDto updateSliderDto)
         {
-            await _sliderService.TUpdateAsync(new Slider()
-            {
-                Title = updateSliderDto.Title,
-                Description = updateSliderDto.Description,
-                Label1 = updateSliderDto.Label1,
-                ImagePath1 = updateSliderDto.ImagePath1,
-                Url1 = updateSliderDto.Url1,
-                Label2 = updateSliderDto.Label2,
-                ImagePath2 = updateSliderDto.ImagePath2,
-                Url2 = updateSliderDto.Url2
-            });
-
+            await _sliderService.TUpdateAsync(updateSliderDto);
             return Ok("Slider Bilgisi Güncellendi");
         }
 
@@ -88,6 +65,6 @@ namespace ShopECommerce.Api.Controllers
         {
             await _sliderService.TToggleStatusAsync(id);
             return Ok("Status Değiştirildi");
-        }    
+        }
     }
 }

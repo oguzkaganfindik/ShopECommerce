@@ -37,10 +37,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBanner(CreateBannerViewModel createFactDto)
+        public async Task<IActionResult> CreateBanner(CreateBannerViewModel createBannerViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createFactDto);
+            var jsonData = JsonConvert.SerializeObject(createBannerViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Banners", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -76,10 +76,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateBanner(UpdateBannerViewModel updateFactDto)
+        public async Task<IActionResult> UpdateBanner(UpdateBannerViewModel updateBannerViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateFactDto);
+            var jsonData = JsonConvert.SerializeObject(updateBannerViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/Banners/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
