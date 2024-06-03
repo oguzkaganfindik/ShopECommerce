@@ -97,13 +97,13 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateUser(UpdateUserViewModel updateUserDto)
+        public async Task<IActionResult> UpdateUser(UpdateUserViewModel updateUserViewModel)
         {
-            var existingUser = await GetUserById(updateUserDto.Id);
-            updateUserDto.Password = string.IsNullOrEmpty(updateUserDto.Password) ? existingUser.Password : updateUserDto.Password;
+            var existingUser = await GetUserById(updateUserViewModel.Id);
+            updateUserViewModel.Password = string.IsNullOrEmpty(updateUserViewModel.Password) ? existingUser.Password : updateUserViewModel.Password;
 
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateUserDto);
+            var jsonData = JsonConvert.SerializeObject(updateUserViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/Users/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

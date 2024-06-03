@@ -48,10 +48,10 @@ namespace ShopECommerce.Api.Controllers
             return Ok(value);
         }
 
-        [HttpGet("GetProductShowcaseDetailId/{id}")]
-        public async Task<IActionResult> GetProductShowcaseDetailIdAsync(int id)
+        [HttpGet("GetProductShowcaseDetail/{id}")]
+        public async Task<IActionResult> GetProductShowcaseDetailAsync(int id)
         {
-            var value = await _productService.TGetProductShowcaseDetailIdAsync(id);
+            var value = await _productService.TGetProductShowcaseDetailAsync(id);
             return Ok(value);
         }
 

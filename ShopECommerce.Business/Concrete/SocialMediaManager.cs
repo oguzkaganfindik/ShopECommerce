@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.SocialMediaDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -22,7 +23,10 @@ namespace ShopECommerce.Business.Concrete
         {
             await _socialMediaDal.AddAsync(entity);
         }
-
+        public async Task TUpdateAsync(SocialMedia entity)
+        {
+            await _socialMediaDal.UpdateAsync(entity);
+        }
         public async Task TDeleteAsync(SocialMedia entity)
         {
             await _socialMediaDal.DeleteAsync(entity);
@@ -62,10 +66,33 @@ namespace ShopECommerce.Business.Concrete
         {
             await _socialMediaDal.ToggleStatusAsync(id);
         }
-
-        public async Task TUpdateAsync(SocialMedia entity)
+        public async Task TUpdateAsync(UpdateSocialMediaDto updateSocialMediaDto)
         {
-            await _socialMediaDal.UpdateAsync(entity);
+            var socialMedia = await _socialMediaDal.GetByIdAsync(updateSocialMediaDto.Id);
+            if (socialMedia == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            socialMedia.Title = updateSocialMediaDto.Title;
+            socialMedia.Cls = updateSocialMediaDto.Cls;
+            socialMedia.Icon = updateSocialMediaDto.Icon;
+            socialMedia.Url = updateSocialMediaDto.Url;
+            socialMedia.Status = updateSocialMediaDto.Status;
+
+            await _socialMediaDal.UpdateAsync(socialMedia);
+        }
+
+        public async Task TAddAsync(CreateSocialMediaDto createSocialMediaDto)
+        {
+            await _socialMediaDal.AddAsync(new SocialMedia()
+            {
+                Title = createSocialMediaDto.Title,
+                Cls = createSocialMediaDto.Cls,
+                Icon = createSocialMediaDto.Icon,
+                Url = createSocialMediaDto.Url,
+                Status = createSocialMediaDto.Status
+            });
         }
     }
 }

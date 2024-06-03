@@ -34,11 +34,11 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterAsync(UserRegisterViewModel userRegisterDto)
+        public async Task<IActionResult> RegisterAsync(UserRegisterViewModel userRegisterViewModel)
         {
             if (ModelState.IsValid)
             {
-                if (userRegisterDto.Password != userRegisterDto.ConfirmPassword)
+                if (userRegisterViewModel.Password != userRegisterViewModel.ConfirmPassword)
                 {
                     ModelState.AddModelError("ConfirmPassword", "Şifreler eşleşmiyor.");
                     return View();
@@ -60,11 +60,11 @@ namespace ShopECommerce.WebUI.Controllers
 
                 var newUser = new User()
                 {
-                    Username = userRegisterDto.UserName,
-                    FirstName = userRegisterDto.FirstName,
-                    LastName = userRegisterDto.LastName,
-                    Email = userRegisterDto.Email,
-                    Password = _dataProtector.Protect(userRegisterDto.Password),
+                    Username = userRegisterViewModel.UserName,
+                    FirstName = userRegisterViewModel.FirstName,
+                    LastName = userRegisterViewModel.LastName,
+                    Email = userRegisterViewModel.Email,
+                    Password = _dataProtector.Protect(userRegisterViewModel.Password),
                     Description = "Kullanıcı Kayıt Oldu",
                     RoleId = rol.Id,
                     ConfirmCode = code
@@ -74,7 +74,7 @@ namespace ShopECommerce.WebUI.Controllers
 
                 await _emailService.SendConfirmationEmailAsync(newUser.Email, code);
 
-                TempData["Mail"] = userRegisterDto.Email;
+                TempData["Mail"] = userRegisterViewModel.Email;
 
                 return RedirectToAction("ConfirmMail", "Auth");
             }
@@ -119,9 +119,9 @@ namespace ShopECommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoginAsync(UserLoginViewModel userLoginDto)
+        public async Task<IActionResult> LoginAsync(UserLoginViewModel userLoginViewModel)
         {
-            var user = await _userService.TGetByEmailAsync(userLoginDto.Email);
+            var user = await _userService.TGetByEmailAsync(userLoginViewModel.Email);
 
             if (user == null)
             {
@@ -141,7 +141,7 @@ namespace ShopECommerce.WebUI.Controllers
                 return View();
             }
 
-            if (user != null && _dataProtector.Unprotect(user.Password) == userLoginDto.Password)
+            if (user != null && _dataProtector.Unprotect(user.Password) == userLoginViewModel.Password)
             {
                 var rol = await _roleService.TGetAsync(r => r.Id == user.RoleId);
                 var claims = new List<Claim>()

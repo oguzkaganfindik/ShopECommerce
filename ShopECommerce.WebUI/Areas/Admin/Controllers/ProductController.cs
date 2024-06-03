@@ -13,16 +13,12 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly IImageProcessingService _imageProcessingService;
-        private readonly IWebHostEnvironment _environment;
-        private readonly IImageService _ImageManager;
+        private readonly IImageService _imageService;
 
-        public ProductController(IHttpClientFactory httpClientFactory, IImageProcessingService imageProcessingService, IWebHostEnvironment environment, IImageService imageManager)
+        public ProductController(IHttpClientFactory httpClientFactory, IImageService imageService)
         {
             _httpClientFactory = httpClientFactory;
-            _imageProcessingService = imageProcessingService;
-            _environment = environment;
-            _ImageManager = imageManager;
+            _imageService = imageService;
         }
 
         public async Task<IActionResult> Index()
@@ -43,7 +39,7 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Detail(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Products/GetProductShowcaseDetailId/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Products/GetProductShowcaseDetail/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -78,28 +74,25 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct(CreateProductViewModel createProductDto)
+        public async Task<IActionResult> CreateProduct(CreateProductViewModel createProductViewModel)
         {
-            createProductDto.Status = true;
-
-
             string newFileName = "";
             string filePath = "";
             string errorMessage;
 
-            newFileName = _ImageManager.Image(createProductDto.File, filePath, out errorMessage, "images", "products", 500, 375);
+            newFileName = _imageService.Image(createProductViewModel.File, filePath, out errorMessage, "images", "products", 500, 375);
 
             if (!string.IsNullOrEmpty(newFileName))
             {
-                createProductDto.ImagePath = "/images/products/" + newFileName;
+                createProductViewModel.ImagePath = "/images/products/" + newFileName;
             }
             else
             {
-                createProductDto.ImagePath = "" + newFileName;
+                createProductViewModel.ImagePath = "" + newFileName;
             }
 
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createProductDto);
+            var jsonData = JsonConvert.SerializeObject(createProductViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Products", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -147,14 +140,14 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateProduct(UpdateProductViewModel updateProductDto)
+        public async Task<IActionResult> UpdateProduct(UpdateProductViewModel updateProductViewModel)
         {
 
-            var existingProduct = await GetProductById(updateProductDto.Id);
+            var existingProduct = await GetProductById(updateProductViewModel.Id);
 
-            if (updateProductDto.File == null || updateProductDto.File.Length == 0)
+            if (updateProductViewModel.File == null || updateProductViewModel.File.Length == 0)
             {
-                updateProductDto.ImagePath = existingProduct.ImagePath;
+                updateProductViewModel.ImagePath = existingProduct.ImagePath;
             }
             else
             {
@@ -162,20 +155,20 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
                 string filePath = "/images/products/";
                 string errorMessage;
 
-                newFileName = _ImageManager.Image(updateProductDto.File, filePath, out errorMessage, "images", "products", 500, 375);
+                newFileName = _imageService.Image(updateProductViewModel.File, filePath, out errorMessage, "images", "products", 500, 375);
 
                 if (!string.IsNullOrEmpty(newFileName))
                 {
-                    updateProductDto.ImagePath = "/images/products/" + newFileName;
+                    updateProductViewModel.ImagePath = "/images/products/" + newFileName;
                 }
                 else
                 {
-                    updateProductDto.ImagePath = existingProduct.ImagePath;
+                    updateProductViewModel.ImagePath = existingProduct.ImagePath;
                 }
             }
 
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateProductDto);
+            var jsonData = JsonConvert.SerializeObject(updateProductViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync($"https://localhost:7046/api/Products/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

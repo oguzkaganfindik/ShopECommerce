@@ -18,6 +18,6 @@ namespace ShopECommerce.Data.Abstract
         Task<decimal> TotalPriceByStrawberrySubCategoryAsync();
         Task<List<ResultProductWithSubCategory>> GetProductListByVegetableAsync();
         Task<List<ResultProductWithSubCategory>> GetProductListByFruitesAsync();
-        Task<GetProductShowcaseDetailDto> GetProductShowcaseDetailIdAsync(int id);
+        Task<GetProductShowcaseDetailDto> GetProductShowcaseDetailAsync(int id);
     }
 }
