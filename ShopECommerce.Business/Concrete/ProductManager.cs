@@ -131,9 +131,9 @@ namespace ShopECommerce.Business.Concrete
             return await _productDal.GetProductListByFruitesAsync();
         }
 
-        public async Task<GetProductShowcaseDetailDto> TGetProductShowcaseDetailIdAsync(int id)
+        public async Task<GetProductShowcaseDetailDto> TGetProductShowcaseDetailAsync(int id)
         {
-            return await _productDal.GetProductShowcaseDetailIdAsync(id);
+            return await _productDal.GetProductShowcaseDetailAsync(id);
         }
 
         public async Task THardDeleteAsync(int id)

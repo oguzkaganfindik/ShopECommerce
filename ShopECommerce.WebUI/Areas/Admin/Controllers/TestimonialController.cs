@@ -37,10 +37,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTestimonial(CreateTestimonialViewModel createTestimonialDto)
+        public async Task<IActionResult> CreateTestimonial(CreateTestimonialViewModel createTestimonialViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createTestimonialDto);
+            var jsonData = JsonConvert.SerializeObject(createTestimonialViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Testimonials", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -76,10 +76,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateTestimonial(UpdateTestimonialViewModel updateTestimonialDto)
+        public async Task<IActionResult> UpdateTestimonial(UpdateTestimonialViewModel updateTestimonialViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateTestimonialDto);
+            var jsonData = JsonConvert.SerializeObject(updateTestimonialViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/Testimonials/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

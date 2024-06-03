@@ -37,10 +37,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSocialMedia(CreateSocialMediaViewModel createSocialMediaDto)
+        public async Task<IActionResult> CreateSocialMedia(CreateSocialMediaViewModel createSocialMediaViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createSocialMediaDto);
+            var jsonData = JsonConvert.SerializeObject(createSocialMediaViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/SocialMedia", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -76,10 +76,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateSocialMedia(UpdateSocialMediaViewModel updateSocialMediaDto)
+        public async Task<IActionResult> UpdateSocialMedia(UpdateSocialMediaViewModel updateSocialMediaViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateSocialMediaDto);
+            var jsonData = JsonConvert.SerializeObject(updateSocialMediaViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/SocialMedia/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

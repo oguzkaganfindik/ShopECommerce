@@ -50,7 +50,7 @@ namespace ShopECommerce.WebUI.Controllers
         public async Task<IActionResult> Detail(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Products/GetProductShowcaseDetailId/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7046/api/Products/GetProductShowcaseDetail/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

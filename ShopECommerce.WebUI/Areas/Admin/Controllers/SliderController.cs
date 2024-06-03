@@ -36,10 +36,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSlider(CreateSliderViewModel createSliderDto)
+        public async Task<IActionResult> CreateSlider(CreateSliderViewModel createSliderViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createSliderDto);
+            var jsonData = JsonConvert.SerializeObject(createSliderViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Sliders", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -75,10 +75,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateSlider(UpdateSliderViewModel updateSliderDto)
+        public async Task<IActionResult> UpdateSlider(UpdateSliderViewModel updateSliderViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateSliderDto);
+            var jsonData = JsonConvert.SerializeObject(updateSliderViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/Sliders/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

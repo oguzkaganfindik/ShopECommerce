@@ -37,10 +37,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRole(CreateRoleViewModel createRoleDto)
+        public async Task<IActionResult> CreateRole(CreateRoleViewModel createRoleViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createRoleDto);
+            var jsonData = JsonConvert.SerializeObject(createRoleViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Roles", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -76,10 +76,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateRole(UpdateRoleViewModel updateRoleDto)
+        public async Task<IActionResult> UpdateRole(UpdateRoleViewModel updateRoleViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateRoleDto);
+            var jsonData = JsonConvert.SerializeObject(updateRoleViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/Roles/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

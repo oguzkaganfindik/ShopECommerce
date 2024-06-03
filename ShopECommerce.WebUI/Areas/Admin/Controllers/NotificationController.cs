@@ -37,10 +37,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateNotification(CreateNotificationViewModel createNotificationDto)
+        public async Task<IActionResult> CreateNotification(CreateNotificationViewModel createNotificationViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createNotificationDto);
+            var jsonData = JsonConvert.SerializeObject(createNotificationViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Notifications", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -76,10 +76,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateNotification(UpdateNotificationViewModel updateNotificationDto)
+        public async Task<IActionResult> UpdateNotification(UpdateNotificationViewModel updateNotificationViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateNotificationDto);
+            var jsonData = JsonConvert.SerializeObject(updateNotificationViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/Notifications/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

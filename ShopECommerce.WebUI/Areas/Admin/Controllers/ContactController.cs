@@ -37,10 +37,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateContact(CreateContactViewModel createContactDto)
+        public async Task<IActionResult> CreateContact(CreateContactViewModel createContactViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createContactDto);
+            var jsonData = JsonConvert.SerializeObject(createContactViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Contacts", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -75,10 +75,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateContact(UpdateContactViewModel updateContactDto)
+        public async Task<IActionResult> UpdateContact(UpdateContactViewModel updateContactViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateContactDto);
+            var jsonData = JsonConvert.SerializeObject(updateContactViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/Contacts/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

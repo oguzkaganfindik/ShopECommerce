@@ -181,7 +181,7 @@ namespace ShopECommerce.Data.Concrete
             return values;
         }
 
-        public async Task<GetProductShowcaseDetailDto> GetProductShowcaseDetailIdAsync(int id)
+        public async Task<GetProductShowcaseDetailDto> GetProductShowcaseDetailAsync(int id)
         {
             var value = await _context.Products
                 .Where(p => p.Id == id)

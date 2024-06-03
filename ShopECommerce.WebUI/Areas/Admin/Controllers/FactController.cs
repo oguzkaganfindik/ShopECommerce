@@ -37,10 +37,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateFact(CreateFactViewModel createFactDto)
+        public async Task<IActionResult> CreateFact(CreateFactViewModel createFactViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createFactDto);
+            var jsonData = JsonConvert.SerializeObject(createFactViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Facts", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -76,10 +76,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateFact(UpdateFactViewModel updateFactDto)
+        public async Task<IActionResult> UpdateFact(UpdateFactViewModel updateFactViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateFactDto);
+            var jsonData = JsonConvert.SerializeObject(updateFactViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/Facts/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

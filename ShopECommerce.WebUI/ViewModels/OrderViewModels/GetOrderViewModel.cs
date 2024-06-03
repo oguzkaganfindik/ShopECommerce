@@ -2,7 +2,7 @@
 
 namespace ShopECommerce.WebUI.ViewModels.OrderViewModels
 {
-    public class GetOrderDto
+    public class GetOrderViewModel
     {
         public int Id { get; set; }
         public int BasketItemId { get; set; }

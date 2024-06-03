@@ -49,10 +49,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSubCategory(CreateSubCategoryViewModel createSubCategoryDto)
+        public async Task<IActionResult> CreateSubCategory(CreateSubCategoryViewModel createSubCategoryViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createSubCategoryDto);
+            var jsonData = JsonConvert.SerializeObject(createSubCategoryViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/SubCategories", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -90,10 +90,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateSubCategory(UpdateSubCategoryViewModel updateSubCategoryDto)
+        public async Task<IActionResult> UpdateSubCategory(UpdateSubCategoryViewModel updateSubCategoryViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateSubCategoryDto);
+            var jsonData = JsonConvert.SerializeObject(updateSubCategoryViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/SubCategories/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

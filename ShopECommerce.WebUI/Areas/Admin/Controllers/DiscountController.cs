@@ -37,10 +37,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateDiscount(CreateDiscountViewModel createDiscountDto)
+        public async Task<IActionResult> CreateDiscount(CreateDiscountViewModel createDiscountViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createDiscountDto);
+            var jsonData = JsonConvert.SerializeObject(createDiscountViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Discounts", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -76,10 +76,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateDiscount(UpdateDiscountViewModel updateDiscountDto)
+        public async Task<IActionResult> UpdateDiscount(UpdateDiscountViewModel updateDiscountViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateDiscountDto);
+            var jsonData = JsonConvert.SerializeObject(updateDiscountViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/Discounts/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

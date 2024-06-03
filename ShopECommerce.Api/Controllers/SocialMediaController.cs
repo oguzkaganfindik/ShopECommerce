@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.SocialMediaDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -36,14 +35,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSocialMediaAsync(CreateSocialMediaDto createSocialMediaDto)
         {
-            await _socialMediaService.TAddAsync(new SocialMedia()
-            {
-                Title = createSocialMediaDto.Title,
-                Cls = createSocialMediaDto.Cls,
-                Icon = createSocialMediaDto.Icon,
-                Url = createSocialMediaDto.Url
-            });
-
+            await _socialMediaService.TAddAsync(createSocialMediaDto);
             return Ok("Sosyal Medya Bilgisi Eklendi");
         }
 
@@ -65,15 +57,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateSocialMediaAsync(UpdateSocialMediaDto updateSocialMediaDto)
         {
-            await _socialMediaService.TUpdateAsync(new SocialMedia()
-            {
-                Id = updateSocialMediaDto.Id,
-                Title = updateSocialMediaDto.Title,
-                Cls=updateSocialMediaDto.Cls,
-                Icon = updateSocialMediaDto.Icon,
-                Url = updateSocialMediaDto.Url
-            });
-
+            await _socialMediaService.TUpdateAsync(updateSocialMediaDto);
             return Ok("Sosyal Medya Bilgisi Güncellendi");
         }
 

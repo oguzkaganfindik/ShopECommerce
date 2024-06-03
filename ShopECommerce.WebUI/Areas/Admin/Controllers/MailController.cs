@@ -22,9 +22,9 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(CreateMailViewModel createMailDto)
+        public async Task<IActionResult> Index(CreateMailViewModel createMailViewModel)
         {
-            await _emailService.SendEmailAsync(createMailDto.ReceiverMail, createMailDto.Subject, createMailDto.Body);
+            await _emailService.SendEmailAsync(createMailViewModel.ReceiverMail, createMailViewModel.Subject, createMailViewModel.Body);
 
             return RedirectToAction("Index", "Statistic");
         }

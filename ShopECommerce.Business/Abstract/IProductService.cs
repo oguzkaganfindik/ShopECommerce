@@ -20,6 +20,6 @@ namespace ShopECommerce.Business.Abstract
         Task<decimal> TTotalPriceByStrawberrySubCategoryAsync();
         Task<List<ResultProductWithSubCategory>> TGetProductListByVegetableAsync();
         Task<List<ResultProductWithSubCategory>> TGetProductListByFruitesAsync();
-        Task<GetProductShowcaseDetailDto> TGetProductShowcaseDetailIdAsync(int id);
+        Task<GetProductShowcaseDetailDto> TGetProductShowcaseDetailAsync(int id);
     }
 }

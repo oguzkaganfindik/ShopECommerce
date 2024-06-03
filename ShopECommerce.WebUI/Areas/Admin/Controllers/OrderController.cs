@@ -37,10 +37,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrder(CreateOrderViewModel createOrderDto)
+        public async Task<IActionResult> CreateOrder(CreateOrderViewModel createOrderViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createOrderDto);
+            var jsonData = JsonConvert.SerializeObject(createOrderViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Orders", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -76,10 +76,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateOrder(UpdateOrderViewModel updateOrderDto)
+        public async Task<IActionResult> UpdateOrder(UpdateOrderViewModel updateOrderViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateOrderDto);
+            var jsonData = JsonConvert.SerializeObject(updateOrderViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/Orders/", stringContent);
             if (responseMessage.IsSuccessStatusCode)

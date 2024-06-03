@@ -37,10 +37,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateFeatur(CreateFeaturViewModel createFeaturDto)
+        public async Task<IActionResult> CreateFeatur(CreateFeaturViewModel createFeaturViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createFeaturDto);
+            var jsonData = JsonConvert.SerializeObject(createFeaturViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7046/api/Featurs", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -76,10 +76,10 @@ namespace ShopECommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateFeatur(UpdateFeaturViewModel updateFeaturDto)
+        public async Task<IActionResult> UpdateFeatur(UpdateFeaturViewModel updateFeaturViewModel)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateFeaturDto);
+            var jsonData = JsonConvert.SerializeObject(updateFeaturViewModel);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("https://localhost:7046/api/Featurs/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
