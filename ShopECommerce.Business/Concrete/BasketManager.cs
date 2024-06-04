@@ -95,5 +95,18 @@ namespace ShopECommerce.Business.Concrete
         {
             return await _basketDal.GetBasketItemCountAsync();
         }
+        public async Task TAddAsync(CreateBasketDto createBasketDto)
+        {
+            var productPrice = await _basketDal.GetProductPriceAsync(createBasketDto.ProductId);
+
+            await _basketDal.AddAsync(new Basket()
+            {
+                ProductId = createBasketDto.ProductId,
+                Count = 1,
+                BasketItemId = 1,
+                Price = productPrice,
+                TotalPrice = productPrice,
+            });
+        }
     }
 }

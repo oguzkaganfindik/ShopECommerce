@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.TestimonialDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -23,7 +24,10 @@ namespace ShopECommerce.Business.Concrete
         {
             await _testimonialDal.AddAsync(entity);
         }
-
+        public async Task TUpdateAsync(Testimonial entity)
+        {
+            await _testimonialDal.UpdateAsync(entity);
+        }
         public async Task TDeleteAsync(Testimonial entity)
         {
             await _testimonialDal.DeleteAsync(entity);
@@ -63,10 +67,34 @@ namespace ShopECommerce.Business.Concrete
         {
             await _testimonialDal.ToggleStatusAsync(id);
         }
-
-        public async Task TUpdateAsync(Testimonial entity)
+        
+        public async Task TUpdateAsync(UpdateTestimonialDto updateTestimonialDto)
         {
-            await _testimonialDal.UpdateAsync(entity);
+            var testimonial = await _testimonialDal.GetByIdAsync(updateTestimonialDto.Id);
+            if (testimonial == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            testimonial.Name = updateTestimonialDto.Name;
+            testimonial.Title = updateTestimonialDto.Title;
+            testimonial.Comment = updateTestimonialDto.Comment;
+            testimonial.ImagePath = updateTestimonialDto.ImagePath;
+            testimonial.Status = updateTestimonialDto.Status;
+
+            await _testimonialDal.UpdateAsync(testimonial);
+        }
+
+        public async Task TAddAsync(CreateTestimonialDto createTestimonialDto)
+        {
+            await _testimonialDal.AddAsync(new Testimonial()
+            {
+                Name = createTestimonialDto.Name,
+                Title = createTestimonialDto.Title,
+                Comment = createTestimonialDto.Comment,
+                ImagePath = createTestimonialDto.ImagePath,
+                Status = createTestimonialDto.Status
+            });
         }
     }
 }

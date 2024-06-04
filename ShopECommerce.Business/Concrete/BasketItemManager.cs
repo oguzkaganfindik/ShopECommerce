@@ -1,5 +1,6 @@
 ﻿using ShopECommerce.Business.Abstract;
 using ShopECommerce.Data.Abstract;
+using ShopECommerce.DTOs.BasketItemDto;
 using ShopECommerce.Entities.Concrete;
 using System.Linq.Expressions;
 
@@ -23,7 +24,10 @@ namespace ShopECommerce.Business.Concrete
         {
             await _basketItemDal.AddAsync(entity);
         }
-
+        public async Task TUpdateAsync(BasketItem entity)
+        {
+            await _basketItemDal.UpdateAsync(entity);
+        }
         public async Task TDeleteAsync(BasketItem entity)
         {
             await _basketItemDal.DeleteAsync(entity);
@@ -68,10 +72,28 @@ namespace ShopECommerce.Business.Concrete
         {
             await _basketItemDal.ToggleStatusAsync(id);
         }
-
-        public async Task TUpdateAsync(BasketItem entity)
+  
+        public async Task TUpdateAsync(UpdateBasketItemDto updateBasketItemDto)
         {
-            await _basketItemDal.UpdateAsync(entity);
+            var basketItem = await _basketItemDal.GetByIdAsync(updateBasketItemDto.Id);
+            if (basketItem == null)
+            {
+                throw new ArgumentException("Varlık bulunamadı");
+            }
+
+            basketItem.BasketItemCustomerMail = updateBasketItemDto.BasketItemCustomerMail;
+            basketItem.Status = updateBasketItemDto.Status;
+
+            await _basketItemDal.UpdateAsync(basketItem);
+        }
+
+        public async Task TAddAsync(CreateBasketItemDto createBasketItemDto)
+        {
+            await _basketItemDal.AddAsync(new BasketItem()
+            {
+                BasketItemCustomerMail = createBasketItemDto.BasketItemCustomerMail,
+                Status = createBasketItemDto.Status
+            });
         }
     }
 }

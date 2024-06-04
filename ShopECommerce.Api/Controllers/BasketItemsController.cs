@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.BasketItemDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -31,13 +30,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBasketItemAsync(CreateBasketItemDto createBasketItemDto)
         {
-            BasketItem BasketItem = new BasketItem()
-            {
-                BasketItemCustomerMail = createBasketItemDto.BasketItemCustomerMail,
-                Status = false
-            };
-
-            await _basketItemService.TAddAsync(BasketItem);
+            await _basketItemService.TAddAsync(createBasketItemDto);
             return Ok("Başarılı Bir Şekilde Eklendi");
         }
 
@@ -52,14 +45,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateBasketItemAsync(UpdateBasketItemDto updateBasketItemDto)
         {
-            BasketItem BasketItem = new BasketItem()
-            {
-                BasketItemCustomerMail = updateBasketItemDto.BasketItemCustomerMail,
-                Status = false,
-                Id = updateBasketItemDto.Id
-            };
-
-            await _basketItemService.TUpdateAsync(BasketItem);
+            await _basketItemService.TUpdateAsync(updateBasketItemDto);
             return Ok("Güncellendi");
         }
 

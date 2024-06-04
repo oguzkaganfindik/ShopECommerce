@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.TestimonialDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -36,14 +35,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTestimonialAsync(CreateTestimonialDto createTestimonialDto)
         {
-            await _testimonialService.TAddAsync(new Testimonial()
-            {
-                Name = createTestimonialDto.Name,
-                Title = createTestimonialDto.Title,
-                Comment = createTestimonialDto.Comment,
-                ImagePath = createTestimonialDto.ImagePath
-            });
-
+            await _testimonialService.TAddAsync(createTestimonialDto);
             return Ok("Müşteri Yorum Bilgisi Eklendi");
         }
 
@@ -65,15 +57,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateTestimonialAsync(UpdateTestimonialDto updateTestimonialDto)
         {
-            await _testimonialService.TUpdateAsync(new Testimonial()
-            {
-                Id = updateTestimonialDto.Id,
-                Name = updateTestimonialDto.Name,
-                Title = updateTestimonialDto.Title,
-                Comment = updateTestimonialDto.Comment,
-                ImagePath = updateTestimonialDto.ImagePath
-            });
-
+            await _testimonialService.TUpdateAsync(updateTestimonialDto);
             return Ok("Müşteri Yorum Bilgisi Güncellendi");
         }
 
