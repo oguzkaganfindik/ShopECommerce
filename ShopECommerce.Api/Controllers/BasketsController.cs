@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.BasketDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -33,16 +32,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPost("CreateBasket")]
         public async Task<IActionResult> CreateBasketAsync(CreateBasketDto createBasketDto)
         {
-            var productPrice = await _basketService.TGetProductPriceAsync(createBasketDto.ProductId);
-
-            await _basketService.TAddAsync(new Basket()
-            {
-                ProductId = createBasketDto.ProductId,
-                Count = 1,
-                BasketItemId = 1,
-                Price = productPrice,
-                TotalPrice = productPrice,
-            });
+            await _basketService.TAddAsync(createBasketDto);
             return Ok();
         }
 

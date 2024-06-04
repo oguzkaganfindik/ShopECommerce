@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using ShopECommerce.Business.Abstract;
 using ShopECommerce.DTOs.UserDto;
-using ShopECommerce.Entities.Concrete;
 
 namespace ShopECommerce.Api.Controllers
 {
@@ -61,20 +60,7 @@ namespace ShopECommerce.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateUserAsync(UpdateUserDto updateUserDto)
         {
-            await _userService.TUpdateAsync(new User()
-            {
-                Id = updateUserDto.Id,
-                Email = updateUserDto.Email,
-                Password = _dataProtector.Protect(updateUserDto.Password),
-                FirstName = updateUserDto.FirstName,
-                LastName = updateUserDto.LastName,
-                Username = updateUserDto.Username,
-                Address = updateUserDto.Address,
-                Phone = updateUserDto.Phone,
-                RoleId = updateUserDto.RoleId,
-                Description = updateUserDto.Description
-            });
-
+            await _userService.TUpdateAsync(updateUserDto);
             return Ok("User Güncellendi");
         }
 
