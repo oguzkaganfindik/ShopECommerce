@@ -11,5 +11,7 @@
         public string ImagePath2 { get; set; }
         public string Url2 { get; set; }
         public bool Status { get; set; }
+        public IFormFile? File1 { get; set; }
+        public IFormFile? File2 { get; set; }
     }
 }
