@@ -9,7 +9,7 @@
         <h4 class="page-title">Banner İşlemleri</h4>
         <div class="row">
             <div class="col-md-12">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">Fact Güncelleme</div>
@@ -47,8 +47,8 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="ImagePath">Resim</label>
-                                <input type="text" class="form-control" asp-for="ImagePath" id="ImagePath">
+                                <label asp-for="File"> Banner Görselini Giriniz</label>
+                                <input type="File" class="form-control" asp-for="File" id="File">
                             </div>
                         </div>
                         <div class="card-body">
