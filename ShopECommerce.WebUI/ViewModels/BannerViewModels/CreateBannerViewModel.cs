@@ -11,6 +11,6 @@
         public string Price1 { get; set; }
         public string Price2 { get; set; }
         public bool Status { get; set; }
-
+        public IFormFile? File { get; set; }
     }
 }

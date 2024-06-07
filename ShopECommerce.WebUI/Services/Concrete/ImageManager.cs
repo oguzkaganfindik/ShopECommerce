@@ -21,7 +21,7 @@ namespace ShopECommerce.WebUI.Services.Concrete
 
             if (formFile != null && formFile.FileName != null) 
             {
-                var allowedFileTypes = new string[] { "image/jpeg", "image/jpg", "image/jfif", "image/avif" };
+                var allowedFileTypes = new string[] { "image/jpeg", "image/jpg", "image/jfif", "image/avif", "image/png" };
 
                 var allowedFileExtensions = new string[] { ".jpg", ".jpeg", ".png", ".jfif", ".avif" };
 
@@ -31,7 +31,7 @@ namespace ShopECommerce.WebUI.Services.Concrete
 
                 if (!allowedFileTypes.Contains(fileContentType) || !allowedFileExtensions.Contains(fileExtension))
                 {
-                    errorMessage = "Yüklediğiniz dosya " + fileExtension + " uzantısında. Sisteme yalnızca .jpg .jpeg .jfif .avif formatında dosyalar yüklenebilir.";
+                    errorMessage = "Yüklediğiniz dosya " + fileExtension + " uzantısında. Sisteme yalnızca .jpg .jpeg .png .jfif .avif formatında dosyalar yüklenebilir.";
                 }
                 else
                 {

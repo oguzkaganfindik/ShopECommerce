@@ -21,12 +21,9 @@
                         <table class="table mt-3">
                             <thead>
                                 <tr>
+                                    <th scope="col">Görsel</th>
                                     <th scope="col">Başlık</th>
                                     <th scope="col">Alt Başlık</th>
-                                    <th scope="col">Link</th>
-                                    <th scope="col">Link Etiketi</th>
-                                    <th scope="col">Fiyat(Virgülden Öncesi)</th>
-                                    <th scope="col">Fiyat(Virgülden Sonrası)</th>
                                     <th scope="col">Durum</th>
                                     <th scope="col">Sil</th>
                                     <th scope="col">Güncelle</th>
@@ -37,13 +34,11 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
+                                        <td><img class="mt-4 mb-4" width="100" height="70" src="@item.ImagePath" /></td>
                                         <td>@item.Title</td>
                                         <td>@item.SubTitle</td>
-                                        <td>@item.Url</td>
-                                        <td>@item.UrlLabel</td>
-                                        <td>@item.Price1</td>
-                                        <td>@item.Price2</td>
                                         <td>@item.Status</td>
+                                        <td><a href="/Admin/Banner/Detail/@item.Id" class="btn btn-outline-primary btn-round">Detay</a></td>
                                         <td><a href="/Admin/Banner/DeleteBanner/@item.Id" class="btn btn-outline-danger btn-round">Sil</a></td>
                                         <td><a href="/Admin/Banner/UpdateBanner/@item.Id" class="btn btn-outline-success btn-round">Güncelle</a></td>
                                         <td><a href="/Admin/Banner/ToggleStatus/@item.Id" class="btn btn-outline-dark btn-round">Durumu Değiştir</a></td>
