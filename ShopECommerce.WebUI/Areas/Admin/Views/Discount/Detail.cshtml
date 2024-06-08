@@ -1,20 +1,20 @@
-﻿@model GetBannerViewModel
+﻿@model GetDiscountViewModel
 @{
-    ViewData["Title"] = "Banner Detayı";
+    ViewData["Title"] = "İndirimli Ürünler Detayı";
 }
 
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">Banner Detayı</h4>
+        <h4 class="page-title">İndirimli Ürünler Detayı</h4>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Banner Detayları</div>
+                        <div class="card-title">İndirimli Ürünler Detayları</div>
                     </div>
                     <div class="card-body">
                         <div class="card-sub">
-                            Banner alanıyla ilgili detayları görebilirsiniz.
+                            İndirimli Ürünler alanıyla ilgili detayları görebilirsiniz.
                         </div>
                         <div class="table-responsive">
                             <table class="table mt-3">
@@ -28,25 +28,13 @@
                                         <td>@Model.Title</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Alt Başlık</th>
-                                        <td>@Model.SubTitle</td>
-                                    </tr>
-                                    <tr>
                                         <th scope="row">Açıklama</th>
                                         <td>@Model.Description</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Link</th>
-                                        <td>@Model.Url</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Link Etiketi</th>
-                                        <td>@Model.UrlLabel</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Fiyat</th>
-                                        <td>@Model.Price1,@Model.Price2 $</td>
-                                    </tr>                                                                   
+                                        <th scope="row">Amount</th>
+                                        <td>@Model.Amount</td>
+                                    </tr>                                                                 
                                     <tr>
                                         <th scope="row">Durum</th>
                                         <td>@Model.Status</td>
@@ -56,9 +44,9 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <td><a href="/Admin/Banner/DeleteBanner/@Model.Id" class="btn btn-outline-danger btn-round">Sil</a></td>
-                                <td><a href="/Admin/Banner/UpdateBanner/@Model.Id" class="btn btn-outline-success btn-round">Güncelle</a></td>
-                                <td><a href="/Admin/Banner/ToggleStatus/@Model.Id" class="btn btn-outline-dark btn-round">Durum Değiştir</a></td>
+                                <td><a href="/Admin/Discount/DeleteDiscount/@Model.Id" class="btn btn-outline-danger btn-round">Sil</a></td>
+                                <td><a href="/Admin/Discount/UpdateDiscount/@Model.Id" class="btn btn-outline-success btn-round">Güncelle</a></td>
+                                <td><a href="/Admin/Discount/ToggleStatus/@Model.Id" class="btn btn-outline-dark btn-round">Durum Değiştir</a></td>
                             </div>
                         </div>
                     </div>

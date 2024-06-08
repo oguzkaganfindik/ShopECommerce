@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ShopECommerce.WebUI.Services.Abstract;
 using ShopECommerce.WebUI.ViewModels.BannerViewModels;
-using ShopECommerce.WebUI.ViewModels.ProductViewModels;
 using System.Text;
 
 namespace ShopECommerce.WebUI.Areas.Admin.Controllers
