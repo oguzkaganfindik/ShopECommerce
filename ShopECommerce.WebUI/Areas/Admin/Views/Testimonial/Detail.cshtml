@@ -1,0 +1,57 @@
+﻿@model GetTestimonialViewModel
+@{
+    ViewData["Title"] = "Banner Detayı";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Referans Detayı</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Referans Detayları</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Referans alanıyla ilgili detayları görebilirsiniz.
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Müşteri Görseli</th>
+                                        <td><img class="mt-4 mb-4" width="500" height="350" src="@Model.ImagePath" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" style="width: 30%;">Müşteri Adı</th>
+                                        <td>@Model.Name</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Müşteri Ünvanı</th>
+                                        <td>@Model.Title</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Yorum</th>
+                                        <td>@Model.Comment</td>
+                                    </tr>                                                                    
+                                    <tr>
+                                        <th scope="row">Durum</th>
+                                        <td>@Model.Status</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <td><a href="/Admin/Testimonial/DeleteTestimonial/@Model.Id" class="btn btn-outline-danger btn-round">Sil</a></td>
+                                <td><a href="/Admin/Testimonial/UpdateTestimonial/@Model.Id" class="btn btn-outline-success btn-round">Güncelle</a></td>
+                                <td><a href="/Admin/Testimonial/ToggleStatus/@Model.Id" class="btn btn-outline-dark btn-round">Durum Değiştir</a></td>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

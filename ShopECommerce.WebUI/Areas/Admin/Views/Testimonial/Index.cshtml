@@ -23,8 +23,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
+                                    <th scope="col">Görsel</th>
                                     <th scope="col">Ad Soyad</th>
                                     <th scope="col">Durum</th>
+                                    <th scope="col">Detay</th>
                                     <th scope="col">Sil</th>
                                     <th scope="col">Güncelle</th>
                                     <th scope="col">Durumu Değiştir</th>
@@ -36,8 +38,10 @@
                                     count++;
                                     <tr>
                                         <th>@count</th>
+                                        <td><img class="mt-4 mb-4" width="100" height="100" src="@item.ImagePath" /></td>
                                         <td>@item.Name</td>
                                         <td>@item.Status</td>
+                                        <td><a href="/Admin/Testimonial/Detail/@item.Id" class="btn btn-outline-primary btn-round">Detay</a></td>
                                         <td><a href="/Admin/Testimonial/DeleteTestimonial/@item.Id" class="btn btn-outline-danger btn-round">Sil</a></td>
                                         <td><a href="/Admin/Testimonial/UpdateTestimonial/@item.Id" class="btn btn-outline-success btn-round">Güncelle</a></td>
                                         <td><a href="/Admin/Testimonial/ToggleStatus/@item.Id" class="btn btn-outline-dark btn-round">Durumu Değiştir</a></td>
