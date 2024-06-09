@@ -7,5 +7,6 @@
         public string Comment { get; set; }
         public string ImagePath { get; set; }
         public bool Status { get; set; }
+        public IFormFile? File { get; set; }
     }
 }
